@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textSize_26">@dimen/x26</dimen>
+    <dimen name="textSize_28">@dimen/x28</dimen>
+    <dimen name="textSize_30">@dimen/x30</dimen>
+    <dimen name="textSize_32">@dimen/x32</dimen>
+    <dimen name="textSize_34">@dimen/x34</dimen>
+
+</resources>

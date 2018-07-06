@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Baby</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <array name="tab_myOrder">
+        <item>全部</item>
+        <item>待发货</item>
+        <item>待收货</item>
+        <item>待归还</item>
+        <item>已完成</item>
+    </array>
+</resources>

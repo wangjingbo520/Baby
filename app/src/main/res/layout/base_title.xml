@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fl_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x110"
+        android:background="@color/white">
+
+        <FrameLayout
+            android:id="@+id/fl_back"
+            android:layout_width="@dimen/x100"
+            android:layout_height="match_parent"
+            android:layout_gravity="left|center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/x25"
+                android:background="@mipmap/back" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/textColor3"
+            android:textSize="@dimen/x36" />
+
+        <FrameLayout
+            android:id="@+id/fl_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical|right">
+
+            <TextView
+                android:id="@+id/tv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="@dimen/x30"
+                android:textColor="@color/textColor3"
+                android:textSize="@dimen/x30" />
+
+            <ImageView
+                android:id="@+id/iv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="@dimen/x20"
+                android:visibility="gone" />
+        </FrameLayout>
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x2"
+        android:layout_gravity="bottom"
+        android:background="@color/divider" />
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white" />
+
+</LinearLayout>
