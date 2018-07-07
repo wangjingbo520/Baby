@@ -55,7 +55,7 @@ public class MainActivity extends BaseActivity {
                 break;
             case 2:
                 if (centerFragment == null) {
-                    centerFragment = new CenterFragment();
+                    centerFragment = CenterFragment.newInstance();
                     transaction.add(R.id.main_frame, centerFragment);
                 } else {
                     transaction.show(centerFragment);

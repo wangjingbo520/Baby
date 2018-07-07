@@ -1,5 +1,7 @@
 package com.sunbaby.app.ui.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -8,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import com.sunbaby.app.R;
 import com.sunbaby.app.adapter.MainTabAdapter;
 import com.sunbaby.app.common.base.BaseActivity;
+import com.sunbaby.app.common.widget.ViewPagerScroller;
 import com.sunbaby.app.ui.fragment.order.AllFragment;
 import com.sunbaby.app.ui.fragment.order.FourFragment;
 import com.sunbaby.app.ui.fragment.order.OneFragment;
@@ -31,10 +34,11 @@ public class MyOrderActivity extends BaseActivity {
     @BindView(R.id.view_pager)
     ViewPager mViewpager;
 
-
     private List<Fragment> mFirstFraments;
     private String[] mList_title;
     private MainTabAdapter mAdapter_title;
+
+    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +48,15 @@ public class MyOrderActivity extends BaseActivity {
         initFragment();
     }
 
+
+    public static void start(Context context, int position) {
+        Intent starter = new Intent(context, MyOrderActivity.class);
+        starter.putExtra("position", position);
+        context.startActivity(starter);
+    }
+
     private void initFragment() {
+        position = getIntent().getIntExtra("position", 0);
         mList_title = getResources().getStringArray(R.array.tab_myOrder);
         mFirstFraments = new ArrayList<>();
         mFirstFraments.add(AllFragment.newInstance());
@@ -56,5 +68,8 @@ public class MyOrderActivity extends BaseActivity {
                 mList_title);
         mViewpager.setAdapter(mAdapter_title);
         mTablayout.setupWithViewPager(mViewpager);
+        mViewpager.setCurrentItem(position);
+        ViewPagerScroller mPagerScroller=new ViewPagerScroller(this);
+        mPagerScroller.initViewPagerScroll(mViewpager);
     }
 }

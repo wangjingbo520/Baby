@@ -31,10 +31,8 @@ import butterknife.Unbinder;
  */
 public class AllFragment extends BaseFragment {
 
-    @BindView(R.id.recyclerview)
-    RecyclerView mRecyclerView;
-    @BindView(R.id.swipeLayout)
-    SwipeRefreshLayout mSwipeRefreshLayout;
+    private RecyclerView mRecyclerView;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     private int currentPage = 1;
     private int pageSize = 10;
@@ -75,6 +73,9 @@ public class AllFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
+        // 超过两个Fragment后就使用findViewById的方式,不用注解方式找到控件
+        mRecyclerView = view.findViewById(R.id.recyclerview);
+        mSwipeRefreshLayout = view.findViewById(R.id.swipeLayout);
         mSwipeRefreshLayout.setColorSchemeColors(Color.rgb(47, 223, 189));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

@@ -36,4 +36,5 @@ dependencies {
     implementation files('libs/mcommons-codec-1.11.jar')
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.35'
     implementation 'com.android.support:design:27.1.1'
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
 }

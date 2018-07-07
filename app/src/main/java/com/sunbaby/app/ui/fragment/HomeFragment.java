@@ -3,17 +3,14 @@ package com.sunbaby.app.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.sunbaby.app.R;
 import com.sunbaby.app.common.base.BaseFragment;
 import com.sunbaby.app.ui.activity.MyOrderActivity;
+import com.sunbaby.app.ui.activity.PayActivity;
 
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * @author 王静波
@@ -49,7 +46,21 @@ public class HomeFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvOrder:
-                startActivity(new Intent(mContext, MyOrderActivity.class));
+                //  startActivity(new Intent(mContext, MyOrderActivity.class));
+                startActivity(new Intent(mContext, PayActivity.class));
+//                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+//                builder.setTitle("提示");
+//                builder.setMessage("清除成功!");
+//                builder.setCancelable(false);
+//                builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        ToastUtil.show("hahhaha");
+//                    }
+//                });
+//
+//                AlertDialog alertDialog = builder.create();
+//                alertDialog.show();
                 break;
             default:
                 break;

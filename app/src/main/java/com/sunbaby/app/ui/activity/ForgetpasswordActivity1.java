@@ -28,8 +28,12 @@ public class ForgetpasswordActivity1 extends BaseActivity {
     @Override
     public void onClick(View view) {
         super.onClick(view);
-        startTo(ForgetpasswordActivity2.class, true);
+        switch (view.getId()) {
+            case R.id.next:
+                startTo(ForgetpasswordActivity2.class, true);
+                break;
+            default:
+                break;
+        }
     }
-
-
 }
