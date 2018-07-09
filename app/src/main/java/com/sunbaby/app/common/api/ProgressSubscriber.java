@@ -22,7 +22,6 @@ public abstract class ProgressSubscriber<T> extends Subscriber<T> implements Pro
 
     private boolean showDialog = true;
 
-
     public ProgressSubscriber(Context context) {
         this.context = context;
         this.mProgressDialogHandler = new ProgressDialogHandler(false, this, context);

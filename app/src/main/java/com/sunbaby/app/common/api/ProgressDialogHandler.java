@@ -16,8 +16,7 @@ public class ProgressDialogHandler extends Handler {
 
     public static final int SHOW_DIALOG = 1;
 
-    public static final int DISMISS_DIALOG =2;
-
+    public static final int DISMISS_DIALOG = 2;
 
     private boolean mCancelable;
 
@@ -27,7 +26,8 @@ public class ProgressDialogHandler extends Handler {
 
     private Dialog mDialog;
 
-    public ProgressDialogHandler(boolean mCancelable, ProgressDialogListener mProgressDialogListener, Context context) {
+    public ProgressDialogHandler(boolean mCancelable, ProgressDialogListener
+            mProgressDialogListener, Context context) {
         this.mCancelable = mCancelable;
         this.mProgressDialogListener = mProgressDialogListener;
         this.mContext = context;
@@ -37,7 +37,7 @@ public class ProgressDialogHandler extends Handler {
     /**
      * 用于显示Dialog
      */
-    private void initProgressDialog(){
+    private void initProgressDialog() {
         if (mDialog == null) {
             mDialog = new ProgressDialog(mContext);
             mDialog.setCancelable(mCancelable);
@@ -56,7 +56,7 @@ public class ProgressDialogHandler extends Handler {
     }
 
 
-    private void dismissProgressDialog(){
+    private void dismissProgressDialog() {
         if (mDialog != null) {
             mDialog.dismiss();
             mDialog = null;
@@ -71,6 +71,8 @@ public class ProgressDialogHandler extends Handler {
                 break;
             case DISMISS_DIALOG:
                 dismissProgressDialog();
+                break;
+            default:
                 break;
         }
     }
