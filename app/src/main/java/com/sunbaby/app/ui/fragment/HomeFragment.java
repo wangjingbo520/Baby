@@ -7,8 +7,11 @@ import android.view.View;
 
 import com.sunbaby.app.R;
 import com.sunbaby.app.common.base.BaseFragment;
+import com.sunbaby.app.ui.activity.ClassificationActivity;
+import com.sunbaby.app.ui.activity.ManageAddressActivity;
 import com.sunbaby.app.ui.activity.MyOrderActivity;
 import com.sunbaby.app.ui.activity.PayActivity;
+import com.sunbaby.app.ui.activity.SearchActivity;
 
 import butterknife.OnClick;
 
@@ -47,7 +50,10 @@ public class HomeFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.tvOrder:
                 //  startActivity(new Intent(mContext, MyOrderActivity.class));
-                startActivity(new Intent(mContext, PayActivity.class));
+                //  startActivity(new Intent(mContext, PayActivity.class));
+                //   startActivity(new Intent(mContext, SearchActivity.class));
+                //      startActivity(new Intent(mContext, ClassificationActivity.class));
+                startActivity(new Intent(mContext, ManageAddressActivity.class));
 //                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 //                builder.setTitle("提示");
 //                builder.setMessage("清除成功!");

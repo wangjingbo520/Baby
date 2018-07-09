@@ -21,16 +21,12 @@ import butterknife.Unbinder;
  */
 public class CenterFragment extends BaseFragment {
 
-
-    Unbinder unbinder;
-
     public static CenterFragment newInstance() {
         CenterFragment fragment = new CenterFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
-
 
     @Override
     public void initData() {
@@ -47,19 +43,11 @@ public class CenterFragment extends BaseFragment {
 
     }
 
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
     @OnClick({R.id.tvSetting, R.id.llLookmore})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvSetting:
                 //设置
-
                 break;
             case R.id.llLookmore:
                 //查看更多

@@ -42,8 +42,15 @@
             android:configChanges="keyboardHidden|orientation|fontScale|fontScale"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
-        <activity android:name=".ui.activity.MyOrderActivity" />
-        <activity android:name=".ui.activity.PayActivity"></activity>
+        <activity
+            android:name=".ui.activity.MyOrderActivity"
+            android:configChanges="keyboardHidden|orientation|fontScale|fontScale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <activity android:name=".ui.activity.ClassificationActivity" />
+        <activity android:name=".ui.activity.SearchActivity" />
+        <activity android:name=".ui.activity.ManageAddressActivity" />
+        <activity android:name=".ui.activity.AddNewAddressActivity"></activity>
     </application>
 
 </manifest>
