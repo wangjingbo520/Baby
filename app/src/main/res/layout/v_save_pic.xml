@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/x20"
+    android:paddingRight="@dimen/x20">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_save_pic"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/btn_take_photo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x120"
+            android:gravity="center"
+            android:text="拍照"
+            android:textColor="#2F78E2"
+            android:textSize="@dimen/x30" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"
+            android:background="#cccccc" />
+
+        <TextView
+            android:id="@+id/btn_pick_photo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x120"
+            android:gravity="center"
+            android:text="从相册选择"
+            android:textColor="#2F78E2"
+            android:textSize="@dimen/x30" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_tep3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x120"
+        android:layout_marginBottom="@dimen/x20"
+        android:layout_marginTop="@dimen/x20"
+        android:background="@drawable/bg_save_pic"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="#2F78E2"
+        android:textSize="@dimen/x30" />
+</LinearLayout>

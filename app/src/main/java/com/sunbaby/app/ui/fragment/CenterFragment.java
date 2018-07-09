@@ -1,6 +1,7 @@
 package com.sunbaby.app.ui.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import com.sunbaby.app.R;
 import com.sunbaby.app.common.base.BaseFragment;
 import com.sunbaby.app.ui.activity.MyOrderActivity;
+import com.sunbaby.app.ui.activity.SettingActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -48,6 +50,7 @@ public class CenterFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.tvSetting:
                 //设置
+                startActivity(new Intent(mContext, SettingActivity.class));
                 break;
             case R.id.llLookmore:
                 //查看更多

@@ -11,15 +11,14 @@ import android.widget.LinearLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.sunbaby.app.R;
 import com.sunbaby.app.adapter.ManageAdressAdapter;
-import com.sunbaby.app.adapter.RecyDemoAdapter;
 import com.sunbaby.app.common.base.BaseActivity;
-import com.sunbaby.app.common.utils.ToastUtil;
 import com.sunbaby.app.common.widget.MyRecycleViewDivider;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author 王静波
@@ -73,4 +72,18 @@ public class ManageAddressActivity extends BaseActivity {
             }
         });
     }
+
+    @OnClick(R.id.tvAddress)
+    @Override
+    public void onClick(View view) {
+        super.onClick(view);
+        switch (view.getId()) {
+            case R.id.tvAddress:
+                AddNewAddressActivity.start(this);
+                break;
+            default:
+                break;
+        }
+    }
+
 }

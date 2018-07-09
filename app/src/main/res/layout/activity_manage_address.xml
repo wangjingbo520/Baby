@@ -13,7 +13,7 @@
         android:layout_weight="1" />
 
     <TextView
-
+        android:id="@+id/tvAddress"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x90"
         android:layout_margin="@dimen/x30"
@@ -22,6 +22,5 @@
         android:text="添加新地址"
         android:textColor="@color/white"
         android:textSize="@dimen/textSize_32" />
-
 
 </LinearLayout>
