@@ -13,7 +13,7 @@
         android:orientation="horizontal"
         android:padding="@dimen/x20">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <com.libray.basetools.view.imageview.CircleImageView
             android:id="@+id/ivLogo"
             android:layout_width="@dimen/x150"
             android:layout_height="@dimen/x150"
@@ -101,8 +101,6 @@
                 android:text="待发货"
                 android:textColor="@color/textColor3"
                 android:textSize="@dimen/textSize_30" />
-
-
         </LinearLayout>
 
         <LinearLayout
