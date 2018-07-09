@@ -295,6 +295,7 @@
         <TextView
             android:layout_width="@dimen/x200"
             android:layout_height="@dimen/x90"
+            android:layout_marginRight="@dimen/x30"
             android:layout_toLeftOf="@id/tvLianxi"
             android:background="@drawable/bg_btn_login"
             android:gravity="center"

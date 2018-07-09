@@ -7,11 +7,7 @@ import android.view.View;
 
 import com.sunbaby.app.R;
 import com.sunbaby.app.common.base.BaseFragment;
-import com.sunbaby.app.ui.activity.ClassificationActivity;
 import com.sunbaby.app.ui.activity.ManageAddressActivity;
-import com.sunbaby.app.ui.activity.MyOrderActivity;
-import com.sunbaby.app.ui.activity.PayActivity;
-import com.sunbaby.app.ui.activity.SearchActivity;
 
 import butterknife.OnClick;
 
