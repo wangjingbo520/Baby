@@ -8,7 +8,7 @@
         android:id="@+id/fl_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
-        android:background="@color/white">
+        android:background="@color/themeColor">
 
         <FrameLayout
             android:id="@+id/fl_back"

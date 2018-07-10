@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:gravity="center"
     android:orientation="vertical"
     android:padding="@dimen/x30"
     tools:context=".ui.activity.LoginActivity">
@@ -14,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/x20"
+        android:layout_marginTop="@dimen/x80"
         android:text="登录向阳宝贝"
         android:textColor="@color/textColor3"
         android:textSize="@dimen/x40"
@@ -52,7 +52,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x1"
+        android:layout_height="@dimen/x2"
         android:layout_marginLeft="@dimen/x20"
         android:layout_marginRight="@dimen/x20"
         android:background="@color/c_line" />
@@ -90,7 +90,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x1"
+        android:layout_height="@dimen/x2"
         android:layout_marginLeft="@dimen/x20"
         android:layout_marginRight="@dimen/x20"
         android:background="@color/c_line" />
