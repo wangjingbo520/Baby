@@ -6,9 +6,21 @@
     android:orientation="vertical"
     tools:context=".ui.activity.RegisterActivity">
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginTop="@dimen/x50"
+        android:text="欢迎来到向阳宝贝"
+        android:textColor="@color/textColor3"
+        android:textSize="@dimen/x40"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
+        android:layout_marginTop="@dimen/x50"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/x30"
@@ -22,7 +34,7 @@
             android:textSize="@dimen/x32" />
 
         <EditText
-            android:id="@+id/etAccount"
+            android:id="@+id/etPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/x24"
@@ -276,9 +288,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="@dimen/x30"
         android:layout_marginRight="@dimen/x30"
-        android:layout_marginTop="@dimen/x250"
+        android:layout_marginTop="@dimen/x30"
         android:background="@drawable/bg_btn_login"
-        android:text="立即注册"
+        android:text="加入会员"
         android:textColor="@color/white"
         android:textSize="@dimen/x32" />
 

@@ -2,11 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sunbaby.app">
 
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".MyApplication"
@@ -84,7 +83,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
         <activity
-            android:name=".ui.activity.OrderdetailActivity"
+            android:name=".ui.activity.orderdetail.TwoDetailActivity"
             android:configChanges="keyboardHidden|orientation|fontScale|fontScale"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
@@ -93,7 +92,46 @@
             android:configChanges="keyboardHidden|orientation|fontScale|fontScale"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
-        <activity android:name=".ui.activity.ProductDetailsActivity"></activity>
+        <activity
+            android:name=".ui.activity.ProductDetailsActivity"
+            android:configChanges="keyboardHidden|orientation|fontScale|fontScale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <activity
+            android:name=".ui.activity.DistributionBoxActivity"
+            android:configChanges="keyboardHidden|orientation|fontScale|fontScale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <activity
+            android:name=".ui.activity.JoinmemberActivity"
+            android:configChanges="keyboardHidden|orientation|fontScale|fontScale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <activity
+            android:name=".ui.activity.PayActivity"
+            android:configChanges="keyboardHidden|orientation|fontScale|fontScale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <activity
+            android:name=".ui.activity.orderdetail.OneDetailActivity"
+            android:configChanges="keyboardHidden|orientation|fontScale|fontScale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <activity
+            android:name=".ui.activity.orderdetail.ThreeDetailActivity"
+            android:configChanges="keyboardHidden|orientation|fontScale|fontScale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <activity
+            android:name=".ui.activity.orderdetail.FourDetailActivity"
+            android:configChanges="keyboardHidden|orientation|fontScale|fontScale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <activity
+            android:name=".ui.activity.JoinmemberActivity2"
+            android:configChanges="keyboardHidden|orientation|fontScale|fontScale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
     </application>
 
 </manifest>

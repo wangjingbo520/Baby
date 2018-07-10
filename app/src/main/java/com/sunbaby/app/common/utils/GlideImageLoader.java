@@ -18,7 +18,7 @@ public class GlideImageLoader {
     public static void loadImage(Context context, String url, ImageView imageView) {
         Glide.with(context)
                 .load(url)
-                .apply(new RequestOptions().placeholder(R.mipmap.ic_launcher).centerCrop()
+                .apply(new RequestOptions().placeholder(R.mipmap.default_pic).centerCrop()
                         .diskCacheStrategy(DiskCacheStrategy.ALL))
                 .into(imageView);
     }

@@ -9,12 +9,22 @@
     android:padding="@dimen/x30"
     tools:context=".ui.activity.LoginActivity">
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x20"
+        android:text="登录向阳宝贝"
+        android:textColor="@color/textColor3"
+        android:textSize="@dimen/x40"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
         android:layout_marginLeft="@dimen/x20"
         android:layout_marginRight="@dimen/x20"
-        android:layout_marginTop="@dimen/x30"
+        android:layout_marginTop="@dimen/x100"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -93,7 +103,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/x250"
         android:background="@drawable/bg_btn_login"
-        android:text="登录"
+        android:text="立即登录"
         android:textColor="@color/white"
         android:textSize="@dimen/x32" />
 

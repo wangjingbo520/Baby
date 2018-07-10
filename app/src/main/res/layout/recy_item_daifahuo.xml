@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/x10">
+
+
+        <ImageView
+            android:id="@+id/iv_picture"
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/x180"
+            android:layout_marginLeft="@dimen/x20"
+            android:src="@mipmap/default_pic" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/x20">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="战神之王：如何成为战神之王"
+                android:textColor="@color/textColor3"
+                android:textSize="@dimen/x28" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvOrder"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="订单号：2018110111234"
+                    android:textColor="@color/textColor6"
+                    android:textSize="@dimen/x28" />
+
+                <TextView
+                    android:id="@+id/tvDaiguihuang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="待发货"
+                    android:textColor="#f23232"
+                    android:textSize="@dimen/x28" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

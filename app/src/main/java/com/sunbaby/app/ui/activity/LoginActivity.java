@@ -37,7 +37,8 @@ public class LoginActivity extends BaseActivity {
         super.onClick(view);
         switch (view.getId()) {
             case R.id.btnLogin:
-                startTo(MainActivity.class, true);
+                //startTo(MainActivity.class, true);
+                startTo(JoinmemberActivity.class, true);
                 break;
             case R.id.tvFoget:
                 startTo(ForgetpasswordActivity1.class, false);

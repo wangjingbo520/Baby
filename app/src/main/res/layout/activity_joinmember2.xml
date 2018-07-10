@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.JoinmemberActivity2">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x15"
+        android:background="@color/background" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/x20"
+        android:text="会员类型"
+        android:textColor="@color/textColor3"
+        android:textSize="@dimen/textSize_32" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="@color/line" />
+
+    <com.sunbaby.app.common.widget.floawlayout.TagFlowLayout
+        android:id="@+id/tag1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginRight="@dimen/x20"
+        android:layout_marginTop="@dimen/x20"
+        app:max_select="1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x10"
+        android:background="@color/background" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/x20"
+        android:text="时间"
+        android:textColor="@color/textColor3"
+        android:textSize="@dimen/textSize_32" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="@color/line" />
+
+    <com.sunbaby.app.common.widget.floawlayout.TagFlowLayout
+        android:id="@+id/tag2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginRight="@dimen/x20"
+        android:layout_marginTop="@dimen/x20"
+        app:max_select="1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x10"
+        android:background="@color/background" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginRight="@dimen/x20"
+        android:layout_marginTop="@dimen/x10"
+        android:text="当前有效期：2018/06/21"
+        android:textColor="@color/textColor3"
+        android:textSize="@dimen/x32" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginRight="@dimen/x20"
+        android:layout_marginTop="@dimen/x10"
+        android:text="金额：500"
+        android:textColor="@color/textColor3"
+        android:textSize="@dimen/x32" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginRight="@dimen/x20"
+        android:layout_marginTop="@dimen/x20"
+        android:paddingBottom="@dimen/x10"
+        android:text="权益：会员期间可免费租赁图书，并最多持有5本图书，开通后一个星期内可以无理由退款"
+        android:textColor="#f23232"
+        android:textSize="@dimen/x30" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/x20"
+            android:gravity="center"
+            android:text="当前会员开通日期未到一周，可申请无理由全额退款"
+            android:textColor="@color/textColor6"
+            android:textSize="@dimen/textSize_30" />
+
+        <Button
+            android:id="@+id/btnTuikuan"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x92"
+            android:layout_above="@id/tv"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/x20"
+            android:layout_marginLeft="@dimen/x40"
+            android:layout_marginRight="@dimen/x40"
+            android:background="@drawable/bg_textview_guihaung"
+            android:text="申请退款"
+            android:textColor="@color/themeColor"
+            android:textSize="@dimen/x32" />
+
+        <Button
+            android:id="@+id/btnKaitong"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x92"
+            android:layout_above="@id/btnTuikuan"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/x20"
+            android:layout_marginLeft="@dimen/x40"
+            android:layout_marginRight="@dimen/x40"
+            android:background="@drawable/bg_btn_login"
+            android:text="立即续费"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x32" />
+
+    </RelativeLayout>
+
+</LinearLayout>
+
+

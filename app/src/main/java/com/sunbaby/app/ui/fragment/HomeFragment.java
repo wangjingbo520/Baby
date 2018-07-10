@@ -41,15 +41,15 @@ public class HomeFragment extends BaseFragment {
     }
 
 
-    @OnClick(R.id.tvOrder)
+
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.tvOrder:
+//            case R.id.tvOrder:
                 //  startActivity(new Intent(mContext, MyOrderActivity.class));
                 //  startActivity(new Intent(mContext, PayActivity.class));
                 //   startActivity(new Intent(mContext, SearchActivity.class));
                 //      startActivity(new Intent(mContext, ClassificationActivity.class));
-                startActivity(new Intent(mContext, ManageAddressActivity.class));
+//                startActivity(new Intent(mContext, ManageAddressActivity.class));
 //                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 //                builder.setTitle("提示");
 //                builder.setMessage("清除成功!");
@@ -63,7 +63,7 @@ public class HomeFragment extends BaseFragment {
 //
 //                AlertDialog alertDialog = builder.create();
 //                alertDialog.show();
-                break;
+        //        break;
             default:
                 break;
         }

@@ -84,7 +84,6 @@ public class AllFragment extends BaseFragment {
                 refresh();
             }
         });
-
     }
 
     /**

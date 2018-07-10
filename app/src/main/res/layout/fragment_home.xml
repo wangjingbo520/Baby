@@ -7,11 +7,5 @@
     android:orientation="vertical"
     tools:context=".ui.fragment.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <Button
-        android:id="@+id/tvOrder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="我的订单" />
 
 </LinearLayout>

@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.sunbaby.app.R;
 import com.sunbaby.app.common.base.BaseFragment;
+import com.sunbaby.app.ui.activity.JoinmemberActivity2;
 import com.sunbaby.app.ui.activity.MyOrderActivity;
 import com.sunbaby.app.ui.activity.SettingActivity;
 
@@ -47,6 +48,7 @@ public class CenterFragment extends BaseFragment {
             case R.id.tvSetting:
                 //设置
                 startActivity(new Intent(mContext, SettingActivity.class));
+                //   startActivity(new Intent(mContext, JoinmemberActivity2.class));
                 break;
             case R.id.llLookmore:
                 //查看更多
