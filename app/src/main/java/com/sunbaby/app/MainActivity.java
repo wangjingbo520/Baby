@@ -90,7 +90,7 @@ public class MainActivity extends BaseActivity {
                 initFragment(0);
                 break;
             case R.id.tab_peisong:
-                setTitle("配送");
+                setTitle("配送箱");
                 initFragment(1);
                 break;
             case R.id.tab_center:

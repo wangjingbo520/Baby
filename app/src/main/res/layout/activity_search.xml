@@ -15,7 +15,7 @@
         android:paddingTop="@dimen/x10">
 
         <FrameLayout
-            android:id="@+id/fl_back"
+            android:id="@+id/flBack"
             android:layout_width="@dimen/x80"
             android:layout_height="match_parent"
             android:layout_gravity="left|center_vertical">
@@ -30,44 +30,51 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="@dimen/x80"
-            android:layout_marginRight="@dimen/x20"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x20"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_marginRight="@dimen/x30"
+            android:layout_marginTop="@dimen/x20"
             android:layout_weight="1"
-            android:background="@drawable/sarchbar_bg"
+            android:background="@drawable/bg_search"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:paddingBottom="@dimen/x10"
+            android:paddingLeft="@dimen/x30"
+            android:paddingRight="@dimen/x30"
+            android:paddingTop="@dimen/x10">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x20"
                 android:src="@mipmap/search_bar" />
 
-
             <EditText
-                android:id="@+id/et_search"
+                android:id="@+id/etSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/x40"
-                android:layout_marginRight="@dimen/x60"
                 android:background="@null"
                 android:ellipsize="start"
-                android:hint="输入作品名或作者名"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="输入关键字"
                 android:imeOptions="actionSearch"
+                android:paddingRight="@dimen/x60"
                 android:singleLine="true"
-                android:textColor="@color/textColor6"
-                android:textColorHint="@color/textColor9"
-                android:textSize="14dp" />
+                android:textColor="@color/textColor3"
+                android:textColorHint="@color/textColor6"
+                android:textSize="@dimen/textSize_32" />
 
         </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tvSearch"
+            android:layout_width="@dimen/x120"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/x30"
+            android:layout_marginRight="@dimen/x20"
+            android:clickable="true"
             android:text="搜索"
-            android:textColor="@color/textColor6"
+            android:textColor="@drawable/selector_text_press_color"
             android:textSize="@dimen/textSize_32" />
 
     </LinearLayout>
@@ -80,8 +87,6 @@
         android:textColor="@color/textColor3"
         android:textSize="@dimen/textSize_32"
         android:textStyle="bold" />
-
-
 
 
 </LinearLayout>

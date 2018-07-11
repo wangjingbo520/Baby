@@ -6,8 +6,9 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="@dimen/x8"
-        android:layout_height="match_parent"
+        android:layout_width="@dimen/x5"
+        android:layout_height="@dimen/x35"
+        android:layout_gravity="center_vertical"
         android:background="@color/themeColor"
         android:visibility="invisible" />
 

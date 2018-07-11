@@ -68,7 +68,7 @@ public class MenuAdapter extends BaseAdapter {
             holder.tv_name.setTextColor(context.getResources().getColor(R.color.themeColor));
         } else {
             holder.tv_name.setBackgroundColor(context.getResources().getColor(R.color.background));
-            holder.tv_name.setTextColor(context.getResources().getColor(R.color.black));
+            holder.tv_name.setTextColor(context.getResources().getColor(R.color.textColor3));
             holder.view.setVisibility(View.INVISIBLE);
         }
         holder.tv_name.setText(list.get(arg0));

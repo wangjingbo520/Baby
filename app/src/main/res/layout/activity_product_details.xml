@@ -6,4 +6,6 @@
     android:orientation="vertical"
     tools:context=".ui.activity.ProductDetailsActivity">
 
+
+
 </LinearLayout>

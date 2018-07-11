@@ -17,9 +17,9 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/x114"
+        android:layout_height="@dimen/x100"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/white"
         android:baselineAligned="false"
         android:orientation="horizontal">
 
@@ -45,8 +45,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/x8"
                 android:text="首页"
-                android:textColor="@color/white"
-                android:textSize="@dimen/x24" />
+                android:textColor="@color/textColor6"
+                android:textSize="@dimen/x30" />
         </LinearLayout>
 
 
@@ -72,8 +72,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/x8"
                 android:text="配送箱"
-                android:textColor="@color/white"
-                android:textSize="@dimen/x24" />
+                android:textColor="@color/textColor6"
+                android:textSize="@dimen/x30" />
         </LinearLayout>
 
         <LinearLayout
@@ -98,8 +98,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/x8"
                 android:text="中心"
-                android:textColor="@color/white"
-                android:textSize="@dimen/x24" />
+                android:textColor="@color/textColor6"
+                android:textSize="@dimen/x30" />
         </LinearLayout>
 
 
