@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.sunbaby.app.R;
 import com.sunbaby.app.common.base.BaseFragment;
 import com.sunbaby.app.common.widget.HomeFragmentDialog;
@@ -12,6 +15,7 @@ import com.sunbaby.app.ui.activity.ClassificationActivity;
 import com.sunbaby.app.ui.activity.LoginActivity;
 import com.sunbaby.app.ui.activity.RegisterActivity;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -22,6 +26,7 @@ import butterknife.OnClick;
 public class HomeFragment extends BaseFragment implements HomeFragmentDialog.DialogCallk {
 
     private HomeFragmentDialog homeFragmentDialog;
+    private SmartRefreshLayout smartRefreshLayout;
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -42,6 +47,10 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
 
     @Override
     public void initView(View view) {
+        smartRefreshLayout = view.findViewById(R.id.smartrefreshlayout);
+        smartRefreshLayout.setRefreshHeader(new ClassicsHeader(mContext));
+        smartRefreshLayout.setRefreshFooter(new ClassicsFooter(mContext));
+        smartRefreshLayout.setEnableLoadmore(false);
         homeFragmentDialog = new HomeFragmentDialog(mContext, this, "", "");
     }
 
