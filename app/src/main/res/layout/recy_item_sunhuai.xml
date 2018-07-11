@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/x20"
+    android:paddingRight="@dimen/x20">
+
+    <ImageView
+        android:layout_width="@dimen/x180"
+        android:layout_height="@dimen/x220"
+        android:src="@mipmap/default_pic" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/x20"
+        android:paddingTop="@dimen/x50">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="战神之王,如何成为战神之王"
+            android:textColor="@color/textColor3"
+            android:textSize="@dimen/textSize_32" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x40"
+            android:gravity="right"
+            android:text="已购买"
+            android:textColor="@color/textColor3"
+            android:textSize="@dimen/textSize_32" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

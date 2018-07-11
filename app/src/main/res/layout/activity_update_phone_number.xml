@@ -5,10 +5,11 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".ui.activity.SettingActivity">
+    tools:context=".ui.activity.UpdatePhoneNumberActivity">
+
 
     <LinearLayout
-        android:id="@+id/llPerson"
+        android:id="@+id/llYes"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
         android:layout_marginTop="@dimen/x10"
@@ -22,7 +23,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="个人资料"
+            android:text="原手机号能接收验证码"
             android:textColor="@color/textColor3"
             android:textSize="@dimen/textSize_32" />
 
@@ -34,7 +35,7 @@
 
 
     <LinearLayout
-        android:id="@+id/llAdress"
+        android:id="@+id/llNo"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
         android:layout_marginTop="@dimen/x2"
@@ -48,7 +49,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="收货地址"
+            android:text="原手机号不能接收验证码"
             android:textColor="@color/textColor3"
             android:textSize="@dimen/textSize_32" />
 
@@ -57,5 +58,6 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/icon_right" />
     </LinearLayout>
+
 
 </LinearLayout>

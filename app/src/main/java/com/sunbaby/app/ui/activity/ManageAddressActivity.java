@@ -9,9 +9,13 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.sunbaby.app.R;
 import com.sunbaby.app.adapter.ManageAdressAdapter;
 import com.sunbaby.app.common.base.BaseActivity;
+import com.sunbaby.app.common.utils.UIUtils;
 import com.sunbaby.app.common.widget.MyRecycleViewDivider;
 
 import java.util.ArrayList;
@@ -29,6 +33,8 @@ public class ManageAddressActivity extends BaseActivity {
 
     @BindView(R.id.recyclerview)
     RecyclerView mRecyclerView;
+    @BindView(R.id.smartrefreshlayout)
+    SmartRefreshLayout smartrefreshlayout;
     private List<String> strings;
     private ManageAdressAdapter recyDemoAdapter;
 
@@ -37,7 +43,14 @@ public class ManageAddressActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setLayout(R.layout.activity_manage_address);
         setTitle("管理收货地址");
+        bindView();
         initData();
+    }
+
+    private void bindView() {
+        smartrefreshlayout.setRefreshHeader(new ClassicsHeader(mContext));
+        smartrefreshlayout.setRefreshFooter(new ClassicsFooter(mContext));
+        smartrefreshlayout.setEnableLoadmore(false);
     }
 
     private void initData() {
@@ -51,7 +64,7 @@ public class ManageAddressActivity extends BaseActivity {
         linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.addItemDecoration(new MyRecycleViewDivider(this, LinearLayoutManager
-                .HORIZONTAL, 15,
+                .HORIZONTAL, UIUtils.px2Dp(this, 3),
                 ContextCompat.getColor(this, R.color.background)));
         recyDemoAdapter = new ManageAdressAdapter(R.layout.recy_item_manage_address, strings);
         mRecyclerView.setAdapter(recyDemoAdapter);

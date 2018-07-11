@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context=".ui.activity.DamageDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x10"
+        android:orientation="horizontal"
+        android:padding="@dimen/x20">
+
+        <ImageView
+            android:layout_width="@dimen/x180"
+            android:layout_height="@dimen/x220"
+            android:src="@mipmap/default_pic" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginTop="@dimen/x50"
+            android:text="战神之王,如何成为战神之王"
+            android:textColor="@color/textColor3"
+            android:textSize="@dimen/textSize_32" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/x10"
+        android:paddingLeft="@dimen/x20"
+        android:paddingRight="@dimen/x20"
+        android:paddingTop="@dimen/x20">
+
+        <TextView
+            android:layout_width="@dimen/x200"
+            android:layout_height="wrap_content"
+            android:text="回收时间 :"
+            android:textColor="@color/textColor6"
+            android:textSize="@dimen/textSize_32" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x30"
+            android:text="2018-08-07  11:00:00"
+            android:textColor="@color/textColor6"
+            android:textSize="@dimen/textSize_32" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/x20"
+        android:paddingLeft="@dimen/x20"
+        android:paddingRight="@dimen/x20"
+        android:paddingTop="@dimen/x10">
+
+        <TextView
+            android:layout_width="@dimen/x200"
+            android:layout_height="wrap_content"
+            android:text="原价："
+            android:textColor="@color/textColor6"
+            android:textSize="@dimen/textSize_32" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x30"
+            android:text="￥100"
+            android:textColor="@color/textColor6"
+            android:textSize="@dimen/textSize_32" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/x20"
+        android:paddingLeft="@dimen/x20"
+        android:paddingRight="@dimen/x20"
+        android:paddingTop="@dimen/x10">
+
+        <TextView
+            android:layout_width="@dimen/x200"
+            android:layout_height="wrap_content"
+            android:text="购买价："
+            android:textColor="@color/textColor6"
+            android:textSize="@dimen/textSize_32" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x30"
+            android:text="￥80"
+            android:textColor="#f63131"
+            android:textSize="@dimen/textSize_32" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x90"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/x100"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_marginRight="@dimen/x30"
+            android:background="@drawable/bg_btn_login"
+            android:gravity="center"
+            android:text="立即支付"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize_32" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

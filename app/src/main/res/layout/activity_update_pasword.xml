@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".ui.activity.ForgetpasswordActivity2">
+    tools:context=".ui.activity.UpdatePaswordActivity">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,13 +15,13 @@
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingLeft="@dimen/x30"
-        android:paddingRight="@dimen/x30">
+        android:paddingLeft="@dimen/x15"
+        android:paddingRight="@dimen/x15">
 
         <TextView
             android:layout_width="@dimen/x200"
             android:layout_height="wrap_content"
-            android:text="新密码"
+            android:text="原密码"
             android:textColor="@color/textColor3"
             android:textSize="@dimen/x32" />
 
@@ -30,7 +31,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/x24"
             android:background="@null"
-            android:hint="请输入您的密码"
+            android:hint="请输入原密码"
             android:imeOptions="actionNext"
             android:singleLine="true"
             android:text=""
@@ -39,60 +40,79 @@
             android:textSize="@dimen/x32" />
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
-        android:layout_marginTop="@dimen/x2"
+        android:layout_marginTop="@dimen/x1"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingLeft="@dimen/x30"
-        android:paddingRight="@dimen/x30">
+        android:paddingLeft="@dimen/x15"
+        android:paddingRight="@dimen/x15">
 
         <TextView
             android:layout_width="@dimen/x200"
             android:layout_height="wrap_content"
-            android:text="确认密码"
+            android:text="新密码："
             android:textColor="@color/textColor3"
             android:textSize="@dimen/x32" />
 
         <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/x24"
-            android:layout_weight="1"
             android:background="@null"
-            android:hint="请确认您的新密码"
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
+            android:hint="请输入新密码"
+            android:imeOptions="actionNext"
             android:singleLine="true"
+            android:text=""
             android:textColor="@color/textColor3"
             android:textColorHint="@color/textColor9"
             android:textSize="@dimen/x32" />
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x300"
-        android:layout_marginTop="@dimen/x2"
-        android:background="@color/white">
+        android:layout_height="@dimen/x100"
+        android:layout_marginTop="@dimen/x1"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/x15"
+        android:paddingRight="@dimen/x15">
 
-        <Button
-            android:id="@+id/btnSure"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x90"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="@dimen/x30"
-            android:layout_marginRight="@dimen/x30"
-            android:background="@drawable/bg_btn_login"
-            android:text="确定"
-            android:textColor="@color/white"
+        <TextView
+            android:layout_width="@dimen/x200"
+            android:layout_height="wrap_content"
+            android:text="原密码"
+            android:textColor="@color/textColor3"
             android:textSize="@dimen/x32" />
 
-    </RelativeLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x24"
+            android:background="@null"
+            android:hint="请确认输入原密码"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/textColor3"
+            android:textColorHint="@color/textColor9"
+            android:textSize="@dimen/x32" />
+    </LinearLayout>
 
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x92"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_marginRight="@dimen/x30"
+        android:layout_marginTop="@dimen/x250"
+        android:background="@drawable/bg_btn_login"
+        android:text="确认"
+        android:textColor="@color/white"
+        android:textSize="@dimen/x32" />
 
 </LinearLayout>

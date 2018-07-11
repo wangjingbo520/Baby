@@ -12,7 +12,7 @@ import butterknife.OnClick;
 /**
  * @author 王静波
  * @date 2018/7/6
- * describe 支付
+ * describe 个人资料
  */
 public class PersonActivity extends BaseCameraActivity {
 
@@ -23,16 +23,22 @@ public class PersonActivity extends BaseCameraActivity {
         setTitle("个人资料");
     }
 
-    @OnClick(R.id.btn)
+    @OnClick({R.id.llTouxiang, R.id.llPassword, R.id.llPhoneNumber})
     @Override
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()) {
-            case R.id.btn:
+            case R.id.llTouxiang:
                 showCameraPopwindow(this.getWindow().getDecorView(), false, false);
                 break;
+            case R.id.llPassword:
+                UpdatePaswordActivity.start(this);
+                break;
+            case R.id.llPhoneNumber:
+                startTo(UpdatePhoneNumberActivity.class, false);
+                break;
             default:
-
+                break;
         }
     }
 
