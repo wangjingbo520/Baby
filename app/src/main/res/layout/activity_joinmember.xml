@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.activity.JoinmemberActivity">
 
@@ -11,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/x15"
         android:background="@color/background" />
-
 
     <TextView
         android:layout_width="match_parent"
@@ -39,7 +39,6 @@
         android:text="时间"
         android:textColor="@color/textColor3"
         android:textSize="@dimen/textSize_32" />
-
 
     <com.sunbaby.app.common.widget.floawlayout.TagFlowLayout
         android:id="@+id/tag2"
@@ -73,15 +72,16 @@
         android:textSize="@dimen/x30" />
 
 
-    <Button
+    <TextView
         android:id="@+id/btnKaitong"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x92"
+        android:layout_height="@dimen/x90"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="@dimen/x20"
         android:layout_marginRight="@dimen/x20"
         android:layout_marginTop="@dimen/x100"
         android:background="@drawable/bg_btn_login"
+        android:gravity="center"
         android:text="立即开通"
         android:textColor="@color/white"
         android:textSize="@dimen/x32" />

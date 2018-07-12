@@ -26,4 +26,10 @@ public class AddNewAddressActivity extends BaseActivity {
         setTitle("添加收货地址");
         setRightText("保存");
     }
+
+    @Override
+    public void onRightLisenter() {
+        super.onRightLisenter();
+        //保存地址
+    }
 }

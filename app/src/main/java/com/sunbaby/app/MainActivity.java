@@ -144,7 +144,6 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-
     protected void restartBotton() {
         tabHomeTextview.setTextColor(ContextCompat.getColor(this, R.color.textColor6));
         tabCenterTextview.setTextColor(ContextCompat.getColor(this, R.color.textColor6));
@@ -153,6 +152,4 @@ public class MainActivity extends BaseActivity {
         tabRongtongImageview.setImageResource(R.mipmap.pein);
         tabUserImageview.setImageResource(R.mipmap.gen);
     }
-
-
 }

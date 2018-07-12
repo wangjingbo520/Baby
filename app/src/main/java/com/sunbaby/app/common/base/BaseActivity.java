@@ -2,6 +2,7 @@ package com.sunbaby.app.common.base;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.sunbaby.app.AppData;
 import com.sunbaby.app.R;
 import com.sunbaby.app.bean.User;
+import com.sunbaby.app.common.utils.statusbarUtils.Eyes;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -44,6 +46,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.base_title);
+        Eyes.setStatusBarLightMode(this, Color.WHITE);
         initView();
     }
 

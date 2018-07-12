@@ -4,23 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:orientation="vertical"
     tools:context=".ui.activity.AddNewAddressActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
-        android:layout_marginLeft="@dimen/x20"
-        android:layout_marginRight="@dimen/x20"
-        android:layout_marginTop="@dimen/x30"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/x20"
+        android:paddingRight="@dimen/x20">
 
         <TextView
             android:layout_width="@dimen/x200"
             android:layout_height="wrap_content"
             android:text="收货人"
-            android:textColor="@color/textColor3"
+            android:textColor="@color/textColor6"
             android:textSize="@dimen/x32" />
 
         <EditText
@@ -41,17 +43,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
-        android:layout_marginLeft="@dimen/x20"
-        android:layout_marginRight="@dimen/x20"
-        android:layout_marginTop="@dimen/x30"
+        android:layout_marginTop="@dimen/x1"
+        android:background="@color/white"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/x20"
+        android:paddingRight="@dimen/x20">
 
         <TextView
             android:layout_width="@dimen/x200"
             android:layout_height="wrap_content"
             android:text="收货人"
-            android:textColor="@color/textColor3"
+            android:textColor="@color/textColor6"
             android:textSize="@dimen/x32" />
 
         <EditText
@@ -68,14 +71,10 @@
             android:textSize="@dimen/x32" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x1"
-        android:background="@color/line" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
+        android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:paddingLeft="@dimen/x20"
@@ -84,19 +83,16 @@
         <TextView
             android:layout_width="@dimen/x200"
             android:layout_height="wrap_content"
-            android:text="所在地区 :"
-            android:textColor="@color/textColor3"
-            android:textSize="@dimen/x35" />
+            android:text="所在地址 :"
+            android:textColor="@color/textColor6"
+            android:textSize="@dimen/x32" />
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x1"
-        android:background="@color/line" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
+        android:layout_marginTop="@dimen/x1"
+        android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/x20"
@@ -106,7 +102,7 @@
             android:layout_width="@dimen/x200"
             android:layout_height="wrap_content"
             android:text="详细地址 :"
-            android:textColor="@color/textColor3"
+            android:textColor="@color/textColor6"
             android:textSize="@dimen/x35" />
 
         <EditText
@@ -116,7 +112,7 @@
             android:layout_marginLeft="@dimen/x24"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="请输入您的详细地址"
+            android:hint="详细地址：如道路，门牌号，小区，楼栋号等"
             android:imeOptions="actionNext"
             android:inputType="numberPassword"
             android:singleLine="true"
@@ -127,14 +123,11 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x20"
-        android:background="@color/background" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/x100"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="@dimen/x20">

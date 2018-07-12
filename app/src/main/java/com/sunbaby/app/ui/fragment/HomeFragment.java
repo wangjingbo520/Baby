@@ -11,9 +11,11 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.sunbaby.app.R;
 import com.sunbaby.app.common.base.BaseFragment;
 import com.sunbaby.app.common.widget.HomeFragmentDialog;
+import com.sunbaby.app.ui.activity.AllBookActivity;
 import com.sunbaby.app.ui.activity.ClassificationActivity;
 import com.sunbaby.app.ui.activity.LoginActivity;
 import com.sunbaby.app.ui.activity.RegisterActivity;
+import com.sunbaby.app.ui.activity.SearchActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -54,7 +56,7 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
         homeFragmentDialog = new HomeFragmentDialog(mContext, this, "", "");
     }
 
-    @OnClick({R.id.tvLogin, R.id.tvRegister, R.id.llSuiji, R.id.llFenlei})
+    @OnClick({R.id.tvLogin, R.id.tvRegister, R.id.llSuiji, R.id.llFenlei, R.id.llAlltushu})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvLogin:
@@ -74,6 +76,10 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
             case R.id.llFenlei:
                 //图书分类查看
                 ClassificationActivity.start(mContext);
+                break;
+            case R.id.llAlltushu:
+                //全部图书
+                AllBookActivity.start(mContext);
                 break;
             default:
                 break;

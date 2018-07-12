@@ -73,7 +73,7 @@ public class CenterFragment extends BaseFragment {
                 break;
             case R.id.ll4:
                 //已完成
-                MyOrderActivity.start(mContext, 3);
+                MyOrderActivity.start(mContext, 4);
                 break;
             default:
                 break;
