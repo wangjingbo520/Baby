@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".ui.activity.QuhuoDetailActivity">
 
     <LinearLayout
@@ -42,7 +43,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/x1"
-        android:background="@color/c_line" />
+        android:background="@color/line" />
 
     <TextView
         android:layout_width="match_parent"
@@ -148,9 +149,9 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x1"
+        android:layout_height="match_parent"
         android:layout_marginTop="@dimen/x20"
-        android:background="@color/c_line" />
+        android:background="@color/background" />
 
 
 </LinearLayout>

@@ -12,9 +12,11 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.sunbaby.app.R;
 import com.sunbaby.app.common.base.BaseFragment;
+import com.sunbaby.app.ui.activity.FillOrderActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -28,6 +30,7 @@ public class PeisongFragment extends BaseFragment {
     RecyclerView recyclerview;
     @BindView(R.id.smartrefreshlayout)
     SmartRefreshLayout smartrefreshlayout;
+
 
     public static PeisongFragment newInstance() {
         PeisongFragment fragment = new PeisongFragment();
@@ -53,4 +56,9 @@ public class PeisongFragment extends BaseFragment {
         smartrefreshlayout.setEnableLoadmore(false);
     }
 
+
+    @OnClick(R.id.tvSure)
+    public void onViewClicked() {
+        FillOrderActivity.start(mContext);
+    }
 }

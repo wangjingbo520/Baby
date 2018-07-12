@@ -8,7 +8,6 @@
     android:padding="@dimen/x30"
     tools:context=".ui.activity.LoginActivity">
 
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,12 +27,10 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="@dimen/x200"
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="电话号码"
-            android:textColor="@color/textColor3"
-            android:textSize="@dimen/x32" />
+            android:src="@mipmap/phone" />
 
         <EditText
             android:id="@+id/etAccount"
@@ -52,10 +49,10 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x2"
+        android:layout_height="@dimen/x1"
         android:layout_marginLeft="@dimen/x20"
         android:layout_marginRight="@dimen/x20"
-        android:background="@color/c_line" />
+        android:background="@color/line" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,12 +62,10 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="@dimen/x200"
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="密码"
-            android:textColor="@color/textColor3"
-            android:textSize="@dimen/x32" />
+            android:src="@mipmap/suo" />
 
         <EditText
             android:id="@+id/etPassword"
@@ -90,10 +85,10 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x2"
+        android:layout_height="@dimen/x1"
         android:layout_marginLeft="@dimen/x20"
         android:layout_marginRight="@dimen/x20"
-        android:background="@color/c_line" />
+        android:background="@color/line" />
 
 
     <Button

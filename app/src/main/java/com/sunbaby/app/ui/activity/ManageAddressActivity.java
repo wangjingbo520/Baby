@@ -1,5 +1,7 @@
 package com.sunbaby.app.ui.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -37,6 +39,11 @@ public class ManageAddressActivity extends BaseActivity {
     SmartRefreshLayout smartrefreshlayout;
     private List<String> strings;
     private ManageAdressAdapter recyDemoAdapter;
+
+    public static void start(Context context) {
+        Intent starter = new Intent(context, ManageAddressActivity.class);
+        context.startActivity(starter);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

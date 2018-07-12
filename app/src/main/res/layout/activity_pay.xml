@@ -75,9 +75,15 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
+                <ImageView
+                    android:layout_width="@dimen/x61"
+                    android:layout_height="@dimen/x61"
+                    android:src="@mipmap/wx" />
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
                     android:layout_weight="1"
                     android:text="微信支付"
                     android:textColor="@color/textColor3"
@@ -96,9 +102,15 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
+                <ImageView
+                    android:layout_width="@dimen/x61"
+                    android:layout_height="@dimen/x61"
+                    android:src="@mipmap/zfb" />
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
                     android:layout_weight="1"
                     android:text="支付宝支付"
                     android:textColor="@color/textColor3"

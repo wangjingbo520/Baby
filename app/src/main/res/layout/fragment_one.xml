@@ -26,10 +26,11 @@
         android:id="@+id/tvGuihuang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/themeColor"
         android:gravity="center"
         android:padding="@dimen/x30"
         android:text="退出登录"
-        android:textColor="@color/themeColor"
+        android:textColor="@color/white"
         android:textSize="@dimen/textSize_32" />
 
 

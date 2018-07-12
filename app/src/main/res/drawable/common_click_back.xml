@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/textColor9" android:state_pressed="true" />
-    <item android:drawable="@color/register" />
-    <shape android:shape="rectangle">
-        <corners android:radius="@dimen/x6" />
-    </shape>
+    <item android:drawable="@color/themeColor" />
+
 </selector>

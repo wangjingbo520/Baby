@@ -75,7 +75,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/x2"
-        android:background="@color/c_line" />
+        android:background="@color/line" />
 
     <FrameLayout
         android:id="@+id/main_frame"

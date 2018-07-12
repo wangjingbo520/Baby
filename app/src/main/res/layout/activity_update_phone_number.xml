@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
         android:layout_marginTop="@dimen/x10"
-        android:background="@color/white"
+        android:background="@drawable/common_click"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/x20"
@@ -33,13 +33,12 @@
             android:src="@mipmap/icon_right" />
     </LinearLayout>
 
-
     <LinearLayout
         android:id="@+id/llNo"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
         android:layout_marginTop="@dimen/x2"
-        android:background="@color/white"
+        android:background="@drawable/common_click"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/x20"

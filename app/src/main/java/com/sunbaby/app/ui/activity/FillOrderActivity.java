@@ -1,0 +1,47 @@
+package com.sunbaby.app.ui.activity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
+import com.sunbaby.app.R;
+import com.sunbaby.app.common.base.BaseActivity;
+
+import butterknife.OnClick;
+
+/**
+ * @author 王静波
+ * @date 2018/7/6
+ * describe 填写订单
+ */
+public class FillOrderActivity extends BaseActivity {
+
+    public static void start(Context context) {
+        Intent starter = new Intent(context, FillOrderActivity.class);
+        context.startActivity(starter);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_fill_order);
+        setTitle("填写订单");
+    }
+
+
+    @OnClick(R.id.llSelectAdress)
+    @Override
+    public void onClick(View view) {
+        super.onClick(view);
+        switch (view.getId()) {
+            case R.id.llSelectAdress:
+                ManageAddressActivity.start(this);
+                break;
+            default:
+                break;
+        }
+    }
+
+
+}

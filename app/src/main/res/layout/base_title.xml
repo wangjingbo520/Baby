@@ -14,7 +14,8 @@
             android:id="@+id/fl_back"
             android:layout_width="@dimen/x100"
             android:layout_height="match_parent"
-            android:layout_gravity="left|center_vertical">
+            android:layout_gravity="left|center_vertical"
+            android:background="@drawable/common_click_back">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -44,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center_vertical"
                 android:layout_marginRight="@dimen/x30"
-                android:textColor="@color/textColor3"
+                android:textColor="@color/white"
                 android:textSize="@dimen/x30" />
 
             <ImageView

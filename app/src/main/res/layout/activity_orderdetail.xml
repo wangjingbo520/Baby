@@ -144,7 +144,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/x1"
         android:layout_marginTop="@dimen/x10"
-        android:background="@color/c_line" />
+        android:background="@color/line" />
 
 
     <LinearLayout

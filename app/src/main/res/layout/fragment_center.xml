@@ -11,23 +11,26 @@
         android:id="@+id/llSetting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@drawable/common_click"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="@dimen/x20">
+        android:paddingBottom="@dimen/x28"
+        android:paddingLeft="@dimen/x20"
+        android:paddingRight="@dimen/x20"
+        android:paddingTop="@dimen/x28">
 
         <com.libray.basetools.view.imageview.CircleImageView
             android:id="@+id/ivLogo"
-            android:layout_width="@dimen/x150"
-            android:layout_height="@dimen/x150"
+            android:layout_width="@dimen/x116"
+            android:layout_height="@dimen/x116"
             android:layout_marginLeft="@dimen/x10"
             android:scaleType="centerCrop"
-            android:src="@mipmap/default_pic" />
+            android:src="@mipmap/icon_user" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/x30"
+            android:layout_marginLeft="@dimen/x47"
             android:gravity="center_vertical">
 
             <TextView
@@ -59,8 +62,8 @@
         android:id="@+id/llLookmore"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
-        android:layout_marginTop="@dimen/x10"
-        android:background="@color/white"
+        android:layout_marginTop="@dimen/x20"
+        android:background="@drawable/common_click"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/x30"
@@ -93,67 +96,105 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/x1"
         android:background="@color/white"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/x15"
-        android:paddingTop="@dimen/x15">
+        android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/ll1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/common_click"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/x32"
+            android:paddingTop="@dimen/x24">
+
+            <ImageView
+                android:layout_width="@dimen/x40"
+                android:layout_height="@dimen/x36"
+                android:src="@mipmap/sgh" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x11"
                 android:text="待发货"
                 android:textColor="@color/textColor3"
                 android:textSize="@dimen/textSize_30" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/common_click"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/x32"
+            android:paddingTop="@dimen/x24">
+
+            <ImageView
+                android:layout_width="@dimen/x40"
+                android:layout_height="@dimen/x36"
+                android:src="@mipmap/dsh" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="待发货"
+                android:layout_marginTop="@dimen/x11"
+                android:text="待收货"
                 android:textColor="@color/textColor3"
                 android:textSize="@dimen/textSize_30" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/common_click"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/x32"
+            android:paddingTop="@dimen/x24">
+
+            <ImageView
+                android:layout_width="@dimen/x40"
+                android:layout_height="@dimen/x36"
+                android:src="@mipmap/sgh" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="待发货"
+                android:layout_marginTop="@dimen/x11"
+                android:text="待归还"
                 android:textColor="@color/textColor3"
                 android:textSize="@dimen/textSize_30" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/common_click"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/x32"
+            android:paddingTop="@dimen/x24">
+
+            <ImageView
+                android:layout_width="@dimen/x40"
+                android:layout_height="@dimen/x36"
+                android:src="@mipmap/ywc" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="待发货"
+                android:layout_marginTop="@dimen/x11"
+                android:text="已完成"
                 android:textColor="@color/textColor3"
                 android:textSize="@dimen/textSize_30" />
 
@@ -163,7 +204,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
-        android:layout_marginTop="@dimen/x10"
+        android:layout_marginTop="@dimen/x20"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -171,9 +212,8 @@
         android:paddingRight="@dimen/x30">
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="会员"
             android:textColor="@color/textColor3"
             android:textSize="@dimen/textSize_32" />
@@ -181,7 +221,29 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x50"
+            android:text="请续费"
+            android:textColor="@color/textColor3"
+            android:textSize="@dimen/textSize_32" />
+
+        <ImageView
+            android:layout_width="@dimen/x34"
+            android:layout_height="@dimen/x40"
+            android:layout_marginLeft="@dimen/x30"
+            android:src="@mipmap/shu" />
+
+        <ImageView
+            android:layout_width="@dimen/x36"
+            android:layout_height="@dimen/x40"
+            android:layout_marginLeft="@dimen/x30"
+            android:src="@mipmap/che" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/x20"
+            android:layout_weight="1"
+            android:gravity="right"
             android:text="有效期至2019年"
             android:textColor="@color/textColor6"
             android:textSize="@dimen/textSize_32" />
@@ -197,7 +259,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
         android:layout_marginTop="@dimen/x10"
-        android:background="@color/white"
+        android:background="@drawable/common_click"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/x30"

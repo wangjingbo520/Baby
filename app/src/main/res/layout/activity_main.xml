@@ -17,7 +17,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/x100"
+        android:layout_height="@dimen/x110"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
         android:baselineAligned="false"
@@ -32,12 +32,12 @@
             android:onClick="onClick"
             android:orientation="vertical">
 
-            <!--<ImageView-->
-            <!--android:id="@+id/tab_home_imageview"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:contentDescription="@string/app_name"-->
-            <!--android:src="@mipmap/home" />-->
+            <ImageView
+                android:id="@+id/tab_home_imageview"
+                android:layout_width="@dimen/x40"
+                android:layout_height="@dimen/x40"
+                android:contentDescription="@string/app_name"
+                android:src="@mipmap/homey" />
 
             <TextView
                 android:id="@+id/tab_home_textview"
@@ -49,7 +49,6 @@
                 android:textSize="@dimen/x30" />
         </LinearLayout>
 
-
         <LinearLayout
             android:id="@+id/tab_peisong"
             android:layout_width="0dp"
@@ -59,12 +58,12 @@
             android:onClick="onClick"
             android:orientation="vertical">
 
-            <!--<ImageView-->
-            <!--android:id="@+id/tab_rongtong_imageview"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:contentDescription="@string/app_name"-->
-            <!--android:src="@mipmap/rongtong" />-->
+            <ImageView
+                android:id="@+id/tab_rongtong_imageview"
+                android:layout_width="@dimen/x40"
+                android:layout_height="@dimen/x40"
+                android:contentDescription="@string/app_name"
+                android:src="@mipmap/pein" />
 
             <TextView
                 android:id="@+id/tab_peisong_textview"
@@ -85,12 +84,12 @@
             android:onClick="onClick"
             android:orientation="vertical">
 
-            <!--<ImageView-->
-            <!--android:id="@+id/tab_user_imageview"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:contentDescription="@string/app_name"-->
-            <!--android:src="@mipmap/account" />-->
+            <ImageView
+                android:id="@+id/tab_user_imageview"
+                android:layout_width="@dimen/x40"
+                android:layout_height="@dimen/x40"
+                android:contentDescription="@string/app_name"
+                android:src="@mipmap/gen" />
 
             <TextView
                 android:id="@+id/tab_center_textview"
@@ -101,7 +100,6 @@
                 android:textColor="@color/textColor6"
                 android:textSize="@dimen/x30" />
         </LinearLayout>
-
 
     </LinearLayout>
 </LinearLayout>

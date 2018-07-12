@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners android:radius="@dimen/x6"/>
-    <solid android:color="@color/themeColor"/>
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/textColor9" android:state_pressed="true" />
+    <item android:drawable="@color/themeColor" />
+    <shape android:shape="rectangle">
+        <corners android:radius="@dimen/x6" />
+    </shape>
+</selector>

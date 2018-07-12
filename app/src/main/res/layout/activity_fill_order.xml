@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context=".ui.activity.FillOrderActivity">
+
+
+    <LinearLayout
+        android:id="@+id/llSelectAdress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/common_click"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/x20">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="宋美虹 :156565465684"
+                android:textColor="@color/textColor3"
+                android:textSize="@dimen/textSize_36" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x10"
+                android:text="收货地址：北京市北京东城区交道口东光明小区5栋"
+                android:textColor="@color/textColor6"
+                android:textSize="@dimen/textSize_32" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x80"
+            android:src="@mipmap/icon_right" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x2"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/x20">
+
+        <ImageView
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/x220"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/default_pic" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x40"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 宋美虹 :156565465684"
+                android:textColor="@color/textColor3"
+                android:textSize="@dimen/textSize_36" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x30"
+                android:text="我们会随机附带玩具进行试用，当前已持有（1/2）"
+                android:textColor="@color/textColor6"
+                android:textSize="@dimen/textSize_32" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x30"
+        android:padding="@dimen/x20"
+        android:text="温馨提示：请妥善保管，如有损坏，需按照原价的八折进行购买"
+        android:textColor="#fc5151"
+        android:textSize="@dimen/textSize_32" />
+
+</LinearLayout>

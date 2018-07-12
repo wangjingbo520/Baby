@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
 
+import com.sunbaby.app.MainActivity;
 import com.sunbaby.app.R;
 import com.sunbaby.app.common.base.BaseActivity;
 import com.sunbaby.app.ui.fragment.product.ProductDetailFragment;
@@ -71,7 +72,9 @@ public class ProductDetailsActivity extends BaseActivity {
                 break;
             case R.id.tvAdd:
                 //加入配送
-
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra(MainActivity.MAININDEX, "1");
+                startActivity(intent);
             default:
                 break;
         }
