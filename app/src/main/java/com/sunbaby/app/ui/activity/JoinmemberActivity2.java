@@ -1,17 +1,21 @@
 package com.sunbaby.app.ui.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import com.sunbaby.app.R;
+import com.sunbaby.app.WebViewActivity;
 import com.sunbaby.app.common.base.BaseActivity;
 import com.sunbaby.app.common.widget.floawlayout.FlowLayout;
 import com.sunbaby.app.common.widget.floawlayout.TagAdapter;
 import com.sunbaby.app.common.widget.floawlayout.TagFlowLayout;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author 王静波
@@ -32,10 +36,17 @@ public class JoinmemberActivity2 extends BaseActivity {
     private String[] mVals2 = new String[]{"1年（￥500）", "2年（￥900）", "3年（￥1300）"};
 
 
+    public static void start(Context context) {
+        Intent starter = new Intent(context, JoinmemberActivity2.class);
+        context.startActivity(starter);
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_joinmember2);setTitle("加入会员");
+        setLayout(R.layout.activity_joinmember2);
+        setTitle("加入会员");
         mInflater = LayoutInflater.from(mContext);
         initData();
     }
@@ -60,7 +71,18 @@ public class JoinmemberActivity2 extends BaseActivity {
                 return tv;
             }
         });
-
     }
 
+    @OnClick(R.id.btnKaitong)
+    @Override
+    public void onClick(View view) {
+        super.onClick(view);
+        switch (view.getId()) {
+            case R.id.btnKaitong:
+                WebViewActivity.start(mContext, "http://www.baidu.com");
+                break;
+            default:
+                break;
+        }
+    }
 }

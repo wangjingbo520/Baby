@@ -4,58 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.activity.JoinmemberActivity">
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x15"
-        android:background="@color/background" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white"
         android:paddingLeft="@dimen/x20"
+        android:paddingTop="@dimen/x20"
         android:text="会员类型"
         android:textColor="@color/textColor3"
         android:textSize="@dimen/textSize_32" />
 
-
-    <com.sunbaby.app.common.widget.floawlayout.TagFlowLayout
-        android:id="@+id/tag1"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/x20"
-        android:layout_marginRight="@dimen/x20"
-        android:layout_marginTop="@dimen/x20"
-        app:max_select="1" />
+        android:background="@color/white"
+        android:paddingLeft="@dimen/x20"
+        android:paddingRight="@dimen/x20"
+        android:paddingTop="@dimen/x30">
 
+        <com.sunbaby.app.common.widget.floawlayout.TagFlowLayout
+            android:id="@+id/tag1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:max_select="1" />
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/x20"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/x20"
+        android:paddingTop="@dimen/x20"
         android:text="时间"
         android:textColor="@color/textColor3"
         android:textSize="@dimen/textSize_32" />
 
-    <com.sunbaby.app.common.widget.floawlayout.TagFlowLayout
-        android:id="@+id/tag2"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/x20"
-        android:layout_marginRight="@dimen/x20"
-        android:layout_marginTop="@dimen/x20"
-        app:max_select="1" />
+        android:background="@color/white"
+        android:paddingLeft="@dimen/x20"
+        android:paddingRight="@dimen/x20"
+        android:paddingTop="@dimen/x30">
 
+        <com.sunbaby.app.common.widget.floawlayout.TagFlowLayout
+            android:id="@+id/tag2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:max_select="1" />
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/x20"
-        android:layout_marginRight="@dimen/x20"
-        android:layout_marginTop="@dimen/x60"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/x20"
+        android:paddingRight="@dimen/x20"
+        android:paddingTop="@dimen/x40"
         android:text="金额：500"
         android:textColor="@color/textColor3"
         android:textSize="@dimen/x36" />
@@ -64,28 +75,33 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/x20"
-        android:layout_marginRight="@dimen/x20"
-        android:layout_marginTop="@dimen/x40"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/x20"
+        android:paddingRight="@dimen/x20"
+        android:paddingTop="@dimen/x30"
         android:text="权益：会员期间可免费租赁图书，并最多持有5本图书，开通后一个星期内可以无理由退款"
         android:textColor="@color/textColor6"
         android:textSize="@dimen/x30" />
 
-
-    <TextView
-        android:id="@+id/btnKaitong"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x90"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="@dimen/x20"
-        android:layout_marginRight="@dimen/x20"
-        android:layout_marginTop="@dimen/x100"
-        android:background="@drawable/bg_btn_login"
-        android:gravity="center"
-        android:text="立即开通"
-        android:textColor="@color/white"
-        android:textSize="@dimen/x32" />
+        android:layout_height="@dimen/x250"
+        android:background="@color/white">
 
+        <TextView
+            android:id="@+id/btnKaitong"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x90"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:background="@drawable/bg_btn_login"
+            android:gravity="center"
+            android:text="立即开通"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x32" />
+
+    </RelativeLayout>
 
 </LinearLayout>
 

@@ -36,7 +36,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/x40"
         android:background="@color/white"
         android:padding="@dimen/x20"
         android:text="温馨提示：当前已持有书籍超过最大限额，请先进行归还。"
@@ -64,11 +63,6 @@
             android:textSize="@dimen/textSize_32" />
 
     </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x200"
-        android:background="@color/background" />
 
 
 </LinearLayout>

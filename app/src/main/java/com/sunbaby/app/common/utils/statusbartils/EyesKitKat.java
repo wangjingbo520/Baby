@@ -1,4 +1,4 @@
-package com.sunbaby.app.common.utils.statusbarUtils;
+package com.sunbaby.app.common.utils.statusbartils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

@@ -61,4 +61,9 @@
         </attr>
     </declare-styleable>
 
+
+    <style name="WelcomeStyle" parent="@android:style/Theme.NoTitleBar.Fullscreen">
+        <item name="android:windowBackground">@mipmap/default_pic</item>
+    </style>
+
 </resources>

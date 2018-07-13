@@ -51,10 +51,9 @@
             android:textColor="@color/textColor6"
             android:textSize="@dimen/x40" />
 
-
     </LinearLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/x200"
         android:background="@color/white"
@@ -63,13 +62,14 @@
         android:paddingRight="@dimen/x30">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/llWeixin"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -96,6 +96,7 @@
                 android:background="@color/line" />
 
             <LinearLayout
+                android:id="@+id/llZfb"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -120,14 +121,18 @@
         </LinearLayout>
 
         <RadioGroup
-            android:layout_width="wrap_content"
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="right"
             android:orientation="vertical">
 
             <RadioButton
+                android:id="@+id/rbTop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:checked="true" />
 
             <View
                 android:layout_width="match_parent"
@@ -135,12 +140,13 @@
                 android:background="@color/line" />
 
             <RadioButton
+                android:id="@+id/rbBottom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
         </RadioGroup>
 
-    </LinearLayout>
+    </FrameLayout>
 
     <View
         android:layout_width="match_parent"

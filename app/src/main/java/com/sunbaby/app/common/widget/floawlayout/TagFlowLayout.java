@@ -98,13 +98,10 @@ public class TagFlowLayout extends FlowLayout
         HashSet preCheckedList = mTagAdapter.getPreCheckedList();
         for (int i = 0; i < adapter.getCount(); i++) {
             View tagView = adapter.getView(this, i, adapter.getItem(i));
-
             tagViewContainer = new TagView(getContext());
             tagView.setDuplicateParentStateEnabled(true);
             if (tagView.getLayoutParams() != null) {
                 tagViewContainer.setLayoutParams(tagView.getLayoutParams());
-
-
             } else {
                 MarginLayoutParams lp = new MarginLayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,

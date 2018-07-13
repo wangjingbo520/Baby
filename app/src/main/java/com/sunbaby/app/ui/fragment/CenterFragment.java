@@ -44,13 +44,12 @@ public class CenterFragment extends BaseFragment {
     }
 
     @OnClick({R.id.llSetting, R.id.llLookmore, R.id.llSunhuai, R.id.ll1, R.id.ll2, R.id.ll3, R.id
-            .ll4,})
+            .ll4, R.id.llHuiyuan})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llSetting:
                 //设置
                 startActivity(new Intent(mContext, SettingActivity.class));
-                //   startActivity(new Intent(mContext, JoinmemberActivity2.class));
                 break;
             case R.id.llLookmore:
                 //查看更多
@@ -74,6 +73,10 @@ public class CenterFragment extends BaseFragment {
             case R.id.ll4:
                 //已完成
                 MyOrderActivity.start(mContext, 4);
+                break;
+            case R.id.llHuiyuan:
+                //会员
+                JoinmemberActivity2.start(mContext);
                 break;
             default:
                 break;

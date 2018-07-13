@@ -2,10 +2,15 @@ package com.sunbaby.app.ui.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.sunbaby.app.MainActivity;
 import com.sunbaby.app.R;
 import com.sunbaby.app.common.base.BaseActivity;
+import com.sunbaby.app.common.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -20,14 +25,53 @@ public class PayActivity extends BaseActivity {
 
     @BindView(R.id.cv_countdownView)
     CountdownView cv_countdownView;
+    @BindView(R.id.llWeixin)
+    LinearLayout llWeixin;
+    @BindView(R.id.rbTop)
+    RadioButton rbTop;
+    @BindView(R.id.rbBottom)
+    RadioButton rbBottom;
+    @BindView(R.id.radioGroup)
+    RadioGroup radioGroup;
+
+    /**
+     * 0:微信支付  1:支付宝支付
+     */
+    private int type = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setLayout(R.layout.activity_pay);
         setTitle("支付");
+        bindView();
         initData();
     }
+
+    private void bindView() {
+        radioGroup.setOnCheckedChangeListener(onCheckedChangeListener);
+    }
+
+    RadioGroup.OnCheckedChangeListener onCheckedChangeListener = new RadioGroup
+            .OnCheckedChangeListener() {
+
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+            switch (group.getCheckedRadioButtonId()) {
+                case R.id.rbTop:
+                    //微信支付
+                    type = 0;
+                    break;
+                case R.id.rbBottom:
+                    //支付宝支付
+                    type = 1;
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    };
 
     private void initData() {
         cv_countdownView.setTag("test22");
@@ -41,13 +85,32 @@ public class PayActivity extends BaseActivity {
         });
     }
 
-    @OnClick(R.id.btnSure)
+    @OnClick({R.id.btnSure, R.id.llWeixin, R.id.llZfb})
     @Override
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()) {
             case R.id.btnSure:
+//                if (0==type){
+//                    ToastUtil.showMessage("微信支付方式");
+//                }else {
+//                    ToastUtil.showMessage("支付宝支付方式");
+//                }
                 startTo(MainActivity.class, true);
+                break;
+            case R.id.llWeixin:
+                //微信支付
+                if (!rbTop.isChecked()) {
+                    rbTop.setChecked(true);
+                    type = 0;
+                }
+                break;
+            case R.id.llZfb:
+                //支付宝支付
+                if (!rbBottom.isChecked()) {
+                    rbBottom.setChecked(true);
+                    type = 1;
+                }
                 break;
             default:
                 break;

@@ -202,6 +202,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llHuiyuan"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
         android:layout_marginTop="@dimen/x20"

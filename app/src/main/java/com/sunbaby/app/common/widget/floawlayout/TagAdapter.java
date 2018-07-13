@@ -1,7 +1,12 @@
 package com.sunbaby.app.common.widget.floawlayout;
 
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+
+import com.sunbaby.app.MyApplication;
+import com.sunbaby.app.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,9 +92,13 @@ public abstract class TagAdapter<T> {
 
     public void onSelected(int position, View view) {
         Log.d("zhy", "onSelected " + position);
+        TextView textView = (TextView) view;
+        textView.setTextColor(ContextCompat.getColor(MyApplication.context, R.color.white));
     }
 
     public void unSelected(int position, View view) {
+        TextView textView = (TextView) view;
+        textView.setTextColor(ContextCompat.getColor(MyApplication.context, R.color.textColor3));
         Log.d("zhy", "unSelected " + position);
     }
 

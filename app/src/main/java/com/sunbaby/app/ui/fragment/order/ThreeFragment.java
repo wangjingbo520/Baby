@@ -103,7 +103,7 @@ public class ThreeFragment extends BaseFragment implements RecyGuihuangAdapter
                             guihuangBeans.add(guihuangBean);
                         }
                     }
-                    ToastUtil.show("您选择了" + guihuangBeans.size() + "个条目");
+                    ToastUtil.showMessage("您选择了" + guihuangBeans.size() + "个条目");
                 }
                 break;
             default:
