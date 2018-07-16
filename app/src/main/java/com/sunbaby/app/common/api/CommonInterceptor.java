@@ -70,7 +70,7 @@ public class CommonInterceptor implements Interceptor {
             request = builder.post(formBodyBuilder.build()).build();
             String postBodyString = bodyToString(request.body());
             String fullUrl = request.url() + "?" + postBodyString;
-            Log.d("RequestClient", fullUrl);
+            Log.e("RequestClient", fullUrl);
         }
         //重新发送请求
         return chain.proceed(request);

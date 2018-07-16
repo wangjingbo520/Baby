@@ -2,14 +2,14 @@ package com.sunbaby.app.common.api;
 
 public class HttpResult<T> {
 
-    public String status;
+    public int code;
     public String msg;
     public T data;
 
     @Override
     public String toString() {
         return "HttpResult{" +
-                "type='" + status + '\'' +
+                "type='" + code + '\'' +
                 ", msg='" + msg + '\'' +
                 ", returnMap=" + data +
                 '}';

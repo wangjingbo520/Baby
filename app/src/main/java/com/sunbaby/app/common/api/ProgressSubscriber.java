@@ -49,9 +49,8 @@ public abstract class ProgressSubscriber<T> extends Subscriber<T> implements Pro
 
     @Override
     public void onStart() {
-
         if (!NetworkUtils.isNetworkAvailable(context)) {
-            ToastUtil.showMessage("网络中断，请检查您的网络状态");
+            ToastUtil.showMessage("网络中断，请检查您的网络状态1");
             if (!this.isUnsubscribed()) {
                 this.unsubscribe();
             }
@@ -63,7 +62,6 @@ public abstract class ProgressSubscriber<T> extends Subscriber<T> implements Pro
         }
     }
 
-
     @Override
     public void onCompleted() {
         dismissProgressDialog();
@@ -74,15 +72,14 @@ public abstract class ProgressSubscriber<T> extends Subscriber<T> implements Pro
     public void onError(Throwable e) {
         e.printStackTrace();
         if (e instanceof SocketTimeoutException) {
-            ToastUtil.showMessage("网络中断，请检查您的网络状态");
+            ToastUtil.showMessage("网络中断，请检查您的网络状态2");
         } else if (e instanceof ConnectException) {
-            ToastUtil.showMessage("网络中断，请检查您的网络状态");
+            ToastUtil.showMessage("网络中断，请检查您的网络状态3");
         } else if (e instanceof ApiException) {
             ApiException ae = (ApiException) e;
             String type = ae.type;
             if ("-100".equals(type)) {
                 //弹出互踢对话框，另外处理
-//                DropOutActivity.startDropOutActivity(e.getMessage(), context);
             } else {
                 ToastUtil.showMessage(e.getMessage());
             }

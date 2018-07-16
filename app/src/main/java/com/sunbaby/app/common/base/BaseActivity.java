@@ -1,38 +1,29 @@
 package com.sunbaby.app.common.base;
 
-import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.sunbaby.app.AppData;
-import com.sunbaby.app.MainActivity;
 import com.sunbaby.app.R;
 import com.sunbaby.app.bean.User;
-import com.sunbaby.app.common.utils.BaseUtils;
-import com.sunbaby.app.common.utils.SnackBarUtils;
 import com.sunbaby.app.common.utils.ToastUtil;
 import com.sunbaby.app.common.utils.statusbartils.Eyes;
-import com.tbruyelle.rxpermissions2.RxPermissions;
-
-import java.io.IOException;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import rx.functions.Action1;
 
 /**
  * com.sunbaby.app.common.base
@@ -52,7 +43,6 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tvRight;
     private ImageView iv_right;
     private Unbinder mUnbinder;
-    final RxPermissions rxPermissions = new RxPermissions(this);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -185,19 +175,8 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
-    private void initPermission() {
-//        rxPermissions
-//                .requestEachCombined(Manifest.permission.CAMERA,
-//                        Manifest.permission.READ_PHONE_STATE)
-//                .subscribe(permission -> {
-//                    // will emit 1 Permission object
-//                    if (permission.granted) {
-//                        // All permissions are granted !
-//                    } else if (permission.shouldShowRequestPermissionRationale)
-//                    // At least one denied permission without ask never again
-//                }
+    public void showToast(String msg){
+        ToastUtil.showMessage(msg);
     }
-
 
 }

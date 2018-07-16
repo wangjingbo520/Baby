@@ -1,5 +1,10 @@
 package com.sunbaby.app.common.api;
 
+import com.sunbaby.app.bean.Areabean;
+import com.sunbaby.app.bean.User;
+import com.sunbaby.app.bean.YouerYuan;
+
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -33,7 +38,6 @@ public class RequestClient {
     private ServerAPI mServerApi;
 
     private RequestClient() {
-
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS);
         builder.readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
@@ -60,32 +64,73 @@ public class RequestClient {
         return requestClient;
     }
 
-/**************************************************************************************************/
+    /**************************************************************************************************/
 
     /**
-     * 获取验证码
+     * 注册地区查询
      *
-     * @param phone
      * @param type
+     * @param parentId
      * @return
      */
-    public Observable<String> getValidateCode(String phone, String type) {
-        return mServerApi.getValidateCode(phone, type)
-                .map(new HttpResultFuc<String>())
+    public Observable<Areabean> regionList(String type, String parentId) {
+        return mServerApi.regionList(type, parentId)
+                .map(new HttpResultFuc<Areabean>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     /**
-     * 用户注册
+     * 2、注册幼儿园查询
      *
-     * @param code
-     * @param password
-     * @param phone
+     * @param type
+     * @param parentId
+     * @param kindergartenName
      * @return
      */
-    public Observable<Object> appRegister(String code, String password, String phone) {
-        return mServerApi.appRegister(code, password, phone)
+    public Observable<YouerYuan> kindergarten(String type, String parentId, String
+            kindergartenName) {
+        return mServerApi.kindergarten(type, parentId, kindergartenName)
+                .map(new HttpResultFuc<YouerYuan>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 获取短信验证码
+     *
+     * @param mobile
+     * @param scene
+     * @return
+     */
+    public Observable<Object> sendSms(String mobile, String scene) {
+        return mServerApi.sendSms(mobile, scene)
+                .map(new HttpResultFuc<Object>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * @param mobile
+     * @param smsCode
+     * @param passWord
+     * @param rePassWord
+     * @param userName
+     * @param addr
+     * @param provinceId
+     * @param citId
+     * @param district
+     * @param areaId
+     * @param kindergartenName
+     * @param kindergartenClass
+     * @return
+     */
+    public Observable<Object> register(String mobile, String smsCode, String passWord, String
+            rePassWord, String userName, String addr, String provinceId, String
+                                               citId, String district, String areaId, String
+                                               kindergartenName, String kindergartenClass) {
+        return mServerApi.register(mobile, smsCode, passWord, rePassWord, userName, addr,
+                provinceId, citId, district, areaId, kindergartenName, kindergartenClass)
                 .map(new HttpResultFuc<Object>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
@@ -93,3 +138,5 @@ public class RequestClient {
 
 
 }
+
+

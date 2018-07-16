@@ -27,7 +27,7 @@ public class LoggingInterceptor implements Interceptor {
         if (paths != null && paths.size() > 0) {
             action = paths.get(paths.size() - 1);
         }
-        Log.i("RequestClient", String.format("%s: %s", action, responseBody.string()));
+        Log.e("RequestClient", String.format("%s: %s", action, responseBody.string()));
         return response;
     }
 

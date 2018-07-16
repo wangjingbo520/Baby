@@ -31,7 +31,6 @@ android {
         }
     }
 
-
     repositories {
         flatDir {
             dirs 'libs'
@@ -64,5 +63,9 @@ dependencies {
     implementation 'com.github.iwgang:countdownview:2.1.6'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-4'
     implementation 'com.youth.banner:banner:1.4.10'
-    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+    implementation('com.github.hotchemi:permissionsdispatcher:2.4.0') {
+        exclude module: "support-v13"
+    }
+    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.4.0'
+
 }
