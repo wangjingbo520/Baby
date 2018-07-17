@@ -1,8 +1,10 @@
 package com.sunbaby.app.common.api;
 
 
+import com.sunbaby.app.bean.AddVipBean;
 import com.sunbaby.app.bean.Areabean;
 import com.sunbaby.app.bean.User;
+import com.sunbaby.app.bean.VipBean;
 import com.sunbaby.app.bean.YouerYuan;
 
 import java.util.List;
@@ -89,6 +91,30 @@ public interface ServerAPI {
                                             @Field("areaId") String areaId,
                                             @Field("kindergartenName") String kindergartenName,
                                             @Field("kindergartenClass") String kindergartenClass);
+
+
+    /**
+     * 查找对应的会员类型
+     *
+     * @return
+     */
+    @POST("account/queryVipType")
+    Observable<HttpResult<VipBean>> queryVipType();
+
+
+    /**
+     * 立即开通会员
+     *
+     * @param userId
+     * @param vipTypeId
+     * @param amount
+     * @return
+     */
+    @POST("order/addOrder")
+    @FormUrlEncoded
+    Observable<HttpResult<AddVipBean>> addOrder(@Field("userId") String userId,
+                                                @Field("vipTypeId") String vipTypeId,
+                                                @Field("amount") String amount);
 
 
 }

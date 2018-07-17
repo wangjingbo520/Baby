@@ -178,7 +178,8 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
                 break;
             case R.id.btnRegister:
                 //提交注册
-                register();
+                //    register();
+                startTo(JoinmemberActivity.class, false);
                 break;
             default:
                 break;
@@ -218,7 +219,6 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
             //区
             showAreaDialog("区", areabeans);
         }
-
     }
 
     @Override

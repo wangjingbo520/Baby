@@ -222,6 +222,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:orientation="vertical"
+            android:paddingBottom="@dimen/x30"
             android:paddingLeft="@dimen/x150"
             android:paddingRight="@dimen/x50">
 
@@ -342,13 +343,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x100"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/x2"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:orientation="horizontal"
+            android:paddingBottom="@dimen/x30"
             android:paddingLeft="@dimen/x30"
-            android:paddingRight="@dimen/x30">
+            android:paddingRight="@dimen/x30"
+            android:paddingTop="@dimen/x30">
 
             <ImageView
                 android:layout_width="@dimen/x50"
@@ -373,31 +376,21 @@
 
         </LinearLayout>
 
-        <View
+        <TextView
+            android:id="@+id/btnRegister"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x1"
-            android:background="@color/line" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/btnRegister"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x90"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="@dimen/x30"
-                android:layout_marginRight="@dimen/x30"
-                android:background="@drawable/bg_btn_login"
-                android:gravity="center"
-                android:text="加入会员"
-                android:textColor="@color/white"
-                android:textSize="@dimen/x32" />
-
-        </RelativeLayout>
-
+            android:layout_height="@dimen/x90"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/x50"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_marginRight="@dimen/x30"
+            android:layout_marginTop="@dimen/x50"
+            android:background="@drawable/bg_btn_login"
+            android:gravity="center"
+            android:text="加入会员"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x32" />
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

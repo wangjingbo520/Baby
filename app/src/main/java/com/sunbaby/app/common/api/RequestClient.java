@@ -1,7 +1,9 @@
 package com.sunbaby.app.common.api;
 
+import com.sunbaby.app.bean.AddVipBean;
 import com.sunbaby.app.bean.Areabean;
 import com.sunbaby.app.bean.User;
+import com.sunbaby.app.bean.VipBean;
 import com.sunbaby.app.bean.YouerYuan;
 
 import java.util.List;
@@ -135,6 +137,36 @@ public class RequestClient {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
+    /**
+     * 查找对应的会员类型
+     *
+     * @return
+     */
+    public Observable<VipBean> queryVipType() {
+        return mServerApi.queryVipType()
+                .map(new HttpResultFuc<VipBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 立即开通会员
+     *
+     * @param userId
+     * @param vipTypeId
+     * @param amount
+     * @return
+     */
+    public Observable<AddVipBean> addOrder(String userId, String vipTypeId, String amount) {
+        return mServerApi.addOrder(userId, vipTypeId, amount)
+                .map(new HttpResultFuc<AddVipBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+
+
 
 
 }
