@@ -11,6 +11,9 @@ import com.sunbaby.app.MainActivity;
 import com.sunbaby.app.R;
 import com.sunbaby.app.common.base.BaseActivity;
 import com.sunbaby.app.common.utils.ToastUtil;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -39,6 +42,9 @@ public class PayActivity extends BaseActivity {
      */
     private int type = 0;
 
+    private IWXAPI api;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +55,8 @@ public class PayActivity extends BaseActivity {
     }
 
     private void bindView() {
+        //注册微信支付
+        api = WXAPIFactory.createWXAPI(this, "wxb4ba3c02aa476ea1");
         radioGroup.setOnCheckedChangeListener(onCheckedChangeListener);
     }
 
@@ -69,7 +77,6 @@ public class PayActivity extends BaseActivity {
                 default:
                     break;
             }
-
         }
     };
 
@@ -91,12 +98,13 @@ public class PayActivity extends BaseActivity {
         super.onClick(view);
         switch (view.getId()) {
             case R.id.btnSure:
-//                if (0==type){
-//                    ToastUtil.showMessage("微信支付方式");
-//                }else {
-//                    ToastUtil.showMessage("支付宝支付方式");
-//                }
-                startTo(MainActivity.class, true);
+                if (0==type){
+                    wexinPay();
+                    ToastUtil.showMessage("微信支付方式");
+                }else {
+                    ToastUtil.showMessage("支付宝支付方式");
+                }
+        //        startTo(MainActivity.class, true);
                 break;
             case R.id.llWeixin:
                 //微信支付
@@ -115,6 +123,18 @@ public class PayActivity extends BaseActivity {
             default:
                 break;
         }
+    }
+
+    private void wexinPay() {
+//        PayReq request = new PayReq();
+//        request.appId = "wxd930ea5d5a258f4f";
+//        request.partnerId = "1900000109";
+//        request.prepayId= "1101000000140415649af9fc314aa427";
+//        request.packageValue = "Sign=WXPay";
+//        request.nonceStr= "1101000000140429eb40476f8896f4c9";
+//        request.timeStamp= "1398746574";
+//        request.sign= "7FFECB600D7157C5AA49810D2D8F28BC2811827B";
+//        api.sendReq(request);
     }
 
 }

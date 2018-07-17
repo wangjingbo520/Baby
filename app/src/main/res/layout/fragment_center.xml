@@ -109,10 +109,30 @@
             android:paddingBottom="@dimen/x32"
             android:paddingTop="@dimen/x24">
 
-            <ImageView
-                android:layout_width="@dimen/x40"
-                android:layout_height="@dimen/x36"
-                android:src="@mipmap/sgh" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv1"
+                    android:layout_width="@dimen/x40"
+                    android:layout_height="@dimen/x36"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/sgh" />
+
+                <TextView
+                    android:id="@+id/tvRing1"
+                    android:layout_width="@dimen/x40"
+                    android:layout_height="@dimen/x40"
+                    android:layout_toRightOf="@id/iv1"
+                    android:background="@drawable/ring"
+                    android:gravity="center"
+                    android:text="5"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize_30"
+                    android:visibility="invisible" />
+
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -134,10 +154,32 @@
             android:paddingBottom="@dimen/x32"
             android:paddingTop="@dimen/x24">
 
-            <ImageView
-                android:layout_width="@dimen/x40"
-                android:layout_height="@dimen/x36"
-                android:src="@mipmap/dsh" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv2"
+                    android:layout_width="@dimen/x40"
+                    android:layout_height="@dimen/x36"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/dsh" />
+
+                <TextView
+                    android:id="@+id/tvRing2"
+                    android:layout_width="@dimen/x40"
+                    android:layout_height="@dimen/x40"
+                    android:layout_toRightOf="@id/iv2"
+                    android:background="@drawable/ring"
+                    android:gravity="center"
+                    android:text="5"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize_30"
+                    android:visibility="invisible" />
+
+            </RelativeLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -159,10 +201,31 @@
             android:paddingBottom="@dimen/x32"
             android:paddingTop="@dimen/x24">
 
-            <ImageView
-                android:layout_width="@dimen/x40"
-                android:layout_height="@dimen/x36"
-                android:src="@mipmap/sgh" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv3"
+                    android:layout_width="@dimen/x40"
+                    android:layout_height="@dimen/x36"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/sgh" />
+
+                <TextView
+                    android:id="@+id/tvRing3"
+                    android:layout_width="@dimen/x40"
+                    android:layout_height="@dimen/x40"
+                    android:layout_toRightOf="@id/iv3"
+                    android:background="@drawable/ring"
+                    android:gravity="center"
+                    android:text="5"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize_30"
+                    android:visibility="invisible" />
+
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -185,10 +248,30 @@
             android:paddingBottom="@dimen/x32"
             android:paddingTop="@dimen/x24">
 
-            <ImageView
-                android:layout_width="@dimen/x40"
-                android:layout_height="@dimen/x36"
-                android:src="@mipmap/ywc" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv4"
+                    android:layout_width="@dimen/x40"
+                    android:layout_height="@dimen/x36"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/ywc" />
+
+                <TextView
+                    android:id="@+id/tvRing4"
+                    android:layout_width="@dimen/x40"
+                    android:layout_height="@dimen/x40"
+                    android:layout_toRightOf="@id/iv4"
+                    android:background="@drawable/ring"
+                    android:gravity="center"
+                    android:text="5"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize_30"
+                    android:visibility="invisible" />
+
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"

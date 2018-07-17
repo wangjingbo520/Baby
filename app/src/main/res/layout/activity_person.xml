@@ -28,6 +28,7 @@
 
 
         <com.libray.basetools.view.imageview.CircleImageView
+            android:id="@+id/ivUser"
             android:layout_width="@dimen/x80"
             android:layout_height="@dimen/x80"
             android:layout_marginRight="@dimen/x30"
@@ -61,6 +62,7 @@
             android:textSize="@dimen/textSize_32" />
 
         <TextView
+            android:id="@+id/tvNichen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/x30"
@@ -128,6 +130,7 @@
             android:textSize="@dimen/textSize_32" />
 
         <TextView
+            android:id="@+id/tvPhoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/x30"
@@ -162,6 +165,7 @@
             android:textSize="@dimen/textSize_32" />
 
         <TextView
+            android:id="@+id/tvSex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/x30"

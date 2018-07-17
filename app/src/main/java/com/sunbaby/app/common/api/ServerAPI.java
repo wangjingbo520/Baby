@@ -3,6 +3,8 @@ package com.sunbaby.app.common.api;
 
 import com.sunbaby.app.bean.AddVipBean;
 import com.sunbaby.app.bean.Areabean;
+import com.sunbaby.app.bean.CenterBean;
+import com.sunbaby.app.bean.PersonBean;
 import com.sunbaby.app.bean.User;
 import com.sunbaby.app.bean.VipBean;
 import com.sunbaby.app.bean.YouerYuan;
@@ -115,6 +117,26 @@ public interface ServerAPI {
     Observable<HttpResult<AddVipBean>> addOrder(@Field("userId") String userId,
                                                 @Field("vipTypeId") String vipTypeId,
                                                 @Field("amount") String amount);
+
+    /**
+     * 个人中心
+     *
+     * @param userId
+     * @return
+     */
+    @POST("account/homePage")
+    @FormUrlEncoded
+    Observable<HttpResult<CenterBean>> homePage(@Field("userId") String userId);
+
+    /**
+     * 个人资料
+     *
+     * @param userId
+     * @return
+     */
+    @POST("account/personalData")
+    @FormUrlEncoded
+    Observable<HttpResult<PersonBean>> personalData(@Field("userId") String userId);
 
 
 }

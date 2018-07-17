@@ -27,6 +27,10 @@ public abstract class BaseFragment extends Fragment {
     public View mRootView;
     public FragmentActivity mContext;
 
+    public User getUser() {
+        return AppData.getInstance().getUser();
+    }
+
     public boolean userIsLogin() {
         User user = AppData.getInstance().getUser();
         if (null == user) {

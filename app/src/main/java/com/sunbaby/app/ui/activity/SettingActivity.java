@@ -19,6 +19,7 @@ public class SettingActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setLayout(R.layout.activity_setting);
+        setTitle("设置");
     }
 
     @OnClick({R.id.llPerson, R.id.llAdress})
@@ -38,6 +39,5 @@ public class SettingActivity extends BaseActivity {
                 break;
         }
     }
-
 
 }

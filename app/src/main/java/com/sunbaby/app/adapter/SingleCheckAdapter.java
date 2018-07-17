@@ -7,6 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.RadioButton;
 
 import com.sunbaby.app.R;
+import com.sunbaby.app.common.utils.ToastUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,8 +23,13 @@ public class SingleCheckAdapter extends BaseAdapter {
 
     public HashMap<Integer, Boolean> states = new HashMap<Integer, Boolean>();
 
-    public HashMap<Integer, Boolean> getSelectItem() {
-        return states;
+    //获取选中的值
+    private void getSelectPosition() {
+        for (int i = 0; i < getCount(); i++) {
+            if (states.get(i) != null && states.get(i)) {
+                ToastUtil.showMessage(i + "已选中");
+            }
+        }
     }
 
     public SingleCheckAdapter(Context context, List<String> list) {

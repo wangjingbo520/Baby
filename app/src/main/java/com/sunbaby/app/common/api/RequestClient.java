@@ -2,6 +2,8 @@ package com.sunbaby.app.common.api;
 
 import com.sunbaby.app.bean.AddVipBean;
 import com.sunbaby.app.bean.Areabean;
+import com.sunbaby.app.bean.CenterBean;
+import com.sunbaby.app.bean.PersonBean;
 import com.sunbaby.app.bean.User;
 import com.sunbaby.app.bean.VipBean;
 import com.sunbaby.app.bean.YouerYuan;
@@ -166,7 +168,31 @@ public class RequestClient {
     }
 
 
+    /**
+     * 个人中心
+     *
+     * @param userId
+     * @return
+     */
+    public Observable<CenterBean> homePage(String userId) {
+        return mServerApi.homePage(userId)
+                .map(new HttpResultFuc<CenterBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 
+    /**
+     * 个人资料
+     *
+     * @param userId
+     * @return
+     */
+    public Observable<PersonBean> personalData(String userId) {
+        return mServerApi.personalData(userId)
+                .map(new HttpResultFuc<PersonBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 
 
 }
