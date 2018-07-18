@@ -4,6 +4,7 @@ package com.sunbaby.app.common.api;
 import com.sunbaby.app.bean.AddVipBean;
 import com.sunbaby.app.bean.Areabean;
 import com.sunbaby.app.bean.CenterBean;
+import com.sunbaby.app.bean.HomeBean;
 import com.sunbaby.app.bean.PersonBean;
 import com.sunbaby.app.bean.User;
 import com.sunbaby.app.bean.VipBean;
@@ -137,6 +138,13 @@ public interface ServerAPI {
     @POST("account/personalData")
     @FormUrlEncoded
     Observable<HttpResult<PersonBean>> personalData(@Field("userId") String userId);
+
+    /**
+     * 首页图片
+     * @return
+     */
+    @POST("home/queryContentAdvertisementsByHome")
+    Observable<HttpResult<HomeBean>> queryContentAdvertisementsByHome();
 
 
 }

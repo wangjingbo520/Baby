@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context=".ui.fragment.HomeFragment">
 
-
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/smartrefreshlayout"
         android:layout_width="match_parent"
@@ -20,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="none">
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -65,8 +63,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:orientation="horizontal"
-                    android:paddingBottom="@dimen/x20"
-                    android:paddingTop="@dimen/x20">
+                    android:paddingBottom="@dimen/x20">
 
 
                     <LinearLayout
@@ -79,9 +76,9 @@
 
 
                         <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:id="@+id/iv1"
+                            android:layout_width="@dimen/x150"
+                            android:layout_height="@dimen/x150"
                             android:src="@mipmap/default_pic" />
 
                         <TextView
@@ -105,9 +102,9 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:id="@+id/iv2"
+                            android:layout_width="@dimen/x150"
+                            android:layout_height="@dimen/x150"
                             android:src="@mipmap/default_pic" />
 
                         <TextView
@@ -129,9 +126,9 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:id="@+id/iv3"
+                            android:layout_width="@dimen/x150"
+                            android:layout_height="@dimen/x150"
                             android:src="@mipmap/default_pic" />
 
                         <TextView
@@ -178,8 +175,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:orientation="horizontal"
-                    android:paddingBottom="@dimen/x20"
-                    android:paddingTop="@dimen/x20">
+                    android:paddingBottom="@dimen/x20">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -188,11 +184,10 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-
                         <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:id="@+id/iv4"
+                            android:layout_width="@dimen/x150"
+                            android:layout_height="@dimen/x150"
                             android:src="@mipmap/default_pic" />
 
                         <TextView
@@ -216,9 +211,9 @@
 
 
                         <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:id="@+id/iv5"
+                            android:layout_width="@dimen/x150"
+                            android:layout_height="@dimen/x150"
                             android:src="@mipmap/default_pic" />
 
                         <TextView
@@ -239,9 +234,9 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:id="@+id/iv6"
+                            android:layout_width="@dimen/x150"
+                            android:layout_height="@dimen/x150"
                             android:src="@mipmap/default_pic" />
 
                         <TextView

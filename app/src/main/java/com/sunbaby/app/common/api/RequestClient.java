@@ -3,6 +3,7 @@ package com.sunbaby.app.common.api;
 import com.sunbaby.app.bean.AddVipBean;
 import com.sunbaby.app.bean.Areabean;
 import com.sunbaby.app.bean.CenterBean;
+import com.sunbaby.app.bean.HomeBean;
 import com.sunbaby.app.bean.PersonBean;
 import com.sunbaby.app.bean.User;
 import com.sunbaby.app.bean.VipBean;
@@ -53,7 +54,7 @@ public class RequestClient {
 
         OkHttpClient okHttpClient = builder.build();
         mRetrofit = new Retrofit.Builder()
-                .baseUrl(URLs.ServerUrl)
+                .baseUrl(URLs.SERVER_URL)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -190,6 +191,17 @@ public class RequestClient {
     public Observable<PersonBean> personalData(String userId) {
         return mServerApi.personalData(userId)
                 .map(new HttpResultFuc<PersonBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 首页图片
+     * @return
+     */
+    public Observable<HomeBean> queryContentAdvertisementsByHome() {
+        return mServerApi.queryContentAdvertisementsByHome()
+                .map(new HttpResultFuc<HomeBean>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
