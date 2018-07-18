@@ -2,6 +2,7 @@ package com.sunbaby.app.ui.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -82,18 +83,17 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
      */
     private String areaId;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_register);
         setTitle("注册");
-        bindView();
-    }
-
-    private void bindView() {
         registerPresenter = new RegisterPresenter(this, this);
         dialog = new WheelViewDialog(this);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_register;
     }
 
 

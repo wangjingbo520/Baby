@@ -1,6 +1,7 @@
 package com.sunbaby.app.ui.activity;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.sunbaby.app.R;
@@ -16,10 +17,14 @@ import butterknife.OnClick;
 public class SettingActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_setting);
         setTitle("设置");
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_setting;
     }
 
     @OnClick({R.id.llPerson, R.id.llAdress})

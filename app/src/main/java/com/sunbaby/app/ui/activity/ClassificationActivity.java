@@ -3,6 +3,7 @@ package com.sunbaby.app.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -24,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -51,23 +51,22 @@ public class ClassificationActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_classification);
         setTitle("玩具");
-        ButterKnife.bind(this);
-        bindView();
-        initData();
-    }
-
-    private void bindView() {
         smartrefreshlayout.setRefreshHeader(new ClassicsHeader(mContext));
         smartrefreshlayout.setRefreshFooter(new ClassicsFooter(mContext));
         smartrefreshlayout.setEnableLoadmore(false);
+        strings = new ArrayList<>();
+        initData();
     }
 
-    private void initData() {
-        strings = new ArrayList<>();
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_classification;
+    }
+
+    protected void initData() {
         for (int i = 0; i < 10; i++) {
             strings.add("我是第" + i);
         }
@@ -96,6 +95,7 @@ public class ClassificationActivity extends BaseActivity {
             }
         });
     }
+
 
     @OnClick(R.id.etSearch)
     @Override

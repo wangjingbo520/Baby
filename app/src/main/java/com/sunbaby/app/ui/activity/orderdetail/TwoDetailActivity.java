@@ -3,6 +3,7 @@ package com.sunbaby.app.ui.activity.orderdetail;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.sunbaby.app.R;
 import com.sunbaby.app.common.base.BaseActivity;
@@ -20,13 +21,14 @@ public class TwoDetailActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_orderdetail);
         setTitle("订单详情");
-        initData();
     }
 
-    private void initData() {
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_orderdetail;
     }
+
 }

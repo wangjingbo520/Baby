@@ -1,10 +1,10 @@
 package com.sunbaby.app.ui.activity;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
 
-import com.sunbaby.app.MainActivity;
 import com.sunbaby.app.R;
 import com.sunbaby.app.common.base.BaseActivity;
 
@@ -25,10 +25,8 @@ public class LoginActivity extends BaseActivity {
     EditText etPassword;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_login);
-        setTitle("登录");
+    protected int getLayoutId() {
+        return R.layout.activity_login;
     }
 
     @OnClick({R.id.btnLogin, R.id.tvFoget, R.id.tvRegister})
@@ -37,7 +35,6 @@ public class LoginActivity extends BaseActivity {
         super.onClick(view);
         switch (view.getId()) {
             case R.id.btnLogin:
-                //startTo(MainActivity.class, true);
                 startTo(JoinmemberActivity.class, true);
                 break;
             case R.id.tvFoget:
@@ -49,6 +46,13 @@ public class LoginActivity extends BaseActivity {
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState); setTitle("登录");
+        showContent();
+
     }
 
 }

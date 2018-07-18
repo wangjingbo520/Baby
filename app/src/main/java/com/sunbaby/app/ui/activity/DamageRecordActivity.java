@@ -3,6 +3,7 @@ package com.sunbaby.app.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -45,18 +46,9 @@ public class DamageRecordActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_damage_record);
         setTitle("损坏记录");
-        bindView();
-        initData();
-    }
-
-    private void initData() {
-    }
-
-    private void bindView() {
         strings = new ArrayList<>();
         smartrefreshlayout.setRefreshHeader(new ClassicsHeader(mContext));
         smartrefreshlayout.setRefreshFooter(new ClassicsFooter(mContext));
@@ -79,7 +71,11 @@ public class DamageRecordActivity extends BaseActivity {
                 DamageDetailActivity.start(mContext);
             }
         });
-
-
     }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_damage_record;
+    }
+
 }

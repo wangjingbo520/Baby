@@ -1,6 +1,7 @@
 package com.sunbaby.app.ui.activity;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.sunbaby.app.R;
@@ -16,10 +17,14 @@ import butterknife.OnClick;
 public class UpdatePhoneNumberActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_update_phone_number);
         setTitle("修改手机号");
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_update_phone_number;
     }
 
     @OnClick({R.id.llYes, R.id.llNo})
@@ -39,5 +44,4 @@ public class UpdatePhoneNumberActivity extends BaseActivity {
                 break;
         }
     }
-
 }

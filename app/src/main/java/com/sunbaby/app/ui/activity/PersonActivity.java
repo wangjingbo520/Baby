@@ -1,6 +1,7 @@
 package com.sunbaby.app.ui.activity;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
@@ -33,16 +34,16 @@ public class PersonActivity extends BaseCameraActivity implements IPersonView {
     private PersonPresenter personPresenter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_person);
-        setTitle("个人资料");
-        personPresenter = new PersonPresenter(mContext, this);
-        initData();
+    protected int getLayoutId() {
+        return R.layout.activity_person;
     }
 
-    private void initData() {
-        //  personPresenter.personalData(getUser().getUserId());
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setTitle("个人资料");
+        personPresenter = new PersonPresenter(mContext, this);
+        personPresenter.personalData(getUser().getUserId());
     }
 
     @OnClick({R.id.llTouxiang, R.id.llPassword, R.id.llPhoneNumber})

@@ -26,7 +26,7 @@ import java.io.File;
  * @date 2018/7/9
  * describe
  */
-public class BaseCameraActivity extends BaseActivity {
+public abstract class BaseCameraActivity extends BaseActivity {
     protected final String TAG = this.getClass().getSimpleName();
 
     /** 自定义相机 **/

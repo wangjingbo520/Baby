@@ -3,6 +3,7 @@ package com.sunbaby.app.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -46,18 +47,18 @@ public class ManageAddressActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_manage_address);
         setTitle("管理收货地址");
-        bindView();
-        initData();
-    }
-
-    private void bindView() {
         smartrefreshlayout.setRefreshHeader(new ClassicsHeader(mContext));
         smartrefreshlayout.setRefreshFooter(new ClassicsFooter(mContext));
         smartrefreshlayout.setEnableLoadmore(false);
+        initData();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_manage_address;
     }
 
     private void initData() {
@@ -86,7 +87,6 @@ public class ManageAddressActivity extends BaseActivity {
                         //   adapter.setNewData(null);
                     } else {
                         adapter.setNewData(strings);
-                        //ToastUtil.show("你取消啦");
                     }
                 }
             }

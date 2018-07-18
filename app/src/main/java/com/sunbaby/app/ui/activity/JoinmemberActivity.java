@@ -1,7 +1,7 @@
 package com.sunbaby.app.ui.activity;
 
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -17,10 +17,8 @@ import com.sunbaby.app.common.widget.floawlayout.TagFlowLayout;
 import com.sunbaby.app.presenter.JoinmemberPresenter;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
-import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -30,10 +28,8 @@ import butterknife.OnClick;
  */
 public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFlowLayout
         .OnTagClickListener {
-    @BindView(R.id.tag1)
-    TagFlowLayout tag1;
-    @BindView(R.id.tag2)
-    TagFlowLayout tag2;
+    private TagFlowLayout tag1;
+    private TagFlowLayout tag2;
 
     private LayoutInflater mInflater;
     private TagAdapter<VipBean.VipTypeListBean> tagAdapter1;
@@ -43,19 +39,31 @@ public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFl
     private VipBean vipBean;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_joinmember);
+        statusLayoutManager.showLoading();
+        initView();
+        initData();
+    }
+
+    private void initView() {
         setTitle("加入会员");
+        tag1 = findViewById(R.id.tag1);
+        tag2 = findViewById(R.id.tag2);
         mInflater = LayoutInflater.from(mContext);
         joinmemberPresenter = new JoinmemberPresenter(mContext, this);
         tag1.setOnTagClickListener(this);
-        initData();
     }
 
     private void initData() {
         joinmemberPresenter.queryVipType();
     }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_joinmember;
+    }
+
 
     @OnClick(R.id.btnKaitong)
     @Override
@@ -74,6 +82,7 @@ public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFl
     @Override
     public void queryVipType(final VipBean vipBean) {
         //查找对应的会员类型
+        showContent();
         this.vipBean = vipBean;
         if (vipBean.getVipTypeList() != null && vipBean.getVipTypeList().size() > 0) {
             //会员类型展示

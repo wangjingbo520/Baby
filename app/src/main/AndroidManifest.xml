@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".StartActivity"
             android:theme="@style/WelcomeStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,17 +32,17 @@
             android:configChanges="keyboardHidden|orientation|fontScale|fontScale"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
-        <!--<activity-->
-            <!--android:name=".MainActivity"-->
-            <!--android:configChanges="keyboardHidden|orientation|fontScale|fontScale"-->
-            <!--android:launchMode="singleTask"-->
-            <!--android:screenOrientation="portrait"-->
-            <!--android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />-->
-        <!-- <activity -->
-        <!-- android:name=".ui.activity.RegisterActivity" -->
-        <!-- android:configChanges="keyboardHidden|orientation|fontScale|fontScale" -->
-        <!-- android:screenOrientation="portrait" -->
-        <!-- android:windowSoftInputMode="adjustPan|stateAlwaysHidden" /> -->
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="keyboardHidden|orientation|fontScale|fontScale"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+         <activity
+         android:name=".ui.activity.RegisterActivity"
+         android:configChanges="keyboardHidden|orientation|fontScale|fontScale"
+         android:screenOrientation="portrait"
+         android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
         <activity
             android:name=".ui.activity.ForgetpasswordActivity1"
             android:configChanges="keyboardHidden|orientation|fontScale|fontScale"
@@ -175,7 +175,7 @@
             android:configChanges="keyboardHidden|orientation|fontScale|fontScale"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
-        <activity android:name=".TestActivity" />
+        <activity android:name=".test.TestActivity" />
 
         <!--微信支付-->
         <activity

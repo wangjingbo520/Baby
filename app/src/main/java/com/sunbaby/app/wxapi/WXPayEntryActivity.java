@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.SyncStateContract;
+import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
 
 import com.sunbaby.app.R;
 import com.sunbaby.app.common.base.BaseActivity;
@@ -24,13 +26,17 @@ public class WXPayEntryActivity extends BaseActivity implements IWXAPIEventHandl
     private IWXAPI api;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_wxpay_entry);
         setTitle("支付结果");
         //注册微信支付
         api = WXAPIFactory.createWXAPI(this, "APPID");
         api.handleIntent(getIntent(), this);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_wxpay_entry;
     }
 
     @Override

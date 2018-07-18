@@ -2,6 +2,7 @@ package com.sunbaby.app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -44,9 +45,9 @@ public class MainActivity extends BaseActivity {
     private String[] title = {"首页", "配送箱", "中心"};
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_main);
+        statusLayoutManager.showContent();
         setBackLayoutVisiable(false);
         if (!TextUtils.isEmpty(getIntent().getStringExtra(MAININDEX))) {
             int index = Integer.parseInt(getIntent().getStringExtra(MAININDEX));
@@ -56,6 +57,11 @@ public class MainActivity extends BaseActivity {
             initFragment(0);
             setTitle(title[0]);
         }
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
     }
 
     @Override

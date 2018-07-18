@@ -3,6 +3,8 @@ package com.sunbaby.app.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.sunbaby.app.R;
 import com.sunbaby.app.common.base.BaseActivity;
@@ -20,9 +22,15 @@ public class DamageDetailActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_damage_detail);
         setTitle("损坏详情");
+
+    }
+
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_damage_detail;
     }
 }

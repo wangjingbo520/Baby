@@ -21,6 +21,8 @@ import com.sunbaby.app.R;
 import com.sunbaby.app.bean.User;
 import com.sunbaby.app.common.utils.ToastUtil;
 import com.sunbaby.app.common.utils.statusbartils.Eyes;
+import com.sunbaby.app.statusview.OnRetryListener;
+import com.sunbaby.app.statusview.StatusLayoutManager;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -32,7 +34,7 @@ import butterknife.Unbinder;
  * @date 2018/7/6
  * describe
  */
-public class BaseActivity extends AppCompatActivity implements View.OnClickListener {
+public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     protected final String TAG = this.getClass().getSimpleName();
     public Context mContext;
     public TextView tvTitle;
@@ -43,6 +45,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tvRight;
     private ImageView iv_right;
     private Unbinder mUnbinder;
+    protected StatusLayoutManager statusLayoutManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,10 +53,10 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         mContext = this;
         setContentView(R.layout.base_title);
         Eyes.setStatusBarLightMode(this, Color.WHITE);
-        initView();
+        initTitleView();
     }
 
-    private void initView() {
+    private void initTitleView() {
         flContent = findViewById(R.id.fl_content);
         flTitle = findViewById(R.id.fl_title);
         flBack = findViewById(R.id.fl_back);
@@ -63,56 +66,72 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.fl_back).setOnClickListener(this);
         findViewById(R.id.fl_right).setOnClickListener(this);
         inflater = LayoutInflater.from(this);
-    }
-
-    /**
-     * 重写设置Activity布局文件
-     *
-     * @param layoutId activity引用的布局
-     */
-    public void setLayout(int layoutId) {
-        flContent.removeAllViews();
-        View view = inflater.inflate(layoutId, null);
-        flContent.addView(view);
+        initStatusLayout();
+        showContent();
+        flContent.addView(statusLayoutManager.getRootLayout());
         mUnbinder = ButterKnife.bind(this);
     }
 
-    /**
-     * 设置标题栏标题
-     *
-     * @param title
-     */
+    public View getRootView() {
+        return statusLayoutManager.getRootLayout();
+    }
+
+    private void initStatusLayout() {
+        statusLayoutManager = StatusLayoutManager.newBuilder(this)
+                .contentView(getLayoutId())
+                .emptyDataView(R.layout.activity_emptydata)
+                .errorView(R.layout.activity_error)
+                .loadingView(R.layout.activity_loading)
+                .emptyDataRetryViewId(R.id.button_retry)
+                .onRetryListener(new OnRetryListener() {
+                    @Override
+                    public void onRetry() {
+                        ToastUtil.showMessage("重读请求了");
+                        doOnRetry();
+                    }
+                })
+                .netWorkErrorView(R.layout.activity_networkerror).build();
+    }
+
+
+    protected abstract int getLayoutId();
+
+    protected void showContent() {
+        statusLayoutManager.showContent();
+    }
+
+    protected void showEmpty() {
+        statusLayoutManager.showEmptyData();
+    }
+
+    protected void showLoading() {
+        statusLayoutManager.showLoading();
+    }
+
+    protected void NetWorkError() {
+        statusLayoutManager.showNetWorkError();
+    }
+
+    public void doOnRetry() {
+        ToastUtil.showMessage("我重复请求了");
+    }
+
     public void setTitle(String title) {
         tvTitle.setText(title);
     }
 
-    /**
-     * 设置返回按钮是否显示
-     *
-     * @param visiable
-     */
     public void setBackLayoutVisiable(boolean visiable) {
         if (!visiable) {
             flBack.setVisibility(View.GONE);
         }
     }
 
-    /**
-     * 设置标题栏是否隐藏
-     *
-     * @param visiable
-     */
     public void setTitleLayoutVisiable(boolean visiable) {
         if (!visiable) {
             flTitle.setVisibility(View.GONE);
         }
     }
 
-    /**
-     * 设置标题栏右侧按钮文字
-     *
-     * @param more
-     */
     public void setRightText(String more) {
         tvRight.setVisibility(View.VISIBLE);
         tvRight.setText(more);
@@ -175,7 +194,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void showToast(String msg){
+    public void showToast(String msg) {
         ToastUtil.showMessage(msg);
     }
 

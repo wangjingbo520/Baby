@@ -3,6 +3,7 @@ package com.sunbaby.app.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -41,19 +42,20 @@ public class JoinmemberActivity2 extends BaseActivity {
         context.startActivity(starter);
     }
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setTitle("加入会员");
+        initData();
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_joinmember2);
-        setTitle("加入会员");
-        mInflater = LayoutInflater.from(mContext);
-        initData();
+    protected int getLayoutId() {
+        return R.layout.activity_joinmember2;
     }
 
     private void initData() {
         tag1.setAdapter(mAdapter = new TagAdapter<String>(mVals1) {
-
             @Override
             public View getView(FlowLayout parent, int position, String s) {
                 TextView tv = (TextView) mInflater.inflate(R.layout.tv, tag1, false);
@@ -63,7 +65,6 @@ public class JoinmemberActivity2 extends BaseActivity {
         });
 
         tag2.setAdapter(mAdapter = new TagAdapter<String>(mVals2) {
-
             @Override
             public View getView(FlowLayout parent, int position, String s) {
                 TextView tv = (TextView) mInflater.inflate(R.layout.tv, tag2, false);

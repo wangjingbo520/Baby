@@ -13,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 
 import com.sunbaby.app.common.utils.ToastUtil;
+import com.sunbaby.app.ui.activity.LoginActivity;
 
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
@@ -40,7 +41,7 @@ public class StartActivity extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(StartActivity.this, MainActivity.class));
+                startActivity(new Intent(StartActivity.this, LoginActivity.class));
                 finish();
             }
         }, 2000);

@@ -3,9 +3,11 @@ package com.sunbaby.app.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.sunbaby.app.R;
 import com.sunbaby.app.adapter.MainTabAdapter;
@@ -41,13 +43,16 @@ public class MyOrderActivity extends BaseActivity {
     private int position;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_my_order);
         setTitle("我的订单");
         initFragment();
     }
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_my_order;
+    }
 
     public static void start(Context context, int position) {
         Intent starter = new Intent(context, MyOrderActivity.class);

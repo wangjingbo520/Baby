@@ -19,6 +19,7 @@ import com.sunbaby.app.common.utils.GlideImageLoader;
 import com.sunbaby.app.common.utils.statusbartils.BannerImageLoader;
 import com.sunbaby.app.common.widget.HomeFragmentDialog;
 import com.sunbaby.app.presenter.HomePresenter;
+import com.sunbaby.app.test.TestActivity;
 import com.sunbaby.app.ui.activity.AllBookActivity;
 import com.sunbaby.app.ui.activity.ClassificationActivity;
 import com.sunbaby.app.ui.activity.LoginActivity;
@@ -94,7 +95,8 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
         switch (view.getId()) {
             case R.id.tvLogin:
                 //登录
-                startActivity(new Intent(mContext, LoginActivity.class));
+              //  startActivity(new Intent(mContext, LoginActivity.class));
+                startActivity(new Intent(mContext, TestActivity.class));
                 mContext.finish();
                 break;
             case R.id.tvRegister:

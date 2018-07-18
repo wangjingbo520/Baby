@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -76,12 +77,8 @@ public class PayActivity extends BaseActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_pay);
-        setTitle("支付");
-        bindView();
-        initData();
+    protected int getLayoutId() {
+        return R.layout.activity_pay;
     }
 
     private void bindView() {
@@ -110,7 +107,9 @@ public class PayActivity extends BaseActivity {
         }
     };
 
-    private void initData() {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState); setTitle("支付");
         cv_countdownView.setTag("test22");
         long time = (long) 60 * 60 * 1000;
         cv_countdownView.start(time);
@@ -120,7 +119,9 @@ public class PayActivity extends BaseActivity {
                 //倒计时结束的操作
             }
         });
+
     }
+
 
     @OnClick({R.id.btnSure, R.id.llWeixin, R.id.llZfb})
     @Override

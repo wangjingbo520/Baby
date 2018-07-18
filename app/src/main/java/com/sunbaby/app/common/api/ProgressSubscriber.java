@@ -11,7 +11,8 @@ import java.net.SocketTimeoutException;
 
 import rx.Subscriber;
 
-public abstract class ProgressSubscriber<T> extends Subscriber<T> implements ProgressDialogListener {
+public abstract class ProgressSubscriber<T> extends Subscriber<T> implements
+        ProgressDialogListener {
 
     /**
      * 上下文
@@ -41,16 +42,17 @@ public abstract class ProgressSubscriber<T> extends Subscriber<T> implements Pro
 
     private void dismissProgressDialog() {
         if (mProgressDialogHandler != null) {
-            mProgressDialogHandler.obtainMessage(ProgressDialogHandler.DISMISS_DIALOG).sendToTarget();
+            mProgressDialogHandler.obtainMessage(ProgressDialogHandler.DISMISS_DIALOG)
+                    .sendToTarget();
             mProgressDialogHandler = null;
         }
     }
-
 
     @Override
     public void onStart() {
         if (!NetworkUtils.isNetworkAvailable(context)) {
             ToastUtil.showMessage("网络中断，请检查您的网络状态1");
+            errorNet();
             if (!this.isUnsubscribed()) {
                 this.unsubscribe();
             }
@@ -60,6 +62,10 @@ public abstract class ProgressSubscriber<T> extends Subscriber<T> implements Pro
         if (showDialog) {
             showProgressDialog();
         }
+    }
+
+    public void errorNet() {
+
     }
 
     @Override

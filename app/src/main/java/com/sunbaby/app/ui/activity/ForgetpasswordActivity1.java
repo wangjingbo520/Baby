@@ -1,6 +1,7 @@
 package com.sunbaby.app.ui.activity;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.sunbaby.app.R;
@@ -16,12 +17,16 @@ import butterknife.OnClick;
  * describe 忘记密码第一步
  */
 public class ForgetpasswordActivity1 extends BaseActivity {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setTitle("找回密码");
+        showContent();
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_forgetpassword1);
-        setTitle("找回密码");
+    protected int getLayoutId() {
+        return R.layout.activity_forgetpassword1;
     }
 
     @OnClick(R.id.next)

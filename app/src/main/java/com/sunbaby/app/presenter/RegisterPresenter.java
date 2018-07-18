@@ -45,6 +45,7 @@ public class RegisterPresenter extends BasePresenter {
                     iRegisterView.regionList(areabeans);
                 }
             }
+
         });
     }
 

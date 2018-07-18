@@ -10,7 +10,7 @@ import com.sunbaby.app.common.utils.ToastUtil;
  * @date 2018/7/16
  * describe
  */
-public class BaseViewActivity extends BaseActivity {
+public abstract class BaseViewActivity extends BaseActivity {
     private AlertDialog alertDialog;
     private int checkedItemId = -1;
 
