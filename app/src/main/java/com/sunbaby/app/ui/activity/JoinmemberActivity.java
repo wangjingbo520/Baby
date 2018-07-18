@@ -33,7 +33,7 @@ public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFl
 
     private LayoutInflater mInflater;
     private TagAdapter<VipBean.VipTypeListBean> tagAdapter1;
-    private TagAdapter<VipBean.VipTypeListBean> tagAdapter2;
+    private TagAdapter<VipBean.VipTypeListBean.VipPriceListBean> tagAdapter2;
 
     private JoinmemberPresenter joinmemberPresenter;
     private VipBean vipBean;
@@ -96,16 +96,18 @@ public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFl
                 }
             });
             //时间和价钱的展示
-//            tag2.setAdapter(tagAdapter2 = new TagAdapter<VipBean.VipTypeListBean.VipPriceListBean>(vipBean.getVipTypeList().get(0)) {
-//                @Override
-//                public View getView(FlowLayout parent, int position, VipBean.VipTypeListBean.VipPriceListBean bean) {
-//                    //默认第一个被选中
-//                    TextView tv = (TextView) mInflater.inflate(R.layout.tv, tag2, false);
-//                    tv.setText(bean.getEffectiveTime() + "\n" + bean
-//                            .getPrice());
-//                    return tv;
-//                }
-//            });
+            tag2.setAdapter(tagAdapter2 = new TagAdapter<VipBean.VipTypeListBean
+                    .VipPriceListBean>(vipBean.getVipTypeList().get(0).getVipPriceList()) {
+                @Override
+                public View getView(FlowLayout parent, int position, VipBean.VipTypeListBean
+                        .VipPriceListBean bean) {
+                    //默认第一个被选中
+                    TextView tv = (TextView) mInflater.inflate(R.layout.tv, tag2, false);
+                    tv.setText(bean.getEffectiveTime() + "\n" + bean
+                            .getPrice());
+                    return tv;
+                }
+            });
         }
     }
 
@@ -124,14 +126,16 @@ public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFl
     @Override
     public boolean onTagClick(View view, int position, FlowLayout parent) {
         if (vipBean != null && vipBean.getVipTypeList().size() > 0) {
-            tag2.setAdapter(tagAdapter2 = new TagAdapter<VipBean.VipTypeListBean>(vipBean
-                    .getVipTypeList()) {
+            tag2.setAdapter(tagAdapter2 = new TagAdapter<VipBean.VipTypeListBean
+                    .VipPriceListBean>(vipBean
+                    .getVipTypeList().get(position).getVipPriceList()) {
                 @Override
-                public View getView(FlowLayout parent, int position, VipBean.VipTypeListBean bean) {
+                public View getView(FlowLayout parent, int position, VipBean.VipTypeListBean
+                        .VipPriceListBean bean) {
                     //默认第一个被选中
                     TextView tv = (TextView) mInflater.inflate(R.layout.tv, tag2, false);
-                    tv.setText(bean.getVipPriceList().get(position).getEffectiveTime() + "\n" + bean
-                            .getVipPriceList().get(0).getPrice());
+                    tv.setText(bean.getEffectiveTime() + "\n" + bean
+                            .getPrice());
                     return tv;
                 }
             });
