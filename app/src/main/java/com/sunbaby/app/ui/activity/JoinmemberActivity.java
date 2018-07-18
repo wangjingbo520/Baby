@@ -95,19 +95,17 @@ public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFl
                     return tv;
                 }
             });
-            tagAdapter1.setSelectedList(1);
             //时间和价钱的展示
-            tag2.setAdapter(tagAdapter2 = new TagAdapter<VipBean.VipTypeListBean>(vipBean
-                    .getVipTypeList()) {
-                @Override
-                public View getView(FlowLayout parent, int position, VipBean.VipTypeListBean bean) {
-                    //默认第一个被选中
-                    TextView tv = (TextView) mInflater.inflate(R.layout.tv, tag2, false);
-                    tv.setText(bean.getVipPriceList().get(0).getEffectiveTime() + "\n" + bean
-                            .getVipPriceList().get(0).getPrice());
-                    return tv;
-                }
-            });
+//            tag2.setAdapter(tagAdapter2 = new TagAdapter<VipBean.VipTypeListBean.VipPriceListBean>(vipBean.getVipTypeList().get(0)) {
+//                @Override
+//                public View getView(FlowLayout parent, int position, VipBean.VipTypeListBean.VipPriceListBean bean) {
+//                    //默认第一个被选中
+//                    TextView tv = (TextView) mInflater.inflate(R.layout.tv, tag2, false);
+//                    tv.setText(bean.getEffectiveTime() + "\n" + bean
+//                            .getPrice());
+//                    return tv;
+//                }
+//            });
         }
     }
 

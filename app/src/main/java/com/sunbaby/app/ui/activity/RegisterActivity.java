@@ -178,8 +178,8 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
                 break;
             case R.id.btnRegister:
                 //提交注册
-                //    register();
-                startTo(JoinmemberActivity.class, false);
+                register();
+            //    startTo(JoinmemberActivity.class, false);
                 break;
             default:
                 break;
@@ -259,22 +259,27 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
             switch (type) {
                 case 0:
                     //省
+                    tv1.setText(((Areabean.RegionListBean) s).getName());
                     provinceId = ((Areabean.RegionListBean) s).getId() + "";
                     break;
                 case 1:
                     //市
+                    tv2.setText(((Areabean.RegionListBean) s).getName());
                     citId = ((Areabean.RegionListBean) s).getId() + "";
                     break;
                 case 2:
                     //区
+                    tv3.setText(((Areabean.RegionListBean) s).getName());
                     district = ((Areabean.RegionListBean) s).getId() + "";
                     break;
                 case 3:
                     //幼儿园名称
+                    tv4.setText(((Areabean.RegionListBean) s).getName());
                     kindergartenName = ((Areabean.RegionListBean) s).getName();
                     break;
                 case 4:
                     //班级
+                    tv5.setText(((Areabean.RegionListBean) s).getName());
                     kindergartenClass = ((Areabean.RegionListBean) s).getName();
                     areaId = ((Areabean.RegionListBean) s).getName();
                     break;

@@ -28,7 +28,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- * com.sunbaby.app.common.base
  *
  * @author 王静波
  * @date 2018/7/6
