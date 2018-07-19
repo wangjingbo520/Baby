@@ -19,19 +19,19 @@
         android:paddingRight="@dimen/x20">
 
         <TextView
-            android:layout_width="@dimen/x200"
+            android:layout_width="@dimen/x150"
             android:layout_height="wrap_content"
             android:text="收货人"
             android:textColor="@color/textColor6"
             android:textSize="@dimen/x32" />
 
         <EditText
-            android:id="@+id/etAccount"
+            android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/x24"
             android:background="@null"
-            android:hint="请输入电话号码"
+            android:hint="请输入收货人姓名"
             android:imeOptions="actionNext"
             android:singleLine="true"
             android:text=""
@@ -43,7 +43,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
-        android:layout_marginTop="@dimen/x1"
+        android:layout_marginTop="@dimen/x2"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -51,18 +51,19 @@
         android:paddingRight="@dimen/x20">
 
         <TextView
-            android:layout_width="@dimen/x200"
+            android:layout_width="@dimen/x150"
             android:layout_height="wrap_content"
-            android:text="收货人"
+            android:text="手机号码"
             android:textColor="@color/textColor6"
             android:textSize="@dimen/x32" />
 
         <EditText
+            android:id="@+id/etPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/x24"
             android:background="@null"
-            android:hint="手机号码"
+            android:hint="请输入收货人手机号码"
             android:imeOptions="actionNext"
             android:singleLine="true"
             android:text=""
@@ -87,6 +88,93 @@
             android:textColor="@color/textColor6"
             android:textSize="@dimen/x32" />
     </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/x30"
+        android:paddingLeft="@dimen/x150"
+        android:paddingRight="@dimen/x50">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x70"
+            android:orientation="horizontal"
+            android:paddingRight="@dimen/x10">
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_yer"
+                android:drawableRight="@mipmap/updown"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/x10"
+                android:paddingRight="@dimen/x20"
+                android:text="选择省份"
+                android:textColor="@color/textColor3"
+                android:textSize="@dimen/textSize_32" />
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/x30"
+                android:layout_weight="1"
+                android:background="@drawable/bg_yer"
+                android:drawableRight="@mipmap/updown"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/x10"
+                android:paddingRight="@dimen/x20"
+                android:text="选择市"
+                android:textColor="@color/textColor3"
+                android:textSize="@dimen/textSize_32" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x70"
+            android:layout_marginTop="@dimen/x20"
+            android:orientation="horizontal"
+            android:paddingRight="@dimen/x10">
+
+            <TextView
+                android:id="@+id/tv3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_yer"
+                android:drawableRight="@mipmap/updown"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/x10"
+                android:paddingRight="@dimen/x20"
+                android:text="选择区"
+                android:textColor="@color/textColor3"
+                android:textSize="@dimen/textSize_32" />
+
+            <TextView
+                android:id="@+id/tv4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/x30"
+                android:layout_weight="1"
+                android:background="@drawable/bg_yer"
+                android:drawableRight="@mipmap/updown"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/x10"
+                android:paddingRight="@dimen/x20"
+                android:text="幼儿园"
+                android:textColor="@color/textColor3"
+                android:textSize="@dimen/textSize_32" />
+        </LinearLayout>
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -114,7 +202,6 @@
             android:background="@null"
             android:hint="详细地址：如道路，门牌号，小区，楼栋号等"
             android:imeOptions="actionNext"
-            android:inputType="numberPassword"
             android:singleLine="true"
             android:text=""
             android:textColor="@color/textColor3"
@@ -141,6 +228,7 @@
             android:textSize="@dimen/textSize_32" />
 
         <com.sunbaby.app.common.widget.SwitchButton
+            android:id="@+id/switchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:sb_checked="true"

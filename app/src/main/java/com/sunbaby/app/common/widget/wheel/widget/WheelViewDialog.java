@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.sunbaby.app.common.utils.UIUtils;
 import com.sunbaby.app.common.widget.wheel.adapter.ArrayWheelAdapter;
 import com.sunbaby.app.common.widget.wheel.common.WheelConstants;
 import com.sunbaby.app.common.widget.wheel.util.WheelUtils;
@@ -71,7 +72,7 @@ public class WheelViewDialog<T> implements View.OnClickListener {
 
         mTitle = new TextView(mContext);
         mTitle.setTextColor(WheelConstants.DIALOG_WHEEL_COLOR);
-        mTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+        mTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         mTitle.setGravity(Gravity.CENTER);
         LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 WheelUtils.dip2px(mContext, 50));
@@ -111,7 +112,7 @@ public class WheelViewDialog<T> implements View.OnClickListener {
 
         mButton = new TextView(mContext);
         mButton.setTextColor(WheelConstants.DIALOG_WHEEL_COLOR);
-        mButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+        mButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, UIUtils.px2sp(mContext,30));
         mButton.setGravity(Gravity.CENTER);
         mButton.setClickable(true);
         mButton.setOnClickListener(this);
@@ -119,7 +120,6 @@ public class WheelViewDialog<T> implements View.OnClickListener {
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 WheelUtils.dip2px(mContext, 45));
         layout.addView(mButton, buttonParams);
-
         mDialog = new AlertDialog.Builder(mContext).create();
         mDialog.setView(layout);
         mDialog.setCanceledOnTouchOutside(false);

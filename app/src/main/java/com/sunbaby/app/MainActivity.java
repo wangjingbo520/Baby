@@ -11,20 +11,22 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.sunbaby.app.common.base.BaseActivity;
+import com.sunbaby.app.common.base.MyBaseActivity;
 import com.sunbaby.app.ui.fragment.CenterFragment;
 import com.sunbaby.app.ui.fragment.HomeFragment;
 import com.sunbaby.app.ui.fragment.PeisongFragment;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * @author 王静波
  * @date 2018/7/6
  * describe 主界面
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends MyBaseActivity {
     @BindView(R.id.tab_home_imageview)
     ImageView tabHomeImageview;
     @BindView(R.id.tab_home_textview)
@@ -37,32 +39,31 @@ public class MainActivity extends BaseActivity {
     ImageView tabUserImageview;
     @BindView(R.id.tab_center_textview)
     TextView tabCenterTextview;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
 
     private HomeFragment homeFragment;
     private PeisongFragment peisongFragment;
     private CenterFragment centerFragment;
     public static String MAININDEX = "MAININDEX";
     private String[] title = {"首页", "配送箱", "中心"};
+    private Unbinder mUnbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        statusLayoutManager.showContent();
-        setBackLayoutVisiable(false);
+        setContentView(R.layout.activity_main);
+        mUnbinder = ButterKnife.bind(this);
         if (!TextUtils.isEmpty(getIntent().getStringExtra(MAININDEX))) {
             int index = Integer.parseInt(getIntent().getStringExtra(MAININDEX));
             initFragment(index);
-            setTitle(title[index]);
+            tvTitle.setText(title[index]);
         } else {
             initFragment(0);
-            setTitle(title[0]);
+            tvTitle.setText(title[0]);
         }
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_main;
-    }
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -122,25 +123,23 @@ public class MainActivity extends BaseActivity {
     }
 
     @OnClick({R.id.tab_home, R.id.tab_peisong, R.id.tab_center})
-    @Override
     public void onClick(View view) {
         restartBotton();
-        super.onClick(view);
         switch (view.getId()) {
             case R.id.tab_home:
-                setTitle("首页");
+                tvTitle.setText("首页");
                 tabHomeImageview.setImageResource(R.mipmap.homey);
                 tabHomeTextview.setTextColor(ContextCompat.getColor(this, R.color.themeColor));
                 initFragment(0);
                 break;
             case R.id.tab_peisong:
-                setTitle("配送箱");
+                tvTitle.setText("配送箱");
                 tabRongtongImageview.setImageResource(R.mipmap.peiy);
                 tabPeisongTextview.setTextColor(ContextCompat.getColor(this, R.color.themeColor));
                 initFragment(1);
                 break;
             case R.id.tab_center:
-                setTitle("中心");
+                tvTitle.setText("中心");
                 tabUserImageview.setImageResource(R.mipmap.gey);
                 tabCenterTextview.setTextColor(ContextCompat.getColor(this, R.color.themeColor));
                 initFragment(2);
@@ -148,6 +147,15 @@ public class MainActivity extends BaseActivity {
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mUnbinder != null) {
+            mUnbinder.unbind();
+        }
+
     }
 
     protected void restartBotton() {

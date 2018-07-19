@@ -17,9 +17,12 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.sunbaby.app.R;
 import com.sunbaby.app.adapter.ManageAdressAdapter;
+import com.sunbaby.app.bean.AdressBean;
+import com.sunbaby.app.callback.IAdressView;
 import com.sunbaby.app.common.base.BaseActivity;
 import com.sunbaby.app.common.utils.UIUtils;
 import com.sunbaby.app.common.widget.MyRecycleViewDivider;
+import com.sunbaby.app.presenter.ManageAddressPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,14 +35,14 @@ import butterknife.OnClick;
  * @date 2018/7/6
  * describe 管理收货地址
  */
-public class ManageAddressActivity extends BaseActivity {
+public class ManageAddressActivity extends BaseActivity implements IAdressView {
 
     @BindView(R.id.recyclerview)
     RecyclerView mRecyclerView;
-    @BindView(R.id.smartrefreshlayout)
-    SmartRefreshLayout smartrefreshlayout;
-    private List<String> strings;
+
     private ManageAdressAdapter recyDemoAdapter;
+    private ManageAddressPresenter manageAddressPresenter;
+    private List<AdressBean.ListBean> adressBeans;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, ManageAddressActivity.class);
@@ -50,31 +53,21 @@ public class ManageAddressActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("管理收货地址");
-        smartrefreshlayout.setRefreshHeader(new ClassicsHeader(mContext));
-        smartrefreshlayout.setRefreshFooter(new ClassicsFooter(mContext));
-        smartrefreshlayout.setEnableLoadmore(false);
+        showLoading();
+        manageAddressPresenter = new ManageAddressPresenter(mContext, this);
+        initView();
         initData();
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_manage_address;
-    }
-
-    private void initData() {
-        strings = new ArrayList<>();
-        strings.add("");
-        strings.add("");
-        strings.add("");
-        strings.add("");
-        strings.add("");
+    private void initView() {
+        adressBeans = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.addItemDecoration(new MyRecycleViewDivider(this, LinearLayoutManager
                 .HORIZONTAL, UIUtils.px2Dp(this, 3),
                 ContextCompat.getColor(this, R.color.background)));
-        recyDemoAdapter = new ManageAdressAdapter(R.layout.recy_item_manage_address, strings);
+        recyDemoAdapter = new ManageAdressAdapter(R.layout.recy_item_manage_address, adressBeans);
         mRecyclerView.setAdapter(recyDemoAdapter);
 
         recyDemoAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener
@@ -84,13 +77,36 @@ public class ManageAddressActivity extends BaseActivity {
                 if (view.getId() == R.id.checkbox) {
                     CheckBox checkBox = (CheckBox) view;
                     if (checkBox.isChecked()) {
-                        //   adapter.setNewData(null);
                     } else {
-                        adapter.setNewData(strings);
+                        //设置为默认地址
+                        manageAddressPresenter.defaultAddress(adressBeans.get(position).getId() +
+                                "", position);
                     }
+                } else if (view.getId() == R.id.llEditAdress) {
+                    //编辑地址
+                    EditAdressActivity.start(mContext, adressBeans.get(position).getId() + "");
+                } else if (view.getId() == R.id.llDeleteAdress) {
+                    //删除地址
+                    manageAddressPresenter.deleteById(adressBeans.get(position).getId()
+                            + "", position);
                 }
             }
         });
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_manage_address;
+    }
+
+    private void initData() {
+        manageAddressPresenter.addressList(getUserId());
+    }
+
+    @Override
+    protected void doOnRetry() {
+        super.doOnRetry();
+        AddNewAddressActivity.start(this);
     }
 
     @OnClick(R.id.tvAddress)
@@ -106,4 +122,29 @@ public class ManageAddressActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void addressList(AdressBean adressBean) {
+        if (adressBean.getList().size() <= 0) {
+            showEmpty();
+            showNocontentTitle("点击添加收货地址");
+        } else {
+            recyDemoAdapter.addData(adressBean.getList());
+        }
+    }
+
+    @Override
+    public void deleteById(int position) {
+        //删除成功
+        recyDemoAdapter.remove(position);
+        recyDemoAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void defaultAddress(int position) {
+        //设置默认地址
+
+
+
+
+    }
 }

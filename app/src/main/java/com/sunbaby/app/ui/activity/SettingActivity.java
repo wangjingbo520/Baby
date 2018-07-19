@@ -20,6 +20,7 @@ public class SettingActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("设置");
+        showContent();
     }
 
     @Override

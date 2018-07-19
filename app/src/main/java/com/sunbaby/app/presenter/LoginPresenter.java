@@ -2,7 +2,10 @@ package com.sunbaby.app.presenter;
 
 import android.content.Context;
 
+import com.sunbaby.app.AppData;
+import com.sunbaby.app.bean.User;
 import com.sunbaby.app.callback.ILoginView;
+import com.sunbaby.app.common.api.ProgressSubscriber;
 import com.sunbaby.app.common.base.BasePresenter;
 
 /**
@@ -18,17 +21,21 @@ public class LoginPresenter extends BasePresenter {
         this.loginView = loginView;
     }
 
-
-//    public void login(String mobile, String password, int is_company) {
-//        mRequestClient.login(mobile, password, is_company).subscribe(new
-// ProgressSubscriber<User>(mContext) {
-//            @Override
-//            public void onNext(User user) {
-//                if (null != loginView && null != user) {
-//                    AppData.getInstance().setUser(user);
-//                    loginView.onSucceed(user);
-//                }
-//            }
-//        });
-//    }
+    /**
+     * 登录
+     *
+     * @param userName
+     * @param pwd
+     */
+    public void login(String userName, String pwd) {
+        mRequestClient.login(userName, pwd).subscribe(new ProgressSubscriber<User>(mContext) {
+            @Override
+            public void onNext(User user) {
+                if (null != loginView && null != user) {
+                    AppData.getInstance().setUser(user);
+                    loginView.onLoginSucceed(user);
+                }
+            }
+        });
+    }
 }

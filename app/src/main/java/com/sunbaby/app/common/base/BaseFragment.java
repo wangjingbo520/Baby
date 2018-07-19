@@ -31,6 +31,10 @@ public abstract class BaseFragment extends Fragment {
         return AppData.getInstance().getUser();
     }
 
+    public String getUserId() {
+        return AppData.getInstance().getUser().getUserId() + "";
+    }
+
     public boolean userIsLogin() {
         User user = AppData.getInstance().getUser();
         if (null == user) {

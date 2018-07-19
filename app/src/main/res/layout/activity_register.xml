@@ -75,10 +75,10 @@
                 android:layout_marginRight="@dimen/x20"
                 android:layout_weight="1"
                 android:background="@null"
-                android:hint="请填写密码"
+                android:hint="请填写验证码"
                 android:imeOptions="actionNext"
-                android:inputType="textPassword"
-                android:maxLength="15"
+                android:inputType="number"
+                android:maxLength="6"
                 android:singleLine="true"
                 android:textColor="@color/textColor3"
                 android:textColorHint="@color/textColor9"
@@ -239,7 +239,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="@dimen/x10"
                     android:paddingRight="@dimen/x20"
-                    android:text="fedfer"
+                    android:text="选择省份"
                     android:textColor="@color/textColor3"
                     android:textSize="@dimen/textSize_32" />
 
@@ -254,7 +254,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="@dimen/x10"
                     android:paddingRight="@dimen/x20"
-                    android:text="fedfer"
+                    android:text="选择市"
                     android:textColor="@color/textColor3"
                     android:textSize="@dimen/textSize_32" />
 
@@ -277,7 +277,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="@dimen/x10"
                     android:paddingRight="@dimen/x20"
-                    android:text="fedfer"
+                    android:text="选择区"
                     android:textColor="@color/textColor3"
                     android:textSize="@dimen/textSize_32" />
 
@@ -292,7 +292,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="@dimen/x10"
                     android:paddingRight="@dimen/x20"
-                    android:text="fedfer"
+                    android:text="幼儿园"
                     android:textColor="@color/textColor3"
                     android:textSize="@dimen/textSize_32" />
             </LinearLayout>
@@ -314,7 +314,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="@dimen/x10"
                     android:paddingRight="@dimen/x20"
-                    android:text="fedfer"
+                    android:text="班级"
                     android:textColor="@color/textColor3"
                     android:textSize="@dimen/textSize_32" />
 
@@ -332,11 +332,9 @@
                     android:textColor="@color/textColor3"
                     android:textSize="@dimen/textSize_32"
                     android:visibility="invisible" />
-
             </LinearLayout>
 
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -364,7 +362,6 @@
                 android:background="@null"
                 android:hint="请输入您的详细地址"
                 android:imeOptions="actionNext"
-                android:inputType="numberPassword"
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/textColor3"

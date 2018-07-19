@@ -48,19 +48,12 @@ public class AppData {
 
     public boolean isLogin() {
         //判断缓存用户是否存在
-        if (null != user && !TextUtils.isEmpty(user.getUserId())) {
+        if (null != user && !TextUtils.isEmpty(user.getUserId() + "")) {
             return true;
         }
         return false;
     }
 
-    public boolean isBindEmail() {
-        //判断缓存用户是否存在
-        if (null != user && !TextUtils.isEmpty(user.getEmail())) {
-            return true;
-        }
-        return false;
-    }
 
     /**
      * 返回用户id
@@ -70,7 +63,7 @@ public class AppData {
     public String getUserId() {
         User user = getUser();
         if (null != user) {
-            return user.getUserId();
+            return user.getUserId() + "";
         }
         return "";
     }
@@ -90,7 +83,7 @@ public class AppData {
         if (!TextUtils.isEmpty(userBase64)) {
             Object object = Base64Helper.decode(userBase64);
             User temp = (null != object ? (User) object : null);
-            if (null != temp && !TextUtils.isEmpty(temp.getUserId())) {
+            if (null != temp && !TextUtils.isEmpty(temp.getUserId() + "")) {
                 //登录成功
                 user = temp;
             }

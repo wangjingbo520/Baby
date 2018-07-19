@@ -64,6 +64,9 @@ public abstract class ProgressSubscriber<T> extends Subscriber<T> implements
         }
     }
 
+    /**
+     * 没有网络的回调,用于显示网络错误的显示
+     */
     public void errorNet() {
 
     }

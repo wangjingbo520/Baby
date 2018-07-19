@@ -1,17 +1,16 @@
 package com.sunbaby.app.common.base;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,12 +27,11 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- *
  * @author 王静波
  * @date 2018/7/6
- * describe
+ * describe 主要是来处理一些view 操作
  */
-public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
+public abstract class BaseActivity extends MyBaseActivity implements View.OnClickListener {
     protected final String TAG = this.getClass().getSimpleName();
     public Context mContext;
     public TextView tvTitle;
@@ -43,6 +41,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     private FrameLayout flBack;
     private TextView tvRight;
     private ImageView iv_right;
+    private Button button_retry;
     private Unbinder mUnbinder;
     protected StatusLayoutManager statusLayoutManager;
 
@@ -66,7 +65,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         findViewById(R.id.fl_right).setOnClickListener(this);
         inflater = LayoutInflater.from(this);
         initStatusLayout();
-        showContent();
         flContent.addView(statusLayoutManager.getRootLayout());
         mUnbinder = ButterKnife.bind(this);
     }
@@ -82,16 +80,21 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
                 .errorView(R.layout.activity_error)
                 .loadingView(R.layout.activity_loading)
                 .emptyDataRetryViewId(R.id.button_retry)
+                .netWorkErrorRetryViewId(R.id.button_try)
+                .netWorkErrorView(R.layout.activity_networkerror)
                 .onRetryListener(new OnRetryListener() {
                     @Override
                     public void onRetry() {
-                        ToastUtil.showMessage("重读请求了");
                         doOnRetry();
                     }
                 })
-                .netWorkErrorView(R.layout.activity_networkerror).build();
+                .build();
     }
 
+    protected void showNocontentTitle(String title) {
+        button_retry = findViewById(R.id.button_retry);
+        button_retry.setText(title);
+    }
 
     protected abstract int getLayoutId();
 
@@ -111,8 +114,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         statusLayoutManager.showNetWorkError();
     }
 
-    public void doOnRetry() {
-        ToastUtil.showMessage("我重复请求了");
+    protected void doOnRetry() {
     }
 
     public void setTitle(String title) {
@@ -163,28 +165,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     }
 
-    public boolean userIsLogin(boolean startToLogin) {
-        User user = AppData.getInstance().getUser();
-        if (null == user) {
-            if (startToLogin) {
-                //   startTo(LoginActivity.class);
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public User getUser() {
-        return AppData.getInstance().getUser();
-    }
-
-    public void startTo(Class c, boolean isFinish) {
-        startActivity(new Intent(this, c));
-        if (isFinish) {
-            this.finish();
-        }
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -196,5 +176,4 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public void showToast(String msg) {
         ToastUtil.showMessage(msg);
     }
-
 }

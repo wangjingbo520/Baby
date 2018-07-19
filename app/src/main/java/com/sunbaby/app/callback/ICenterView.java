@@ -9,4 +9,5 @@ import com.sunbaby.app.bean.CenterBean;
  */
 public interface ICenterView {
     void homePage(CenterBean centerBean);
+    public void onFinish();
 }

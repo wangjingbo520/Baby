@@ -10,6 +10,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.load.model.GlideUrl;
 import com.libray.basetools.view.imageview.CircleImageView;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.sunbaby.app.R;
 import com.sunbaby.app.bean.CenterBean;
 import com.sunbaby.app.callback.ICenterView;
@@ -42,6 +47,8 @@ public class CenterFragment extends BaseFragment implements ICenterView {
     TextView tvRing3;
     @BindView(R.id.tvRing4)
     TextView tvRing4;
+    @BindView(R.id.smartrefreshlayout)
+    SmartRefreshLayout smartrefreshlayout;
     private CenterPresenter centerPresenter;
 
     public static CenterFragment newInstance() {
@@ -53,7 +60,7 @@ public class CenterFragment extends BaseFragment implements ICenterView {
 
     @Override
     public void initData() {
-        //  centerPresenter.homePage(getUser().getUserId());
+        centerPresenter.homePage(getUser().getUserId() + "");
     }
 
     @Override
@@ -64,7 +71,17 @@ public class CenterFragment extends BaseFragment implements ICenterView {
     @Override
     public void initView(View view) {
         centerPresenter = new CenterPresenter(mContext, this);
-
+        smartrefreshlayout.setRefreshHeader(new ClassicsHeader(mContext));
+        smartrefreshlayout.setRefreshFooter(new ClassicsFooter(mContext));
+        smartrefreshlayout.setEnableLoadmore(false);
+        smartrefreshlayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                if (centerPresenter != null) {
+                    centerPresenter.homePage(getUserId());
+                }
+            }
+        });
     }
 
     @OnClick({R.id.llSetting, R.id.llLookmore, R.id.llSunhuai, R.id.ll1, R.id.ll2, R.id.ll3, R.id
@@ -126,6 +143,11 @@ public class CenterFragment extends BaseFragment implements ICenterView {
         }
         //头像
         GlideImageLoader.loadImage(mContext, centerBean.getPhoto(), ivLogo);
+    }
+
+    @Override
+    public void onFinish() {
+        smartrefreshlayout.finishRefresh();
     }
 
 }

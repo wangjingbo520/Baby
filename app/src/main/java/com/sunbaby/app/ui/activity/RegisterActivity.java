@@ -14,7 +14,9 @@ import com.sunbaby.app.bean.YouerYuan;
 import com.sunbaby.app.callback.IRegisterView;
 import com.sunbaby.app.common.base.BaseViewActivity;
 import com.sunbaby.app.common.utils.ToastUtil;
+import com.sunbaby.app.common.utils.UIUtils;
 import com.sunbaby.app.common.widget.CommomDialog;
+import com.sunbaby.app.common.widget.wheel.util.WheelUtils;
 import com.sunbaby.app.common.widget.wheel.widget.WheelViewDialog;
 import com.sunbaby.app.presenter.RegisterPresenter;
 
@@ -27,7 +29,7 @@ import butterknife.OnClick;
  * describe 注册
  */
 public class RegisterActivity extends BaseViewActivity implements CommomDialog.DialogCallk,
-        IRegisterView, WheelViewDialog.OnDialogItemClickListener {
+        IRegisterView {
     @BindView(R.id.etPhoneNumber)
     EditText etPhoneNumber;
     @BindView(R.id.etCode)
@@ -55,20 +57,24 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
     private CommomDialog commomDialog;
     private RegisterPresenter registerPresenter;
     private WheelViewDialog dialog;
+
+    /**
+     * 用来判断省市区
+     */
     private int type = 0;
     /**
      * 省id
      */
-    private String provinceId;
+    private String provinceId = "";
     //
     /**
      * 市id
      */
-    private String citId;
+    private String citId = "";
     /**
      * 区id
      */
-    private String district;
+    private String district = "";
 
     /**
      * 幼儿园名字
@@ -86,6 +92,7 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        showContent();
         setTitle("注册");
         registerPresenter = new RegisterPresenter(this, this);
         dialog = new WheelViewDialog(this);
@@ -115,10 +122,10 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
                 kindergartenClass = "";
                 areaId = "";
                 etDetailAdress.setText("");
-                tv2.setText("");
-                tv3.setText("");
-                tv4.setText("");
-                tv5.setText("");
+                tv2.setText("选择市");
+                tv3.setText("选择区");
+                tv4.setText("幼儿园");
+                tv5.setText("班级");
                 registerPresenter.regionList("0", "0");
                 break;
             case R.id.tv2:
@@ -130,9 +137,9 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
                     kindergartenClass = "";
                     areaId = "";
                     etDetailAdress.setText("");
-                    tv3.setText("");
-                    tv4.setText("");
-                    tv5.setText("");
+                    tv3.setText("选择区");
+                    tv4.setText("幼儿园");
+                    tv5.setText("班级");
                     registerPresenter.regionList("1", provinceId + "");
                 } else {
                     ToastUtil.showMessage("请先选择省");
@@ -146,10 +153,9 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
                     kindergartenClass = "";
                     areaId = "";
                     etDetailAdress.setText("");
-                    tv3.setText("");
-                    tv4.setText("");
-                    tv5.setText("");
-                    registerPresenter.regionList("2", district + "");
+                    tv4.setText("幼儿园");
+                    tv5.setText("班级");
+                    registerPresenter.regionList("2", citId + "");
                 } else {
                     ToastUtil.showMessage("请先选择市");
                 }
@@ -179,7 +185,6 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
             case R.id.btnRegister:
                 //提交注册
                 register();
-            //    startTo(JoinmemberActivity.class, false);
                 break;
             default:
                 break;
@@ -192,7 +197,7 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
             showToast("请先输入手机号码");
             return;
         }
-        registerPresenter.sendSms(mobile, "0");
+        registerPresenter.sendSms(mobile, "REGISTER_SMSCODE_SCENE");
     }
 
     @Override
@@ -226,7 +231,7 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
         if (3 == type) {
             //幼儿园名字
             showYoueryuan("幼儿园名字", youerYuan);
-        } else {
+        } else if (4 == type) {
             //班级
             showYoueryuan("班级", youerYuan);
         }
@@ -240,53 +245,58 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
         commomDialog.show();
     }
 
-    private void showAreaDialog(String name, Areabean areabean) {
-        dialog.setTitle(name).setItems(areabean.getRegionList()).setButtonText("确定")
-                .setOnDialogItemClickListener(this).setDialogStyle(Color.parseColor
-                ("#6699ff")).setCount(5).show();
+    private void showAreaDialog(String name, final Areabean areabean) {
+        dialog.setTitle(name).setItems(areabean.getRegionList()).setButtonText("确 定")
+                .setOnDialogItemClickListener(new WheelViewDialog.OnDialogItemClickListener() {
+                    @Override
+                    public void onItemClick(int position, Object s) {
+                        switch (type) {
+                            case 0:
+                                //省
+                                tv1.setText(areabean.getRegionList().get(position).getName());
+                                provinceId = areabean.getRegionList().get(position).getId() + "";
+                                break;
+                            case 1:
+                                //市
+                                tv2.setText(areabean.getRegionList().get(position).getName());
+                                citId = areabean.getRegionList().get(position).getId() + "";
+                                break;
+                            case 2:
+                                //区
+                                tv3.setText(areabean.getRegionList().get(position).getName());
+                                district = areabean.getRegionList().get(position).getId() + "";
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }).setDialogStyle(Color.parseColor
+                ("#fcb810")).setCount(5).show();
     }
 
 
-    private void showYoueryuan(String name, YouerYuan youerYuan) {
-        dialog.setTitle(name).setItems(youerYuan.getRegionList()).setButtonText("确定")
-                .setOnDialogItemClickListener(this).setDialogStyle(Color.parseColor
-                ("#6699ff")).setCount(5).show();
-    }
-
-    @Override
-    public void onItemClick(int position, Object s) {
-        if (s instanceof Areabean.RegionListBean) {
-            switch (type) {
-                case 0:
-                    //省
-                    tv1.setText(((Areabean.RegionListBean) s).getName());
-                    provinceId = ((Areabean.RegionListBean) s).getId() + "";
-                    break;
-                case 1:
-                    //市
-                    tv2.setText(((Areabean.RegionListBean) s).getName());
-                    citId = ((Areabean.RegionListBean) s).getId() + "";
-                    break;
-                case 2:
-                    //区
-                    tv3.setText(((Areabean.RegionListBean) s).getName());
-                    district = ((Areabean.RegionListBean) s).getId() + "";
-                    break;
-                case 3:
-                    //幼儿园名称
-                    tv4.setText(((Areabean.RegionListBean) s).getName());
-                    kindergartenName = ((Areabean.RegionListBean) s).getName();
-                    break;
-                case 4:
-                    //班级
-                    tv5.setText(((Areabean.RegionListBean) s).getName());
-                    kindergartenClass = ((Areabean.RegionListBean) s).getName();
-                    areaId = ((Areabean.RegionListBean) s).getName();
-                    break;
-                default:
-                    break;
-            }
-        }
+    private void showYoueryuan(String name, final YouerYuan youerYuan) {
+        dialog.setTitle(name).setItems(youerYuan.getRegionList()).setButtonText("确 定")
+                .setOnDialogItemClickListener(new WheelViewDialog.OnDialogItemClickListener() {
+                    @Override
+                    public void onItemClick(int position, Object s) {
+                        switch (type) {
+                            case 3:
+                                kindergartenName = youerYuan.getRegionList().get(position)
+                                        .getName();
+                                tv4.setText(youerYuan.getRegionList().get(position).getName());
+                                break;
+                            case 4:
+                                tv5.setText(youerYuan.getRegionList().get(position).getName());
+                                kindergartenClass = youerYuan.getRegionList().get(position).getName();
+                                areaId = youerYuan.getRegionList().get(position).getId()+"";
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }).setDialogStyle(Color.parseColor
+                ("#fcb810")).setCount(5).show();
     }
 
     private void register() {
@@ -351,6 +361,5 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
         registerPresenter.register(mobile, smsCode, passWord, rePassWord, userName, addr,
                 provinceId, citId, district, areaId, kindergartenName, kindergartenClass);
     }
-
 
 }

@@ -22,6 +22,7 @@ public class ForgetpasswordActivity2 extends BaseActivity implements CommomDialo
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("找回密码");
+        showContent();
     }
 
     @Override

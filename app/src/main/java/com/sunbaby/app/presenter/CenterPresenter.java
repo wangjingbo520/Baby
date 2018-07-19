@@ -36,6 +36,22 @@ public class CenterPresenter extends BasePresenter {
                     iCenterView.homePage(centerBean);
                 }
             }
+
+            @Override
+            public void onCompleted() {
+                super.onCompleted();
+                if (null != iCenterView) {
+                    iCenterView.onFinish();
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                if (null != iCenterView) {
+                    iCenterView.onFinish();
+                }
+            }
         });
     }
 

@@ -95,8 +95,7 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
         switch (view.getId()) {
             case R.id.tvLogin:
                 //登录
-              //  startActivity(new Intent(mContext, LoginActivity.class));
-                startActivity(new Intent(mContext, TestActivity.class));
+                startActivity(new Intent(mContext, LoginActivity.class));
                 mContext.finish();
                 break;
             case R.id.tvRegister:
@@ -137,12 +136,12 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
         }
         banner.setImages(bannerUrl).setDelayTime(3000).setImageLoader(new
                 BannerImageLoader()).start();
-        GlideImageLoader.loadImage(mContext,homeBean.getFunctional_diagram().get(0).getUrl(),iv1);
-        GlideImageLoader.loadImage(mContext,homeBean.getFunctional_diagram().get(1).getUrl(),iv3);
-        GlideImageLoader.loadImage(mContext,homeBean.getFunctional_diagram().get(2).getUrl(),iv3);
-        GlideImageLoader.loadImage(mContext,homeBean.getFunctional_diagram().get(3).getUrl(),iv4);
-        GlideImageLoader.loadImage(mContext,homeBean.getFunctional_diagram().get(4).getUrl(),iv5);
-        GlideImageLoader.loadImage(mContext,homeBean.getFunctional_diagram().get(5).getUrl(),iv6);
+        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(0).getUrl(), iv1);
+        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(1).getUrl(), iv3);
+        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(2).getUrl(), iv3);
+        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(3).getUrl(), iv4);
+        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(4).getUrl(), iv5);
+        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(5).getUrl(), iv6);
     }
 
 }

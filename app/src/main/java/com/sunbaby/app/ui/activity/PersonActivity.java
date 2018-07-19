@@ -43,7 +43,7 @@ public class PersonActivity extends BaseCameraActivity implements IPersonView {
         super.onCreate(savedInstanceState);
         setTitle("个人资料");
         personPresenter = new PersonPresenter(mContext, this);
-        personPresenter.personalData(getUser().getUserId());
+        personPresenter.personalData(getUser().getUserId()+"");
     }
 
     @OnClick({R.id.llTouxiang, R.id.llPassword, R.id.llPhoneNumber})

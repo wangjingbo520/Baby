@@ -1,8 +1,10 @@
 package com.sunbaby.app.common.api;
 
 import com.sunbaby.app.bean.AddVipBean;
+import com.sunbaby.app.bean.AdressBean;
 import com.sunbaby.app.bean.Areabean;
 import com.sunbaby.app.bean.CenterBean;
+import com.sunbaby.app.bean.EditAdressBean;
 import com.sunbaby.app.bean.HomeBean;
 import com.sunbaby.app.bean.PersonBean;
 import com.sunbaby.app.bean.User;
@@ -197,11 +199,121 @@ public class RequestClient {
 
     /**
      * 首页图片
+     *
      * @return
      */
     public Observable<HomeBean> queryContentAdvertisementsByHome() {
         return mServerApi.queryContentAdvertisementsByHome()
                 .map(new HttpResultFuc<HomeBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 首页图片
+     *
+     * @return
+     */
+    public Observable<User> login(String userName, String pwd) {
+        return mServerApi.login(userName, pwd)
+                .map(new HttpResultFuc<User>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 忘记密码
+     *
+     * @param mobile
+     * @param code
+     * @param scene
+     * @param passWordNoe
+     * @param passWordTwo
+     * @return
+     */
+    public Observable<Object> forgetPassword(String mobile, String code, String scene, String
+            passWordNoe,
+                                             String passWordTwo) {
+        return mServerApi.forgetPassword(mobile, code, scene, passWordNoe, passWordTwo)
+                .map(new HttpResultFuc<Object>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 收货地址列表
+     *
+     * @param userId
+     * @return
+     */
+    public Observable<AdressBean> addressList(String userId) {
+        return mServerApi.addressList(userId)
+                .map(new HttpResultFuc<AdressBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 删除收货地址
+     *
+     * @param id
+     * @return
+     */
+    public Observable<Object> deleteById(String id) {
+        return mServerApi.deleteById(id)
+                .map(new HttpResultFuc<Object>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 设置为默认地址
+     *
+     * @param id
+     * @return
+     */
+    public Observable<Object> defaultAddress(String id) {
+        return mServerApi.defaultAddress(id)
+                .map(new HttpResultFuc<Object>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 新增地址
+     *
+     * @param mobile
+     * @param status
+     * @param provinceId
+     * @param cityId
+     * @param district
+     * @param areaId
+     * @param detailedAddress
+     * @param name
+     * @return
+     */
+    public Observable<Object> insertAddress(String userId, String mobile, String status, String
+            provinceId,
+                                            String cityId,
+                                            String district
+            , String areaId, String detailedAddress, String name) {
+        return mServerApi.insertAddress(userId, mobile, status, provinceId, cityId, district,
+                areaId,
+                detailedAddress, name)
+                .map(new HttpResultFuc<Object>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 编辑收货地址
+     *
+     * @param id
+     * @return
+     */
+    public Observable<EditAdressBean> updateAddressInit(String id) {
+        return mServerApi.updateAddressInit(id)
+                .map(new HttpResultFuc<EditAdressBean>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
