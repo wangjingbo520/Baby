@@ -12,7 +12,7 @@ import butterknife.OnClick;
 /**
  * @author 王静波
  * @date 2018/7/6
- * describe 修改手机号码
+ * describe 修改手机号码,我写好了页面,结果告诉我用h5
  */
 public class UpdatePhoneNumberActivity extends BaseActivity {
 

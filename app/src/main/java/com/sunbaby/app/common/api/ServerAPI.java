@@ -144,6 +144,22 @@ public interface ServerAPI {
     Observable<HttpResult<PersonBean>> personalData(@Field("userId") String userId);
 
     /**
+     * 个人资料修改
+     *
+     * @param photo
+     * @param userName
+     * @param userId
+     * @param sex
+     * @return
+     */
+    @POST("account/updatePersonal")
+    @FormUrlEncoded
+    Observable<HttpResult<Object>> updatePersonal(@Field("photo") String photo,
+                                                  @Field("userName") String userName,
+                                                  @Field("userId") String userId,
+                                                  @Field("sex") String sex);
+
+    /**
      * 首页图片
      *
      * @return

@@ -12,11 +12,11 @@ public class URLs {
     /**
      * 服务器地址
      */
-    //  public static final String SERVER_URL = "http://d5.cto.shovesoft.com/org.eims.XYBaby.web/";
+      public static final String SERVER_URL = "http://d5.cto.shovesoft.com/org.eims.XYBaby.web/";
 
 
     //周炳辉地址
-    public static final String SERVER_URL = "http://192.168.5.27:8082/";
+   // public static final String SERVER_URL = "http://192.168.5.27:8082/";
 
 
 }

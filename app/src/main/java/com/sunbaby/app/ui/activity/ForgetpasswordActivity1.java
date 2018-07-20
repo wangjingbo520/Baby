@@ -66,6 +66,7 @@ public class ForgetpasswordActivity1 extends BaseActivity implements IForgetView
         String code = etCode.getText().toString().trim();
         if (TextUtils.isEmpty(code)) {
             showToast("请先输入验证码");
+            return;
         }
         String mobile = etAccount.getText().toString().trim();
         forgetpasswordPresenter.updateMobilesVerify(mobile, code, "UPDATE_MOBILE_SCENE");

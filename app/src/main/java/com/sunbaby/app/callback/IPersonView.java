@@ -9,4 +9,5 @@ import com.sunbaby.app.bean.PersonBean;
  */
 public interface IPersonView {
     void personalData(PersonBean personBean);
+    void updatePersonal();
 }

@@ -201,6 +201,14 @@ public class RequestClient {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+
+ public Observable<Object> updatePersonal(String photo, String userName, String userId, String sex) {
+        return mServerApi.updatePersonal(photo, userName, userId, sex)
+                .map(new HttpResultFuc<Object>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
     /**
      * 首页图片
      *

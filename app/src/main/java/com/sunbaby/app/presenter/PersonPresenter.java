@@ -38,4 +38,24 @@ public class PersonPresenter extends BasePresenter {
         });
     }
 
+    /**
+     * 个人资料修改
+     *
+     * @param photo
+     * @param userName
+     * @param userId
+     * @param sex
+     */
+    public void updatePersonal(String photo, String userName, String userId, String sex) {
+        mRequestClient.updatePersonal(photo, userName, userId, sex).subscribe(new ProgressSubscriber<Object>
+                (mContext) {
+            @Override
+            public void onNext(Object object) {
+                if (null != iPersonView) {
+                    iPersonView.updatePersonal();
+                }
+            }
+        });
+    }
+
 }
