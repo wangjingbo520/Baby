@@ -8,4 +8,5 @@ package com.sunbaby.app.callback;
 public interface IForgetView {
     public void onGetCodeSucceed();
     public void forgetPassword();
+    public void updateMobilesVerify();
 }

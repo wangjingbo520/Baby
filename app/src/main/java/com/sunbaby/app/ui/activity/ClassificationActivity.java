@@ -15,11 +15,14 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.sunbaby.app.R;
+import com.sunbaby.app.adapter.GoodsTypeAdapter;
 import com.sunbaby.app.adapter.MenuAdapter;
-import com.sunbaby.app.adapter.WanjuAdapter;
+import com.sunbaby.app.bean.ClassificationBean;
+import com.sunbaby.app.callback.IClassificationView;
 import com.sunbaby.app.common.base.BaseActivity;
 import com.sunbaby.app.common.utils.UIUtils;
 import com.sunbaby.app.common.widget.GridSpacingItemDecoration;
+import com.sunbaby.app.presenter.ClassificationPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +35,7 @@ import butterknife.OnClick;
  * @date 2018/7/6
  * describe 商品分类
  */
-public class ClassificationActivity extends BaseActivity {
+public class ClassificationActivity extends BaseActivity implements IClassificationView {
 
     @BindView(R.id.listView)
     ListView listView;
@@ -42,36 +45,59 @@ public class ClassificationActivity extends BaseActivity {
     SmartRefreshLayout smartrefreshlayout;
 
     private MenuAdapter menuAdapter;
-    private WanjuAdapter wanjuAdapter;
-    private List<String> strings;
+    private GoodsTypeAdapter goodsTypeAdapter;
+    private List<String> titleLeft;
+    private ClassificationPresenter classificationPresenter;
+    private List<ClassificationBean.GoodsTypeListBean> goodsTypeListBeans;
+    /**
+     * 1 图书 2 玩具
+     */
+    private String type;
 
-    public static void start(Context context) {
+    public static void start(Context context, String type) {
         Intent starter = new Intent(context, ClassificationActivity.class);
+        starter.putExtra("type", type);
         context.startActivity(starter);
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("玩具");
-        smartrefreshlayout.setRefreshHeader(new ClassicsHeader(mContext));
-        smartrefreshlayout.setRefreshFooter(new ClassicsFooter(mContext));
-        smartrefreshlayout.setEnableLoadmore(false);
-        strings = new ArrayList<>();
+        showContent();
+        initView();
         initData();
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_classification;
-    }
-
-    protected void initData() {
-        for (int i = 0; i < 10; i++) {
-            strings.add("我是第" + i);
+    private void initView() {
+        titleLeft = new ArrayList<>();
+        type = getIntent().getStringExtra("type");
+        if ("1".equals(type)) {
+            titleLeft.add("图书");
+        } else {
+            titleLeft.add("玩具");
         }
-        menuAdapter = new MenuAdapter(this, strings);
+        menuAdapter = new MenuAdapter(this, titleLeft);
         listView.setAdapter(menuAdapter);
+        classificationPresenter = new ClassificationPresenter(mContext, this);
+        smartrefreshlayout.setRefreshHeader(new ClassicsHeader(mContext));
+        smartrefreshlayout.setRefreshFooter(new ClassicsFooter(mContext));
+        smartrefreshlayout.setEnableLoadmore(false);
+        goodsTypeListBeans = new ArrayList<>();
+
+        goodsTypeAdapter = new GoodsTypeAdapter(R.layout.recy_item_wanju, goodsTypeListBeans);
+        GridLayoutManager mgr = new GridLayoutManager(this, 2);
+        recyclerview.setLayoutManager(mgr);
+        recyclerview.addItemDecoration(new GridSpacingItemDecoration(2, UIUtils.px2sp(this, 50),
+                false));
+        recyclerview.setAdapter(goodsTypeAdapter);
+        goodsTypeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                //进入二级列表页面
+                SecondaryListActivity.start(mContext, goodsTypeListBeans.get(position).getId() +
+                        "");
+            }
+        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -81,21 +107,16 @@ public class ClassificationActivity extends BaseActivity {
             }
         });
 
-        wanjuAdapter = new WanjuAdapter(R.layout.recy_item_wanju, strings);
-        GridLayoutManager mgr = new GridLayoutManager(this, 2);
-        recyclerview.setLayoutManager(mgr);
-        recyclerview.addItemDecoration(new GridSpacingItemDecoration(2, UIUtils.px2sp(this, 50),
-                false));
-        recyclerview.setAdapter(wanjuAdapter);
-
-        wanjuAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                ProductDetailsActivity.start(mContext);
-            }
-        });
     }
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_classification;
+    }
+
+    protected void initData() {
+        classificationPresenter.queryGoodsType(type);
+    }
 
     @OnClick(R.id.etSearch)
     @Override
@@ -103,12 +124,27 @@ public class ClassificationActivity extends BaseActivity {
         super.onClick(view);
         switch (view.getId()) {
             case R.id.etSearch:
-                SearchActivity.start(mContext);
+                SearchActivity.start(mContext, "");
                 break;
             default:
                 break;
         }
     }
 
+    @Override
+    protected void doOnRetry() {
+        super.doOnRetry();
+        initData();
+    }
 
+    @Override
+    public void queryGoodsType(ClassificationBean classificationBean) {
+        //一级列表,右边
+        if (classificationBean.getGoodsTypeList().size() < 1) {
+            showEmpty();
+        } else {
+            goodsTypeAdapter.addData(classificationBean.getGoodsTypeList());
+            showContent();
+        }
+    }
 }

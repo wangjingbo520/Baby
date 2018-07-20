@@ -2,13 +2,10 @@ package com.sunbaby.app.ui.fragment.order;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -17,11 +14,9 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.sunbaby.app.R;
 import com.sunbaby.app.adapter.PeisongAdapter;
-import com.sunbaby.app.common.base.BaseActivity;
 import com.sunbaby.app.common.base.BaseFragment;
 import com.sunbaby.app.common.widget.MyRecycleViewDivider;
 import com.sunbaby.app.ui.activity.orderdetail.FourDetailActivity;
-import com.sunbaby.app.ui.activity.orderdetail.TwoDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;

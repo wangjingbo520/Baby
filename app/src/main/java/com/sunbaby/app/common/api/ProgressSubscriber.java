@@ -51,8 +51,7 @@ public abstract class ProgressSubscriber<T> extends Subscriber<T> implements
     @Override
     public void onStart() {
         if (!NetworkUtils.isNetworkAvailable(context)) {
-            ToastUtil.showMessage("网络中断，请检查您的网络状态1");
-            errorNet();
+            ToastUtil.showMessage("网络中断，请检查您的网络状态");
             if (!this.isUnsubscribed()) {
                 this.unsubscribe();
             }
@@ -62,13 +61,6 @@ public abstract class ProgressSubscriber<T> extends Subscriber<T> implements
         if (showDialog) {
             showProgressDialog();
         }
-    }
-
-    /**
-     * 没有网络的回调,用于显示网络错误的显示
-     */
-    public void errorNet() {
-
     }
 
     @Override

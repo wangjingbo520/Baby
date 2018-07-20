@@ -3,9 +3,7 @@ package com.sunbaby.app.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -13,26 +11,28 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.sunbaby.app.R;
 import com.sunbaby.app.bean.HomeBean;
+import com.sunbaby.app.bean.QueryGoodsByRandBean;
 import com.sunbaby.app.callback.IHomeView;
 import com.sunbaby.app.common.base.BaseFragment;
 import com.sunbaby.app.common.utils.GlideImageLoader;
 import com.sunbaby.app.common.utils.statusbartils.BannerImageLoader;
 import com.sunbaby.app.common.widget.HomeFragmentDialog;
+import com.sunbaby.app.event.EventMessage;
 import com.sunbaby.app.presenter.HomePresenter;
-import com.sunbaby.app.test.TestActivity;
 import com.sunbaby.app.ui.activity.AllBookActivity;
 import com.sunbaby.app.ui.activity.ClassificationActivity;
 import com.sunbaby.app.ui.activity.LoginActivity;
 import com.sunbaby.app.ui.activity.RegisterActivity;
 import com.youth.banner.Banner;
 
+
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * @author 王静波
@@ -72,6 +72,7 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
     @Override
     public void initData() {
         homePresenter.queryContentAdvertisementsByHome();
+        //1 图书 2 玩具 0 全部
     }
 
     @Override
@@ -87,10 +88,10 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
         smartRefreshLayout.setRefreshHeader(new ClassicsHeader(mContext));
         smartRefreshLayout.setRefreshFooter(new ClassicsFooter(mContext));
         smartRefreshLayout.setEnableLoadmore(false);
-        homeFragmentDialog = new HomeFragmentDialog(mContext, this, "", "");
     }
 
-    @OnClick({R.id.tvLogin, R.id.tvRegister, R.id.llSuiji, R.id.llFenlei, R.id.llAlltushu})
+    @OnClick({R.id.tvLogin, R.id.tvRegister, R.id.llSuiji, R.id.llFenlei, R.id.llAlltushu, R.id
+            .llFenleiWanju})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvLogin:
@@ -105,11 +106,15 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
                 break;
             case R.id.llSuiji:
                 //随机
-                homeFragmentDialog.show();
+                homePresenter.queryGoodsByRand("");
                 break;
             case R.id.llFenlei:
                 //图书分类查看
-                ClassificationActivity.start(mContext);
+                ClassificationActivity.start(mContext, "1");
+                break;
+            case R.id.llFenleiWanju:
+                //玩具分类查看
+                ClassificationActivity.start(mContext, "2");
                 break;
             case R.id.llAlltushu:
                 //全部图书
@@ -117,15 +122,6 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
                 break;
             default:
                 break;
-        }
-    }
-
-    @Override
-    public void position(int position) {
-        if (0 == position) {
-            //继续随机
-        } else {
-            //加入配送箱
         }
     }
 
@@ -142,6 +138,26 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
         GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(3).getUrl(), iv4);
         GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(4).getUrl(), iv5);
         GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(5).getUrl(), iv6);
+    }
+
+    @Override
+    public void queryGoodsByRand(QueryGoodsByRandBean queryGoodsByRandBean) {
+        //首页随机商品
+        if (homeFragmentDialog == null) {
+            homeFragmentDialog = new HomeFragmentDialog(mContext, this, "", "");
+        }
+        homeFragmentDialog.setData(queryGoodsByRandBean);
+        homeFragmentDialog.show();
+    }
+
+    @Override
+    public void position(int position) {
+        if (0 == position) {
+            //继续随机
+        } else {
+            //加入配送箱
+            EventBus.getDefault().post(new EventMessage(1));
+        }
     }
 
 }

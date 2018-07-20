@@ -110,7 +110,7 @@ public abstract class BaseActivity extends MyBaseActivity implements View.OnClic
         statusLayoutManager.showLoading();
     }
 
-    protected void NetWorkError() {
+    protected void showNetWorkError() {
         statusLayoutManager.showNetWorkError();
     }
 

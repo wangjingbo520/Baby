@@ -71,8 +71,7 @@ public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFl
         super.onClick(view);
         switch (view.getId()) {
             case R.id.btnKaitong:
-                //    joinmemberPresenter.addOrder(getUser().getUserId(), "vipTypeId", "amount");
-                startTo(PayActivity.class, true);
+                joinmemberPresenter.addOrder(getUserId(), "vipTypeId", "amount");
                 break;
             default:
                 break;

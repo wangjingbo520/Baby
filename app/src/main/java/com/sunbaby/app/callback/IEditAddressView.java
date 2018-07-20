@@ -9,5 +9,4 @@ import com.sunbaby.app.bean.EditAdressBean;
  */
 public interface IEditAddressView {
     void updateAddressInit(EditAdressBean editAdressBean);
-    void showNonetView();
 }

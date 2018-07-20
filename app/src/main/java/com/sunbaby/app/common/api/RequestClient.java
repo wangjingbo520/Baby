@@ -4,9 +4,13 @@ import com.sunbaby.app.bean.AddVipBean;
 import com.sunbaby.app.bean.AdressBean;
 import com.sunbaby.app.bean.Areabean;
 import com.sunbaby.app.bean.CenterBean;
+import com.sunbaby.app.bean.ClassificationBean;
 import com.sunbaby.app.bean.EditAdressBean;
 import com.sunbaby.app.bean.HomeBean;
 import com.sunbaby.app.bean.PersonBean;
+import com.sunbaby.app.bean.QueryGoodsByRandBean;
+import com.sunbaby.app.bean.SearchHistoryBean;
+import com.sunbaby.app.bean.SecondGoodsListBean;
 import com.sunbaby.app.bean.User;
 import com.sunbaby.app.bean.VipBean;
 import com.sunbaby.app.bean.YouerYuan;
@@ -241,6 +245,20 @@ public class RequestClient {
     }
 
     /**
+     * 短信验证
+     * @param mobile
+     * @param code
+     * @param scene
+     * @return
+     */
+    public Observable<Object> updateMobilesVerify(String mobile, String code, String scene) {
+        return mServerApi.updateMobilesVerify(mobile, code, scene)
+                .map(new HttpResultFuc<Object>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
      * 收货地址列表
      *
      * @param userId
@@ -314,6 +332,65 @@ public class RequestClient {
     public Observable<EditAdressBean> updateAddressInit(String id) {
         return mServerApi.updateAddressInit(id)
                 .map(new HttpResultFuc<EditAdressBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 首页随机商品
+     *
+     * @param type 1 图书 2 玩具 0 全部
+     * @return
+     */
+    public Observable<QueryGoodsByRandBean> queryGoodsByRand(String type) {
+        return mServerApi.queryGoodsByRand(type)
+                .map(new HttpResultFuc<QueryGoodsByRandBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 商品类型 一级分类
+     *
+     * @param type
+     * @return
+     */
+    public Observable<ClassificationBean> queryGoodsType(String type) {
+        return mServerApi.queryGoodsType(type)
+                .map(new HttpResultFuc<ClassificationBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 商品二级类型
+     *
+     * @param type        商品二级类型id
+     * @param scount_name 搜索值
+     * @param User_id     用户id
+     * @param currPage    currPage
+     * @param pageSize    pageSize
+     */
+    public Observable<SecondGoodsListBean> querydayGoodsByRand(String type, String scount_name,
+                                                               String User_id, int
+                                                                       currPage, int pageSize) {
+        return mServerApi.querydayGoodsByRand(type, scount_name, User_id, currPage, pageSize)
+                .map(new HttpResultFuc<SecondGoodsListBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+
+    /**
+     * 历史搜索记录
+     *
+     * @param user_id
+     * @param scount_name
+     * @return
+     */
+    public Observable<SearchHistoryBean> queryAccountSearch(String user_id, String scount_name) {
+        return mServerApi.queryAccountSearch(user_id, scount_name)
+                .map(new HttpResultFuc<SearchHistoryBean>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activity.SearchActivity">
+    tools:context=".ui.activity.SecondaryListActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -76,26 +75,17 @@
 
     </LinearLayout>
 
-    <View
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/smartrefreshlayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x10"
-        android:background="@color/background" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/x15"
-        android:text="历史搜索"
-        android:textColor="@color/textColor3"
-        android:textSize="@dimen/textSize_32"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
 
-    <com.sunbaby.app.common.widget.floawlayout.TagFlowLayout
-        android:id="@+id/tagflowlayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/x30"
-        app:max_select="1" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>

@@ -3,9 +3,12 @@ package com.sunbaby.app.common.widget;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sunbaby.app.R;
+import com.sunbaby.app.bean.QueryGoodsByRandBean;
+import com.sunbaby.app.common.utils.GlideImageLoader;
 
 /**
  * @author 王静波
@@ -13,9 +16,12 @@ import com.sunbaby.app.R;
  * describe
  */
 public class HomeFragmentDialog extends Dialog implements View.OnClickListener {
-    private TextView tvTitle;
-    private TextView tv_content;
+    private TextView tvName;
+    private TextView tvContent;
     private DialogCallk dialogCallk;
+    private Context context;
+    private ImageView ivPic;
+
 
     @Override
     public void onClick(View v) {
@@ -37,6 +43,11 @@ public class HomeFragmentDialog extends Dialog implements View.OnClickListener {
         }
     }
 
+    public void setData(QueryGoodsByRandBean queryGoodsByRandBean) {
+        tvName.setText(queryGoodsByRandBean.getGoods_name());
+        GlideImageLoader.loadImage(context, queryGoodsByRandBean.getPic_url(), ivPic);
+    }
+
     public interface DialogCallk {
         void position(int postion);
     }
@@ -45,6 +56,7 @@ public class HomeFragmentDialog extends Dialog implements View.OnClickListener {
             content) {
         super(context, R.style.CustomDialog);
         this.dialogCallk = dialogCallk;
+        this.context = context;
         bindView(title, content);
     }
 
@@ -52,6 +64,10 @@ public class HomeFragmentDialog extends Dialog implements View.OnClickListener {
         setContentView(R.layout.dialog_homefragment);
         findViewById(R.id.tvRight).setOnClickListener(this);
         findViewById(R.id.tvLeft).setOnClickListener(this);
+        tvName = findViewById(R.id.tvName);
+        ivPic = findViewById(R.id.ivPic);
+        tvContent = findViewById(R.id.tvContent);
+        //   tvContent.setText(content);
     }
 
 }

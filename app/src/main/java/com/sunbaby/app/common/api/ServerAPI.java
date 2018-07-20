@@ -5,9 +5,13 @@ import com.sunbaby.app.bean.AddVipBean;
 import com.sunbaby.app.bean.AdressBean;
 import com.sunbaby.app.bean.Areabean;
 import com.sunbaby.app.bean.CenterBean;
+import com.sunbaby.app.bean.ClassificationBean;
 import com.sunbaby.app.bean.EditAdressBean;
 import com.sunbaby.app.bean.HomeBean;
 import com.sunbaby.app.bean.PersonBean;
+import com.sunbaby.app.bean.QueryGoodsByRandBean;
+import com.sunbaby.app.bean.SearchHistoryBean;
+import com.sunbaby.app.bean.SecondGoodsListBean;
 import com.sunbaby.app.bean.User;
 import com.sunbaby.app.bean.VipBean;
 import com.sunbaby.app.bean.YouerYuan;
@@ -20,9 +24,7 @@ import retrofit2.http.POST;
 import rx.Observable;
 
 /**
- * 请求－接口
- * 作者：liuyuanqi on 17/7/17 11:45
- * 邮箱：liuyuanqi@eims.com.cn
+ * 王静波
  */
 public interface ServerAPI {
 
@@ -181,6 +183,20 @@ public interface ServerAPI {
                                                   @Field("passWordTwo") String passWordTwo);
 
     /**
+     * 短息验证
+     *
+     * @param mobile
+     * @param code
+     * @param scene
+     * @return
+     */
+    @POST("account/updateMobilesVerify")
+    @FormUrlEncoded
+    Observable<HttpResult<Object>> updateMobilesVerify(@Field("mobile") String mobile,
+                                                       @Field("code") String code,
+                                                       @Field("scene") String scene);
+
+    /**
      * 收获地址列表
      *
      * @param userId
@@ -243,6 +259,62 @@ public interface ServerAPI {
     @POST("address/updateAddressInit")
     @FormUrlEncoded
     Observable<HttpResult<EditAdressBean>> updateAddressInit(@Field("id") String id);
+
+    /**
+     * 首页随机商品
+     *
+     * @param type 1 图书 2 玩具 0 全部
+     * @return
+     */
+    @POST("home/queryGoodsByRand")
+    @FormUrlEncoded
+    Observable<HttpResult<QueryGoodsByRandBean>> queryGoodsByRand(@Field("type") String type);
+
+    /**
+     * 商品分类 一级请求
+     *
+     * @param type
+     * @return
+     */
+    @POST("fr/goods/queryGoodsType")
+    @FormUrlEncoded
+    Observable<HttpResult<ClassificationBean>> queryGoodsType(@Field("type") String type);
+
+
+    /**
+     * 商品二级类型
+     *
+     * @param type
+     * @param scount_name
+     * @param User_id
+     * @param currPage
+     * @param pageSize
+     * @return
+     */
+    @POST("fr/goods/querydayGoodsByRand")
+    @FormUrlEncoded
+    Observable<HttpResult<SecondGoodsListBean>> querydayGoodsByRand(@Field("type") String type,
+                                                                    @Field("scount_name") String
+                                                                            scount_name,
+                                                                    @Field("User_id") String
+                                                                            User_id,
+                                                                    @Field("currPage") int
+                                                                            currPage,
+                                                                    @Field("pageSize") int
+                                                                            pageSize);
+
+    /**
+     * 历史搜索记录
+     *
+     * @param user_id
+     * @param scount_name
+     * @return
+     */
+    @POST("fr/goods/queryAccountSearch")
+    @FormUrlEncoded
+    Observable<HttpResult<SearchHistoryBean>> queryAccountSearch(@Field("user_id") String user_id,
+                                                                 @Field("scount_name") String
+                                                                         scount_name);
 
 
 }

@@ -58,4 +58,27 @@ public class ForgetpasswordPresenter extends BasePresenter {
                     }
                 });
     }
+
+    /**
+     * 短信验证
+     * @param mobile
+     * @param code
+     * @param scene
+     */
+     public void updateMobilesVerify(String mobile, String code, String scene) {
+        mRequestClient.updateMobilesVerify(mobile, code, scene).subscribe
+                (new ProgressSubscriber<Object>(mContext) {
+                    @Override
+                    public void onNext(Object object) {
+                        if (null != iForgetView) {
+                            iForgetView.updateMobilesVerify();
+                        }
+                    }
+                });
+    }
+
+
+
+
+
 }

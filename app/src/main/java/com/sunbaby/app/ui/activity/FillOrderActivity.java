@@ -48,5 +48,4 @@ public class FillOrderActivity extends BaseActivity {
         }
     }
 
-
 }

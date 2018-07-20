@@ -9,12 +9,20 @@ import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sunbaby.app.common.base.MyBaseActivity;
+import com.sunbaby.app.event.EventMessage;
 import com.sunbaby.app.ui.fragment.CenterFragment;
 import com.sunbaby.app.ui.fragment.HomeFragment;
 import com.sunbaby.app.ui.fragment.PeisongFragment;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,7 +48,8 @@ public class MainActivity extends MyBaseActivity {
     @BindView(R.id.tab_center_textview)
     TextView tabCenterTextview;
     @BindView(R.id.tv_title)
-    TextView tvTitle;
+    TextView tvTitle;@BindView(R.id.tab_peisong)
+    LinearLayout tab_peisong;
 
     private HomeFragment homeFragment;
     private PeisongFragment peisongFragment;
@@ -53,6 +62,7 @@ public class MainActivity extends MyBaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        EventBus.getDefault().register(this);
         mUnbinder = ButterKnife.bind(this);
         if (!TextUtils.isEmpty(getIntent().getStringExtra(MAININDEX))) {
             int index = Integer.parseInt(getIntent().getStringExtra(MAININDEX));
@@ -63,7 +73,6 @@ public class MainActivity extends MyBaseActivity {
             tvTitle.setText(title[0]);
         }
     }
-
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -155,7 +164,9 @@ public class MainActivity extends MyBaseActivity {
         if (mUnbinder != null) {
             mUnbinder.unbind();
         }
-
+        if(EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
     }
 
     protected void restartBotton() {
@@ -166,4 +177,15 @@ public class MainActivity extends MyBaseActivity {
         tabRongtongImageview.setImageResource(R.mipmap.pein);
         tabUserImageview.setImageResource(R.mipmap.gen);
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(EventMessage eventMessage) {
+        if (1==eventMessage.getPosition()) {
+            tvTitle.setText("配送箱");
+            tabRongtongImageview.setImageResource(R.mipmap.peiy);
+            tabPeisongTextview.setTextColor(ContextCompat.getColor(this, R.color.themeColor));
+            initFragment(1);
+        }
+    }
+
 }

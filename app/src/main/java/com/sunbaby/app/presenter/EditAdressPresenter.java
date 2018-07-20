@@ -38,14 +38,6 @@ public class EditAdressPresenter extends BasePresenter {
             }
 
             @Override
-            public void errorNet() {
-                super.errorNet();
-                if (null != iEditAddressView) {
-                    iEditAddressView.showNonetView();
-                }
-            }
-
-            @Override
             public void onError(Throwable e) {
                 super.onError(e);
 

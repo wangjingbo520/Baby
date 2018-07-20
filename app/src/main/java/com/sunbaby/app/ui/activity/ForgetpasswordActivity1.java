@@ -31,7 +31,6 @@ public class ForgetpasswordActivity1 extends BaseActivity implements IForgetView
     @BindView(R.id.tvGetCode)
     TextView tvGetCode;
     private ForgetpasswordPresenter forgetpasswordPresenter;
-    private String mobile;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,13 +67,12 @@ public class ForgetpasswordActivity1 extends BaseActivity implements IForgetView
         if (TextUtils.isEmpty(code)) {
             showToast("请先输入验证码");
         }
-        //验证码验证
-     //   forgetpasswordPresenter.
+        String mobile = etAccount.getText().toString().trim();
+        forgetpasswordPresenter.updateMobilesVerify(mobile, code, "UPDATE_MOBILE_SCENE");
     }
 
-
     private void getCode() {
-        mobile = etAccount.getText().toString();
+        String mobile = etAccount.getText().toString();
         if (StringUtils.isEmpty(mobile)) {
             showToast("请先输入手机号");
             return;
@@ -86,7 +84,7 @@ public class ForgetpasswordActivity1 extends BaseActivity implements IForgetView
         @Override
         public void onTick(long millisUntilFinished) {
             int time = (int) (millisUntilFinished / 1000);
-            etCode.setText(time + "秒后重发");
+            tvGetCode.setText(time + "秒后重发");
             tvGetCode.setEnabled(false);
         }
 
@@ -97,7 +95,6 @@ public class ForgetpasswordActivity1 extends BaseActivity implements IForgetView
         }
     };
 
-
     @Override
     public void onGetCodeSucceed() {
         timer.start();
@@ -106,7 +103,15 @@ public class ForgetpasswordActivity1 extends BaseActivity implements IForgetView
 
     @Override
     public void forgetPassword() {
-        startTo(ForgetpasswordActivity2.class, true);
+    }
+
+    @Override
+    public void updateMobilesVerify() {
+        //短信验证成功,跳转到下一步
+        String code = etCode.getText().toString().trim();
+        String mobile = etAccount.getText().toString().trim();
+        ForgetpasswordActivity2.start(mContext, code, mobile);
+        finish();
     }
 
     @Override
