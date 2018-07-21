@@ -63,7 +63,7 @@ public class ClassificationActivity extends BaseActivity implements IClassificat
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        showContent();
+        setLayout(R.layout.activity_classification);
         initView();
         initData();
     }
@@ -73,8 +73,10 @@ public class ClassificationActivity extends BaseActivity implements IClassificat
         type = getIntent().getStringExtra("type");
         if ("1".equals(type)) {
             titleLeft.add("图书");
+            setTitle("图书");
         } else {
             titleLeft.add("玩具");
+            setTitle("玩具");
         }
         menuAdapter = new MenuAdapter(this, titleLeft);
         listView.setAdapter(menuAdapter);
@@ -106,12 +108,6 @@ public class ClassificationActivity extends BaseActivity implements IClassificat
                 menuAdapter.notifyDataSetInvalidated();
             }
         });
-
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_classification;
     }
 
     protected void initData() {
@@ -132,19 +128,7 @@ public class ClassificationActivity extends BaseActivity implements IClassificat
     }
 
     @Override
-    protected void doOnRetry() {
-        super.doOnRetry();
-        initData();
-    }
-
-    @Override
     public void queryGoodsType(ClassificationBean classificationBean) {
-        //一级列表,右边
-        if (classificationBean.getGoodsTypeList().size() < 1) {
-            showEmpty();
-        } else {
-            goodsTypeAdapter.addData(classificationBean.getGoodsTypeList());
-            showContent();
-        }
+        goodsTypeAdapter.addData(classificationBean.getGoodsTypeList());
     }
 }

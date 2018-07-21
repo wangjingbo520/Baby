@@ -25,14 +25,11 @@ public class AllBookActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_all_book);
         setTitleLayoutVisiable(false);
     }
 
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_all_book;
-    }
 
     @OnClick(R.id.flBack)
     @Override

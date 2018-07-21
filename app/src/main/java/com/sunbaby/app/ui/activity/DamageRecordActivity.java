@@ -48,6 +48,7 @@ public class DamageRecordActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_damage_record);
         setTitle("损坏记录");
         strings = new ArrayList<>();
         smartrefreshlayout.setRefreshHeader(new ClassicsHeader(mContext));
@@ -71,11 +72,6 @@ public class DamageRecordActivity extends BaseActivity {
                 DamageDetailActivity.start(mContext);
             }
         });
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_damage_record;
     }
 
 }

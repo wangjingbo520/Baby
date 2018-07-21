@@ -35,14 +35,9 @@ public class ForgetpasswordActivity1 extends BaseActivity implements IForgetView
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_forgetpassword1);
         setTitle("找回密码");
-        showContent();
         forgetpasswordPresenter = new ForgetpasswordPresenter(mContext, this);
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_forgetpassword1;
     }
 
     @OnClick({R.id.tvGetCode, R.id.next})

@@ -39,13 +39,9 @@ public class PersonActivity extends BaseCameraActivity implements IPersonView {
     private String photo;
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.activity_person;
-    }
-
-    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout( R.layout.activity_person);
         setTitle("个人资料");
         personPresenter = new PersonPresenter(mContext, this);
         personPresenter.personalData(getUser().getUserId() + "");

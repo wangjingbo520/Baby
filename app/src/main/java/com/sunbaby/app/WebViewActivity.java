@@ -48,12 +48,8 @@ public class WebViewActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_web_view);
         initView();
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_web_view;
     }
 
     @SuppressLint("SetJavaScriptEnabled")

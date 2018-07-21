@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -19,7 +21,6 @@ import com.sunbaby.app.adapter.RecySecondaryListAdapter;
 import com.sunbaby.app.bean.SecondGoodsListBean;
 import com.sunbaby.app.callback.ISecondaryListView;
 import com.sunbaby.app.common.base.BaseActivity;
-import com.sunbaby.app.common.utils.ToastUtil;
 import com.sunbaby.app.common.utils.UIUtils;
 import com.sunbaby.app.common.widget.GridSpacingItemDecoration;
 import com.sunbaby.app.presenter.SecondaryListPresenter;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author 王静波
@@ -40,6 +42,8 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
     RecyclerView recyclerview;
     @BindView(R.id.smartrefreshlayout)
     SmartRefreshLayout smartrefreshlayout;
+    @BindView(R.id.etSearch)
+    EditText etSearch;
 
     private List<SecondGoodsListBean.ListBean> listBeanList;
     private RecySecondaryListAdapter goodsTypeAdapter;
@@ -57,7 +61,7 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
     private int pageSize = 10;
 
     public static void start(Context context, String type) {
-        Intent starter = new Intent(context, SearchActivity.class);
+        Intent starter = new Intent(context, SecondaryListActivity.class);
         starter.putExtra("type", type);
         context.startActivity(starter);
     }
@@ -71,8 +75,8 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_secondary_list);
         setTitleLayoutVisiable(false);
-        showLoading();
         initView();
         initData();
     }
@@ -95,9 +99,9 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
         smartrefreshlayout.setRefreshHeader(new ClassicsHeader(mContext));
         smartrefreshlayout.setRefreshFooter(new ClassicsFooter(mContext));
         smartrefreshlayout.setEnableLoadmore(false);
-        GridLayoutManager mgr = new GridLayoutManager(this, 2);
+        GridLayoutManager mgr = new GridLayoutManager(this, 3);
         recyclerview.setLayoutManager(mgr);
-        recyclerview.addItemDecoration(new GridSpacingItemDecoration(2, UIUtils.px2sp(this, 50),
+        recyclerview.addItemDecoration(new GridSpacingItemDecoration(3, UIUtils.px2sp(this, 50),
                 false));
         goodsTypeAdapter = new RecySecondaryListAdapter(R.layout.recy_item_wanju, listBeanList);
         recyclerview.setAdapter(goodsTypeAdapter);
@@ -127,13 +131,7 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.activity_secondary_list;
-    }
-
-    @Override
     public void querydayGoodsByRand(SecondGoodsListBean secondGoodsListBean) {
-        showContent();
         this.secondGoodsListBean = secondGoodsListBean;
         smartrefreshlayout.finishRefresh();
         smartrefreshlayout.finishLoadmore();
@@ -145,7 +143,8 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
 
         if (currPage == 1) {
             if (secondGoodsListBean.getList().size() < 1) {
-                showEmpty();
+                showToast("没有数据");
+//                showEmpty();
             } else {
                 goodsTypeAdapter.addData(secondGoodsListBean.getList());
             }
@@ -154,9 +153,15 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
         }
     }
 
-    @Override
-    public void noDataView() {
-        showEmpty();
+    private void search() {
+        scount_name = etSearch.getText().toString();
+        if (TextUtils.isEmpty(scount_name)) {
+            showToast("请输入搜索关键字");
+            return;
+        }
+        currPage = 1;
+        goodsTypeAdapter.setNewData(null);
+        initData();
     }
 
     @Override
@@ -165,10 +170,21 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
         smartrefreshlayout.finishLoadmore();
     }
 
+    @OnClick({R.id.tvSearch, R.id.flBack})
     @Override
-    protected void doOnRetry() {
-        super.doOnRetry();
-        initData();
-        //重试
+    public void onClick(View view) {
+        super.onClick(view);
+        switch (view.getId()) {
+            case R.id.tvSearch:
+                search();
+                break;
+            case R.id.flBack:
+                finish();
+                break;
+            default:
+                break;
+        }
     }
+
+
 }

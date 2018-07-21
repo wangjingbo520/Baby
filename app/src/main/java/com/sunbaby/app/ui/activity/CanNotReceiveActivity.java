@@ -24,11 +24,8 @@ public class CanNotReceiveActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_can_not_receive);
         setTitle("修改手机号");
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_can_not_receive;
-    }
 }

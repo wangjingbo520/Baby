@@ -42,6 +42,7 @@ public class EditAdressActivity extends BaseActivity implements IEditAddressView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_edit_adress);
         setRightText("保存");
         setTitle("编辑收货地址");
         id = getIntent().getStringExtra("id");
@@ -54,18 +55,13 @@ public class EditAdressActivity extends BaseActivity implements IEditAddressView
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.activity_edit_adress;
-    }
-
-    @Override
     public void onRightLisenter() {
         super.onRightLisenter();
     }
 
     @Override
     public void updateAddressInit(EditAdressBean editAdressBean) {
-        showContent();
+
     }
 
 }

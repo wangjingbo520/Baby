@@ -45,13 +45,9 @@ public class JoinmemberActivity2 extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_joinmember2);
         setTitle("加入会员");
         initData();
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_joinmember2;
     }
 
     private void initData() {

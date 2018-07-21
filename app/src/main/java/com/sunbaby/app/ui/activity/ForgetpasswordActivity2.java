@@ -42,17 +42,13 @@ public class ForgetpasswordActivity2 extends BaseActivity implements CommomDialo
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_forgetpassword2);
         setTitle("找回密码");
-        showContent();
         code = getIntent().getStringExtra("code");
         mobile = getIntent().getStringExtra("mobile");
         forgetpasswordPresenter = new ForgetpasswordPresenter(mContext, this);
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_forgetpassword2;
-    }
 
     @OnClick(R.id.btnSure)
     @Override

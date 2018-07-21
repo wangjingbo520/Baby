@@ -24,13 +24,9 @@ public class DamageDetailActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_damage_detail);
         setTitle("损坏详情");
 
     }
 
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_damage_detail;
-    }
 }

@@ -47,6 +47,7 @@ public class SearchActivity extends BaseActivity implements ISearchHistoryView {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_search);
         setTitleLayoutVisiable(false);
         mInflater = LayoutInflater.from(mContext);
         searchHistoryPresenter = new SearchHistoryPresenter(mContext, this);
@@ -62,11 +63,6 @@ public class SearchActivity extends BaseActivity implements ISearchHistoryView {
                 return false;
             }
         });
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_search;
     }
 
     @OnClick({R.id.flBack, R.id.tvSearch})

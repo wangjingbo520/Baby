@@ -92,17 +92,11 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        showContent();
+        setLayout(R.layout.activity_register);
         setTitle("注册");
         registerPresenter = new RegisterPresenter(this, this);
         dialog = new WheelViewDialog(this);
     }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_register;
-    }
-
 
     @OnClick({R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv4, R.id.tv5, R.id.btnRegister, R.id.tvGetCode})
     @Override
@@ -288,8 +282,9 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
                                 break;
                             case 4:
                                 tv5.setText(youerYuan.getRegionList().get(position).getName());
-                                kindergartenClass = youerYuan.getRegionList().get(position).getName();
-                                areaId = youerYuan.getRegionList().get(position).getId()+"";
+                                kindergartenClass = youerYuan.getRegionList().get(position)
+                                        .getName();
+                                areaId = youerYuan.getRegionList().get(position).getId() + "";
                                 break;
                             default:
                                 break;

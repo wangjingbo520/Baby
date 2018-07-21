@@ -24,12 +24,7 @@ public class OneDetailActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_one_detail);
         setTitle("订单详情");
-    }
-
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_one_detail;
     }
 }

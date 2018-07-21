@@ -90,18 +90,14 @@ public class AddNewAddressActivity extends BaseViewActivity implements IAddAdres
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_add_new_address);
         setTitle("添加收货地址");
         setRightText("保存");
-        showContent();
         dialog = new WheelViewDialog(this);
         switchButton.setOnCheckedChangeListener(this);
         addNewAddressPresenter = new AddNewAddressPresenter(mContext, this);
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_add_new_address;
-    }
 
     @Override
     public void onRightLisenter() {

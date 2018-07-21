@@ -45,13 +45,9 @@ public class MyOrderActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_my_order);
         setTitle("我的订单");
         initFragment();
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_my_order;
     }
 
     public static void start(Context context, int position) {

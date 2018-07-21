@@ -51,10 +51,10 @@ public abstract class BaseActivity extends MyBaseActivity implements View.OnClic
         mContext = this;
         setContentView(R.layout.base_title);
         Eyes.setStatusBarLightMode(this, Color.WHITE);
-        initTitleView();
+        initView();
     }
 
-    private void initTitleView() {
+    private void initView() {
         flContent = findViewById(R.id.fl_content);
         flTitle = findViewById(R.id.fl_title);
         flBack = findViewById(R.id.fl_back);
@@ -64,58 +64,43 @@ public abstract class BaseActivity extends MyBaseActivity implements View.OnClic
         findViewById(R.id.fl_back).setOnClickListener(this);
         findViewById(R.id.fl_right).setOnClickListener(this);
         inflater = LayoutInflater.from(this);
-        initStatusLayout();
-        flContent.addView(statusLayoutManager.getRootLayout());
+    }
+
+
+    /**
+     * 重写设置Activity布局文件
+     *
+     * @param layoutId activity引用的布局
+     */
+    public void setLayout(int layoutId) {
+        flContent.removeAllViews();
+        View view = inflater.inflate(layoutId, null);
+        flContent.addView(view);
         mUnbinder = ButterKnife.bind(this);
     }
 
-    public View getRootView() {
-        return statusLayoutManager.getRootLayout();
-    }
 
-    private void initStatusLayout() {
-        statusLayoutManager = StatusLayoutManager.newBuilder(this)
-                .contentView(getLayoutId())
-                .emptyDataView(R.layout.activity_emptydata)
-                .errorView(R.layout.activity_error)
-                .loadingView(R.layout.activity_loading)
-                .emptyDataRetryViewId(R.id.button_retry)
-                .netWorkErrorRetryViewId(R.id.button_try)
-                .netWorkErrorView(R.layout.activity_networkerror)
-                .onRetryListener(new OnRetryListener() {
-                    @Override
-                    public void onRetry() {
-                        doOnRetry();
-                    }
-                })
-                .build();
-    }
 
-    protected void showNocontentTitle(String title) {
-        button_retry = findViewById(R.id.button_retry);
-        button_retry.setText(title);
-    }
 
-    protected abstract int getLayoutId();
+//    private void initStatusLayout() {
+//        statusLayoutManager = StatusLayoutManager.newBuilder(this)
+//                .contentView(getLayoutId())
+//                .emptyDataView(R.layout.activity_emptydata)
+//                .errorView(R.layout.activity_error)
+//                .loadingView(R.layout.activity_loading)
+//                .emptyDataRetryViewId(R.id.button_retry)
+//                .netWorkErrorRetryViewId(R.id.button_try)
+//                .netWorkErrorView(R.layout.activity_networkerror)
+//                .onRetryListener(new OnRetryListener() {
+//                    @Override
+//                    public void onRetry() {
+//                        doOnRetry();
+//                    }
+//                })
+//                .build();
+//    }
 
-    protected void showContent() {
-        statusLayoutManager.showContent();
-    }
 
-    protected void showEmpty() {
-        statusLayoutManager.showEmptyData();
-    }
-
-    protected void showLoading() {
-        statusLayoutManager.showLoading();
-    }
-
-    protected void showNetWorkError() {
-        statusLayoutManager.showNetWorkError();
-    }
-
-    protected void doOnRetry() {
-    }
 
     public void setTitle(String title) {
         tvTitle.setText(title);

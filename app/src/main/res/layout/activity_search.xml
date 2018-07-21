@@ -20,11 +20,12 @@
             android:id="@+id/flBack"
             android:layout_width="@dimen/x80"
             android:layout_height="match_parent"
-            android:layout_gravity="left|center_vertical">
+            android:layout_gravity="left|center_vertical"
+            android:background="@drawable/common_click_back">
 
-            <ImageView
-                android:layout_width="@dimen/x30"
-                android:layout_height="@dimen/x50"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/x25"
                 android:background="@mipmap/back" />
@@ -32,12 +33,15 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="@dimen/x80"
+            android:layout_height="@dimen/x75"
+            android:layout_marginRight="@dimen/x10"
             android:layout_weight="1"
             android:background="@drawable/bg_search"
             android:gravity="center_vertical"
+            android:paddingBottom="@dimen/x10"
             android:paddingLeft="@dimen/x30"
-            android:paddingRight="@dimen/x30">
+            android:paddingRight="@dimen/x30"
+            android:paddingTop="@dimen/x10">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -76,20 +80,14 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x10"
-        android:background="@color/background" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/x15"
+        android:layout_margin="@dimen/x20"
         android:text="历史搜索"
         android:textColor="@color/textColor3"
         android:textSize="@dimen/textSize_32"
         android:textStyle="bold" />
-
 
     <com.sunbaby.app.common.widget.floawlayout.TagFlowLayout
         android:id="@+id/tagflowlayout"
@@ -99,3 +97,7 @@
         app:max_select="1" />
 
 </LinearLayout>
+
+
+
+

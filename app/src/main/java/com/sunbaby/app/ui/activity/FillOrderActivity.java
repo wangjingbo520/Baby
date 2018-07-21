@@ -26,14 +26,9 @@ public class FillOrderActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_fill_order);
         setTitle("填写订单");
     }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_fill_order;
-    }
-
 
     @OnClick(R.id.llSelectAdress)
     @Override

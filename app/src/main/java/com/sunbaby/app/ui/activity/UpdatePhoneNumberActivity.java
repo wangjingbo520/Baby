@@ -19,12 +19,8 @@ public class UpdatePhoneNumberActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_update_phone_number);
         setTitle("修改手机号");
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_update_phone_number;
     }
 
     @OnClick({R.id.llYes, R.id.llNo})

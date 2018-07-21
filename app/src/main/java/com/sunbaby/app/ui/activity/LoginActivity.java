@@ -30,11 +30,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     EditText etPassword;
     private LoginPresenter loginPresenter;
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_login;
-    }
-
     @OnClick({R.id.btnLogin, R.id.tvFoget, R.id.tvRegister})
     @Override
     public void onClick(View view) {
@@ -71,9 +66,9 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_login);
         setTitle("登录");
         setBackLayoutVisiable(false);
-        showContent();
         loginPresenter = new LoginPresenter(mContext, this);
     }
 

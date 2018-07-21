@@ -23,6 +23,7 @@ import com.sunbaby.app.ui.activity.AllBookActivity;
 import com.sunbaby.app.ui.activity.ClassificationActivity;
 import com.sunbaby.app.ui.activity.LoginActivity;
 import com.sunbaby.app.ui.activity.RegisterActivity;
+import com.sunbaby.app.ui.activity.SecondaryListActivity;
 import com.youth.banner.Banner;
 
 
@@ -72,7 +73,6 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
     @Override
     public void initData() {
         homePresenter.queryContentAdvertisementsByHome();
-        //1 图书 2 玩具 0 全部
     }
 
     @Override
@@ -91,7 +91,7 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
     }
 
     @OnClick({R.id.tvLogin, R.id.tvRegister, R.id.llSuiji, R.id.llFenlei, R.id.llAlltushu, R.id
-            .llFenleiWanju})
+            .llFenleiWanju, R.id.llAllWanju, R.id.llSuiji2})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvLogin:
@@ -105,8 +105,8 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
                 mContext.finish();
                 break;
             case R.id.llSuiji:
-                //随机
-                homePresenter.queryGoodsByRand("");
+                //图书随机
+                homePresenter.queryGoodsByRand("1");
                 break;
             case R.id.llFenlei:
                 //图书分类查看
@@ -118,7 +118,16 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
                 break;
             case R.id.llAlltushu:
                 //全部图书
-                AllBookActivity.start(mContext);
+                SecondaryListActivity.start(mContext, "");
+                break;
+            case R.id.llAllWanju:
+                //全部玩具
+                SecondaryListActivity.start(mContext, "");
+                break;
+            case R.id.llSuiji2:
+                //玩具随机
+                //1 图书 2 玩具 0 全部
+                homePresenter.queryGoodsByRand("2");
                 break;
             default:
                 break;

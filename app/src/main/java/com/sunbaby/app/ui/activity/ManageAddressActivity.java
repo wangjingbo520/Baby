@@ -52,8 +52,8 @@ public class ManageAddressActivity extends BaseActivity implements IAdressView {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_manage_address);
         setTitle("管理收货地址");
-        showLoading();
         manageAddressPresenter = new ManageAddressPresenter(mContext, this);
         initView();
         initData();
@@ -94,20 +94,15 @@ public class ManageAddressActivity extends BaseActivity implements IAdressView {
         });
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_manage_address;
-    }
-
     private void initData() {
         manageAddressPresenter.addressList(getUserId());
     }
 
-    @Override
-    protected void doOnRetry() {
-        super.doOnRetry();
-        AddNewAddressActivity.start(this);
-    }
+//    @Override
+//    protected void doOnRetry() {
+//        super.doOnRetry();
+//        AddNewAddressActivity.start(this);
+//    }
 
     @OnClick(R.id.tvAddress)
     @Override
@@ -125,8 +120,8 @@ public class ManageAddressActivity extends BaseActivity implements IAdressView {
     @Override
     public void addressList(AdressBean adressBean) {
         if (adressBean.getList().size() <= 0) {
-            showEmpty();
-            showNocontentTitle("点击添加收货地址");
+//            showEmpty();
+//            showNocontentTitle("点击添加收货地址");
         } else {
             recyDemoAdapter.addData(adressBean.getList());
         }

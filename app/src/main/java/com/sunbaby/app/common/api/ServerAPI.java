@@ -312,7 +312,7 @@ public interface ServerAPI {
     Observable<HttpResult<SecondGoodsListBean>> querydayGoodsByRand(@Field("type") String type,
                                                                     @Field("scount_name") String
                                                                             scount_name,
-                                                                    @Field("User_id") String
+                                                                    @Field("user_id") String
                                                                             User_id,
                                                                     @Field("currPage") int
                                                                             currPage,

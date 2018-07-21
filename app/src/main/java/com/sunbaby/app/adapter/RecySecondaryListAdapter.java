@@ -1,10 +1,13 @@
 package com.sunbaby.app.adapter;
 
 import android.support.annotation.Nullable;
+import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.sunbaby.app.R;
 import com.sunbaby.app.bean.SecondGoodsListBean;
+import com.sunbaby.app.common.utils.GlideImageLoader;
 
 import java.util.List;
 
@@ -23,6 +26,8 @@ public class RecySecondaryListAdapter extends BaseQuickAdapter<SecondGoodsListBe
 
     @Override
     protected void convert(BaseViewHolder helper, SecondGoodsListBean.ListBean item) {
-
+        GlideImageLoader.loadImage(mContext, item.getPic_url(), (ImageView) helper.getView(R.id
+                .ivPic));
+        helper.setText(R.id.tvName, item.getGoods_name());
     }
 }

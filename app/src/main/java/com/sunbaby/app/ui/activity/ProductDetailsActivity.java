@@ -45,13 +45,9 @@ public class ProductDetailsActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_product_details);
         setTitle("商品详情");
         initFragment(0);
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_product_details;
     }
 
     @OnClick({R.id.llLeft, R.id.llRight, R.id.tvAdd})

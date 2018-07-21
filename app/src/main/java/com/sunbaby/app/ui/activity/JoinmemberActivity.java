@@ -41,7 +41,7 @@ public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFl
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        statusLayoutManager.showLoading();
+        setLayout(R.layout.activity_joinmember);
         initView();
         initData();
     }
@@ -57,11 +57,6 @@ public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFl
 
     private void initData() {
         joinmemberPresenter.queryVipType();
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_joinmember;
     }
 
 
@@ -81,7 +76,6 @@ public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFl
     @Override
     public void queryVipType(final VipBean vipBean) {
         //查找对应的会员类型
-        showContent();
         this.vipBean = vipBean;
         if (vipBean.getVipTypeList() != null && vipBean.getVipTypeList().size() > 0) {
             //会员类型展示

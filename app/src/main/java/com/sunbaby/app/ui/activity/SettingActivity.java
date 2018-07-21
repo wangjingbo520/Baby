@@ -19,13 +19,8 @@ public class SettingActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_setting);
         setTitle("设置");
-        showContent();
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_setting;
     }
 
     @OnClick({R.id.llPerson, R.id.llAdress})

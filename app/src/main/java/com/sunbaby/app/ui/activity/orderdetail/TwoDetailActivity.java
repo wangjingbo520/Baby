@@ -23,12 +23,7 @@ public class TwoDetailActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_orderdetail);
         setTitle("订单详情");
     }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_orderdetail;
-    }
-
 }

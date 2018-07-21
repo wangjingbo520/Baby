@@ -24,11 +24,7 @@ public class UpdatePaswordActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_update_pasword);
         setTitle("修改密码");
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_update_pasword;
     }
 }

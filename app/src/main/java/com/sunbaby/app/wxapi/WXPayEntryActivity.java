@@ -28,15 +28,11 @@ public class WXPayEntryActivity extends BaseActivity implements IWXAPIEventHandl
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_wxpay_entry);
         setTitle("支付结果");
         //注册微信支付
         api = WXAPIFactory.createWXAPI(this, "APPID");
         api.handleIntent(getIntent(), this);
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_wxpay_entry;
     }
 
     @Override

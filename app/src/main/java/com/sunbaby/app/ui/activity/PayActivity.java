@@ -76,11 +76,6 @@ public class PayActivity extends BaseActivity {
     public static final String TARGET_ID = "";
 
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_pay;
-    }
-
     private void bindView() {
         //注册微信支付
         api = WXAPIFactory.createWXAPI(this, "wxb4ba3c02aa476ea1");
@@ -109,7 +104,9 @@ public class PayActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState); setTitle("支付");
+        super.onCreate(savedInstanceState);
+        setLayout(R.layout.activity_pay);
+        setTitle("支付");
         cv_countdownView.setTag("test22");
         long time = (long) 60 * 60 * 1000;
         cv_countdownView.start(time);

@@ -9,6 +9,5 @@ import com.sunbaby.app.bean.SecondGoodsListBean;
  */
 public interface ISecondaryListView {
     void querydayGoodsByRand(SecondGoodsListBean secondGoodsListBean);
-    void noDataView();
     void onFinish();
 }
