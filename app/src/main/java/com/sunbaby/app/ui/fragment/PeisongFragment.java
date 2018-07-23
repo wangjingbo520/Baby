@@ -87,6 +87,7 @@ public class PeisongFragment extends BaseStateViewFragment implements IPeisongVi
         peisongAdapter.setOnDeleteListenerClickListener(this);
     }
 
+
     @Override
     public void deleteDispatching(int position) {
         //删除成功
