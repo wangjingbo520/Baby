@@ -197,7 +197,8 @@
             android:screenOrientation="behind"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity android:name=".ui.activity.EditAdressActivity" />
-        <activity android:name=".ui.activity.SecondaryListActivity"></activity>
+        <activity android:name=".ui.activity.SecondaryListActivity" />
+        <activity android:name=".ui.activity.MyPayActivity"></activity>
     </application>
 
 </manifest>

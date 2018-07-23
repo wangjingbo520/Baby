@@ -181,6 +181,7 @@ public class MainActivity extends MyBaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(EventMessage eventMessage) {
         if (1==eventMessage.getPosition()) {
+            restartBotton();
             tvTitle.setText("配送箱");
             tabRongtongImageview.setImageResource(R.mipmap.peiy);
             tabPeisongTextview.setTextColor(ContextCompat.getColor(this, R.color.themeColor));

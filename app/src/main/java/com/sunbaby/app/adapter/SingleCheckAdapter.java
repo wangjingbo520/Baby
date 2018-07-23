@@ -4,9 +4,14 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.sunbaby.app.R;
+import com.sunbaby.app.bean.PayBean;
+import com.sunbaby.app.common.utils.GlideImageLoader;
 import com.sunbaby.app.common.utils.ToastUtil;
 
 import java.util.HashMap;
@@ -19,20 +24,23 @@ import java.util.List;
  */
 public class SingleCheckAdapter extends BaseAdapter {
     private Context context;
-    private List<String> list;
+    private List<PayBean.PayListBean> list;
 
     public HashMap<Integer, Boolean> states = new HashMap<Integer, Boolean>();
+    private String position = "";
 
     //获取选中的值
-    private void getSelectPosition() {
+    public String getSelectPosition() {
         for (int i = 0; i < getCount(); i++) {
             if (states.get(i) != null && states.get(i)) {
-                ToastUtil.showMessage(i + "已选中");
+                ToastUtil.showMessage("已选中" + getItem(i).getName());
+                this.position = i + "";
             }
         }
+        return position;
     }
 
-    public SingleCheckAdapter(Context context, List<String> list) {
+    public SingleCheckAdapter(Context context, List<PayBean.PayListBean> list) {
         this.list = list;
         this.context = context;
     }
@@ -43,7 +51,7 @@ public class SingleCheckAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int arg0) {
+    public PayBean.PayListBean getItem(int arg0) {
         return list.get(arg0);
     }
 
@@ -59,11 +67,15 @@ public class SingleCheckAdapter extends BaseAdapter {
             holder = new ViewHolder();
             arg1 = View.inflate(context, R.layout.layout_single_check, null);
             holder.radioButton = arg1.findViewById(R.id.rb);
+            holder.ivPic = arg1.findViewById(R.id.ivPic);
+            holder.tvName = arg1.findViewById(R.id.tvName);
             arg1.setTag(holder);
         } else {
             holder = (ViewHolder) arg1.getTag();
         }
 
+        GlideImageLoader.loadImage(context, getItem(position).getUrl(), holder.ivPic);
+        holder.tvName.setText(getItem(position).getName());
         arg1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +99,8 @@ public class SingleCheckAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        RadioButton radioButton;
+        ImageView ivPic;
+        TextView tvName;
+        CheckBox radioButton;
     }
 }

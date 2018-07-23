@@ -22,30 +22,30 @@ public class TestActivity extends TestBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         statusLayoutManager.showLoading();
-        initData();
+   //     initData();
     }
 
-    private void initData() {
-        listView = findViewById(R.id.listview);
-        strings = new ArrayList<>();
-        strings.add("");
-        strings.add("");
-        strings.add("");
-        strings.add("");
-        strings.add("");
-        strings.add("");
-        strings.add("");
-        strings.add("");
-        singleCheckAdapter = new SingleCheckAdapter(this, strings);
-        listView.setAdapter(singleCheckAdapter);
-
-        findViewById(R.id.fl_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                statusLayoutManager.showContent();
-            }
-        });
-    }
+//    private void initData() {
+//        listView = findViewById(R.id.listview);
+//        strings = new ArrayList<>();
+//        strings.add("");
+//        strings.add("");
+//        strings.add("");
+//        strings.add("");
+//        strings.add("");
+//        strings.add("");
+//        strings.add("");
+//        strings.add("");
+//        singleCheckAdapter = new SingleCheckAdapter(this, strings);
+//        listView.setAdapter(singleCheckAdapter);
+//
+//        findViewById(R.id.fl_back).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                statusLayoutManager.showContent();
+//            }
+//        });
+//    }
 
     @Override
     protected void initStatusLayout() {

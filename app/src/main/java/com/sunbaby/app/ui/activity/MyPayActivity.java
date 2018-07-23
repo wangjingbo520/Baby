@@ -10,22 +10,28 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.AuthTask;
 import com.alipay.sdk.app.PayTask;
 import com.sunbaby.app.MainActivity;
 import com.sunbaby.app.R;
+import com.sunbaby.app.adapter.RecyGuihuangAdapter;
+import com.sunbaby.app.adapter.SingleCheckAdapter;
+import com.sunbaby.app.bean.GuihuangBean;
+import com.sunbaby.app.bean.PayBean;
+import com.sunbaby.app.callback.IMypayView;
 import com.sunbaby.app.common.base.BaseActivity;
 import com.sunbaby.app.common.utils.pay.AuthResult;
 import com.sunbaby.app.common.utils.pay.OrderInfoUtil2_0;
 import com.sunbaby.app.common.utils.pay.PayResult;
+import com.sunbaby.app.presenter.MyPayPresenter;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -37,23 +43,17 @@ import cn.iwgang.countdownview.CountdownView;
  * @date 2018/7/6
  * describe 支付
  */
-public class PayActivity extends BaseActivity {
+public class MyPayActivity extends BaseActivity implements IMypayView{
 
     @BindView(R.id.cv_countdownView)
     CountdownView cv_countdownView;
-    @BindView(R.id.llWeixin)
-    LinearLayout llWeixin;
-    @BindView(R.id.rbTop)
-    RadioButton rbTop;
-    @BindView(R.id.rbBottom)
-    RadioButton rbBottom;
-    @BindView(R.id.radioGroup)
-    RadioGroup radioGroup;
+    @BindView(R.id.listview)
+    ListView listview;
 
     /**
      * 0:微信支付  1:支付宝支付
      */
-    private int type = 0;
+    private String payType;
     /**
      * 微信支付业务：入参app_id
      */
@@ -75,31 +75,17 @@ public class PayActivity extends BaseActivity {
      */
     public static final String TARGET_ID = "";
 
-    RadioGroup.OnCheckedChangeListener onCheckedChangeListener = new RadioGroup
-            .OnCheckedChangeListener() {
-
-        @Override
-        public void onCheckedChanged(RadioGroup group, int checkedId) {
-            switch (group.getCheckedRadioButtonId()) {
-                case R.id.rbTop:
-                    //微信支付
-                    type = 0;
-                    break;
-                case R.id.rbBottom:
-                    //支付宝支付
-                    type = 1;
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
+    private MyPayPresenter myPayPresenter;
+    private SingleCheckAdapter singleCheckAdapter;
+    private PayBean payBean;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_pay);
+        setLayout(R.layout.activity_my_pay);
         setTitle("支付");
+        myPayPresenter = new MyPayPresenter(mContext, this);
+        initData();
         //注册微信支付
         api = WXAPIFactory.createWXAPI(this, "wxb4ba3c02aa476ea1");
         cv_countdownView.setTag("test22");
@@ -112,42 +98,46 @@ public class PayActivity extends BaseActivity {
                 finish();
             }
         });
-        radioGroup.setOnCheckedChangeListener(onCheckedChangeListener);
     }
 
+    private void initData() {
+        myPayPresenter.queryPayMethod();
+    }
 
-    @OnClick({R.id.btnSure, R.id.llWeixin, R.id.llZfb})
+    @OnClick({R.id.btnSure})
     @Override
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()) {
             case R.id.btnSure:
-                startTo(MainActivity.class, true);
-//                if (0 == type) {
-//                    //微信支付
-//                    wexinPay();
-//                } else {
-//                    //支付宝支付,先判断是否授权,再调用支付接口
-//                    authV2();
-//                }
-                break;
-            case R.id.llWeixin:
-                //微信支付
-                if (!rbTop.isChecked()) {
-                    rbTop.setChecked(true);
-                    type = 0;
-                }
-                break;
-            case R.id.llZfb:
-                //支付宝支付
-                if (!rbBottom.isChecked()) {
-                    rbBottom.setChecked(true);
-                    type = 1;
-                }
+                checkPay();
                 break;
             default:
                 break;
         }
+    }
+
+    private void checkPay(){
+        if (singleCheckAdapter != null) {
+            payType = singleCheckAdapter.getSelectPosition();
+            //这里需要判断是哪个支付类型,再去调用支付客户端
+        }
+        if (!TextUtils.isEmpty(payType)) {
+            int position = Integer.parseInt(payType);
+            showToast(payBean.getPayList().get(position).getName());
+//            if ("" == payType) {
+//                //微信支付
+////                        showToast(payType);
+////                        wexinPay();
+//            } else {
+//                //支付宝支付,先判断是否授权,再调用支付接口
+//                //       authV2();
+//                showToast(payType);
+//            }
+        } else {
+            showToast("请先选择支付方式");
+        }
+
     }
 
     /***************************************微信支付和支付宝支付**********************************************/
@@ -163,7 +153,6 @@ public class PayActivity extends BaseActivity {
 //        api.sendReq(request);
     }
 
-
     /**
      * 支付宝账户授权业务
      */
@@ -174,6 +163,7 @@ public class PayActivity extends BaseActivity {
             new AlertDialog.Builder(this).setTitle("警告").setMessage("需要配置PARTNER |APP_ID| " +
                     "RSA_PRIVATE| TARGET_ID")
                     .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
                         public void onClick(DialogInterface dialoginterface, int i) {
                         }
                     }).show();
@@ -200,7 +190,7 @@ public class PayActivity extends BaseActivity {
             @Override
             public void run() {
                 // 构造AuthTask 对象
-                AuthTask authTask = new AuthTask(PayActivity.this);
+                AuthTask authTask = new AuthTask(MyPayActivity.this);
                 // 调用授权接口，获取授权结果
                 Map<String, String> result = authTask.authV2(authInfo, true);
                 Message msg = new Message();
@@ -223,6 +213,7 @@ public class PayActivity extends BaseActivity {
                 (RSA_PRIVATE))) {
             new AlertDialog.Builder(this).setTitle("警告").setMessage("需要配置APPID | RSA_PRIVATE")
                     .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
                         public void onClick(DialogInterface dialoginterface, int i) {
                             //
                             finish();
@@ -250,7 +241,7 @@ public class PayActivity extends BaseActivity {
 
             @Override
             public void run() {
-                PayTask alipay = new PayTask(PayActivity.this);
+                PayTask alipay = new PayTask(MyPayActivity.this);
                 Map<String, String> result = alipay.payV2(orderInfo, true);
                 Log.i("提交的支付宝信息", result.toString());
                 Message msg = new Message();
@@ -262,7 +253,6 @@ public class PayActivity extends BaseActivity {
         Thread payThread = new Thread(payRunnable);
         payThread.start();
     }
-
 
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
@@ -281,10 +271,10 @@ public class PayActivity extends BaseActivity {
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
-                        Toast.makeText(PayActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyPayActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
-                        Toast.makeText(PayActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyPayActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
                     }
                     break;
                 }
@@ -298,13 +288,13 @@ public class PayActivity extends BaseActivity {
                             .getResultCode(), "200")) {
                         // 获取alipay_open_id，调支付时作为参数extern_token 的value
                         // 传入，则支付账户为该授权账户
-                        Toast.makeText(PayActivity.this,
+                        Toast.makeText(MyPayActivity.this,
                                 "授权成功\n" + String.format("authCode:%s", authResult.getAuthCode())
                                 , Toast.LENGTH_SHORT)
                                 .show();
                     } else {
                         // 其他状态值则为授权失败
-                        Toast.makeText(PayActivity.this,
+                        Toast.makeText(MyPayActivity.this,
                                 "授权失败" + String.format("authCode:%s", authResult.getAuthCode()),
                                 Toast.LENGTH_SHORT).show();
 
@@ -317,5 +307,12 @@ public class PayActivity extends BaseActivity {
         }
     };
 
+    @Override
+    public void queryPayMethod(PayBean payBean) {
+        //支付方式返回列表
+        this.payBean = payBean;
+        singleCheckAdapter = new SingleCheckAdapter(mContext, payBean.getPayList());
+        listview.setAdapter(singleCheckAdapter);
+    }
 
 }

@@ -54,6 +54,7 @@ public class WebViewActivity extends BaseActivity {
 
     @SuppressLint("SetJavaScriptEnabled")
     private void initView() {
+        url = getIntent().getStringExtra("url");
         setTitleLayoutVisiable(false);
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -65,6 +66,7 @@ public class WebViewActivity extends BaseActivity {
         webSettings.setSupportZoom(true);
         mWebView.setWebChromeClient(webChromeClient);
         mWebView.setWebViewClient(webViewClient);
+        mWebView.loadUrl(url);
     }
 
     private WebViewClient webViewClient = new WebViewClient() {

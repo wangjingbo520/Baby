@@ -43,7 +43,7 @@ public abstract class BaseActivity extends MyBaseActivity implements View.OnClic
     private ImageView iv_right;
     private Button button_retry;
     private Unbinder mUnbinder;
-    protected StatusLayoutManager statusLayoutManager;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,8 +78,6 @@ public abstract class BaseActivity extends MyBaseActivity implements View.OnClic
         flContent.addView(view);
         mUnbinder = ButterKnife.bind(this);
     }
-
-
 
 
 //    private void initStatusLayout() {

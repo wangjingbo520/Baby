@@ -8,10 +8,14 @@ import com.sunbaby.app.bean.CenterBean;
 import com.sunbaby.app.bean.ClassificationBean;
 import com.sunbaby.app.bean.EditAdressBean;
 import com.sunbaby.app.bean.HomeBean;
+import com.sunbaby.app.bean.JoinBean2;
+import com.sunbaby.app.bean.PayBean;
 import com.sunbaby.app.bean.PersonBean;
+import com.sunbaby.app.bean.PesisongBean;
 import com.sunbaby.app.bean.QueryGoodsByRandBean;
 import com.sunbaby.app.bean.SearchHistoryBean;
 import com.sunbaby.app.bean.SecondGoodsListBean;
+import com.sunbaby.app.bean.UploadFile;
 import com.sunbaby.app.bean.User;
 import com.sunbaby.app.bean.VipBean;
 import com.sunbaby.app.bean.YouerYuan;
@@ -331,6 +335,61 @@ public interface ServerAPI {
     Observable<HttpResult<SearchHistoryBean>> queryAccountSearch(@Field("user_id") String user_id,
                                                                  @Field("scount_name") String
                                                                          scount_name);
+
+    /**
+     * 会员数据初始化
+     *
+     * @param userId
+     * @return
+     */
+    @POST("order/applyRefundInit")
+    @FormUrlEncoded
+    Observable<HttpResult<JoinBean2>> applyRefundInit(@Field("userId") String userId);
+
+    /**
+     * 支付方式
+     *
+     * @return
+     */
+    @POST("order/queryPayMethod")
+    Observable<HttpResult<PayBean>> queryPayMethod();
+
+
+    /**
+     * 上传图片
+     *
+     * @return
+     */
+    @POST("common/imgUpload")
+    @FormUrlEncoded
+    Observable<HttpResult<UploadFile>> uploadFile(
+            @Field("imgStr") String imgStr);
+
+
+    /**
+     * 配送箱列表
+     *
+     * @param user_id
+     * @return
+     */
+    @POST("fr/dispatching/queryDispatching")
+    @FormUrlEncoded
+    Observable<HttpResult<PesisongBean>> queryDispatching(
+            @Field("user_id") String user_id);
+
+
+    /**
+     * 删除配送箱商品
+     *
+     * @param user_id
+     * @param dispatching_id
+     * @return
+     */
+    @POST("fr/dispatching/deleteDispatching")
+    @FormUrlEncoded
+    Observable<HttpResult<Object>> deleteDispatching(
+            @Field("user_id") String user_id,
+            @Field("dispatching_id") String dispatching_id);
 
 
 }

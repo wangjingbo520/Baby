@@ -66,25 +66,72 @@
         android:layout_height="@dimen/x10"
         android:background="@color/background" />
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/x20"
-        android:layout_marginRight="@dimen/x20"
-        android:layout_marginTop="@dimen/x10"
-        android:text="当前有效期：2018/06/21"
-        android:textColor="@color/textColor3"
-        android:textSize="@dimen/x32" />
+        android:orientation="horizontal">
 
-    <TextView
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_marginTop="@dimen/x10"
+            android:text="当前有效期："
+            android:textColor="@color/textColor3"
+            android:textSize="@dimen/x32" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_marginTop="@dimen/x10"
+            android:text=""
+            android:textColor="@color/textColor3"
+            android:textSize="@dimen/x32" />
+    </LinearLayout>
+
+
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="@dimen/x20"-->
+    <!--android:layout_marginRight="@dimen/x20"-->
+    <!--android:layout_marginTop="@dimen/x10"-->
+    <!--android:text="当前有效期：2018/06/21"-->
+    <!--android:textColor="@color/textColor3"-->
+    <!--android:textSize="@dimen/x32" />-->
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/x20"
-        android:layout_marginRight="@dimen/x20"
-        android:layout_marginTop="@dimen/x10"
-        android:text="金额：500"
-        android:textColor="@color/textColor3"
-        android:textSize="@dimen/x32" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_marginTop="@dimen/x10"
+            android:text="金额：500"
+            android:textColor="@color/textColor3"
+            android:textSize="@dimen/x32" />
+
+        <TextView
+            android:id="@+id/tvJine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_marginTop="@dimen/x10"
+            android:text=""
+            android:textColor="@color/textColor3"
+            android:textSize="@dimen/x32" />
+    </LinearLayout>
+
 
     <TextView
         android:layout_width="match_parent"

@@ -21,28 +21,12 @@ import butterknife.Unbinder;
  * @date 2018/7/6
  * describe
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends BaseStateViewFragment {
     protected final String TAG = this.getClass().getSimpleName();
     private Unbinder mUnBinder;
     public View mRootView;
     public FragmentActivity mContext;
 
-    public User getUser() {
-        return AppData.getInstance().getUser();
-    }
-
-    public String getUserId() {
-        return AppData.getInstance().getUser().getUserId() + "";
-    }
-
-    public boolean userIsLogin() {
-        User user = AppData.getInstance().getUser();
-        if (null == user) {
-            return false;
-        } else {
-            return true;
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
@@ -62,6 +46,10 @@ public abstract class BaseFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initData();
+    }
+
+    public View getRootView(){
+        return mRootView;
     }
 
     /**

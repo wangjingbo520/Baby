@@ -11,4 +11,5 @@
         <item>待归还</item>
         <item>已完成</item>
     </array>
+    <string name="error_tip"><Data><![CDATA[ <font color="red">%1$s</font> ]]></Data></string>
 </resources>

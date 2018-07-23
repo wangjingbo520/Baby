@@ -1,6 +1,7 @@
 package com.sunbaby.app.common.base;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -11,15 +12,20 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 
 import com.libray.basetools.utils.BitmapUtils;
 import com.sunbaby.app.R;
+import com.sunbaby.app.bean.ImageData;
 import com.sunbaby.app.common.file.ImageFolder;
+import com.sunbaby.app.common.utils.ImageUpload;
 import com.sunbaby.app.common.widget.SavePicPopWindow;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author 王静波
@@ -64,6 +70,7 @@ public abstract class BaseCameraActivity extends BaseActivity {
     private int cropHeight = 100;
 
     private boolean cancelFlag = true;
+
 
     /**
      * 是否需要上传图片
@@ -341,6 +348,45 @@ public abstract class BaseCameraActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 批量上传图片
+     * @param list
+     */
+    public void uploadImage(List<ImageData> list, ImageUpload.UpLoadImageListener listener){
+
+        //判断图片非空
+        if(null == list || list.size() == 0){
+
+            if(null != listener){
+                listener.UpLoadSuccess(null);
+            }
+            return;
+        }
+        //上传图片
+        ArrayList<String> imgs = new ArrayList<String>();
+        //已上传的图片
+        ArrayList<String> imgUrls = new ArrayList<String>();
+        ImageData imgData = null;
+        for(int i=0; i<list.size(); i++){
+            imgData = list.get(i);
+            if(imgData.localFileExist()){
+                imgs.add(list.get(i).fileName);
+            }else if (imgData.hasRemoteImgUrl()){
+                imgUrls.add(list.get(i).imgUrl);
+            }
+        }
+        if(imgs.size() == 0&&imgUrls.size()==0){
+            listener.UpLoadSuccess(null);
+            return;
+        }else if (imgs.size() == 0&&imgUrls.size()!=0){
+            listener.UpLoadSuccess(imgUrls);
+            return;
+        }
+        ImageUpload mIUpload = new ImageUpload(mContext, imgs, listener);
+        mIUpload.startLoad();
+    }
+
+
 
     // //-----------------------------
 
@@ -427,6 +473,13 @@ public abstract class BaseCameraActivity extends BaseActivity {
 
         }
         return "";
+    }
+
+
+    public interface UpLoadImageListener {
+        void UpLoadSuccess(ArrayList<String> netimageurls);
+
+        void UpLoadFail();
     }
 
     /**

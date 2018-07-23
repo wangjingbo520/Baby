@@ -7,10 +7,14 @@ import com.sunbaby.app.bean.CenterBean;
 import com.sunbaby.app.bean.ClassificationBean;
 import com.sunbaby.app.bean.EditAdressBean;
 import com.sunbaby.app.bean.HomeBean;
+import com.sunbaby.app.bean.JoinBean2;
+import com.sunbaby.app.bean.PayBean;
 import com.sunbaby.app.bean.PersonBean;
+import com.sunbaby.app.bean.PesisongBean;
 import com.sunbaby.app.bean.QueryGoodsByRandBean;
 import com.sunbaby.app.bean.SearchHistoryBean;
 import com.sunbaby.app.bean.SecondGoodsListBean;
+import com.sunbaby.app.bean.UploadFile;
 import com.sunbaby.app.bean.User;
 import com.sunbaby.app.bean.VipBean;
 import com.sunbaby.app.bean.YouerYuan;
@@ -202,7 +206,8 @@ public class RequestClient {
     }
 
 
- public Observable<Object> updatePersonal(String photo, String userName, String userId, String sex) {
+    public Observable<Object> updatePersonal(String photo, String userName, String userId, String
+            sex) {
         return mServerApi.updatePersonal(photo, userName, userId, sex)
                 .map(new HttpResultFuc<Object>())
                 .subscribeOn(Schedulers.io())
@@ -254,6 +259,7 @@ public class RequestClient {
 
     /**
      * 短信验证
+     *
      * @param mobile
      * @param code
      * @param scene
@@ -403,6 +409,70 @@ public class RequestClient {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    /**
+     * 会员初始化
+     *
+     * @param userId
+     * @return
+     */
+    public Observable<JoinBean2> applyRefundInit(String userId) {
+        return mServerApi.applyRefundInit(userId)
+                .map(new HttpResultFuc<JoinBean2>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 支付方式
+     *
+     * @return
+     */
+    public Observable<PayBean> queryPayMethod() {
+        return mServerApi.queryPayMethod()
+                .map(new HttpResultFuc<PayBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 上传单个 或多个 图片
+     *
+     * @param fileName
+     * @param data
+     * @return
+     */
+    public Observable<UploadFile> uploadFile(String fileName, String data) {
+        return mServerApi.uploadFile(data)
+                .map(new HttpResultFuc<UploadFile>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 配送箱列表
+     *
+     * @param user_id
+     * @return
+     */
+    public Observable<PesisongBean> queryDispatching(String user_id) {
+        return mServerApi.queryDispatching(user_id)
+                .map(new HttpResultFuc<PesisongBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 删除配送箱商品
+     * @param user_id
+     * @param dispatching_id
+     * @return
+     */
+    public Observable<Object> deleteDispatching(String user_id, String dispatching_id) {
+        return mServerApi.deleteDispatching(user_id,dispatching_id)
+                .map(new HttpResultFuc<Object>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 
 }
 
