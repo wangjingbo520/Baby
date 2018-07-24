@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -19,20 +18,12 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.sunbaby.app.R;
 import com.sunbaby.app.adapter.MyPeisongRecyAdapter;
-import com.sunbaby.app.adapter.PeisongListViewAdapter;
 import com.sunbaby.app.bean.PesisongBean;
 import com.sunbaby.app.callback.IPeisongView;
 import com.sunbaby.app.common.base.BaseStateViewFragment;
-import com.sunbaby.app.common.utils.DialogWithYesOrNoUtils;
-import com.sunbaby.app.event.EventMessage;
 import com.sunbaby.app.presenter.PeisongPresenter;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author wangjingbo
@@ -43,8 +34,8 @@ public class PeisongFragment extends BaseStateViewFragment implements IPeisongVi
         View.OnClickListener {
     private SmartRefreshLayout smartrefreshlayout;
     private PeisongPresenter peisongPresenter;
-    private ListView listView;
-    private PeisongListViewAdapter peisongListViewAdapter;
+    private RecyclerView recyclerView;
+    private MyPeisongRecyAdapter myPeisongRecyAdapter;
 
     @Override
     public void onClick(View v) {
@@ -61,7 +52,7 @@ public class PeisongFragment extends BaseStateViewFragment implements IPeisongVi
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        EventBus.getDefault().register(this);
+        //    EventBus.getDefault().register(this);
     }
 
     public static PeisongFragment newInstance() {
@@ -91,12 +82,28 @@ public class PeisongFragment extends BaseStateViewFragment implements IPeisongVi
 
     public void initView(View view) {
         peisongPresenter = new PeisongPresenter(getActivity(), this);
-        listView = view.findViewById(R.id.listview);
+        recyclerView = view.findViewById(R.id.recyclerview);
         smartrefreshlayout = view.findViewById(R.id.smartrefreshlayout);
         smartrefreshlayout.setRefreshHeader(new ClassicsHeader(getActivity()));
         smartrefreshlayout.setRefreshFooter(new ClassicsFooter(getActivity()));
         smartrefreshlayout.setEnableLoadmore(false);
         view.findViewById(R.id.tvSure).setOnClickListener(this);
+        myPeisongRecyAdapter = new MyPeisongRecyAdapter(R.layout.item_list_peisong, null);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(myPeisongRecyAdapter);
+
+        myPeisongRecyAdapter.setOnItemChildClickListener(new BaseQuickAdapter
+                .OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                if (view.getId() == R.id.ivDelete) {
+                    //删除配送箱
+
+                }
+
+            }
+        });
+
         smartrefreshlayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
@@ -109,8 +116,12 @@ public class PeisongFragment extends BaseStateViewFragment implements IPeisongVi
     public void queryDispatching(PesisongBean pesisongBean) {
         //配送箱列表
         smartrefreshlayout.finishRefresh();
-        peisongListViewAdapter = new PeisongListViewAdapter(getActivity(), pesisongBean.getList());
-        listView.setAdapter(peisongListViewAdapter);
+        myPeisongRecyAdapter.setNewData(pesisongBean.getList());
+    }
+
+    @Override
+    public void deleteDispatching(int position) {
+
     }
 
     @Override
@@ -118,15 +129,6 @@ public class PeisongFragment extends BaseStateViewFragment implements IPeisongVi
         //配送箱确认回调
     }
 
-    /**
-     * 加入配送箱进行的回调
-     */
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(EventMessage eventMessage) {
-        if (1 == eventMessage.getPosition()) {
-            initData();
-        }
-    }
 
     @Override
     public void onDestroy() {

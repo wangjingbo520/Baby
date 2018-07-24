@@ -125,7 +125,6 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
             public void onRefresh(RefreshLayout refreshlayout) {
                 //下拉刷新
                 currPage = 1;
-                goodsTypeAdapter.setNewData(null);
                 initData();
             }
         });
@@ -145,9 +144,8 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
         if (currPage == 1) {
             if (secondGoodsListBean.getList().size() < 1) {
                 showToast("没有数据");
-//                showEmpty();
             } else {
-                goodsTypeAdapter.addData(secondGoodsListBean.getList());
+                goodsTypeAdapter.setNewData(secondGoodsListBean.getList());
             }
         } else {
             goodsTypeAdapter.addData(secondGoodsListBean.getList());

@@ -33,6 +33,7 @@ public class PeisongListViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+        ToastUtil.showMessage("数量是"+list.size());
         return list.size();
     }
 

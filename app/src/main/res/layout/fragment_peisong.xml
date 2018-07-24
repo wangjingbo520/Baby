@@ -20,17 +20,12 @@
             android:background="@color/white"
             android:scrollbars="none">
 
-            <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/recyclerview"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:cacheColorHint="@null"-->
-                <!--android:scrollbars="vertical" />-->
-
-            <ListView
-                android:id="@+id/listview"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:cacheColorHint="@null"
+                android:scrollbars="vertical" />
 
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 

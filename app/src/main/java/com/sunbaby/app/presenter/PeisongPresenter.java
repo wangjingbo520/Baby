@@ -43,17 +43,17 @@ public class PeisongPresenter extends BasePresenter {
      * @param user_id
      * @param dispatching_id
      */
-//    public void deleteDispatching(final int position, String user_id, String dispatching_id) {
-//        mRequestClient.deleteDispatching(user_id,dispatching_id).subscribe(new ProgressSubscriber<Object>
-//                (mContext) {
-//            @Override
-//            public void onNext(Object object) {
-//                if (null != iPeisongView) {
-//                    iPeisongView.deleteDispatching(position);
-//                }
-//            }
-//        });
-//    }
+    public void deleteDispatching(final int position, String user_id, String dispatching_id) {
+        mRequestClient.deleteDispatching(user_id,dispatching_id).subscribe(new ProgressSubscriber<Object>
+                (mContext) {
+            @Override
+            public void onNext(Object object) {
+                if (null != iPeisongView) {
+                    iPeisongView.deleteDispatching(position);
+                }
+            }
+        });
+    }
 
     public void affirmDispatching(String user_id, String dispatchingJson) {
         mRequestClient.affirmDispatching(user_id,dispatchingJson).subscribe(new ProgressSubscriber<Object>

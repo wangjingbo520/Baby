@@ -10,5 +10,7 @@ import com.sunbaby.app.bean.PesisongBean;
 public interface IPeisongView {
     void queryDispatching(PesisongBean pesisongBean);
 
+    void deleteDispatching(int position);
+
     void affirmDispatching(Object object);
 }
