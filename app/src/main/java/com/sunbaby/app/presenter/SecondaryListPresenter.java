@@ -9,7 +9,7 @@ import com.sunbaby.app.common.base.BasePresenter;
 import com.sunbaby.app.common.utils.ToastUtil;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/20
  * describe
  */

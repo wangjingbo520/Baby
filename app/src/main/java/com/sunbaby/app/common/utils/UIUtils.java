@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/9
  * describe
  */

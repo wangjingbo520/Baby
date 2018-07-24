@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import rx.Subscriber;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/23
  * describe
  */

@@ -477,11 +477,26 @@ public class RequestClient {
 
     /**
      * 添加到配送箱
+     *
      * @param goodsId
      * @return
      */
     public Observable<Object> joinDistributionBox(String goodsId) {
         return mServerApi.joinDistributionBox(goodsId)
+                .map(new HttpResultFuc<Object>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 配送箱确认
+     *
+     * @param user_id
+     * @param dispatchingJson
+     * @return
+     */
+    public Observable<Object> affirmDispatching(String user_id, String dispatchingJson) {
+        return mServerApi.affirmDispatching(user_id, dispatchingJson)
                 .map(new HttpResultFuc<Object>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

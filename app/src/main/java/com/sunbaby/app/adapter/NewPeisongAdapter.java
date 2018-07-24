@@ -11,6 +11,10 @@ import android.widget.TextView;
 import com.sunbaby.app.R;
 import com.sunbaby.app.bean.GuihuangBean;
 import com.sunbaby.app.bean.PesisongBean;
+import com.sunbaby.app.common.api.ProgressSubscriber;
+import com.sunbaby.app.common.api.RequestClient;
+import com.sunbaby.app.common.utils.DialogWithYesOrNoUtils;
+import com.sunbaby.app.common.utils.ToastUtil;
 
 import java.util.List;
 
@@ -18,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/23
  * describe
  */
@@ -33,7 +37,7 @@ public class NewPeisongAdapter extends RecyclerView.Adapter<NewPeisongAdapter.Vi
         this.pesisongBeans = pesisongBeans;
     }
 
-    public void notifiItemDete(int position){
+    public void notifiItemDete(int position) {
         pesisongBeans.remove(position);
         notifyItemRemoved(position);
         notifyDataSetChanged();
@@ -54,14 +58,23 @@ public class NewPeisongAdapter extends RecyclerView.Adapter<NewPeisongAdapter.Vi
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        final PesisongBean.ListBean guihuangBean = pesisongBeans.get(holder.getAdapterPosition());
         holder.ivDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onItemClickListener != null) {
-                    onItemClickListener.onItemDeleteListener(holder.getAdapterPosition(),
-                            guihuangBean);
-                }
+                DialogWithYesOrNoUtils.showDialog(context, "确认要删除吗?", new
+                        DialogWithYesOrNoUtils.DialogCallBack() {
+                            @Override
+                            public void exectEvent() {
+                                RequestClient.getInstance().deleteDispatching("1", pesisongBeans.get
+                                        (position).getId() + "").subscribe(new ProgressSubscriber<Object>
+                                        (context) {
+                                    @Override
+                                    public void onNext(Object object) {
+
+                                    }
+                                });
+                            }
+                        });
             }
         });
     }

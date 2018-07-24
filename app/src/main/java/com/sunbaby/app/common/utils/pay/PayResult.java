@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import java.util.Map;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/18
  * describe
  */

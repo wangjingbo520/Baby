@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/17
  * describe  支付类型,后台可动态配置
  */

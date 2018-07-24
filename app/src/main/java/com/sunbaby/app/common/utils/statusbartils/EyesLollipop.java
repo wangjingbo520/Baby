@@ -17,7 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/12
  * describe
  */

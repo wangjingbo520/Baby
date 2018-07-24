@@ -9,7 +9,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.sunbaby.app.R;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/9
  * describe
  */

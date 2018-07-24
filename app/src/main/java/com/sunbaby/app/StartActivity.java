@@ -23,7 +23,7 @@ import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/6
  * describe 启动页,权限检测
  */

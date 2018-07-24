@@ -6,7 +6,7 @@ import java.security.PrivateKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/18
  * describe
  */

@@ -10,7 +10,7 @@ import com.sunbaby.app.R;
 import com.sunbaby.app.common.base.BaseActivity;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/6
  * describe 原手机号不能接收验证码
  */

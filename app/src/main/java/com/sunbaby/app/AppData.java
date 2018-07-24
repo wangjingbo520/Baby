@@ -11,7 +11,7 @@ import com.sunbaby.app.common.utils.Preferences;
 /**
  * com.sunbaby.app
  *
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/6
  * describe
  */

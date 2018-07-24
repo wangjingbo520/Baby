@@ -28,7 +28,7 @@ import retrofit2.http.POST;
 import rx.Observable;
 
 /**
- * 王静波
+ * wangjingbo
  */
 public interface ServerAPI {
 
@@ -393,6 +393,7 @@ public interface ServerAPI {
 
     /**
      * 添加到配送箱
+     *
      * @param goodsId
      * @return
      */
@@ -401,4 +402,15 @@ public interface ServerAPI {
     Observable<HttpResult<Object>> joinDistributionBox(@Field("goodsId") String goodsId);
 
 
+    /**
+     * 配送箱确认
+     * @param user_id
+     * @param dispatchingJson
+     * @return
+     */
+    @POST("fr/dispatching/affirmDispatching")
+    @FormUrlEncoded
+    Observable<HttpResult<Object>> affirmDispatching(@Field("user_id") String user_id,
+                                                     @Field("dispatchingJson") String
+                                                             dispatchingJson);
 }

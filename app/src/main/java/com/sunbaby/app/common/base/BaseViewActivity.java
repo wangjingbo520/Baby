@@ -6,7 +6,7 @@ import android.support.v7.app.AlertDialog;
 import com.sunbaby.app.common.utils.ToastUtil;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/16
  * describe
  */

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/6
  * describe  联系配送员,确认收获
  */

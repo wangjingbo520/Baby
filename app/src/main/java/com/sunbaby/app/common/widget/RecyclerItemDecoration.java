@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/11
  * describe
  */

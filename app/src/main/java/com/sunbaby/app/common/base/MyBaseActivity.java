@@ -7,7 +7,7 @@ import com.sunbaby.app.AppData;
 import com.sunbaby.app.bean.User;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/19
  * describe 主要用来存储一些方法
  */

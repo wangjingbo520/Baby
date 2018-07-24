@@ -10,7 +10,7 @@ import com.sunbaby.app.common.api.ProgressSubscriber;
 import com.sunbaby.app.common.base.BasePresenter;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/23
  * describe
  */
@@ -43,13 +43,25 @@ public class PeisongPresenter extends BasePresenter {
      * @param user_id
      * @param dispatching_id
      */
-    public void deleteDispatching(final int position, String user_id, String dispatching_id) {
-        mRequestClient.deleteDispatching(user_id,dispatching_id).subscribe(new ProgressSubscriber<Object>
+//    public void deleteDispatching(final int position, String user_id, String dispatching_id) {
+//        mRequestClient.deleteDispatching(user_id,dispatching_id).subscribe(new ProgressSubscriber<Object>
+//                (mContext) {
+//            @Override
+//            public void onNext(Object object) {
+//                if (null != iPeisongView) {
+//                    iPeisongView.deleteDispatching(position);
+//                }
+//            }
+//        });
+//    }
+
+    public void affirmDispatching(String user_id, String dispatchingJson) {
+        mRequestClient.affirmDispatching(user_id,dispatchingJson).subscribe(new ProgressSubscriber<Object>
                 (mContext) {
             @Override
             public void onNext(Object object) {
                 if (null != iPeisongView) {
-                    iPeisongView.deleteDispatching(position);
+                    iPeisongView.affirmDispatching(object);
                 }
             }
         });

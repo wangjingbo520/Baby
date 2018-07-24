@@ -6,7 +6,7 @@ import android.widget.Checkable;
 import android.widget.FrameLayout;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/10
  * describe
  */

@@ -11,7 +11,7 @@ import com.sunbaby.app.R;
 import com.youth.banner.loader.ImageLoader;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/18
  * describe
  */

@@ -18,7 +18,7 @@ import com.sunbaby.app.statusview.StatusLayoutManager;
 import butterknife.Unbinder;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/18
  * describe
  */

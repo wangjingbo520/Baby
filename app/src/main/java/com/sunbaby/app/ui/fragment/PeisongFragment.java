@@ -9,20 +9,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
-import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.sunbaby.app.R;
-import com.sunbaby.app.adapter.NewPeisongAdapter;
+import com.sunbaby.app.adapter.MyPeisongRecyAdapter;
+import com.sunbaby.app.adapter.PeisongListViewAdapter;
 import com.sunbaby.app.bean.PesisongBean;
 import com.sunbaby.app.callback.IPeisongView;
 import com.sunbaby.app.common.base.BaseStateViewFragment;
 import com.sunbaby.app.common.utils.DialogWithYesOrNoUtils;
-import com.sunbaby.app.common.utils.ToastUtil;
 import com.sunbaby.app.event.EventMessage;
 import com.sunbaby.app.presenter.PeisongPresenter;
 
@@ -30,17 +31,32 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/6
  * describe  配送
  */
 public class PeisongFragment extends BaseStateViewFragment implements IPeisongView,
-        NewPeisongAdapter.OnOnDeleteClickListener {
-    private RecyclerView recyclerview;
+        View.OnClickListener {
     private SmartRefreshLayout smartrefreshlayout;
     private PeisongPresenter peisongPresenter;
-    private NewPeisongAdapter peisongAdapter;
+    private ListView listView;
+    private PeisongListViewAdapter peisongListViewAdapter;
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tvSure:
+                //配送箱确认
+                peisongPresenter.affirmDispatching(getUserId(), "");
+                break;
+            default:
+                break;
+        }
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -74,21 +90,17 @@ public class PeisongFragment extends BaseStateViewFragment implements IPeisongVi
     }
 
     public void initView(View view) {
-        recyclerview = view.findViewById(R.id.recyclerview);
-        recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+        peisongPresenter = new PeisongPresenter(getActivity(), this);
+        listView = view.findViewById(R.id.listview);
         smartrefreshlayout = view.findViewById(R.id.smartrefreshlayout);
         smartrefreshlayout.setRefreshHeader(new ClassicsHeader(getActivity()));
         smartrefreshlayout.setRefreshFooter(new ClassicsFooter(getActivity()));
         smartrefreshlayout.setEnableLoadmore(false);
-        peisongPresenter = new PeisongPresenter(getActivity(), this);
+        view.findViewById(R.id.tvSure).setOnClickListener(this);
         smartrefreshlayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 initData();
-            }
-        }).setOnLoadmoreListener(new OnLoadmoreListener() {
-            @Override
-            public void onLoadmore(RefreshLayout refreshlayout) {
             }
         });
     }
@@ -97,33 +109,17 @@ public class PeisongFragment extends BaseStateViewFragment implements IPeisongVi
     public void queryDispatching(PesisongBean pesisongBean) {
         //配送箱列表
         smartrefreshlayout.finishRefresh();
-        peisongAdapter = new NewPeisongAdapter(getActivity(), pesisongBean.getList());
-        recyclerview.setAdapter(peisongAdapter);
-        peisongAdapter.setOnDeleteListenerClickListener(this);
+        peisongListViewAdapter = new PeisongListViewAdapter(getActivity(), pesisongBean.getList());
+        listView.setAdapter(peisongListViewAdapter);
     }
 
     @Override
-    public void deleteDispatching(int position) {
-        //删除成功
-        peisongAdapter.notifiItemDete(position);
-        ToastUtil.showMessage("删除成功");
-    }
-
-    @Override
-    public void onItemDeleteListener(final int pos, final PesisongBean.ListBean listBean) {
-        DialogWithYesOrNoUtils.showDialog(getActivity(), "确认要删除吗?", new
-                DialogWithYesOrNoUtils.DialogCallBack() {
-                    @Override
-                    public void exectEvent() {
-                        peisongPresenter.deleteDispatching(pos, "1", listBean.getId() + "");
-                    }
-                });
+    public void affirmDispatching(Object object) {
+        //配送箱确认回调
     }
 
     /**
      * 加入配送箱进行的回调
-     *
-     * @param eventMessage
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(EventMessage eventMessage) {
@@ -137,4 +133,5 @@ public class PeisongFragment extends BaseStateViewFragment implements IPeisongVi
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+
 }

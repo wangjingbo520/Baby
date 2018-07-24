@@ -3,7 +3,7 @@ package com.sunbaby.app.callback;
 import com.sunbaby.app.bean.CenterBean;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/17
  * describe 个人中心
  */

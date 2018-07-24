@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/23
  * describe
  */

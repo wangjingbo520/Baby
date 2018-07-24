@@ -9,7 +9,7 @@ import android.widget.Scroller;
 import java.lang.reflect.Field;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/7
  * describe
  */

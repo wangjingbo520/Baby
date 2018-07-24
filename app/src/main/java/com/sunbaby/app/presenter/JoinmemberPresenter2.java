@@ -11,7 +11,7 @@ import com.sunbaby.app.common.api.ProgressSubscriber;
 import com.sunbaby.app.common.base.BasePresenter;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/17
  * describe  加入会员
  */

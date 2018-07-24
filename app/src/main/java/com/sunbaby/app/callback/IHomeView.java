@@ -4,7 +4,7 @@ import com.sunbaby.app.bean.HomeBean;
 import com.sunbaby.app.bean.QueryGoodsByRandBean;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/18
  * describe
  */

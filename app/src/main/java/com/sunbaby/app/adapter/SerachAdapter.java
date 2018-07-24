@@ -1,7 +1,7 @@
 package com.sunbaby.app.adapter;
 
 /**
- * @author 王静波
+ * @author wangjingbo
  * @date 2018/7/20
  * describe
  */
