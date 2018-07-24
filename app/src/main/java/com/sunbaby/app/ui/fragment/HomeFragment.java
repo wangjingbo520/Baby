@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.libray.basetools.view.imageview.CircleImageView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
@@ -46,17 +47,17 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
     @BindView(R.id.banner)
     Banner banner;
     @BindView(R.id.iv1)
-    ImageView iv1;
+    CircleImageView iv1;
     @BindView(R.id.iv2)
-    ImageView iv2;
+    CircleImageView iv2;
     @BindView(R.id.iv3)
-    ImageView iv3;
+    CircleImageView iv3;
     @BindView(R.id.iv4)
-    ImageView iv4;
+    CircleImageView iv4;
     @BindView(R.id.iv5)
-    ImageView iv5;
+    CircleImageView iv5;
     @BindView(R.id.iv6)
-    ImageView iv6;
+    CircleImageView iv6;
 
     private HomeFragmentDialog homeFragmentDialog;
     private SmartRefreshLayout smartRefreshLayout;
@@ -160,13 +161,19 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
     }
 
     @Override
-    public void position(int position) {
+    public void joinDistributionBox(Object object) {
+        //加入配送箱成功
+        EventBus.getDefault().post(new EventMessage(1));
+    }
+
+    @Override
+    public void position(int position, QueryGoodsByRandBean queryGoodsByRandBean) {
         if (0 == position) {
             //继续随机
         } else {
             //加入配送箱
-            EventBus.getDefault().post(new EventMessage(1));
+            homePresenter.joinDistributionBox(queryGoodsByRandBean.getId() + "");
+
         }
     }
-
 }

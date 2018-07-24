@@ -463,12 +463,25 @@ public class RequestClient {
 
     /**
      * 删除配送箱商品
+     *
      * @param user_id
      * @param dispatching_id
      * @return
      */
     public Observable<Object> deleteDispatching(String user_id, String dispatching_id) {
-        return mServerApi.deleteDispatching(user_id,dispatching_id)
+        return mServerApi.deleteDispatching(user_id, dispatching_id)
+                .map(new HttpResultFuc<Object>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 添加到配送箱
+     * @param goodsId
+     * @return
+     */
+    public Observable<Object> joinDistributionBox(String goodsId) {
+        return mServerApi.joinDistributionBox(goodsId)
                 .map(new HttpResultFuc<Object>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

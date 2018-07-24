@@ -104,6 +104,7 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
         recyclerview.addItemDecoration(new GridSpacingItemDecoration(3, UIUtils.px2sp(this, 50),
                 false));
         goodsTypeAdapter = new RecySecondaryListAdapter(R.layout.recy_item_wanju, listBeanList);
+        goodsTypeAdapter.openLoadAnimation();
         recyclerview.setAdapter(goodsTypeAdapter);
 
         goodsTypeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {

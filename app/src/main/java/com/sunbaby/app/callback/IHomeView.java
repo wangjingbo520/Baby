@@ -11,4 +11,5 @@ import com.sunbaby.app.bean.QueryGoodsByRandBean;
 public interface IHomeView {
     void queryContentAdvertisementsByHome(HomeBean homeBean);
     void queryGoodsByRand(QueryGoodsByRandBean queryGoodsByRandBean);
+    void joinDistributionBox(Object object);
 }

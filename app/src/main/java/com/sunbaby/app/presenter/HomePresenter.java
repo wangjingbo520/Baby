@@ -52,5 +52,20 @@ public class HomePresenter extends BasePresenter {
         });
     }
 
+    /**
+     * 添加到配送箱
+     * @param goodsId
+     */
+    public void joinDistributionBox(String goodsId) {
+        mRequestClient.joinDistributionBox(goodsId).subscribe(new ProgressSubscriber<Object>(mContext) {
+            @Override
+            public void onNext(Object object) {
+                if (null != iHomeView) {
+                    iHomeView.joinDistributionBox(object);
+                }
+            }
+        });
+    }
+
 
 }

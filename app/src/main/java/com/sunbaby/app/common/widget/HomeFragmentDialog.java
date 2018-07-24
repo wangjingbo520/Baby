@@ -21,20 +21,21 @@ public class HomeFragmentDialog extends Dialog implements View.OnClickListener {
     private DialogCallk dialogCallk;
     private Context context;
     private ImageView ivPic;
+    private QueryGoodsByRandBean queryGoodsByRandBean;
 
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tvLeft:
-                if (dialogCallk != null) {
-                    dialogCallk.position(0);
+                if (dialogCallk != null&&queryGoodsByRandBean!=null) {
+                    dialogCallk.position(0,queryGoodsByRandBean);
                 }
                 dismiss();
                 break;
             case R.id.tvRight:
-                if (dialogCallk != null) {
-                    dialogCallk.position(1);
+                if (dialogCallk != null&&queryGoodsByRandBean!=null) {
+                    dialogCallk.position(1,queryGoodsByRandBean);
                 }
                 dismiss();
                 break;
@@ -44,12 +45,13 @@ public class HomeFragmentDialog extends Dialog implements View.OnClickListener {
     }
 
     public void setData(QueryGoodsByRandBean queryGoodsByRandBean) {
+        this.queryGoodsByRandBean = queryGoodsByRandBean;
         tvName.setText(queryGoodsByRandBean.getGoods_name());
         GlideImageLoader.loadImage(context, queryGoodsByRandBean.getPic_url(), ivPic);
     }
 
     public interface DialogCallk {
-        void position(int postion);
+        void position(int postion,QueryGoodsByRandBean queryGoodsByRandBean);
     }
 
     public HomeFragmentDialog(Context context, DialogCallk dialogCallk, String title, String

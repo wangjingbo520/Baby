@@ -391,5 +391,14 @@ public interface ServerAPI {
             @Field("user_id") String user_id,
             @Field("dispatching_id") String dispatching_id);
 
+    /**
+     * 添加到配送箱
+     * @param goodsId
+     * @return
+     */
+    @POST("fr/dispatching/joinDistributionBox")
+    @FormUrlEncoded
+    Observable<HttpResult<Object>> joinDistributionBox(@Field("goodsId") String goodsId);
+
 
 }

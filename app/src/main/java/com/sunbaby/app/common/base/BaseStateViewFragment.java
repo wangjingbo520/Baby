@@ -1,6 +1,8 @@
 package com.sunbaby.app.common.base;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 
 import com.sunbaby.app.AppData;
 import com.sunbaby.app.bean.User;
@@ -11,6 +13,9 @@ import com.sunbaby.app.bean.User;
  * describe
  */
 public class BaseStateViewFragment extends Fragment {
+
+    private AlertDialog.Builder alertDialog;
+
     public User getUser() {
         return AppData.getInstance().getUser();
     }
@@ -27,5 +32,6 @@ public class BaseStateViewFragment extends Fragment {
             return true;
         }
     }
+
 
 }
