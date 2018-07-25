@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:orientation="vertical"
-    tools:context=".ui.activity.SettingActivity">
+    tools:context=".DistributionActivity">
 
     <LinearLayout
-        android:id="@+id/llPerson"
+        android:id="@+id/llQuhuo"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
         android:layout_marginTop="@dimen/x10"
@@ -22,7 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="个人资料"
+            android:text="取货"
             android:textColor="@color/textColor3"
             android:textSize="@dimen/textSize_32" />
 
@@ -33,9 +31,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/llAdress"
+        android:id="@+id/llJinhuo"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
+        android:layout_below="@id/llQuhuo"
         android:layout_marginTop="@dimen/x2"
         android:background="@drawable/common_click"
         android:gravity="center_vertical"
@@ -47,7 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="收货地址"
+            android:text="进货"
             android:textColor="@color/textColor3"
             android:textSize="@dimen/textSize_32" />
 
@@ -57,4 +56,16 @@
             android:src="@mipmap/icon_right" />
     </LinearLayout>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tvExitLogin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x90"
+        android:layout_alignParentBottom="true"
+        android:background="@color/themeColor"
+        android:gravity="center"
+        android:text="退出登录"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textSize_32" />
+
+
+</RelativeLayout>

@@ -8,8 +8,10 @@ import android.widget.ImageView;
 
 import com.libray.basetools.view.imageview.CircleImageView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.sunbaby.app.R;
 import com.sunbaby.app.bean.HomeBean;
 import com.sunbaby.app.bean.QueryGoodsByRandBean;
@@ -89,6 +91,14 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
         smartRefreshLayout.setRefreshHeader(new ClassicsHeader(mContext));
         smartRefreshLayout.setRefreshFooter(new ClassicsFooter(mContext));
         smartRefreshLayout.setEnableLoadmore(false);
+        smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                if (homePresenter != null) {
+                    initData();
+                }
+            }
+        });
     }
 
     @OnClick({R.id.tvLogin, R.id.tvRegister, R.id.llSuiji, R.id.llFenlei, R.id.llAlltushu, R.id
@@ -137,17 +147,21 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
 
     @Override
     public void queryContentAdvertisementsByHome(HomeBean homeBean) {
+        bannerUrl.clear();
+        if (smartRefreshLayout.isRefreshing()) {
+            smartRefreshLayout.finishRefresh();
+        }
         for (int i = 0; i < homeBean.getBanner().size(); i++) {
             bannerUrl.add(homeBean.getBanner().get(i).getImage_filename());
         }
         banner.setImages(bannerUrl).setDelayTime(3000).setImageLoader(new
                 BannerImageLoader()).start();
-        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(0).getUrl(), iv1);
-        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(1).getUrl(), iv3);
-        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(2).getUrl(), iv3);
-        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(3).getUrl(), iv4);
-        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(4).getUrl(), iv5);
-        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(5).getUrl(), iv6);
+        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(0).getImage_filename(), iv1);
+        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(1).getImage_filename(), iv2);
+        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(2).getImage_filename(), iv3);
+        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(3).getImage_filename(), iv4);
+        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(4).getImage_filename(), iv5);
+        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(5).getImage_filename(), iv6);
     }
 
     @Override
@@ -167,13 +181,19 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
     }
 
     @Override
+    public void onFinish() {
+        if (smartRefreshLayout.isRefreshing()) {
+            smartRefreshLayout.finishRefresh();
+        }
+    }
+
+    @Override
     public void position(int position, QueryGoodsByRandBean queryGoodsByRandBean) {
         if (0 == position) {
             //继续随机
         } else {
             //加入配送箱
             homePresenter.joinDistributionBox(queryGoodsByRandBean.getId() + "");
-
         }
     }
 }

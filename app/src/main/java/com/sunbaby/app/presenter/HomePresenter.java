@@ -34,11 +34,24 @@ public class HomePresenter extends BasePresenter {
                     iHomeView.queryContentAdvertisementsByHome(homeBean);
                 }
             }
+
+            @Override
+            public void onCompleted() {
+                super.onCompleted();
+                iHomeView.onFinish();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                iHomeView.onFinish();
+            }
         });
     }
 
     /**
      * 首页随机商品
+     *
      * @param type
      */
     public void queryGoodsByRand(String type) {
@@ -54,10 +67,12 @@ public class HomePresenter extends BasePresenter {
 
     /**
      * 添加到配送箱
+     *
      * @param goodsId
      */
     public void joinDistributionBox(String goodsId) {
-        mRequestClient.joinDistributionBox(goodsId).subscribe(new ProgressSubscriber<Object>(mContext) {
+        mRequestClient.joinDistributionBox(goodsId).subscribe(new ProgressSubscriber<Object>
+                (mContext) {
             @Override
             public void onNext(Object object) {
                 if (null != iHomeView) {

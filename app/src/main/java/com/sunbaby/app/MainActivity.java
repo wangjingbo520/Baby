@@ -1,6 +1,7 @@
 package com.sunbaby.app;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -12,10 +13,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.sunbaby.app.common.base.BaseActivity;
 import com.sunbaby.app.common.base.MyBaseActivity;
+import com.sunbaby.app.common.utils.statusbartils.Eyes;
 import com.sunbaby.app.event.EventMessage;
 import com.sunbaby.app.ui.fragment.CenterFragment;
 import com.sunbaby.app.ui.fragment.HomeFragment;
+import com.sunbaby.app.ui.fragment.MyPeisongFragment;
 import com.sunbaby.app.ui.fragment.PeisongFragment;
 
 import org.greenrobot.eventbus.EventBus;
@@ -34,7 +38,7 @@ import butterknife.Unbinder;
  * @date 2018/7/6
  * describe 主界面
  */
-public class MainActivity extends MyBaseActivity {
+public class MainActivity extends BaseActivity {
     @BindView(R.id.tab_home_imageview)
     ImageView tabHomeImageview;
     @BindView(R.id.tab_home_textview)
@@ -47,23 +51,24 @@ public class MainActivity extends MyBaseActivity {
     ImageView tabUserImageview;
     @BindView(R.id.tab_center_textview)
     TextView tabCenterTextview;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;@BindView(R.id.tab_peisong)
+    @BindView(R.id.Mytitle)
+    TextView tvTitle;
+    @BindView(R.id.tab_peisong)
     LinearLayout tab_peisong;
 
     private HomeFragment homeFragment;
     private PeisongFragment peisongFragment;
+
     private CenterFragment centerFragment;
     public static String MAININDEX = "MAININDEX";
     private String[] title = {"首页", "配送箱", "中心"};
-    private Unbinder mUnbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setLayout(R.layout.activity_main);
+        setTitleLayoutVisiable(false);
         EventBus.getDefault().register(this);
-        mUnbinder = ButterKnife.bind(this);
         if (!TextUtils.isEmpty(getIntent().getStringExtra(MAININDEX))) {
             int index = Integer.parseInt(getIntent().getStringExtra(MAININDEX));
             initFragment(index);
@@ -132,7 +137,9 @@ public class MainActivity extends MyBaseActivity {
     }
 
     @OnClick({R.id.tab_home, R.id.tab_peisong, R.id.tab_center})
+    @Override
     public void onClick(View view) {
+        super.onClick(view);
         restartBotton();
         switch (view.getId()) {
             case R.id.tab_home:
@@ -161,10 +168,7 @@ public class MainActivity extends MyBaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mUnbinder != null) {
-            mUnbinder.unbind();
-        }
-        if(EventBus.getDefault().isRegistered(this)) {
+        if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
     }
@@ -180,11 +184,14 @@ public class MainActivity extends MyBaseActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(EventMessage eventMessage) {
-        if (1==eventMessage.getPosition()) {
+        if (1 == eventMessage.getPosition()) {
             restartBotton();
             tvTitle.setText("配送箱");
             tabRongtongImageview.setImageResource(R.mipmap.peiy);
             tabPeisongTextview.setTextColor(ContextCompat.getColor(this, R.color.themeColor));
+            if (peisongFragment != null) {
+                EventBus.getDefault().post(new EventMessage(2));
+            }
             initFragment(1);
         }
     }

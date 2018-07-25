@@ -16,9 +16,9 @@
         android:id="@+id/tvName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/x20"
+        android:background="@color/white"
         android:gravity="center"
-        android:text=""
+        android:padding="@dimen/x10"
         android:textColor="@color/textColor6"
         android:textSize="@dimen/textSize_32" />
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,11 +7,47 @@
     android:orientation="vertical"
     tools:context=".ui.fragment.HomeFragment">
 
+    <LinearLayout
+        android:id="@+id/llBottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x120"
+        android:layout_alignParentBottom="true"
+        android:background="@color/background"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/x30"
+        android:paddingRight="@dimen/x30">
+
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x90"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn_login"
+            android:gravity="center"
+            android:text="登录"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize_36" />
+
+        <TextView
+            android:id="@+id/tvRegister"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x90"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn_register"
+            android:gravity="center"
+            android:text="注册会员"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize_36" />
+
+    </LinearLayout>
+
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/smartrefreshlayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_above="@id/llBottom"
         android:background="@color/white"
         android:scrollbars="none">
 
@@ -260,40 +296,5 @@
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x120"
-        android:background="@color/background"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/x30"
-        android:paddingRight="@dimen/x30">
 
-        <TextView
-            android:id="@+id/tvLogin"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/x90"
-            android:layout_weight="1"
-            android:background="@drawable/bg_btn_login"
-            android:gravity="center"
-            android:text="登录"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textSize_36" />
-
-        <TextView
-            android:id="@+id/tvRegister"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/x90"
-            android:layout_marginLeft="@dimen/x20"
-            android:layout_weight="1"
-            android:background="@drawable/bg_btn_register"
-            android:gravity="center"
-            android:text="注册会员"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textSize_36" />
-
-
-    </LinearLayout>
-
-
-</LinearLayout>
+</RelativeLayout>

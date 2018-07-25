@@ -30,16 +30,19 @@ public class NewPeisongAdapter extends RecyclerView.Adapter<NewPeisongAdapter.Vi
 
     private Context context;
     private List<PesisongBean.ListBean> pesisongBeans;
-    private OnOnDeleteClickListener onItemClickListener;
 
-    public NewPeisongAdapter(Context context, List<PesisongBean.ListBean> pesisongBeans) {
+    public NewPeisongAdapter(Context context) {
         this.context = context;
+    }
+
+    public void setData(List<PesisongBean.ListBean> pesisongBeans) {
         this.pesisongBeans = pesisongBeans;
+        notifyDataSetChanged();
     }
 
     public void notifiItemDete(int position) {
         pesisongBeans.remove(position);
-        notifyItemRemoved(position);
+        notifyItemRangeChanged(0, getItemCount());
         notifyDataSetChanged();
     }
 
@@ -53,11 +56,13 @@ public class NewPeisongAdapter extends RecyclerView.Adapter<NewPeisongAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return pesisongBeans.size();
+        return pesisongBeans == null ? 0 : pesisongBeans.size();
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
+        ViewHolder viewHolder = holder;
+        viewHolder.tvName.setText(pesisongBeans.get(position).getGoods_name());
         holder.ivDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,21 +75,13 @@ public class NewPeisongAdapter extends RecyclerView.Adapter<NewPeisongAdapter.Vi
                                         (context) {
                                     @Override
                                     public void onNext(Object object) {
-
+                                        notifiItemDete(position);
                                     }
                                 });
                             }
                         });
             }
         });
-    }
-
-    public void setOnDeleteListenerClickListener(OnOnDeleteClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-    }
-
-    public interface OnOnDeleteClickListener {
-        void onItemDeleteListener(int pos, PesisongBean.ListBean listBean);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

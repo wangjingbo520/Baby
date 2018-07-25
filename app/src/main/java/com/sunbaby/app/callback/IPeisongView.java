@@ -13,4 +13,6 @@ public interface IPeisongView {
     void deleteDispatching(int position);
 
     void affirmDispatching(Object object);
+
+    void onFinish();
 }

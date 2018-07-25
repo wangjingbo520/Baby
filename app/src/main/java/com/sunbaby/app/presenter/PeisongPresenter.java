@@ -22,7 +22,6 @@ public class PeisongPresenter extends BasePresenter {
         this.iPeisongView = iPeisongView;
     }
 
-
     /**
      * 配送箱列表
      */
@@ -35,6 +34,19 @@ public class PeisongPresenter extends BasePresenter {
                     iPeisongView.queryDispatching(pesisongBean);
                 }
             }
+
+            @Override
+            public void onCompleted() {
+                super.onCompleted();
+                iPeisongView.onFinish();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                iPeisongView.onFinish();
+            }
+
         });
     }
 

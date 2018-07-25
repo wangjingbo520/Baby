@@ -1,0 +1,13 @@
+ //       GridLayoutManager mgr = new GridLayoutManager(this, 3);
+//        recyclerview.setLayoutManager(mgr);
+//        recyclerview.addItemDecoration(new GridSpacingItemDecoration(3, UIUtils.px2sp(this, 50),
+//                false));
+//        goodsTypeAdapter = new RecySecondaryListAdapter(R.layout.recy_item_wanju, listBeanList);
+//        //  goodsTypeAdapter.openLoadAnimation();
+//        recyclerview.setAdapter(goodsTypeAdapter);
+//
+//        goodsTypeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+//            }
+//        });

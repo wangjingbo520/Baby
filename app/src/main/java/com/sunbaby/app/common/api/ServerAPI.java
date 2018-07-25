@@ -404,6 +404,7 @@ public interface ServerAPI {
 
     /**
      * 配送箱确认
+     *
      * @param user_id
      * @param dispatchingJson
      * @return
@@ -413,4 +414,13 @@ public interface ServerAPI {
     Observable<HttpResult<Object>> affirmDispatching(@Field("user_id") String user_id,
                                                      @Field("dispatchingJson") String
                                                              dispatchingJson);
+
+    /**
+     * 退出登录
+     *
+     * @return
+     */
+    @POST("/account/logout")
+    @FormUrlEncoded
+    Observable<HttpResult<Object>> logout();
 }

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.GridView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -45,10 +46,8 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
     @BindView(R.id.etSearch)
     EditText etSearch;
 
-    private List<SecondGoodsListBean.ListBean> listBeanList;
     private RecySecondaryListAdapter goodsTypeAdapter;
     private SecondaryListPresenter secondaryListPresenter;
-    private SecondGoodsListBean secondGoodsListBean;
     /**
      * 类别
      */
@@ -63,12 +62,6 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
     public static void start(Context context, String type) {
         Intent starter = new Intent(context, SecondaryListActivity.class);
         starter.putExtra("type", type);
-        context.startActivity(starter);
-    }
-
-    public static void startSearch(Context context, String scount_name) {
-        Intent starter = new Intent(context, SecondaryListActivity.class);
-        starter.putExtra("scount_name", scount_name);
         context.startActivity(starter);
     }
 
@@ -94,17 +87,15 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
             scount_name = getIntent().getStringExtra("scount_name");
         }
         secondaryListPresenter = new SecondaryListPresenter(mContext, this);
-        listBeanList = new ArrayList<>();
         smartrefreshlayout = findViewById(R.id.smartrefreshlayout);
         smartrefreshlayout.setRefreshHeader(new ClassicsHeader(mContext));
         smartrefreshlayout.setRefreshFooter(new ClassicsFooter(mContext));
         smartrefreshlayout.setEnableLoadmore(false);
         GridLayoutManager mgr = new GridLayoutManager(this, 3);
         recyclerview.setLayoutManager(mgr);
-        recyclerview.addItemDecoration(new GridSpacingItemDecoration(3, UIUtils.px2sp(this, 50),
+        recyclerview.addItemDecoration(new GridSpacingItemDecoration(3, UIUtils.px2sp(this, 60),
                 false));
-        goodsTypeAdapter = new RecySecondaryListAdapter(R.layout.recy_item_wanju, listBeanList);
-        goodsTypeAdapter.openLoadAnimation();
+        goodsTypeAdapter = new RecySecondaryListAdapter(R.layout.recy_item_wanju, null);
         recyclerview.setAdapter(goodsTypeAdapter);
 
         goodsTypeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -124,6 +115,7 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 //下拉刷新
+                scount_name = etSearch.getText().toString().trim();
                 currPage = 1;
                 initData();
             }
@@ -132,7 +124,6 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
 
     @Override
     public void querydayGoodsByRand(SecondGoodsListBean secondGoodsListBean) {
-        this.secondGoodsListBean = secondGoodsListBean;
         smartrefreshlayout.finishRefresh();
         smartrefreshlayout.finishLoadmore();
         if (currPage < secondGoodsListBean.getPages()) {
@@ -159,7 +150,6 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
             return;
         }
         currPage = 1;
-        goodsTypeAdapter.setNewData(null);
         initData();
     }
 

@@ -502,6 +502,18 @@ public class RequestClient {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    /**
+     * 退出登录
+     *
+     * @return
+     */
+    public Observable<Object> logout() {
+        return mServerApi.logout()
+                .map(new HttpResultFuc<Object>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
 }
 
 
