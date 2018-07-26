@@ -11,29 +11,66 @@
         android:layout_height="@dimen/x150"
         android:src="@mipmap/default_pic" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/x30"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x30"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/textColor3"
+                android:textSize="@dimen/textSize_32" />
+
+            <ImageView
+                android:id="@+id/ivDelete"
+                android:layout_width="@dimen/x50"
+                android:layout_height="@dimen/x50"
+                android:padding="@dimen/x10"
+                android:src="@mipmap/delete" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivAddNumber"
+            android:layout_width="@dimen/x45"
+            android:layout_height="@dimen/x45"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bg_add_delete"
+            android:gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/add" />
 
         <TextView
-            android:id="@+id/tvName"
-            android:layout_width="0dp"
+            android:id="@+id/tvNumber"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="励志数据"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_toLeftOf="@id/ivAddNumber"
             android:textColor="@color/textColor3"
             android:textSize="@dimen/textSize_32" />
 
         <ImageView
-            android:id="@+id/ivDelete"
-            android:layout_width="@dimen/x50"
-            android:layout_height="@dimen/x50"
-            android:padding="@dimen/x10"
-            android:src="@mipmap/delete" />
+            android:id="@+id/ivDeleteNumber"
+            android:layout_width="@dimen/x45"
+            android:layout_height="@dimen/x45"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/tvNumber"
+            android:background="@drawable/bg_add_delete"
+            android:gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/deletes" />
 
-    </LinearLayout>
-
+    </RelativeLayout>
 
 </LinearLayout>

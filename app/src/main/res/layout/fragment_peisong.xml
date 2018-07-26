@@ -1,75 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/multipleStatusView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingTop="@dimen/x1"
     tools:context=".ui.fragment.PeisongFragment">
 
-    <com.sunbaby.app.common.widget.MultipleStatusView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+    <include
+        layout="@layout/view_empty"
+        android:visibility="gone" />
 
+    <LinearLayout
+        android:id="@+id/llContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:id="@+id/smartrefreshlayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:background="@color/white"
             android:scrollbars="none">
 
             <ListView
                 android:id="@+id/listView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-            <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/recyclerview"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:cacheColorHint="@null"-->
-                <!--android:scrollbars="vertical" />-->
+                android:layout_height="match_parent" />
 
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-    </com.sunbaby.app.common.widget.MultipleStatusView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="@dimen/x20"
-        android:text="您当前已持有书籍（5/5）
-您当前已持有玩具（1/2）"
-        android:textColor="@color/textColor6"
-        android:textSize="@dimen/textSize_32" />
+            <TextView
+                android:id="@+id/tvShuji"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="@dimen/x20"
+                android:textColor="@color/textColor6"
+                android:textSize="@dimen/textSize_32" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="@dimen/x20"
-        android:text="温馨提示：当前已持有书籍超过最大限额，请先进行归还。"
-        android:textColor="#fc5151"
-        android:textSize="@dimen/textSize_32" />
+            <TextView
+                android:id="@+id/tvWanju"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="@dimen/x20"
+                android:paddingLeft="@dimen/x20"
+                android:paddingRight="@dimen/x20"
+                android:textColor="@color/textColor6"
+                android:textSize="@dimen/textSize_32" />
 
-    <TextView
-        android:id="@+id/tvSure"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x90"
-        android:layout_marginBottom="@dimen/x50"
-        android:layout_marginLeft="@dimen/x80"
-        android:layout_marginRight="@dimen/x80"
-        android:layout_marginTop="@dimen/x50"
-        android:background="@drawable/bg_btn_login"
-        android:gravity="center"
-        android:text="确定"
-        android:textColor="@color/white"
-        android:textSize="@dimen/textSize_32" />
+            <TextView
+                android:id="@+id/tvTishi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/x20"
+                android:paddingRight="@dimen/x20"
+                android:text="温馨提示：当前已持有书籍或玩具超过最大限额，请先进行归还。"
+                android:textColor="#fc5151"
+                android:textSize="@dimen/textSize_32"
+                android:visibility="gone" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/tvSure"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x90"
+                android:layout_marginBottom="@dimen/x50"
+                android:layout_marginLeft="@dimen/x80"
+                android:layout_marginRight="@dimen/x80"
+                android:layout_marginTop="@dimen/x50"
+                android:background="@drawable/bg_btn_login"
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSize_32" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</FrameLayout>
+
+
+
+
+
 
 
 

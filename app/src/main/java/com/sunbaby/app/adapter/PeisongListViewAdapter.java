@@ -13,6 +13,10 @@ import com.sunbaby.app.bean.PesisongBean;
 import com.sunbaby.app.common.api.ProgressSubscriber;
 import com.sunbaby.app.common.api.RequestClient;
 import com.sunbaby.app.common.utils.NDialog;
+import com.sunbaby.app.common.utils.ToastUtil;
+import com.sunbaby.app.event.EventMessage;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -26,13 +30,17 @@ public class PeisongListViewAdapter extends BaseAdapter {
     private Context context;
     private List<PesisongBean.ListBean> listBeans;
     private NDialog alertDialog;
+    private int tushuMax;
+    private int wanjuMax;
 
     public PeisongListViewAdapter(Context context) {
         this.context = context;
     }
 
-    public void setData(List<PesisongBean.ListBean> listBeans) {
+    public void setData(List<PesisongBean.ListBean> listBeans, int tushuMax, int wanjuMax) {
         this.listBeans = listBeans;
+        this.tushuMax = tushuMax;
+        this.wanjuMax = wanjuMax;
         notifyDataSetChanged();
         alertDialog = new NDialog(context);
     }
@@ -59,18 +67,59 @@ public class PeisongListViewAdapter extends BaseAdapter {
             holder = new ViewHolder();
             arg1 = View.inflate(context, R.layout.item_list_peisong, null);
             holder.ivDelete = arg1.findViewById(R.id.ivDelete);
+            holder.tvNumber = arg1.findViewById(R.id.tvNumber);
             holder.tvName = arg1.findViewById(R.id.tvName);
+            holder.ivDeleteNumber = arg1.findViewById(R.id.ivDeleteNumber);
+            holder.ivAddNumber = arg1.findViewById(R.id.ivAddNumber);
             arg1.setTag(holder);
         } else {
             holder = (ViewHolder) arg1.getTag();
         }
 
+        holder.tvNumber.setText(getItem(arg0).getGoods_num() + "");
         holder.tvName.setText(getItem(arg0).getGoods_name());
         holder.ivDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //  删除配送箱商品
                 delete(arg0);
+            }
+        });
+
+        holder.ivDeleteNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final int index = arg0;
+                if (listBeans.get(index).getGoods_num() <= 1) {
+                    delete(index);
+                } else {
+                    listBeans.get(index).setGoods_num(listBeans.get(index).getGoods_num() - 1);
+                    notifyDataSetChanged();
+                }
+            }
+        });
+
+        holder.ivAddNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int index = arg0;
+                int type = listBeans.get(index).getGoods_type_id();
+                if (1 == type) {
+                    //图书
+                    if (listBeans.get(index).getGoods_num() < tushuMax) {
+                        listBeans.get(index).setGoods_num(listBeans.get(index).getGoods_num() + 1);
+                    } else {
+                        ToastUtil.showMessage("图书已达到最大的数量");
+                    }
+                } else {
+                    //玩具
+                    if (listBeans.get(index).getGoods_num() < wanjuMax) {
+                        listBeans.get(index).setGoods_num(listBeans.get(index).getGoods_num() + 1);
+                    } else {
+                        ToastUtil.showMessage("玩具已达到最大的数量");
+                    }
+                }
+                notifyDataSetChanged();
             }
         });
         return arg1;
@@ -102,6 +151,10 @@ public class PeisongListViewAdapter extends BaseAdapter {
                                         public void onNext(Object object) {
                                             listBeans.remove(getItem(position));
                                             notifyDataSetChanged();
+                                            //没有数据的时候展示无数据视图
+                                            if (listBeans.size() < 1) {
+                                                EventBus.getDefault().post(new EventMessage(2));
+                                            }
                                         }
                                     });
                         }
@@ -113,5 +166,12 @@ public class PeisongListViewAdapter extends BaseAdapter {
     static class ViewHolder {
         ImageView ivDelete;
         TextView tvName;
+        TextView tvNumber;
+        ImageView ivDeleteNumber;
+        ImageView ivAddNumber;
+    }
+
+    public List<PesisongBean.ListBean> getDatas() {
+        return listBeans;
     }
 }

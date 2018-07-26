@@ -15,6 +15,7 @@ import com.sunbaby.app.bean.PesisongBean;
 import com.sunbaby.app.bean.QueryGoodsByRandBean;
 import com.sunbaby.app.bean.SearchHistoryBean;
 import com.sunbaby.app.bean.SecondGoodsListBean;
+import com.sunbaby.app.bean.SureBean;
 import com.sunbaby.app.bean.UploadFile;
 import com.sunbaby.app.bean.User;
 import com.sunbaby.app.bean.VipBean;
@@ -411,8 +412,8 @@ public interface ServerAPI {
      */
     @POST("fr/dispatching/affirmDispatching")
     @FormUrlEncoded
-    Observable<HttpResult<Object>> affirmDispatching(@Field("user_id") String user_id,
-                                                     @Field("dispatchingJson") String
+    Observable<HttpResult<SureBean>> affirmDispatching(@Field("user_id") String user_id,
+                                                       @Field("dispatchingJson") String
                                                              dispatchingJson);
 
     /**
@@ -421,6 +422,5 @@ public interface ServerAPI {
      * @return
      */
     @POST("/account/logout")
-    @FormUrlEncoded
     Observable<HttpResult<Object>> logout();
 }

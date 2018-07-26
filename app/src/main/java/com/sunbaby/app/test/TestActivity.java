@@ -49,19 +49,19 @@ public class TestActivity extends TestBaseActivity {
 
     @Override
     protected void initStatusLayout() {
-        statusLayoutManager = StatusLayoutManager.newBuilder(this)
-                .contentView(R.layout.activity_test)
-                .emptyDataView(R.layout.activity_emptydata)
-                .errorView(R.layout.activity_error)
-                .loadingView(R.layout.activity_loading)
-                .emptyDataRetryViewId(R.id.button_retry)
-                .onRetryListener(new OnRetryListener() {
-                    @Override
-                    public void onRetry() {
-                        statusLayoutManager.showContent();
-                    }
-                })
-                .netWorkErrorView(R.layout.activity_networkerror).build();
+//        statusLayoutManager = StatusLayoutManager.newBuilder(this)
+//                .contentView(R.layout.activity_test)
+//                .emptyDataView(R.layout.activity_emptydata)
+//                .errorView(R.layout.activity_error)
+//                .loadingView(R.layout.activity_loading)
+//                .emptyDataRetryViewId(R.id.button_retry)
+//                .onRetryListener(new OnRetryListener() {
+//                    @Override
+//                    public void onRetry() {
+//                        statusLayoutManager.showContent();
+//                    }
+//                })
+//                .netWorkErrorView(R.layout.activity_networkerror).build();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.sunbaby.app.callback;
 
 import com.sunbaby.app.bean.PesisongBean;
+import com.sunbaby.app.bean.SureBean;
 
 /**
  * @author wangjingbo
@@ -12,7 +13,7 @@ public interface IPeisongView {
 
     void deleteDispatching(int position);
 
-    void affirmDispatching(Object object);
+    void affirmDispatching(SureBean sureBean);
 
     void onFinish();
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.sunbaby.app.bean.PayBean;
 import com.sunbaby.app.bean.PesisongBean;
+import com.sunbaby.app.bean.SureBean;
 import com.sunbaby.app.callback.IMypayView;
 import com.sunbaby.app.callback.IPeisongView;
 import com.sunbaby.app.common.api.ProgressSubscriber;
@@ -68,12 +69,12 @@ public class PeisongPresenter extends BasePresenter {
     }
 
     public void affirmDispatching(String user_id, String dispatchingJson) {
-        mRequestClient.affirmDispatching(user_id,dispatchingJson).subscribe(new ProgressSubscriber<Object>
+        mRequestClient.affirmDispatching(user_id,dispatchingJson).subscribe(new ProgressSubscriber<SureBean>
                 (mContext) {
             @Override
-            public void onNext(Object object) {
+            public void onNext(SureBean sureBean) {
                 if (null != iPeisongView) {
-                    iPeisongView.affirmDispatching(object);
+                    iPeisongView.affirmDispatching(sureBean);
                 }
             }
         });

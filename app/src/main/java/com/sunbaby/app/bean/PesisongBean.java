@@ -18,6 +18,8 @@ public class PesisongBean {
      * holding_books_max : 9
      */
 
+
+
     private int goods_toy_num;
     private String holding_toy_max;
     private int goods_books_num;
@@ -82,7 +84,7 @@ public class PesisongBean {
         private int goods_num;
         private long id;
         private long time;
-        private long goods_type_id;
+        private int goods_type_id;
         private int status;
 
         public String getGoods_name() {
@@ -133,11 +135,11 @@ public class PesisongBean {
             this.time = time;
         }
 
-        public long getGoods_type_id() {
+        public int getGoods_type_id() {
             return goods_type_id;
         }
 
-        public void setGoods_type_id(long goods_type_id) {
+        public void setGoods_type_id(int goods_type_id) {
             this.goods_type_id = goods_type_id;
         }
 

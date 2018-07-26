@@ -22,4 +22,12 @@ public class GlideImageLoader {
                         .diskCacheStrategy(DiskCacheStrategy.ALL))
                 .into(imageView);
     }
+
+    public static void loadImage(Context context, String url, ImageView imageView, int resId) {
+        Glide.with(context)
+                .load(url)
+                .apply(new RequestOptions().placeholder(resId).error(resId).centerCrop()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL))
+                .into(imageView);
+    }
 }

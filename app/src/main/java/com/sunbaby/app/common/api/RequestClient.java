@@ -14,6 +14,7 @@ import com.sunbaby.app.bean.PesisongBean;
 import com.sunbaby.app.bean.QueryGoodsByRandBean;
 import com.sunbaby.app.bean.SearchHistoryBean;
 import com.sunbaby.app.bean.SecondGoodsListBean;
+import com.sunbaby.app.bean.SureBean;
 import com.sunbaby.app.bean.UploadFile;
 import com.sunbaby.app.bean.User;
 import com.sunbaby.app.bean.VipBean;
@@ -495,9 +496,9 @@ public class RequestClient {
      * @param dispatchingJson
      * @return
      */
-    public Observable<Object> affirmDispatching(String user_id, String dispatchingJson) {
+    public Observable<SureBean> affirmDispatching(String user_id, String dispatchingJson) {
         return mServerApi.affirmDispatching(user_id, dispatchingJson)
-                .map(new HttpResultFuc<Object>())
+                .map(new HttpResultFuc<SureBean>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.sunbaby.app.AppData;
 import com.sunbaby.app.bean.User;
+import com.sunbaby.app.common.utils.DialogWithYesOrNoUtils;
+import com.sunbaby.app.ui.activity.LoginActivity;
 
 /**
  * @author wangjingbo
@@ -27,16 +29,18 @@ public class MyBaseActivity extends AppCompatActivity {
         }
     }
 
-    public boolean userIsLogin(boolean startToLogin) {
+    public boolean userIsLogin(final boolean startToLogin) {
         User user = AppData.getInstance().getUser();
         if (null == user) {
-            if (startToLogin) {
-                //   startTo(LoginActivity.class);
-            }
+            DialogWithYesOrNoUtils.showDialog(this, "请先进行登录", new DialogWithYesOrNoUtils
+                    .DialogCallBack() {
+                @Override
+                public void exectEvent() {
+                    startTo(LoginActivity.class, startToLogin);
+                }
+            });
             return false;
         }
         return true;
     }
-
-
 }

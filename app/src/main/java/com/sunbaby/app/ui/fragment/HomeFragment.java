@@ -3,8 +3,10 @@ package com.sunbaby.app.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.libray.basetools.view.imageview.CircleImageView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -22,13 +24,11 @@ import com.sunbaby.app.common.utils.statusbartils.BannerImageLoader;
 import com.sunbaby.app.common.widget.HomeFragmentDialog;
 import com.sunbaby.app.event.EventMessage;
 import com.sunbaby.app.presenter.HomePresenter;
-import com.sunbaby.app.ui.activity.AllBookActivity;
 import com.sunbaby.app.ui.activity.ClassificationActivity;
 import com.sunbaby.app.ui.activity.LoginActivity;
 import com.sunbaby.app.ui.activity.RegisterActivity;
 import com.sunbaby.app.ui.activity.SecondaryListActivity;
 import com.youth.banner.Banner;
-
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -36,7 +36,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * @author wangjingbo
@@ -60,6 +62,9 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
     CircleImageView iv5;
     @BindView(R.id.iv6)
     CircleImageView iv6;
+    @BindView(R.id.llBottom)
+    LinearLayout llBottom;
+    Unbinder unbinder;
 
     private HomeFragmentDialog homeFragmentDialog;
     private SmartRefreshLayout smartRefreshLayout;
@@ -71,6 +76,16 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getUser() != null) {
+            llBottom.setVisibility(View.GONE);
+        } else {
+            llBottom.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -108,12 +123,10 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
             case R.id.tvLogin:
                 //登录
                 startActivity(new Intent(mContext, LoginActivity.class));
-                mContext.finish();
                 break;
             case R.id.tvRegister:
                 //注册
                 startActivity(new Intent(mContext, RegisterActivity.class));
-                mContext.finish();
                 break;
             case R.id.llSuiji:
                 //图书随机
@@ -156,12 +169,18 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
         }
         banner.setImages(bannerUrl).setDelayTime(3000).setImageLoader(new
                 BannerImageLoader()).start();
-        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(0).getImage_filename(), iv1);
-        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(1).getImage_filename(), iv2);
-        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(2).getImage_filename(), iv3);
-        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(3).getImage_filename(), iv4);
-        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(4).getImage_filename(), iv5);
-        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(5).getImage_filename(), iv6);
+        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(0)
+                .getImage_filename(), iv1);
+        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(1)
+                .getImage_filename(), iv2);
+        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(2)
+                .getImage_filename(), iv3);
+        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(3)
+                .getImage_filename(), iv4);
+        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(4)
+                .getImage_filename(), iv5);
+        GlideImageLoader.loadImage(mContext, homeBean.getFunctional_diagram().get(5)
+                .getImage_filename(), iv6);
     }
 
     @Override
@@ -195,5 +214,20 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
             //加入配送箱
             homePresenter.joinDistributionBox(queryGoodsByRandBean.getId() + "");
         }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+            savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

@@ -63,6 +63,7 @@ dependencies {
     implementation 'com.github.iwgang:countdownview:2.1.6'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-4'
     implementation 'com.youth.banner:banner:1.4.10'
+    implementation 'com.airbnb.android:lottie:2.1.0'
     implementation('com.github.hotchemi:permissionsdispatcher:2.4.0') {
         exclude module: "support-v13"
     }
@@ -71,4 +72,5 @@ dependencies {
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     //支付宝
     implementation files('libs/alipaySdk-20180601.jar')
+    implementation 'com.alibaba:fastjson:1.2.47'
 }

@@ -1,37 +1,33 @@
 package com.sunbaby.app;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sunbaby.app.common.base.BaseActivity;
-import com.sunbaby.app.common.base.MyBaseActivity;
-import com.sunbaby.app.common.utils.statusbartils.Eyes;
+import com.sunbaby.app.common.utils.ToastUtil;
 import com.sunbaby.app.event.EventMessage;
 import com.sunbaby.app.ui.fragment.CenterFragment;
 import com.sunbaby.app.ui.fragment.HomeFragment;
-import com.sunbaby.app.ui.fragment.MyPeisongFragment;
 import com.sunbaby.app.ui.fragment.PeisongFragment;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.List;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * @author wangjingbo
@@ -62,6 +58,7 @@ public class MainActivity extends BaseActivity {
     private CenterFragment centerFragment;
     public static String MAININDEX = "MAININDEX";
     private String[] title = {"首页", "配送箱", "中心"};
+    private long mExitTime;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -140,25 +137,33 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onClick(View view) {
         super.onClick(view);
-        restartBotton();
         switch (view.getId()) {
             case R.id.tab_home:
+                restartBotton();
                 tvTitle.setText("首页");
                 tabHomeImageview.setImageResource(R.mipmap.homey);
                 tabHomeTextview.setTextColor(ContextCompat.getColor(this, R.color.themeColor));
                 initFragment(0);
                 break;
             case R.id.tab_peisong:
-                tvTitle.setText("配送箱");
-                tabRongtongImageview.setImageResource(R.mipmap.peiy);
-                tabPeisongTextview.setTextColor(ContextCompat.getColor(this, R.color.themeColor));
-                initFragment(1);
+                if (userIsLogin(false)) {
+                    restartBotton();
+                    tvTitle.setText("配送箱");
+                    tabRongtongImageview.setImageResource(R.mipmap.peiy);
+                    tabPeisongTextview.setTextColor(ContextCompat.getColor(this, R.color
+                            .themeColor));
+                    initFragment(1);
+                }
                 break;
             case R.id.tab_center:
-                tvTitle.setText("中心");
-                tabUserImageview.setImageResource(R.mipmap.gey);
-                tabCenterTextview.setTextColor(ContextCompat.getColor(this, R.color.themeColor));
-                initFragment(2);
+                if (userIsLogin(false)) {
+                    restartBotton();
+                    tvTitle.setText("中心");
+                    tabUserImageview.setImageResource(R.mipmap.gey);
+                    tabCenterTextview.setTextColor(ContextCompat.getColor(this, R.color
+                            .themeColor));
+                    initFragment(2);
+                }
                 break;
             default:
                 break;
@@ -196,4 +201,23 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            exit();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void exit() {
+        if ((System.currentTimeMillis() - mExitTime) > 2000) {
+            ToastUtil.showMessage("再按一次退出应用");
+            mExitTime = System.currentTimeMillis();
+        } else {
+            finish();
+            System.exit(0);
+        }
+    }
 }

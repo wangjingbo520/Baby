@@ -16,7 +16,8 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/x30"
-        android:paddingRight="@dimen/x30">
+        android:paddingRight="@dimen/x30"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tvLogin"
@@ -114,8 +115,7 @@
                         <com.libray.basetools.view.imageview.CircleImageView
                             android:id="@+id/iv1"
                             android:layout_width="@dimen/x150"
-                            android:layout_height="@dimen/x150"
-                            android:src="@mipmap/default_pic" />
+                            android:layout_height="@dimen/x150" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -140,8 +140,7 @@
                         <com.libray.basetools.view.imageview.CircleImageView
                             android:id="@+id/iv2"
                             android:layout_width="@dimen/x150"
-                            android:layout_height="@dimen/x150"
-                            android:src="@mipmap/default_pic" />
+                            android:layout_height="@dimen/x150" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -164,8 +163,7 @@
                         <com.libray.basetools.view.imageview.CircleImageView
                             android:id="@+id/iv3"
                             android:layout_width="@dimen/x150"
-                            android:layout_height="@dimen/x150"
-                            android:src="@mipmap/default_pic" />
+                            android:layout_height="@dimen/x150" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -224,8 +222,7 @@
                         <com.libray.basetools.view.imageview.CircleImageView
                             android:id="@+id/iv4"
                             android:layout_width="@dimen/x150"
-                            android:layout_height="@dimen/x150"
-                            android:src="@mipmap/default_pic" />
+                            android:layout_height="@dimen/x150" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -251,8 +248,7 @@
                         <com.libray.basetools.view.imageview.CircleImageView
                             android:id="@+id/iv5"
                             android:layout_width="@dimen/x150"
-                            android:layout_height="@dimen/x150"
-                            android:src="@mipmap/default_pic" />
+                            android:layout_height="@dimen/x150" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -275,8 +271,7 @@
                         <com.libray.basetools.view.imageview.CircleImageView
                             android:id="@+id/iv6"
                             android:layout_width="@dimen/x150"
-                            android:layout_height="@dimen/x150"
-                            android:src="@mipmap/default_pic" />
+                            android:layout_height="@dimen/x150" />
 
                         <TextView
                             android:layout_width="match_parent"

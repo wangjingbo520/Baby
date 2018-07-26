@@ -142,7 +142,7 @@ public class CenterFragment extends BaseFragment implements ICenterView {
             tvRing3.setText(centerBean.getOrderNumber().getStayDelivery() + "");
         }
         //头像
-        GlideImageLoader.loadImage(mContext, centerBean.getPhoto(), ivLogo);
+        GlideImageLoader.loadImage(mContext, centerBean.getPhoto(), ivLogo, R.mipmap.icon_user);
     }
 
     @Override
