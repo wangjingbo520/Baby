@@ -85,7 +85,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     @Override
     public void onLoginSucceed(User user) {
         //登录成功,跳转至开通会员页面
-        startTo(MainActivity.class, true);
-        //startTo(JoinmemberActivity.class, true);
+      //  startTo(MainActivity.class, true);
+        startTo(JoinmemberActivity.class, true);
     }
 }

@@ -4,12 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
-import com.sunbaby.app.R;
 import com.sunbaby.app.adapter.SingleCheckAdapter;
-import com.sunbaby.app.statusview.OnRetryListener;
-import com.sunbaby.app.statusview.StatusLayoutManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TestActivity extends TestBaseActivity {
@@ -21,7 +17,6 @@ public class TestActivity extends TestBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        statusLayoutManager.showLoading();
    //     initData();
     }
 

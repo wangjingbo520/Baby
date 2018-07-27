@@ -11,6 +11,7 @@ import com.sunbaby.app.bean.AddVipBean;
 import com.sunbaby.app.bean.VipBean;
 import com.sunbaby.app.callback.IJoinView;
 import com.sunbaby.app.common.base.BaseActivity;
+import com.sunbaby.app.common.utils.ToastUtil;
 import com.sunbaby.app.common.widget.floawlayout.FlowLayout;
 import com.sunbaby.app.common.widget.floawlayout.TagAdapter;
 import com.sunbaby.app.common.widget.floawlayout.TagFlowLayout;
@@ -32,11 +33,17 @@ public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFl
     private TagFlowLayout tag2;
 
     private LayoutInflater mInflater;
-    private TagAdapter<VipBean.VipTypeListBean> tagAdapter1;
-    private TagAdapter<VipBean.VipTypeListBean.VipPriceListBean> tagAdapter2;
+//    private TagAdapter<VipBean.VipTypeListBean> tagAdapter1;
+//    private TagAdapter<VipBean.VipTypeListBean.VipPriceListBean> tagAdapter2;
 
     private JoinmemberPresenter joinmemberPresenter;
     private VipBean vipBean;
+    //会员类型
+    private String vipTypeId = "";
+    //会员金额类型id
+    private String vipPriceId = "";
+    //金额
+    private String amount = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,18 +66,53 @@ public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFl
         joinmemberPresenter.queryVipType();
     }
 
-
     @OnClick(R.id.btnKaitong)
     @Override
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()) {
             case R.id.btnKaitong:
-                joinmemberPresenter.addOrder(getUserId(), "vipTypeId", "amount");
+                //开通会员
+                kaiTongVip();
                 break;
             default:
                 break;
         }
+    }
+
+    private void kaiTongVip() {
+        //选择了会员类型
+        Set<Integer> VipTypaSelectedList = tag1.getSelectedList();
+        if (VipTypaSelectedList.size() == 0) {
+            vipTypeId = "";
+            ToastUtil.showMessage("请先选择会员类型");
+            return;
+        }
+        int vipTypePosition = 0;
+        Iterator VipTypeIterator = VipTypaSelectedList.iterator();
+        while (VipTypeIterator.hasNext()) {
+            vipTypePosition = (Integer) VipTypeIterator.next();
+            vipTypeId = vipBean.getVipTypeList().get(vipTypePosition).getId() + "";
+        }
+
+        //选择了时间和金额
+        Set<Integer> PriceSelectedList = tag2.getSelectedList();
+        if (PriceSelectedList.size() == 0) {
+            vipTypeId = "";
+            ToastUtil.showMessage("请选择会员金额");
+            return;
+        }
+        Iterator PriceIterator = PriceSelectedList.iterator();
+        while (PriceIterator.hasNext()) {
+            int pricePosition = (Integer) PriceIterator.next();
+            //会员金额类型id
+            vipPriceId = vipBean.getVipTypeList().get(vipTypePosition).getVipPriceList().get
+                    (pricePosition).getId() + "";
+            //金额
+            amount = vipBean.getVipTypeList().get(vipTypePosition).getVipPriceList().get
+                    (pricePosition).getPrice() + "";
+        }
+        joinmemberPresenter.addOrder(getUserId(), vipTypeId, vipPriceId, amount);
     }
 
     @Override
@@ -79,7 +121,7 @@ public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFl
         this.vipBean = vipBean;
         if (vipBean.getVipTypeList() != null && vipBean.getVipTypeList().size() > 0) {
             //会员类型展示
-            tag1.setAdapter(tagAdapter1 = new TagAdapter<VipBean.VipTypeListBean>(vipBean
+            tag1.setAdapter(new TagAdapter<VipBean.VipTypeListBean>(vipBean
                     .getVipTypeList()) {
                 @Override
                 public View getView(FlowLayout parent, int position, VipBean.VipTypeListBean bean) {
@@ -89,7 +131,7 @@ public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFl
                 }
             });
             //时间和价钱的展示
-            tag2.setAdapter(tagAdapter2 = new TagAdapter<VipBean.VipTypeListBean
+            tag2.setAdapter(new TagAdapter<VipBean.VipTypeListBean
                     .VipPriceListBean>(vipBean.getVipTypeList().get(0).getVipPriceList()) {
                 @Override
                 public View getView(FlowLayout parent, int position, VipBean.VipTypeListBean
@@ -107,19 +149,14 @@ public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFl
     @Override
     public void addOrder(AddVipBean addVipBean) {
         //开通会员
-        Set<Integer> selectedList = tag1.getSelectedList();
-        Iterator it = selectedList.iterator();
-        while (it.hasNext()) {
-            //这里执行获取选中的值
-            // period = String.valueOf((Integer) it.next() + 1);
-        }
-        startTo(PayActivity.class, true);
+        MyPayActivity.start(mContext, addVipBean.getOrderId() + "");
+        finish();
     }
 
     @Override
     public boolean onTagClick(View view, int position, FlowLayout parent) {
         if (vipBean != null && vipBean.getVipTypeList().size() > 0) {
-            tag2.setAdapter(tagAdapter2 = new TagAdapter<VipBean.VipTypeListBean
+            tag2.setAdapter( new TagAdapter<VipBean.VipTypeListBean
                     .VipPriceListBean>(vipBean
                     .getVipTypeList().get(position).getVipPriceList()) {
                 @Override

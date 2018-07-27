@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_dialog_confirm"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -14,7 +14,7 @@
 
         <TextView
             android:id="@+id/tvContent"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="已为您随机到以下图书"
@@ -22,17 +22,17 @@
             android:textSize="@dimen/textSize_32" />
 
         <ImageView
+            android:id="@+id/ivDismiss"
             android:layout_width="@dimen/x30"
             android:layout_height="@dimen/x30"
-            android:layout_marginLeft="@dimen/x100"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/exit"
             android:gravity="center"
             android:src="@mipmap/exit"
-            android:text="x"
             android:textColor="@color/textColor6"
             android:textSize="@dimen/textSize_36" />
 
-    </LinearLayout>
-
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/ivPic"

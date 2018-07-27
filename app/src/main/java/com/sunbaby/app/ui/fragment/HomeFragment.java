@@ -184,12 +184,12 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
     }
 
     @Override
-    public void queryGoodsByRand(QueryGoodsByRandBean queryGoodsByRandBean) {
+    public void queryGoodsByRand(QueryGoodsByRandBean queryGoodsByRandBean,String type) {
         //首页随机商品
         if (homeFragmentDialog == null) {
             homeFragmentDialog = new HomeFragmentDialog(mContext, this, "", "");
         }
-        homeFragmentDialog.setData(queryGoodsByRandBean);
+        homeFragmentDialog.setData(queryGoodsByRandBean,type);
         homeFragmentDialog.show();
     }
 
@@ -207,9 +207,10 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
     }
 
     @Override
-    public void position(int position, QueryGoodsByRandBean queryGoodsByRandBean) {
+    public void position(int position, QueryGoodsByRandBean queryGoodsByRandBean,String type) {
         if (0 == position) {
             //继续随机
+            homePresenter.queryGoodsByRand(type);
         } else {
             //加入配送箱
             homePresenter.joinDistributionBox(queryGoodsByRandBean.getId() + "");

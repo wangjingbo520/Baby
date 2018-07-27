@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.sunbaby.app.R;
 import com.sunbaby.app.common.utils.statusbartils.Eyes;
-import com.sunbaby.app.statusview.StatusLayoutManager;
 
 import butterknife.Unbinder;
 
@@ -33,7 +32,6 @@ public abstract class TestBaseActivity extends AppCompatActivity implements View
     private TextView tvRight;
     private ImageView iv_right;
     private Unbinder mUnbinder;
-    protected StatusLayoutManager statusLayoutManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,7 +52,7 @@ public abstract class TestBaseActivity extends AppCompatActivity implements View
         findViewById(R.id.fl_back).setOnClickListener(this);
         findViewById(R.id.fl_right).setOnClickListener(this);
         initStatusLayout();
-        flContent.addView(statusLayoutManager.getRootLayout());
+
     }
 
     protected abstract void initStatusLayout();
@@ -69,9 +67,6 @@ public abstract class TestBaseActivity extends AppCompatActivity implements View
     public void setTitle(String title) {
         tvTitle.setText(title);
     }
-
-
-
 
 
 }

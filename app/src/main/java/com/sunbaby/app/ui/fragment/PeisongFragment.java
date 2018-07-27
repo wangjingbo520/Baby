@@ -82,7 +82,7 @@ public class PeisongFragment extends BaseStateViewFragment implements IPeisongVi
                 if (peisongListViewAdapter.getDatas() != null) {
                     List<PesisongBean.ListBean> datas = peisongListViewAdapter.getDatas();
                     Object object = com.alibaba.fastjson.JSONArray.toJSON(datas);
-                    peisongPresenter.affirmDispatching("1", object.toString());
+                    peisongPresenter.affirmDispatching(getUserId(), object.toString());
                 }
                 break;
             default:
@@ -112,7 +112,7 @@ public class PeisongFragment extends BaseStateViewFragment implements IPeisongVi
     }
 
     public void initData() {
-        peisongPresenter.queryDispatching("1");
+        peisongPresenter.queryDispatching(getUserId());
     }
 
     public void initView(View view) {

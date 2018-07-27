@@ -45,8 +45,8 @@ public class JoinmemberPresenter extends BasePresenter {
      * @param vipTypeId
      * @param amount
      */
-    public void addOrder(String userId, String vipTypeId, String amount) {
-        mRequestClient.addOrder(userId,vipTypeId,amount).subscribe(new ProgressSubscriber<AddVipBean>
+    public void addOrder(String userId, String vipTypeId, String vipPriceId,String amount) {
+        mRequestClient.addOrder(userId,vipTypeId,vipPriceId,amount).subscribe(new ProgressSubscriber<AddVipBean>
                 (mContext) {
             @Override
             public void onNext(AddVipBean addVipBean) {

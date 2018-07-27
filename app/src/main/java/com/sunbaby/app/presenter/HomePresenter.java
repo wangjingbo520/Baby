@@ -54,12 +54,12 @@ public class HomePresenter extends BasePresenter {
      *
      * @param type
      */
-    public void queryGoodsByRand(String type) {
-        mRequestClient.queryGoodsByRand(type).subscribe(new ProgressSubscriber<QueryGoodsByRandBean>(mContext) {
+    public void queryGoodsByRand(final String type) {
+        mRequestClient.queryGoodsByRand(type).subscribe(new ProgressSubscriber<QueryGoodsByRandBean>(mContext, false) {
             @Override
             public void onNext(QueryGoodsByRandBean queryGoodsByRandBean) {
                 if (null != iHomeView) {
-                    iHomeView.queryGoodsByRand(queryGoodsByRandBean);
+                    iHomeView.queryGoodsByRand(queryGoodsByRandBean, type);
                 }
             }
         });

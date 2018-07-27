@@ -20,8 +20,7 @@ public class DistributionPresenter extends BasePresenter {
     }
 
     public void logout() {
-        mRequestClient.logout().subscribe(new ProgressSubscriber<Object>
-                (mContext) {
+        mRequestClient.logout().subscribe(new ProgressSubscriber<Object>(mContext) {
             @Override
             public void onNext(Object object) {
                 if (null != iExitLoginView) {

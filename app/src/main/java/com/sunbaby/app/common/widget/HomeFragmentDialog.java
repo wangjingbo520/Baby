@@ -17,26 +17,30 @@ import com.sunbaby.app.common.utils.GlideImageLoader;
  */
 public class HomeFragmentDialog extends Dialog implements View.OnClickListener {
     private TextView tvName;
-    private TextView tvContent;
     private DialogCallk dialogCallk;
     private Context context;
     private ImageView ivPic;
     private QueryGoodsByRandBean queryGoodsByRandBean;
-
+    /**
+     * 1 图书 2 玩具
+     */
+    private String type;
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tvLeft:
-                if (dialogCallk != null&&queryGoodsByRandBean!=null) {
-                    dialogCallk.position(0,queryGoodsByRandBean);
+                if (dialogCallk != null && queryGoodsByRandBean != null) {
+                    dialogCallk.position(0, queryGoodsByRandBean, type);
+                }
+                break;
+            case R.id.tvRight:
+                if (dialogCallk != null && queryGoodsByRandBean != null) {
+                    dialogCallk.position(1, queryGoodsByRandBean, type);
                 }
                 dismiss();
                 break;
-            case R.id.tvRight:
-                if (dialogCallk != null&&queryGoodsByRandBean!=null) {
-                    dialogCallk.position(1,queryGoodsByRandBean);
-                }
+            case R.id.ivDismiss:
                 dismiss();
                 break;
             default:
@@ -44,14 +48,15 @@ public class HomeFragmentDialog extends Dialog implements View.OnClickListener {
         }
     }
 
-    public void setData(QueryGoodsByRandBean queryGoodsByRandBean) {
+    public void setData(QueryGoodsByRandBean queryGoodsByRandBean, String type) {
         this.queryGoodsByRandBean = queryGoodsByRandBean;
+        this.type = type;
         tvName.setText(queryGoodsByRandBean.getGoods_name());
         GlideImageLoader.loadImage(context, queryGoodsByRandBean.getPic_url(), ivPic);
     }
 
     public interface DialogCallk {
-        void position(int postion,QueryGoodsByRandBean queryGoodsByRandBean);
+        void position(int postion, QueryGoodsByRandBean queryGoodsByRandBean, String type);
     }
 
     public HomeFragmentDialog(Context context, DialogCallk dialogCallk, String title, String
@@ -66,10 +71,9 @@ public class HomeFragmentDialog extends Dialog implements View.OnClickListener {
         setContentView(R.layout.dialog_homefragment);
         findViewById(R.id.tvRight).setOnClickListener(this);
         findViewById(R.id.tvLeft).setOnClickListener(this);
+        findViewById(R.id.ivDismiss).setOnClickListener(this);
         tvName = findViewById(R.id.tvName);
         ivPic = findViewById(R.id.ivPic);
-        tvContent = findViewById(R.id.tvContent);
-        //   tvContent.setText(content);
     }
 
 }

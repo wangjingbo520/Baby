@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.GridView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -25,9 +24,6 @@ import com.sunbaby.app.common.base.BaseActivity;
 import com.sunbaby.app.common.utils.UIUtils;
 import com.sunbaby.app.common.widget.GridSpacingItemDecoration;
 import com.sunbaby.app.presenter.SecondaryListPresenter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;

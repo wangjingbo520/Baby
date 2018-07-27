@@ -1,11 +1,9 @@
 package com.sunbaby.app.common.base;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,13 +13,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.sunbaby.app.AppData;
 import com.sunbaby.app.R;
-import com.sunbaby.app.bean.User;
 import com.sunbaby.app.common.utils.ToastUtil;
 import com.sunbaby.app.common.utils.statusbartils.Eyes;
-import com.sunbaby.app.statusview.OnRetryListener;
-import com.sunbaby.app.statusview.StatusLayoutManager;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -78,27 +72,6 @@ public abstract class BaseActivity extends MyBaseActivity implements View.OnClic
         flContent.addView(view);
         mUnbinder = ButterKnife.bind(this);
     }
-
-
-//    private void initStatusLayout() {
-//        statusLayoutManager = StatusLayoutManager.newBuilder(this)
-//                .contentView(getLayoutId())
-//                .emptyDataView(R.layout.activity_emptydata)
-//                .errorView(R.layout.activity_error)
-//                .loadingView(R.layout.activity_loading)
-//                .emptyDataRetryViewId(R.id.button_retry)
-//                .netWorkErrorRetryViewId(R.id.button_try)
-//                .netWorkErrorView(R.layout.activity_networkerror)
-//                .onRetryListener(new OnRetryListener() {
-//                    @Override
-//                    public void onRetry() {
-//                        doOnRetry();
-//                    }
-//                })
-//                .build();
-//    }
-
-
 
     public void setTitle(String title) {
         tvTitle.setText(title);

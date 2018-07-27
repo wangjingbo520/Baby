@@ -40,4 +40,46 @@ public class JoinmemberPresenter2 extends BasePresenter {
             }
         });
     }
+
+    /**
+     * 查找对应的会员类型
+     */
+    public void queryVipType() {
+        mRequestClient.queryVipType().subscribe(new ProgressSubscriber<VipBean>
+                (mContext) {
+            @Override
+            public void onNext(VipBean vipBean) {
+                if (null != iJoinView2) {
+                    iJoinView2.queryVipType(vipBean);
+                }
+            }
+        });
+    }
+
+
+    /**
+     * 立即开通会员
+     *
+     * @param userId
+     * @param vipTypeId
+     * @param amount
+     */
+    /**
+     * 立即开通会员
+     *
+     * @param userId
+     * @param vipTypeId
+     * @param amount
+     */
+    public void addOrder(String userId, String vipTypeId, String vipPriceId,String amount) {
+        mRequestClient.addOrder(userId,vipTypeId,vipPriceId,amount).subscribe(new ProgressSubscriber<AddVipBean>
+                (mContext) {
+            @Override
+            public void onNext(AddVipBean addVipBean) {
+                if (null != iJoinView2) {
+                    iJoinView2.addOrder(addVipBean);
+                }
+            }
+        });
+    }
 }

@@ -17,7 +17,7 @@ public class AddVipBean {
     private int amount;
     private long time;
     private String orderCode;
-    private int orderId;
+    private long orderId;
 
     public int getAmount() {
         return amount;
@@ -43,11 +43,11 @@ public class AddVipBean {
         this.orderCode = orderCode;
     }
 
-    public int getOrderId() {
+    public long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(long orderId) {
         this.orderId = orderId;
     }
 }

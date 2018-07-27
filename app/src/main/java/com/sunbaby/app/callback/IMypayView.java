@@ -1,6 +1,8 @@
 package com.sunbaby.app.callback;
 
+import com.sunbaby.app.bean.AlipayBean;
 import com.sunbaby.app.bean.PayBean;
+import com.sunbaby.app.bean.WeChatPayBean;
 
 /**
  * @author wangjingbo
@@ -9,4 +11,6 @@ import com.sunbaby.app.bean.PayBean;
  */
 public interface IMypayView {
     void queryPayMethod(PayBean payBean);
+    void wechatPayBefore(WeChatPayBean weChatPayBean);
+    void alipayBefore(AlipayBean alipayBean);
 }

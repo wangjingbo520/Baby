@@ -1,7 +1,9 @@
 package com.sunbaby.app.common.api;
 
+import com.sunbaby.app.MyApplication;
 import com.sunbaby.app.bean.AddVipBean;
 import com.sunbaby.app.bean.AdressBean;
+import com.sunbaby.app.bean.AlipayBean;
 import com.sunbaby.app.bean.Areabean;
 import com.sunbaby.app.bean.CenterBean;
 import com.sunbaby.app.bean.ClassificationBean;
@@ -18,7 +20,14 @@ import com.sunbaby.app.bean.SureBean;
 import com.sunbaby.app.bean.UploadFile;
 import com.sunbaby.app.bean.User;
 import com.sunbaby.app.bean.VipBean;
+import com.sunbaby.app.bean.WeChatPayBean;
 import com.sunbaby.app.bean.YouerYuan;
+import com.sunbaby.app.common.api.persistentcookiejar.AddCookiesInterceptor;
+import com.sunbaby.app.common.api.persistentcookiejar.ClearableCookieJar;
+import com.sunbaby.app.common.api.persistentcookiejar.PersistentCookieJar;
+import com.sunbaby.app.common.api.persistentcookiejar.ReceivedCookiesInterceptor;
+import com.sunbaby.app.common.api.persistentcookiejar.cache.SetCookieCache;
+import com.sunbaby.app.common.api.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -54,10 +63,36 @@ public class RequestClient {
     private ServerAPI mServerApi;
 
     private RequestClient() {
+//        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+//        builder.connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS);
+//        builder.readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+//        builder.writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+//        builder.retryOnConnectionFailure(false);
+//        //拦截器－添加公共字段
+//        builder.addInterceptor(new CommonInterceptor());
+//        builder.addNetworkInterceptor(new LoggingInterceptor());
+//
+//        OkHttpClient okHttpClient = builder.build();
+//        mRetrofit = new Retrofit.Builder()
+//                .baseUrl(URLs.SERVER_URL)
+//                .client(okHttpClient)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+//                .build();
+//        mServerApi = mRetrofit.create(ServerAPI.class);
+
+
+        ClearableCookieJar cookieJar =
+                new PersistentCookieJar(new SetCookieCache(),
+                        new SharedPrefsCookiePersistor(MyApplication.context));
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS);
         builder.readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         builder.writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+        builder.cookieJar(cookieJar);
+        //这里是cookie本地保存持久化
+        builder.interceptors().add(new AddCookiesInterceptor());
+        builder.interceptors().add(new ReceivedCookiesInterceptor());
         builder.retryOnConnectionFailure(false);
         //拦截器－添加公共字段
         builder.addInterceptor(new CommonInterceptor());
@@ -172,8 +207,8 @@ public class RequestClient {
      * @param amount
      * @return
      */
-    public Observable<AddVipBean> addOrder(String userId, String vipTypeId, String amount) {
-        return mServerApi.addOrder(userId, vipTypeId, amount)
+    public Observable<AddVipBean> addOrder(String userId, String vipTypeId,String vipPriceId, String amount) {
+        return mServerApi.addOrder(userId, vipTypeId,vipPriceId, amount)
                 .map(new HttpResultFuc<AddVipBean>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
@@ -431,6 +466,32 @@ public class RequestClient {
     public Observable<PayBean> queryPayMethod() {
         return mServerApi.queryPayMethod()
                 .map(new HttpResultFuc<PayBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 微信支付
+     * @param userId
+     * @param orderId
+     * @return
+     */
+    public Observable<WeChatPayBean> wechatPayBefore(String userId,String orderId) {
+        return mServerApi.wechatPayBefore(userId,orderId)
+                .map(new HttpResultFuc<WeChatPayBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 支付宝支付
+     * @param userId
+     * @param orderId
+     * @return
+     */
+    public Observable<AlipayBean> alipayBefore(String userId, String orderId) {
+        return mServerApi.alipayBefore(userId,orderId)
+                .map(new HttpResultFuc<AlipayBean>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

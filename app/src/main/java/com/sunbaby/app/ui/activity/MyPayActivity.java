@@ -2,7 +2,9 @@ package com.sunbaby.app.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -20,14 +22,17 @@ import com.sunbaby.app.MainActivity;
 import com.sunbaby.app.R;
 import com.sunbaby.app.adapter.RecyGuihuangAdapter;
 import com.sunbaby.app.adapter.SingleCheckAdapter;
+import com.sunbaby.app.bean.AlipayBean;
 import com.sunbaby.app.bean.GuihuangBean;
 import com.sunbaby.app.bean.PayBean;
+import com.sunbaby.app.bean.WeChatPayBean;
 import com.sunbaby.app.callback.IMypayView;
 import com.sunbaby.app.common.base.BaseActivity;
 import com.sunbaby.app.common.utils.pay.AuthResult;
 import com.sunbaby.app.common.utils.pay.OrderInfoUtil2_0;
 import com.sunbaby.app.common.utils.pay.PayResult;
 import com.sunbaby.app.presenter.MyPayPresenter;
+import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
@@ -41,9 +46,9 @@ import cn.iwgang.countdownview.CountdownView;
 /**
  * @author wangjingbo
  * @date 2018/7/6
- * describe 支付
+ * describe 支付,从后台返回的列表
  */
-public class MyPayActivity extends BaseActivity implements IMypayView{
+public class MyPayActivity extends BaseActivity implements IMypayView {
 
     @BindView(R.id.cv_countdownView)
     CountdownView cv_countdownView;
@@ -78,12 +83,24 @@ public class MyPayActivity extends BaseActivity implements IMypayView{
     private MyPayPresenter myPayPresenter;
     private SingleCheckAdapter singleCheckAdapter;
     private PayBean payBean;
+    private String orderId;
+
+    /**
+     * @param context
+     * @param orderId 订单id
+     */
+    public static void start(Context context, String orderId) {
+        Intent starter = new Intent(context, MyPayActivity.class);
+        starter.putExtra("orderId", orderId);
+        context.startActivity(starter);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setLayout(R.layout.activity_my_pay);
         setTitle("支付");
+        orderId = getIntent().getStringExtra("orderId");
         myPayPresenter = new MyPayPresenter(mContext, this);
         initData();
         //注册微信支付
@@ -117,7 +134,7 @@ public class MyPayActivity extends BaseActivity implements IMypayView{
         }
     }
 
-    private void checkPay(){
+    private void checkPay() {
         if (singleCheckAdapter != null) {
             payType = singleCheckAdapter.getSelectPosition();
             //这里需要判断是哪个支付类型,再去调用支付客户端
@@ -140,95 +157,11 @@ public class MyPayActivity extends BaseActivity implements IMypayView{
 
     }
 
-    /***************************************微信支付和支付宝支付**********************************************/
-    private void wexinPay() {
-//        PayReq request = new PayReq();
-//        request.appId = "wxd930ea5d5a258f4f";
-//        request.partnerId = "1900000109";
-//        request.prepayId= "1101000000140415649af9fc314aa427";
-//        request.packageValue = "Sign=WXPay";
-//        request.nonceStr= "1101000000140429eb40476f8896f4c9";
-//        request.timeStamp= "1398746574";
-//        request.sign= "7FFECB600D7157C5AA49810D2D8F28BC2811827B";
-//        api.sendReq(request);
-    }
-
-    /**
-     * 支付宝账户授权业务
-     */
-    public void authV2() {
-        if (TextUtils.isEmpty(PID) || TextUtils.isEmpty(APPID)
-                || (TextUtils.isEmpty(RSA2_PRIVATE) && TextUtils.isEmpty(RSA_PRIVATE))
-                || TextUtils.isEmpty(TARGET_ID)) {
-            new AlertDialog.Builder(this).setTitle("警告").setMessage("需要配置PARTNER |APP_ID| " +
-                    "RSA_PRIVATE| TARGET_ID")
-                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialoginterface, int i) {
-                        }
-                    }).show();
-            return;
-        }
-
-        /**
-         * 这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
-         * 真实App里，privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
-         * 防止商户私密数据泄露，造成不必要的资金损失，及面临各种安全风险；
-         *
-         * authInfo的获取必须来自服务端；
-         */
-        boolean rsa2 = (RSA2_PRIVATE.length() > 0);
-        Map<String, String> authInfoMap = OrderInfoUtil2_0.buildAuthInfoMap(PID, APPID,
-                TARGET_ID, rsa2);
-        String info = OrderInfoUtil2_0.buildOrderParam(authInfoMap);
-
-        String privateKey = rsa2 ? RSA2_PRIVATE : RSA_PRIVATE;
-        String sign = OrderInfoUtil2_0.getSign(authInfoMap, privateKey, rsa2);
-        final String authInfo = info + "&" + sign;
-        Runnable authRunnable = new Runnable() {
-
-            @Override
-            public void run() {
-                // 构造AuthTask 对象
-                AuthTask authTask = new AuthTask(MyPayActivity.this);
-                // 调用授权接口，获取授权结果
-                Map<String, String> result = authTask.authV2(authInfo, true);
-                Message msg = new Message();
-                msg.what = SDK_AUTH_FLAG;
-                msg.obj = result;
-                mHandler.sendMessage(msg);
-            }
-        };
-
-        // 必须异步调用
-        Thread authThread = new Thread(authRunnable);
-        authThread.start();
-    }
 
     /**
      * 支付宝支付业务
      */
     private void alipay() {
-        if (TextUtils.isEmpty(APPID) || (TextUtils.isEmpty(RSA2_PRIVATE) && TextUtils.isEmpty
-                (RSA_PRIVATE))) {
-            new AlertDialog.Builder(this).setTitle("警告").setMessage("需要配置APPID | RSA_PRIVATE")
-                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialoginterface, int i) {
-                            //
-                            finish();
-                        }
-                    }).show();
-            return;
-        }
-
-        /**
-         * 这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
-         * 真实App里，privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
-         * 防止商户私密数据泄露，造成不必要的资金损失，及面临各种安全风险；
-         *
-         * orderInfo的获取必须来自服务端；
-         */
         boolean rsa2 = (RSA2_PRIVATE.length() > 0);
         Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID, rsa2);
         String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
@@ -253,6 +186,7 @@ public class MyPayActivity extends BaseActivity implements IMypayView{
         Thread payThread = new Thread(payRunnable);
         payThread.start();
     }
+
 
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
@@ -314,5 +248,28 @@ public class MyPayActivity extends BaseActivity implements IMypayView{
         singleCheckAdapter = new SingleCheckAdapter(mContext, payBean.getPayList());
         listview.setAdapter(singleCheckAdapter);
     }
+
+    /***********************微信支付和支付宝支付接口**************************************************/
+    @Override
+    public void wechatPayBefore(WeChatPayBean weChatPayBean) {
+        //
+        PayReq request = new PayReq();
+        request.appId = "wxd930ea5d5a258f4f";
+        request.partnerId = weChatPayBean.getPartnerid();
+        request.prepayId= weChatPayBean.getPrepayid();
+        request.packageValue = weChatPayBean.getPackageX();
+        request.nonceStr= weChatPayBean.getNoncestr();
+        request.timeStamp= weChatPayBean.getTimestamp();
+        request.sign= weChatPayBean.getSign();
+        api.sendReq(request);
+    }
+
+    @Override
+    public void alipayBefore(AlipayBean alipayBean) {
+
+
+
+    }
+
 
 }

@@ -3,6 +3,7 @@ package com.sunbaby.app.common.api;
 
 import com.sunbaby.app.bean.AddVipBean;
 import com.sunbaby.app.bean.AdressBean;
+import com.sunbaby.app.bean.AlipayBean;
 import com.sunbaby.app.bean.Areabean;
 import com.sunbaby.app.bean.CenterBean;
 import com.sunbaby.app.bean.ClassificationBean;
@@ -19,6 +20,7 @@ import com.sunbaby.app.bean.SureBean;
 import com.sunbaby.app.bean.UploadFile;
 import com.sunbaby.app.bean.User;
 import com.sunbaby.app.bean.VipBean;
+import com.sunbaby.app.bean.WeChatPayBean;
 import com.sunbaby.app.bean.YouerYuan;
 
 import java.util.List;
@@ -126,6 +128,7 @@ public interface ServerAPI {
     @FormUrlEncoded
     Observable<HttpResult<AddVipBean>> addOrder(@Field("userId") String userId,
                                                 @Field("vipTypeId") String vipTypeId,
+                                                @Field("vipPriceId") String vipPriceId,
                                                 @Field("amount") String amount);
 
     /**
@@ -368,6 +371,33 @@ public interface ServerAPI {
 
 
     /**
+     * 微信支付
+     *
+     * @param userId
+     * @param orderId
+     * @return
+     */
+    @POST("app/wechat/wechatPayBefore")
+    @FormUrlEncoded
+    Observable<HttpResult<WeChatPayBean>> wechatPayBefore(
+            @Field("userId") String userId,
+            @Field("orderId") String orderId);
+
+    /**
+     * 支付宝支付
+     *
+     * @param userId
+     * @param orderId
+     * @return
+     */
+    @POST("app/alipay/alipayBefore")
+    @FormUrlEncoded
+    Observable<HttpResult<AlipayBean>> alipayBefore(
+            @Field("userId") String userId,
+            @Field("orderId") String orderId);
+
+
+    /**
      * 配送箱列表
      *
      * @param user_id
@@ -414,13 +444,14 @@ public interface ServerAPI {
     @FormUrlEncoded
     Observable<HttpResult<SureBean>> affirmDispatching(@Field("user_id") String user_id,
                                                        @Field("dispatchingJson") String
-                                                             dispatchingJson);
+                                                               dispatchingJson);
 
     /**
      * 退出登录
      *
      * @return
      */
-    @POST("/account/logout")
+    @POST("account/logout")
     Observable<HttpResult<Object>> logout();
+
 }

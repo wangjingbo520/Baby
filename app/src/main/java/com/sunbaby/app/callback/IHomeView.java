@@ -10,7 +10,16 @@ import com.sunbaby.app.bean.QueryGoodsByRandBean;
  */
 public interface IHomeView {
     void queryContentAdvertisementsByHome(HomeBean homeBean);
-    void queryGoodsByRand(QueryGoodsByRandBean queryGoodsByRandBean);
+
+    /**
+     * 随机
+     *
+     * @param queryGoodsByRandBean
+     * @param type
+     */
+    void queryGoodsByRand(QueryGoodsByRandBean queryGoodsByRandBean, String type);
+
     void joinDistributionBox(Object object);
+
     void onFinish();
 }
