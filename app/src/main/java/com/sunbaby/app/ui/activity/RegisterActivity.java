@@ -50,8 +50,8 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
     TextView tv3;
     @BindView(R.id.tv4)
     TextView tv4;
-    @BindView(R.id.tv5)
-    TextView tv5;
+    //    @BindView(R.id.tv5)
+//    TextView tv5;
     @BindView(R.id.etDetailAdress)
     EditText etDetailAdress;
     private CommomDialog commomDialog;
@@ -98,7 +98,7 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
         dialog = new WheelViewDialog(this);
     }
 
-    @OnClick({R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv4, R.id.tv5, R.id.btnRegister, R.id.tvGetCode})
+    @OnClick({R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv4, R.id.btnRegister, R.id.tvGetCode})
     @Override
     public void onClick(View view) {
         super.onClick(view);
@@ -118,8 +118,8 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
                 etDetailAdress.setText("");
                 tv2.setText("选择市");
                 tv3.setText("选择区");
-                tv4.setText("幼儿园");
-                tv5.setText("班级");
+                tv4.setText("幼儿园/班级");
+                //  tv5.setText("班级");
                 registerPresenter.regionList("0", "0");
                 break;
             case R.id.tv2:
@@ -132,8 +132,8 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
                     areaId = "";
                     etDetailAdress.setText("");
                     tv3.setText("选择区");
-                    tv4.setText("幼儿园");
-                    tv5.setText("班级");
+                    tv4.setText("幼儿园/班级");
+                    //    tv5.setText("班级");
                     registerPresenter.regionList("1", provinceId + "");
                 } else {
                     ToastUtil.showMessage("请先选择省");
@@ -147,15 +147,15 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
                     kindergartenClass = "";
                     areaId = "";
                     etDetailAdress.setText("");
-                    tv4.setText("幼儿园");
-                    tv5.setText("班级");
+                    tv4.setText("幼儿园/班级");
+                    //  tv5.setText("班级");
                     registerPresenter.regionList("2", citId + "");
                 } else {
                     ToastUtil.showMessage("请先选择市");
                 }
                 break;
             case R.id.tv4:
-                //幼儿园名字
+                //幼儿园名字,班级
                 if (!TextUtils.isEmpty(district + "")) {
                     type = 3;
                     kindergartenClass = "";
@@ -166,16 +166,16 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
                     ToastUtil.showMessage("请先选择您所在的区");
                 }
                 break;
-            case R.id.tv5:
-                //班级
-                if (!TextUtils.isEmpty(kindergartenName)) {
-                    type = 4;
-                    etDetailAdress.setText("");
-                    registerPresenter.kindergarten("2", "", kindergartenName);
-                } else {
-                    ToastUtil.showMessage("请先选择您所在的幼儿园");
-                }
-                break;
+//            case R.id.tv5:
+//                //班级
+//                if (!TextUtils.isEmpty(kindergartenName)) {
+//                    type = 4;
+//                    etDetailAdress.setText("");
+//                    registerPresenter.kindergarten("2", "", kindergartenName);
+//                } else {
+//                    ToastUtil.showMessage("请先选择您所在的幼儿园");
+//                }
+//                break;
             case R.id.btnRegister:
                 //提交注册
                 register();
@@ -224,11 +224,12 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
     public void kindergarten(YouerYuan youerYuan) {
         if (3 == type) {
             //幼儿园名字
-            showYoueryuan("幼儿园名字", youerYuan);
-        } else if (4 == type) {
-            //班级
-            showYoueryuan("班级", youerYuan);
+            showYoueryuan("幼儿园/班级", youerYuan);
         }
+//        else if (4 == type) {
+//            //班级
+//            showYoueryuan("班级", youerYuan);
+//        }
     }
 
     @Override
@@ -276,16 +277,21 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
                     public void onItemClick(int position, Object s) {
                         switch (type) {
                             case 3:
+                                tv4.setText(youerYuan.getRegionList().get(position).getName() + "" +
+                                        " " + youerYuan.getRegionList().get(position)
+                                        .getClassName());
                                 kindergartenName = youerYuan.getRegionList().get(position)
                                         .getName();
-                                tv4.setText(youerYuan.getRegionList().get(position).getName());
-                                break;
-                            case 4:
-                                tv5.setText(youerYuan.getRegionList().get(position).getName());
                                 kindergartenClass = youerYuan.getRegionList().get(position)
                                         .getName();
                                 areaId = youerYuan.getRegionList().get(position).getId() + "";
                                 break;
+//                            case 4:
+//                                tv5.setText(youerYuan.getRegionList().get(position).getName());
+//                                kindergartenClass = youerYuan.getRegionList().get(position)
+//                                        .getName();
+//                                areaId = youerYuan.getRegionList().get(position).getId() + "";
+//                                break;
                             default:
                                 break;
                         }

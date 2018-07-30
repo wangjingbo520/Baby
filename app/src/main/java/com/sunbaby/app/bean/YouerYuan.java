@@ -27,6 +27,11 @@ public class YouerYuan {
 
         private int id;
         private String name;
+        private String className;
+
+        public String getClassName() {
+            return className == null ? "" : className;
+        }
 
         public int getId() {
             return id;

@@ -220,23 +220,25 @@
             android:background="@color/white"
             android:orientation="vertical"
             android:paddingBottom="@dimen/x30"
-            android:paddingLeft="@dimen/x150"
+            android:paddingLeft="@dimen/x50"
             android:paddingRight="@dimen/x50">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x70"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingRight="@dimen/x10">
 
                 <TextView
                     android:id="@+id/tv1"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bg_yer"
                     android:drawableRight="@mipmap/updown"
                     android:gravity="center_vertical"
+                    android:padding="@dimen/x15"
                     android:paddingLeft="@dimen/x10"
                     android:paddingRight="@dimen/x20"
                     android:text="选择省份"
@@ -246,12 +248,13 @@
                 <TextView
                     android:id="@+id/tv2"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x30"
                     android:layout_weight="1"
                     android:background="@drawable/bg_yer"
                     android:drawableRight="@mipmap/updown"
                     android:gravity="center_vertical"
+                    android:padding="@dimen/x15"
                     android:paddingLeft="@dimen/x10"
                     android:paddingRight="@dimen/x20"
                     android:text="选择市"
@@ -262,19 +265,21 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x70"
-                android:layout_marginTop="@dimen/x20"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x30"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingRight="@dimen/x10">
 
                 <TextView
                     android:id="@+id/tv3"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bg_yer"
                     android:drawableRight="@mipmap/updown"
                     android:gravity="center_vertical"
+                    android:padding="@dimen/x15"
                     android:paddingLeft="@dimen/x10"
                     android:paddingRight="@dimen/x20"
                     android:text="选择区"
@@ -284,55 +289,56 @@
                 <TextView
                     android:id="@+id/tv4"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x30"
                     android:layout_weight="1"
                     android:background="@drawable/bg_yer"
                     android:drawableRight="@mipmap/updown"
                     android:gravity="center_vertical"
+                    android:padding="@dimen/x15"
                     android:paddingLeft="@dimen/x10"
                     android:paddingRight="@dimen/x20"
-                    android:text="幼儿园"
+                    android:text="幼儿园/班级"
                     android:textColor="@color/textColor3"
                     android:textSize="@dimen/textSize_32" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x70"
-                android:layout_marginTop="@dimen/x20"
-                android:orientation="horizontal"
-                android:paddingRight="@dimen/x10">
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/x70"-->
+            <!--android:layout_marginTop="@dimen/x20"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:paddingRight="@dimen/x10">-->
 
-                <TextView
-                    android:id="@+id/tv5"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_yer"
-                    android:drawableRight="@mipmap/updown"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="@dimen/x10"
-                    android:paddingRight="@dimen/x20"
-                    android:text="班级"
-                    android:textColor="@color/textColor3"
-                    android:textSize="@dimen/textSize_32" />
+            <!--<TextView-->
+            <!--android:id="@+id/tv5"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/bg_yer"-->
+            <!--android:drawableRight="@mipmap/updown"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:paddingLeft="@dimen/x10"-->
+            <!--android:paddingRight="@dimen/x20"-->
+            <!--android:text="班级"-->
+            <!--android:textColor="@color/textColor3"-->
+            <!--android:textSize="@dimen/textSize_32" />-->
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/x80"
-                    android:layout_marginLeft="@dimen/x30"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_yer"
-                    android:drawableRight="@mipmap/updown"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="@dimen/x10"
-                    android:paddingRight="@dimen/x20"
-                    android:text="fedfer"
-                    android:textColor="@color/textColor3"
-                    android:textSize="@dimen/textSize_32"
-                    android:visibility="invisible" />
-            </LinearLayout>
+            <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="@dimen/x80"-->
+            <!--android:layout_marginLeft="@dimen/x30"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/bg_yer"-->
+            <!--android:drawableRight="@mipmap/updown"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:paddingLeft="@dimen/x10"-->
+            <!--android:paddingRight="@dimen/x20"-->
+            <!--android:text="fedfer"-->
+            <!--android:textColor="@color/textColor3"-->
+            <!--android:textSize="@dimen/textSize_32"-->
+            <!--android:visibility="invisible" />-->
+            <!--</LinearLayout>-->
 
         </LinearLayout>
 

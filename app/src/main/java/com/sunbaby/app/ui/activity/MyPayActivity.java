@@ -142,15 +142,6 @@ public class MyPayActivity extends BaseActivity implements IMypayView {
         if (!TextUtils.isEmpty(payType)) {
             int position = Integer.parseInt(payType);
             showToast(payBean.getPayList().get(position).getName());
-//            if ("" == payType) {
-//                //微信支付
-////                        showToast(payType);
-////                        wexinPay();
-//            } else {
-//                //支付宝支付,先判断是否授权,再调用支付接口
-//                //       authV2();
-//                showToast(payType);
-//            }
         } else {
             showToast("请先选择支付方式");
         }

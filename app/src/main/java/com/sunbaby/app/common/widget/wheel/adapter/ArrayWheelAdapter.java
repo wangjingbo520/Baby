@@ -27,7 +27,6 @@ import com.sunbaby.app.common.widget.wheel.widget.WheelItem;
 /**
  * 滚轮数组适配器
  *
- * @author venshine
  */
 public class ArrayWheelAdapter<T> extends BaseWheelAdapter<T> {
 
@@ -48,13 +47,15 @@ public class ArrayWheelAdapter<T> extends BaseWheelAdapter<T> {
             if (item instanceof Areabean.RegionListBean) {
                 wheelItem.setText(((Areabean.RegionListBean) item).getName());
             } else if (item instanceof YouerYuan.RegionListBean) {
-                wheelItem.setText(((YouerYuan.RegionListBean) item).getName());
+                wheelItem.setText(((YouerYuan.RegionListBean) item).getName() + "  " + ((YouerYuan
+                        .RegionListBean) item).getClassName());
             }
         } else {
             if (item instanceof Areabean.RegionListBean) {
                 wheelItem.setText(((Areabean.RegionListBean) item).getName());
             } else if (item instanceof YouerYuan.RegionListBean) {
-                wheelItem.setText(((YouerYuan.RegionListBean) item).getName());
+                wheelItem.setText(((YouerYuan.RegionListBean) item).getName() + "  " + ((YouerYuan
+                        .RegionListBean) item).getClassName());
             }
         }
         return convertView;

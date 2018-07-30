@@ -16,6 +16,7 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.sunbaby.app.AppData;
 import com.sunbaby.app.R;
 import com.sunbaby.app.adapter.RecySecondaryListAdapter;
 import com.sunbaby.app.bean.SecondGoodsListBean;
@@ -71,7 +72,11 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
     }
 
     private void initData() {
-        secondaryListPresenter.querydayGoodsByRand(type, scount_name, getUserId(), currPage,
+        String userId = "";
+        if (AppData.getInstance().getUser() != null) {
+            userId = AppData.getInstance().getUserId();
+        }
+        secondaryListPresenter.querydayGoodsByRand(type, scount_name, userId, currPage,
                 pageSize);
     }
 

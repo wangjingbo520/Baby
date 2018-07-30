@@ -117,8 +117,9 @@ public class WheelViewDialog<T> implements View.OnClickListener {
         mButton.setClickable(true);
         mButton.setOnClickListener(this);
         mButton.setText("OK");
+        mButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                WheelUtils.dip2px(mContext, 45));
+                WheelUtils.dip2px(mContext, 70));
         layout.addView(mButton, buttonParams);
         mDialog = new AlertDialog.Builder(mContext).create();
         mDialog.setView(layout);

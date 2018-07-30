@@ -14,16 +14,16 @@ public class PersonBean {
      * mobile :
      */
 
-    private String sex;
+    private int sex;
     private String userName;
     private String photo;
     private String mobile;
 
-    public String getSex() {
+    public int getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
 
