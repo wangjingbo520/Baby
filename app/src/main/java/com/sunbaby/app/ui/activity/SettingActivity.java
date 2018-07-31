@@ -6,6 +6,8 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import com.sunbaby.app.AppData;
+import com.sunbaby.app.EventbusConstant;
+import com.sunbaby.app.MyApplication;
 import com.sunbaby.app.R;
 import com.sunbaby.app.callback.IExitLoginView;
 import com.sunbaby.app.common.api.ProgressSubscriber;
@@ -13,6 +15,7 @@ import com.sunbaby.app.common.api.RequestClient;
 import com.sunbaby.app.common.base.BaseActivity;
 import com.sunbaby.app.common.utils.DialogWithYesOrNoUtils;
 import com.sunbaby.app.common.utils.NDialog;
+import com.sunbaby.app.common.utils.Preferences;
 import com.sunbaby.app.event.EventMessage;
 import com.sunbaby.app.presenter.DistributionPresenter;
 
@@ -63,7 +66,7 @@ public class SettingActivity extends BaseActivity implements IExitLoginView {
     private void exitLogin() {
         alertDialog.setTitleSize(20)
                 .setTitle("提示")
-                .setMessage("确认要删除吗?")
+                .setMessage("确认要退出吗?")
                 .setTitleCenter(false)
                 .setMessageCenter(false)
                 .setMessageSize(18)
@@ -78,7 +81,7 @@ public class SettingActivity extends BaseActivity implements IExitLoginView {
                     public void onClick(int which) {
                         //which,0代表NegativeButton，1代表PositiveButton
                         if (1 == which) {
-                           distributionPresenter.logout();
+                            distributionPresenter.logout();
                         }
                     }
                 });
@@ -87,7 +90,10 @@ public class SettingActivity extends BaseActivity implements IExitLoginView {
 
     @Override
     public void logout() {
+        Preferences.removeAll();
         AppData.getInstance().logoutClearData();
+        MyApplication.getInstance().extiLoginApp();
         startTo(LoginActivity.class, true);
+
     }
 }

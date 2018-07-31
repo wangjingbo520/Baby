@@ -15,7 +15,9 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.sunbaby.app.AppData;
 import com.sunbaby.app.R;
+import com.sunbaby.app.WebViewActivity;
 import com.sunbaby.app.bean.CenterBean;
 import com.sunbaby.app.callback.ICenterView;
 import com.sunbaby.app.common.base.BaseFragment;
@@ -85,7 +87,7 @@ public class CenterFragment extends BaseFragment implements ICenterView {
     }
 
     @OnClick({R.id.llSetting, R.id.llLookmore, R.id.llSunhuai, R.id.ll1, R.id.ll2, R.id.ll3, R.id
-            .ll4, R.id.llHuiyuan})
+            .ll4, R.id.llHuiyuan, R.id.llWenti})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llSetting:
@@ -97,7 +99,9 @@ public class CenterFragment extends BaseFragment implements ICenterView {
                 MyOrderActivity.start(mContext, 0);
                 break;
             case R.id.llSunhuai:
-                DamageRecordActivity.start(mContext);
+                WebViewActivity.start(mContext, AppData.getInstance().getUser().getUrl()
+                        .getDamageList());
+                //    DamageRecordActivity.start(mContext);
                 break;
             case R.id.ll1:
                 //待发货
@@ -118,6 +122,11 @@ public class CenterFragment extends BaseFragment implements ICenterView {
             case R.id.llHuiyuan:
                 //会员
                 JoinmemberActivity2.start(mContext);
+                break;
+            case R.id.llWenti:
+                //常见问题
+                WebViewActivity.start(mContext,getUser().getUrl().getQuestionList());
+             //   JoinmemberActivity2.start(mContext);
                 break;
             default:
                 break;

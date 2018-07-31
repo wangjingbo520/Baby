@@ -46,6 +46,12 @@ public class HomePresenter extends BasePresenter {
                 super.onError(e);
                 iHomeView.onFinish();
             }
+
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                iHomeView.onFinish();
+            }
         });
     }
 

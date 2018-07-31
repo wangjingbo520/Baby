@@ -2,6 +2,7 @@ package com.sunbaby.app.ui.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
@@ -203,6 +204,7 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
     @Override
     public void onGetCodeSucceed() {
         //获取验证码成功
+        timer.start();
         ToastUtil.showMessage("短信已发送,请查收");
     }
 
@@ -362,5 +364,29 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
         registerPresenter.register(mobile, smsCode, passWord, rePassWord, userName, addr,
                 provinceId, citId, district, areaId, kindergartenName, kindergartenClass);
     }
+
+    CountDownTimer timer = new CountDownTimer(60000, 1000) {
+        @Override
+        public void onTick(long millisUntilFinished) {
+            int time = (int) (millisUntilFinished / 1000);
+            tvGetCode.setText(time + "秒后重发");
+            tvGetCode.setEnabled(false);
+        }
+
+        @Override
+        public void onFinish() {
+            tvGetCode.setText("获取验证码");
+            tvGetCode.setEnabled(true);
+        }
+    };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (timer != null) {
+            timer.cancel();
+        }
+    }
+
 
 }

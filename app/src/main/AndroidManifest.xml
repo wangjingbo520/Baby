@@ -202,7 +202,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity android:name=".ui.activity.MyPayActivity" />
-        <activity android:name=".DistributionActivity" />
+        <activity android:name=".ui.activity.DistributionActivity" />
     </application>
 
 </manifest>

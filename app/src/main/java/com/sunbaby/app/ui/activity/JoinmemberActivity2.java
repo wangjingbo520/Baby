@@ -138,7 +138,6 @@ public class JoinmemberActivity2 extends BaseActivity implements IJoinView2, Tag
         joinmemberPresenter2.addOrder(getUserId(), vipTypeId, vipPriceId, amount);
     }
 
-
     @Override
     public void applyRefundInit(JoinBean2 joinBean2) {
         //会员初始化数据
@@ -168,6 +167,7 @@ public class JoinmemberActivity2 extends BaseActivity implements IJoinView2, Tag
                     return tv;
                 }
             });
+
             //时间和价钱的展示
             tag2.setAdapter(tagAdapter2 = new TagAdapter<VipBean.VipTypeListBean
                     .VipPriceListBean>(vipBean.getVipTypeList().get(0).getVipPriceList()) {
@@ -176,11 +176,12 @@ public class JoinmemberActivity2 extends BaseActivity implements IJoinView2, Tag
                         .VipPriceListBean bean) {
                     //默认第一个被选中
                     TextView tv = (TextView) mInflater.inflate(R.layout.tv, tag2, false);
-                    tv.setText(bean.getEffectiveTime() + "\n" + bean
-                            .getPrice());
+                    tv.setText(bean.getEffectiveTime() + "年 " + "(¥" + bean
+                            .getPrice() + ")");
                     return tv;
                 }
             });
+
         }
     }
 
@@ -191,22 +192,32 @@ public class JoinmemberActivity2 extends BaseActivity implements IJoinView2, Tag
     }
 
     @Override
-    public boolean onTagClick(View view, int position, FlowLayout parent) {
+    public boolean onTagClick(View view, final int position1, FlowLayout parent) {
         if (vipBean != null && vipBean.getVipTypeList().size() > 0) {
             tag2.setAdapter(tagAdapter2 = new TagAdapter<VipBean.VipTypeListBean
                     .VipPriceListBean>(vipBean
-                    .getVipTypeList().get(position).getVipPriceList()) {
+                    .getVipTypeList().get(position1).getVipPriceList()) {
                 @Override
                 public View getView(FlowLayout parent, int position, VipBean.VipTypeListBean
                         .VipPriceListBean bean) {
                     //默认第一个被选中
                     TextView tv = (TextView) mInflater.inflate(R.layout.tv, tag2, false);
-                    tv.setText(bean.getEffectiveTime() + "\n" + bean
-                            .getPrice());
+                    tv.setText(bean.getEffectiveTime() + "年 " + "(¥" + bean
+                            .getPrice() + ")");
                     return tv;
                 }
             });
         }
+
+//        tag2.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+//            @Override
+//            public boolean onTagClick(View view, int position, FlowLayout parent) {
+//                tvJine.setText(vipBean
+//                        .getVipTypeList().get(position1).getVipPriceList().get(position).getPrice
+//                                () + "");
+//                return false;
+//            }
+//        });
         return false;
     }
 }

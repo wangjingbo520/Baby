@@ -20,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sunbaby.app.common.api.URLs;
 import com.sunbaby.app.common.base.BaseActivity;
 
 import butterknife.BindView;
@@ -41,7 +42,7 @@ public class WebViewActivity extends BaseActivity {
 
     public static void start(Context context, String url) {
         Intent starter = new Intent(context, WebViewActivity.class);
-        starter.putExtra("url", url);
+        starter.putExtra("url", URLs.SERVER_URL + url);
         context.startActivity(starter);
     }
 
@@ -72,12 +73,16 @@ public class WebViewActivity extends BaseActivity {
     private WebViewClient webViewClient = new WebViewClient() {
         @Override
         public void onPageFinished(WebView view, String url) {//页面加载完成
-            progressBar.setVisibility(View.GONE);
+            if (progressBar != null) {
+                progressBar.setVisibility(View.GONE);
+            }
         }
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {//页面开始加载
-            progressBar.setVisibility(View.VISIBLE);
+            if (progressBar != null) {
+                progressBar.setVisibility(View.VISIBLE);
+            }
         }
 
         @Override
@@ -121,7 +126,9 @@ public class WebViewActivity extends BaseActivity {
         //加载进度回调
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
-            progressBar.setProgress(newProgress);
+            if (progressBar != null) {
+                progressBar.setProgress(newProgress);
+            }
         }
     };
 

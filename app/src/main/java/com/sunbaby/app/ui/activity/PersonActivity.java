@@ -12,7 +12,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.libray.basetools.view.imageview.CircleImageView;
+import com.sunbaby.app.AppData;
 import com.sunbaby.app.R;
+import com.sunbaby.app.WebViewActivity;
 import com.sunbaby.app.bean.ImageData;
 import com.sunbaby.app.bean.PersonBean;
 import com.sunbaby.app.callback.IPersonView;
@@ -77,7 +79,8 @@ public class PersonActivity extends BaseCameraActivity implements IPersonView {
                 break;
             case R.id.llPhoneNumber:
                 //修改手机号码
-                startTo(UpdatePhoneNumberActivity.class, false);
+                WebViewActivity.start(mContext, getUser().getUrl().getMobileInit());
+           //     startTo(UpdatePhoneNumberActivity.class, false);
                 break;
             case R.id.btnSave:
                 //保存

@@ -1,5 +1,7 @@
 package com.sunbaby.app.common.base;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +12,8 @@ import android.view.ViewGroup;
 
 import com.sunbaby.app.AppData;
 import com.sunbaby.app.bean.User;
+import com.sunbaby.app.common.utils.DialogWithYesOrNoUtils;
+import com.sunbaby.app.ui.activity.LoginActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -27,6 +31,30 @@ public abstract class BaseFragment extends BaseStateViewFragment {
     public View mRootView;
     public FragmentActivity mContext;
 
+    public boolean userIsLogin(final boolean startToLogin) {
+        User user = AppData.getInstance().getUser();
+        if (null == user) {
+            if (!((Activity) mContext).isFinishing()) {
+                //show dialog
+                DialogWithYesOrNoUtils.showDialog(mContext, "请先进行登录", new DialogWithYesOrNoUtils
+                        .DialogCallBack() {
+                    @Override
+                    public void exectEvent() {
+                        startTo(LoginActivity.class, startToLogin);
+                    }
+                });
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public void startTo(Class c, boolean isFinish) {
+        startActivity(new Intent(mContext, c));
+        if (isFinish) {
+            mContext.finish();
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable

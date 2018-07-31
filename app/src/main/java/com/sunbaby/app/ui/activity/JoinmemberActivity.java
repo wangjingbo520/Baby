@@ -138,8 +138,8 @@ public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFl
                         .VipPriceListBean bean) {
                     //默认第一个被选中
                     TextView tv = (TextView) mInflater.inflate(R.layout.tv, tag2, false);
-                    tv.setText(bean.getEffectiveTime() + "\n" + bean
-                            .getPrice());
+                    tv.setText(bean.getEffectiveTime() + "年 " + "(¥" + bean
+                            .getPrice() + ")");
                     return tv;
                 }
             });
@@ -156,7 +156,7 @@ public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFl
     @Override
     public boolean onTagClick(View view, int position, FlowLayout parent) {
         if (vipBean != null && vipBean.getVipTypeList().size() > 0) {
-            tag2.setAdapter( new TagAdapter<VipBean.VipTypeListBean
+            tag2.setAdapter(new TagAdapter<VipBean.VipTypeListBean
                     .VipPriceListBean>(vipBean
                     .getVipTypeList().get(position).getVipPriceList()) {
                 @Override
@@ -164,8 +164,8 @@ public class JoinmemberActivity extends BaseActivity implements IJoinView, TagFl
                         .VipPriceListBean bean) {
                     //默认第一个被选中
                     TextView tv = (TextView) mInflater.inflate(R.layout.tv, tag2, false);
-                    tv.setText(bean.getEffectiveTime() + "\n" + bean
-                            .getPrice());
+                    tv.setText(bean.getEffectiveTime() + "年 " + "(¥" + bean
+                            .getPrice() + ")");
                     return tv;
                 }
             });

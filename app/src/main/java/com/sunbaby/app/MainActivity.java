@@ -65,7 +65,6 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setLayout(R.layout.activity_main);
         setTitleLayoutVisiable(false);
-        EventBus.getDefault().register(this);
         if (!TextUtils.isEmpty(getIntent().getStringExtra(MAININDEX))) {
             int index = Integer.parseInt(getIntent().getStringExtra(MAININDEX));
             initFragment(index);
@@ -189,13 +188,13 @@ public class MainActivity extends BaseActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(EventMessage eventMessage) {
-        if (1 == eventMessage.getPosition()) {
+        if (EventbusConstant.MAIN_ACTIVITY == eventMessage.getClassInfo()) {
             restartBotton();
             tvTitle.setText("配送箱");
             tabRongtongImageview.setImageResource(R.mipmap.peiy);
             tabPeisongTextview.setTextColor(ContextCompat.getColor(this, R.color.themeColor));
             if (peisongFragment != null) {
-                EventBus.getDefault().post(new EventMessage(2));
+                EventBus.getDefault().post(new EventMessage(EventbusConstant.PEISONG_FRAGMENT));
             }
             initFragment(1);
         }

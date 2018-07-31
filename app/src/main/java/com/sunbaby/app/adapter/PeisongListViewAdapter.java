@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.sunbaby.app.EventbusConstant;
 import com.sunbaby.app.R;
 import com.sunbaby.app.bean.PesisongBean;
 import com.sunbaby.app.common.api.ProgressSubscriber;
@@ -153,7 +154,8 @@ public class PeisongListViewAdapter extends BaseAdapter {
                                             notifyDataSetChanged();
                                             //没有数据的时候展示无数据视图
                                             if (listBeans.size() < 1) {
-                                                EventBus.getDefault().post(new EventMessage(2));
+                                                EventBus.getDefault().post(new EventMessage
+                                                        (EventbusConstant.PEISONG_FRAGMENT));
                                             }
                                         }
                                     });

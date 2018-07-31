@@ -6,13 +6,13 @@ package com.sunbaby.app.event;
  * describe
  */
 public class EventMessage {
-    private int position;
+    private String classInfo;
 
-    public int getPosition() {
-        return position;
+    public String getClassInfo() {
+        return classInfo == null ? "" : classInfo;
     }
 
-    public EventMessage(int position) {
-        this.position = position;
+    public EventMessage(String classInfo) {
+        this.classInfo = classInfo;
     }
 }

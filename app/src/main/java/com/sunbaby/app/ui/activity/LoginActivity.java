@@ -75,8 +75,8 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     @Override
     protected void onResume() {
         super.onResume();
-        if (getUser()!=null){
-            if (getUserId()!=null){
+        if (getUser() != null) {
+            if (getUserId() != null) {
                 startTo(MainActivity.class, true);
             }
         }
@@ -85,7 +85,15 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     @Override
     public void onLoginSucceed(User user) {
         //登录成功,跳转至开通会员页面
-      //  startTo(MainActivity.class, true);
-        startTo(JoinmemberActivity.class, true);
+        int type = user.getType();
+        /**
+         * 会员类型  1普通用户  2配送员
+         */
+        if (2 == type) {
+            startTo(DistributionActivity.class, true);
+        } else {
+            //   startTo(JoinmemberActivity.class, true);
+            startTo(MainActivity.class, true);
+        }
     }
 }

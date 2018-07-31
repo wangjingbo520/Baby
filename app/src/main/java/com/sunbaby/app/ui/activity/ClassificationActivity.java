@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -43,6 +45,8 @@ public class ClassificationActivity extends BaseActivity implements IClassificat
     RecyclerView recyclerview;
     @BindView(R.id.smartrefreshlayout)
     SmartRefreshLayout smartrefreshlayout;
+    @BindView(R.id.etSearch)
+    EditText etSearch;
 
     private MenuAdapter menuAdapter;
     private GoodsTypeAdapter goodsTypeAdapter;
@@ -70,6 +74,7 @@ public class ClassificationActivity extends BaseActivity implements IClassificat
 
     private void initView() {
         titleLeft = new ArrayList<>();
+        etSearch.setInputType(InputType.TYPE_NULL);
         type = getIntent().getStringExtra("type");
         if ("1".equals(type)) {
             titleLeft.add("图书");

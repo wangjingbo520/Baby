@@ -3,6 +3,8 @@ package com.sunbaby.app.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,8 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.sunbaby.app.AppData;
+import com.sunbaby.app.EventbusConstant;
 import com.sunbaby.app.R;
 import com.sunbaby.app.bean.HomeBean;
 import com.sunbaby.app.bean.QueryGoodsByRandBean;
@@ -64,7 +68,6 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
     CircleImageView iv6;
     @BindView(R.id.llBottom)
     LinearLayout llBottom;
-    Unbinder unbinder;
 
     private HomeFragmentDialog homeFragmentDialog;
     private SmartRefreshLayout smartRefreshLayout;
@@ -81,6 +84,7 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
     @Override
     public void onResume() {
         super.onResume();
+        postData();
         if (getUser() != null) {
             llBottom.setVisibility(View.GONE);
         } else {
@@ -88,9 +92,14 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
         }
     }
 
+    private void postData() {
+        homePresenter.queryContentAdvertisementsByHome();
+    }
+
+
     @Override
     public void initData() {
-        homePresenter.queryContentAdvertisementsByHome();
+
     }
 
     @Override
@@ -110,7 +119,7 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 if (homePresenter != null) {
-                    initData();
+                    postData();
                 }
             }
         });
@@ -130,7 +139,9 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
                 break;
             case R.id.llSuiji:
                 //图书随机
-                homePresenter.queryGoodsByRand("1");
+                if (userIsLogin(false)) {
+                    homePresenter.queryGoodsByRand("1");
+                }
                 break;
             case R.id.llFenlei:
                 //图书分类查看
@@ -184,19 +195,19 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
     }
 
     @Override
-    public void queryGoodsByRand(QueryGoodsByRandBean queryGoodsByRandBean,String type) {
+    public void queryGoodsByRand(QueryGoodsByRandBean queryGoodsByRandBean, String type) {
         //首页随机商品
         if (homeFragmentDialog == null) {
             homeFragmentDialog = new HomeFragmentDialog(mContext, this, "", "");
         }
-        homeFragmentDialog.setData(queryGoodsByRandBean,type);
+        homeFragmentDialog.setData(queryGoodsByRandBean, type);
         homeFragmentDialog.show();
     }
 
     @Override
     public void joinDistributionBox(Object object) {
         //加入配送箱成功
-        EventBus.getDefault().post(new EventMessage(1));
+        EventBus.getDefault().post(new EventMessage(EventbusConstant.MAIN_ACTIVITY));
     }
 
     @Override
@@ -207,7 +218,7 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
     }
 
     @Override
-    public void position(int position, QueryGoodsByRandBean queryGoodsByRandBean,String type) {
+    public void position(int position, QueryGoodsByRandBean queryGoodsByRandBean, String type) {
         if (0 == position) {
             //继续随机
             homePresenter.queryGoodsByRand(type);
@@ -217,18 +228,4 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
-            savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 }

@@ -1,11 +1,15 @@
-package com.sunbaby.app;
+package com.sunbaby.app.ui.activity;
 
 import android.os.Bundle;
 import android.view.View;
 
+import com.sunbaby.app.AppData;
+import com.sunbaby.app.MyApplication;
+import com.sunbaby.app.R;
 import com.sunbaby.app.callback.IExitLoginView;
 import com.sunbaby.app.common.base.BaseActivity;
 import com.sunbaby.app.common.utils.DialogWithYesOrNoUtils;
+import com.sunbaby.app.common.utils.Preferences;
 import com.sunbaby.app.presenter.DistributionPresenter;
 import com.sunbaby.app.ui.activity.LoginActivity;
 
@@ -27,7 +31,6 @@ public class DistributionActivity extends BaseActivity implements IExitLoginView
         setTitle("配送员中心");
         distributionPresenter = new DistributionPresenter(mContext, this);
     }
-
 
     @OnClick({R.id.llQuhuo, R.id.llJinhuo, R.id.tvExitLogin})
     @Override
@@ -59,10 +62,11 @@ public class DistributionActivity extends BaseActivity implements IExitLoginView
         });
     }
 
-
     @Override
     public void logout() {
+        Preferences.removeAll();
         AppData.getInstance().logoutClearData();
+        MyApplication.getInstance().extiLoginApp();
         startTo(LoginActivity.class, true);
     }
 

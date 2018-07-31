@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.sunbaby.app.AppData;
 import com.sunbaby.app.R;
 import com.sunbaby.app.bean.SearchHistoryBean;
 import com.sunbaby.app.callback.ISearchHistoryView;
@@ -51,7 +52,11 @@ public class SearchActivity extends BaseActivity implements ISearchHistoryView {
         setTitleLayoutVisiable(false);
         mInflater = LayoutInflater.from(mContext);
         searchHistoryPresenter = new SearchHistoryPresenter(mContext, this);
-        searchHistoryPresenter.regionList(getUserId(), "");
+        String userId = "";
+        if (AppData.getInstance().getUser() != null) {
+            userId = AppData.getInstance().getUserId();
+        }
+        searchHistoryPresenter.regionList(userId, "");
         tagflowlayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {

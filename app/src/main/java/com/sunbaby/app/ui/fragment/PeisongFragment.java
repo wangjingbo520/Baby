@@ -16,6 +16,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.sunbaby.app.EventbusConstant;
 import com.sunbaby.app.R;
 import com.sunbaby.app.WebViewActivity;
 import com.sunbaby.app.adapter.PeisongListViewAdapter;
@@ -57,7 +58,7 @@ public class PeisongFragment extends BaseStateViewFragment implements IPeisongVi
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(EventMessage eventMessage) {
-        if (2 == eventMessage.getPosition()) {
+        if (EventbusConstant.PEISONG_FRAGMENT == eventMessage.getClassInfo()) {
             initData();
         }
     }
