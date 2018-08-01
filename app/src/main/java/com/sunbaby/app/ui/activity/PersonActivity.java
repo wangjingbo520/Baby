@@ -79,8 +79,7 @@ public class PersonActivity extends BaseCameraActivity implements IPersonView {
                 break;
             case R.id.llPhoneNumber:
                 //修改手机号码
-                WebViewActivity.start(mContext, getUser().getUrl().getMobileInit());
-           //     startTo(UpdatePhoneNumberActivity.class, false);
+                startTo(UpdatePhoneNumberActivity.class, false);
                 break;
             case R.id.btnSave:
                 //保存

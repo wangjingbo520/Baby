@@ -5,6 +5,7 @@ import com.sunbaby.app.bean.AddVipBean;
 import com.sunbaby.app.bean.AdressBean;
 import com.sunbaby.app.bean.AlipayBean;
 import com.sunbaby.app.bean.Areabean;
+import com.sunbaby.app.bean.CanReceiveBean;
 import com.sunbaby.app.bean.CenterBean;
 import com.sunbaby.app.bean.ClassificationBean;
 import com.sunbaby.app.bean.EditAdressBean;
@@ -453,5 +454,60 @@ public interface ServerAPI {
      */
     @POST("account/logout")
     Observable<HttpResult<Object>> logout();
+
+
+    /**
+     * 修改手机号码原手机号码能接受验证码初始化
+     *
+     * @return
+     */
+    @POST("account/updateMobileInit")
+    Observable<HttpResult<CanReceiveBean>> updateMobileInit();
+
+
+    /**
+     * 修改手机号码发送短信验证
+     *
+     * @param mobile
+     * @param scene
+     * @return
+     */
+    @POST("account/sendSms")
+    @FormUrlEncoded
+    Observable<HttpResult<Object>> sendSmsUpdataPhoneNumber(@Field("mobile") String mobile,
+
+
+                                                            @Field("scene") String scene);
+
+    /**
+     * 修改手机号码保存
+     *
+     * @param mobile
+     * @param scene
+     * @param code
+     * @param password
+     * @return
+     */
+    @POST("account/updateMobileSave")
+    @FormUrlEncoded
+    Observable<HttpResult<Object>> updateMobileSave(@Field("mobile") String mobile,
+                                                    @Field("scene") String scene,
+                                                    @Field("code") String code,
+                                                    @Field("password") String password);
+
+
+    /**
+     * 修改密码
+     *
+     * @param passWord
+     * @param passWordNoe
+     * @param passWordTwo
+     * @return
+     */
+    @POST("account/updatePassword")
+    @FormUrlEncoded
+    Observable<HttpResult<Object>> updatePassword(@Field("passWord") String passWord,
+                                                  @Field("passWordNoe") String passWordNoe,
+                                                  @Field("passWordTwo") String passWordTwo);
 
 }

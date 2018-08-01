@@ -5,6 +5,7 @@ import com.sunbaby.app.bean.AddVipBean;
 import com.sunbaby.app.bean.AdressBean;
 import com.sunbaby.app.bean.AlipayBean;
 import com.sunbaby.app.bean.Areabean;
+import com.sunbaby.app.bean.CanReceiveBean;
 import com.sunbaby.app.bean.CenterBean;
 import com.sunbaby.app.bean.ClassificationBean;
 import com.sunbaby.app.bean.EditAdressBean;
@@ -207,8 +208,9 @@ public class RequestClient {
      * @param amount
      * @return
      */
-    public Observable<AddVipBean> addOrder(String userId, String vipTypeId,String vipPriceId, String amount) {
-        return mServerApi.addOrder(userId, vipTypeId,vipPriceId, amount)
+    public Observable<AddVipBean> addOrder(String userId, String vipTypeId, String vipPriceId,
+                                           String amount) {
+        return mServerApi.addOrder(userId, vipTypeId, vipPriceId, amount)
                 .map(new HttpResultFuc<AddVipBean>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
@@ -472,12 +474,13 @@ public class RequestClient {
 
     /**
      * 微信支付
+     *
      * @param userId
      * @param orderId
      * @return
      */
-    public Observable<WeChatPayBean> wechatPayBefore(String userId,String orderId) {
-        return mServerApi.wechatPayBefore(userId,orderId)
+    public Observable<WeChatPayBean> wechatPayBefore(String userId, String orderId) {
+        return mServerApi.wechatPayBefore(userId, orderId)
                 .map(new HttpResultFuc<WeChatPayBean>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
@@ -485,12 +488,13 @@ public class RequestClient {
 
     /**
      * 支付宝支付
+     *
      * @param userId
      * @param orderId
      * @return
      */
     public Observable<AlipayBean> alipayBefore(String userId, String orderId) {
-        return mServerApi.alipayBefore(userId,orderId)
+        return mServerApi.alipayBefore(userId, orderId)
                 .map(new HttpResultFuc<AlipayBean>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
@@ -571,6 +575,65 @@ public class RequestClient {
      */
     public Observable<Object> logout() {
         return mServerApi.logout()
+                .map(new HttpResultFuc<Object>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 修改手机号码原手机号码能接受验证码初始化
+     *
+     * @return
+     */
+    public Observable<CanReceiveBean> updateMobileInit() {
+        return mServerApi.updateMobileInit()
+                .map(new HttpResultFuc<CanReceiveBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 修改手机号码发送短信验证
+     *
+     * @param mobile
+     * @param scene
+     * @return
+     */
+    public Observable<Object> sendSmsUpdataPhoneNumber(String mobile, String scene) {
+        return mServerApi.sendSmsUpdataPhoneNumber(mobile, scene)
+                .map(new HttpResultFuc<Object>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 修改手机号码保存
+     *
+     * @param mobile
+     * @param scene
+     * @param code
+     * @param password
+     * @return
+     */
+    public Observable<Object> updateMobileSave(String mobile, String scene, String code, String
+            password) {
+        return mServerApi.updateMobileSave(mobile, scene, code, password)
+                .map(new HttpResultFuc<Object>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 修改密码
+     *
+     * @param passWord
+     * @param passWordNoe
+     * @param passWordTwo
+     * @return
+     */
+    public Observable<Object> updatePassword(String passWord, String passWordNoe, String
+            passWordTwo) {
+        return mServerApi.updatePassword(passWord, passWordNoe, passWordTwo)
                 .map(new HttpResultFuc<Object>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

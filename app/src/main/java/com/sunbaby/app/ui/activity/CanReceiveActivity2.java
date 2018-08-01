@@ -1,10 +1,7 @@
 package com.sunbaby.app.ui.activity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -21,47 +18,34 @@ import com.sunbaby.app.common.utils.ToastUtil;
 import com.sunbaby.app.presenter.CanOrNotReceivePresenter;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
  * @author wangjingbo
  * @date 2018/7/6
- * describe 原手机号不能接收验证码
+ * describe 修改手机号第二步
  */
-public class CanNotReceiveActivity extends BaseActivity implements ICanReceiveView {
+public class CanReceiveActivity2 extends BaseActivity implements ICanReceiveView {
 
     @BindView(R.id.etPhoneNumber)
-    EditText etPhoneNumber;
+    TextView etPhoneNumber;
     @BindView(R.id.etCode)
     EditText etCode;
     @BindView(R.id.tvGetCode)
     TextView tvGetCode;
-    @BindView(R.id.etPassword)
-    EditText etPassword;
     private CanOrNotReceivePresenter canOrNotReceivePresenter;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_can_not_receive);
         setTitle("修改手机号");
+        setContentView(R.layout.activity_can_receive2);
+        ButterKnife.bind(this);
         canOrNotReceivePresenter = new CanOrNotReceivePresenter(mContext, this);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (timer != null) {
-            timer.cancel();
-        }
-    }
-
-    public static void start(Context context) {
-        Intent starter = new Intent(context, CanNotReceiveActivity.class);
-        context.startActivity(starter);
-    }
-
-    @OnClick({R.id.tvGetCode, R.id.btnSave})
+    @OnClick({R.id.tvGetCode, R.id.save})
     @Override
     public void onClick(View view) {
         super.onClick(view);
@@ -70,8 +54,7 @@ public class CanNotReceiveActivity extends BaseActivity implements ICanReceiveVi
                 //获取验证码
                 getCode();
                 break;
-            case R.id.btnSave:
-                //保存
+            case R.id.save:
                 save();
                 break;
             default:
@@ -82,7 +65,6 @@ public class CanNotReceiveActivity extends BaseActivity implements ICanReceiveVi
     private void save() {
         String mobile = etPhoneNumber.getText().toString().trim();
         String code = etCode.getText().toString().trim();
-        String password = etPassword.getText().toString().trim();
         if (TextUtils.isEmpty(mobile)) {
             showToast("手机号码不能为空");
             return;
@@ -91,11 +73,7 @@ public class CanNotReceiveActivity extends BaseActivity implements ICanReceiveVi
             showToast("验证码不能为空");
             return;
         }
-        if (TextUtils.isEmpty(password)) {
-            showToast("密码不能为空");
-            return;
-        }
-        canOrNotReceivePresenter.updateMobileSave(mobile, "UPDATE_MOBILE_SCENE", code, password);
+        canOrNotReceivePresenter.updateMobileSave(mobile, "UPDATE_MOBILE_SCENE", code, "");
     }
 
     private void getCode() {
@@ -116,7 +94,6 @@ public class CanNotReceiveActivity extends BaseActivity implements ICanReceiveVi
     public void sendSmsUpdataPhoneNumber(Object o) {
         timer.start();
         ToastUtil.showMessage("短信已发送,请查收");
-
     }
 
     @Override
@@ -126,7 +103,8 @@ public class CanNotReceiveActivity extends BaseActivity implements ICanReceiveVi
 
     @Override
     public void updateMobileSave(Object o) {
-        showToast("新手机号码设置成功,请重新登录");
+        //修改手机号码成功
+        showToast("手机号码修改成功,请重新登录");
         Preferences.removeAll();
         AppData.getInstance().logoutClearData();
         MyApplication.getInstance().extiLoginApp();
@@ -148,5 +126,11 @@ public class CanNotReceiveActivity extends BaseActivity implements ICanReceiveVi
         }
     };
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (timer != null) {
+            timer.cancel();
+        }
+    }
 }

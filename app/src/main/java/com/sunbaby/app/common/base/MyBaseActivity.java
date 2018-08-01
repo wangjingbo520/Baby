@@ -39,10 +39,6 @@ import org.greenrobot.eventbus.ThreadMode;
 public class MyBaseActivity extends AppCompatActivity {
     protected Context mContext;
     protected boolean mCheckNetWork = true;
-    View mTipView;
-    private TextView tvClick;
-    WindowManager mWindowManager;
-    WindowManager.LayoutParams mLayoutParams;
     public NetworkBroadcastReceiver netBroadcastReceiver;
 
     @Override
@@ -130,22 +126,5 @@ public class MyBaseActivity extends AppCompatActivity {
 
     public boolean isCheckNetWork() {
         return mCheckNetWork;
-    }
-
-    private void initTipView() {
-//        LayoutInflater inflater = getLayoutInflater();
-//        mTipView = inflater.inflate(R.layout.layout_network_tip, null);
-//        tvClick = mTipView.findViewById(R.id.tvClick);
-//        mWindowManager = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
-//        mLayoutParams = new WindowManager.LayoutParams(
-//                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,
-//                WindowManager.LayoutParams.TYPE_APPLICATION,
-//                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-//                        | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-//                PixelFormat.TRANSLUCENT);
-//        //使用非CENTER时，可以通过设置XY的值来改变View的位置
-//        mLayoutParams.gravity = Gravity.TOP;
-//        mLayoutParams.x = 0;
-//        mLayoutParams.y = 100;
     }
 }

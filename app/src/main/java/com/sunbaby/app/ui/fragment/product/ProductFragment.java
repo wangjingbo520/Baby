@@ -14,7 +14,6 @@ import com.sunbaby.app.common.base.BaseFragment;
  */
 public class ProductFragment extends BaseFragment {
 
-
     public static ProductFragment newInstance() {
         ProductFragment fragment = new ProductFragment();
         Bundle args = new Bundle();

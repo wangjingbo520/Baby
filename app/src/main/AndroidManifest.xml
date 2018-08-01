@@ -203,6 +203,7 @@
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity android:name=".ui.activity.MyPayActivity" />
         <activity android:name=".ui.activity.DistributionActivity" />
+        <activity android:name=".ui.activity.CanReceiveActivity2"></activity>
     </application>
 
 </manifest>

@@ -388,5 +388,4 @@ public class RegisterActivity extends BaseViewActivity implements CommomDialog.D
         }
     }
 
-
 }

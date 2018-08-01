@@ -70,6 +70,8 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         setTitle("登录");
         setBackLayoutVisiable(false);
         loginPresenter = new LoginPresenter(mContext, this);
+        etAccount.setText("15575163734");
+        etPassword.setText("123456");
     }
 
     @Override

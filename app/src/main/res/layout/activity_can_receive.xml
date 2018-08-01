@@ -25,14 +25,11 @@
             android:textSize="@dimen/x32" />
 
         <TextView
-
             android:id="@+id/etAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x24"
-            android:hint="请输入电话号码"
             android:singleLine="true"
-            android:text="132xxxxxx562"
             android:textColor="@color/textColor3"
             android:textSize="@dimen/x32" />
     </LinearLayout>

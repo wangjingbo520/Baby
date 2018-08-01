@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".ui.activity.CanNotReceiveActivity">
+    tools:context=".ui.activity.CanReceiveActivity2">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,22 +20,17 @@
         <TextView
             android:layout_width="@dimen/x200"
             android:layout_height="wrap_content"
-            android:text="新手机号： "
+            android:text="手机号"
             android:textColor="@color/textColor3"
             android:textSize="@dimen/x32" />
 
-        <EditText
+        <TextView
             android:id="@+id/etPhoneNumber"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x24"
-            android:background="@null"
-            android:hint="请输入新电话号码"
-            android:imeOptions="actionNext"
             android:singleLine="true"
-            android:text=""
             android:textColor="@color/textColor3"
-            android:textColorHint="@color/textColor9"
             android:textSize="@dimen/x32" />
     </LinearLayout>
 
@@ -85,42 +80,8 @@
             android:textSize="@dimen/x28" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x100"
-        android:layout_marginTop="@dimen/x2"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/x30"
-        android:paddingRight="@dimen/x30">
-
-        <TextView
-            android:layout_width="@dimen/x200"
-            android:layout_height="wrap_content"
-            android:text="登录密码： "
-            android:textColor="@color/textColor3"
-            android:textSize="@dimen/x32" />
-
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/x24"
-            android:background="@null"
-            android:hint="请输入您的登录密码"
-            android:imeOptions="actionNext"
-            android:inputType="phone"
-            android:maxLength="11"
-            android:singleLine="true"
-            android:text=""
-            android:textColor="@color/textColor3"
-            android:textColorHint="@color/textColor9"
-            android:textSize="@dimen/x32" />
-    </LinearLayout>
-
     <Button
-        android:id="@+id/btnSave"
+        android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x90"
         android:layout_gravity="center_horizontal"
@@ -128,19 +89,19 @@
         android:layout_marginRight="@dimen/x50"
         android:layout_marginTop="@dimen/x120"
         android:background="@drawable/bg_btn_login"
-        android:text="保存"
+        android:text="下一步"
         android:textColor="@color/white"
         android:textSize="@dimen/x32" />
 
-    <!--<TextView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginTop="@dimen/x80"-->
-    <!--android:paddingLeft="@dimen/x30"-->
-    <!--android:paddingRight="@dimen/x30"-->
-    <!--android:text="说明：更换手机后，您的原手机号将不能用于登录，必须使用更换后的手机号进行登录"-->
-    <!--android:textColor="@color/textColor6"-->
-    <!--android:textSize="@dimen/textSize_32" />-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x80"
+        android:paddingLeft="@dimen/x30"
+        android:paddingRight="@dimen/x30"
+        android:text="说明：更换手机后，您的原手机号将不能用于登录，必须使用更换后的手机号进行登录"
+        android:textColor="@color/textColor6"
+        android:textSize="@dimen/textSize_32" />
 
 
 </LinearLayout>

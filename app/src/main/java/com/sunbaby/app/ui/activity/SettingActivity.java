@@ -94,6 +94,5 @@ public class SettingActivity extends BaseActivity implements IExitLoginView {
         AppData.getInstance().logoutClearData();
         MyApplication.getInstance().extiLoginApp();
         startTo(LoginActivity.class, true);
-
     }
 }
