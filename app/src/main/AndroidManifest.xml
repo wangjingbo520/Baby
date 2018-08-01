@@ -13,7 +13,7 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -203,7 +203,8 @@
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity android:name=".ui.activity.MyPayActivity" />
         <activity android:name=".ui.activity.DistributionActivity" />
-        <activity android:name=".ui.activity.CanReceiveActivity2"></activity>
+        <activity android:name=".ui.activity.CanReceiveActivity2" />
+        <activity android:name=".ui.activity.ImageBrowseActivity"></activity>
     </application>
 
 </manifest>

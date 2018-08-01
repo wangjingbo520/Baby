@@ -14,6 +14,7 @@ import com.sunbaby.app.bean.JoinBean2;
 import com.sunbaby.app.bean.PayBean;
 import com.sunbaby.app.bean.PersonBean;
 import com.sunbaby.app.bean.PesisongBean;
+import com.sunbaby.app.bean.ProductBean;
 import com.sunbaby.app.bean.QueryGoodsByRandBean;
 import com.sunbaby.app.bean.SearchHistoryBean;
 import com.sunbaby.app.bean.SecondGoodsListBean;
@@ -509,5 +510,15 @@ public interface ServerAPI {
     Observable<HttpResult<Object>> updatePassword(@Field("passWord") String passWord,
                                                   @Field("passWordNoe") String passWordNoe,
                                                   @Field("passWordTwo") String passWordTwo);
+
+    /**
+     * 商品详情
+     *
+     * @param goods_id
+     * @return
+     */
+    @POST("fr/goods/queryGoodsDetails")
+    @FormUrlEncoded
+    Observable<HttpResult<ProductBean>> queryGoodsDetails(@Field("goods_id") String goods_id);
 
 }

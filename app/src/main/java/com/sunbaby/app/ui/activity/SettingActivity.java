@@ -30,7 +30,6 @@ import butterknife.OnClick;
  */
 public class SettingActivity extends BaseActivity implements IExitLoginView {
     private DistributionPresenter distributionPresenter;
-    private NDialog alertDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

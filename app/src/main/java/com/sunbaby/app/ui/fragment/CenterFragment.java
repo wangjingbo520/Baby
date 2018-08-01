@@ -99,9 +99,9 @@ public class CenterFragment extends BaseFragment implements ICenterView {
                 MyOrderActivity.start(mContext, 0);
                 break;
             case R.id.llSunhuai:
-                WebViewActivity.start(mContext, AppData.getInstance().getUser().getUrl()
-                        .getDamageList());
-                //    DamageRecordActivity.start(mContext);
+//                WebViewActivity.start(mContext, AppData.getInstance().getUser().getUrl()
+//                        .getDamageList());
+                DamageRecordActivity.start(mContext);
                 break;
             case R.id.ll1:
                 //待发货
@@ -125,8 +125,8 @@ public class CenterFragment extends BaseFragment implements ICenterView {
                 break;
             case R.id.llWenti:
                 //常见问题
-                WebViewActivity.start(mContext,getUser().getUrl().getQuestionList());
-             //   JoinmemberActivity2.start(mContext);
+                WebViewActivity.start(mContext, getUser().getUrl().getQuestionList());
+                //   JoinmemberActivity2.start(mContext);
                 break;
             default:
                 break;

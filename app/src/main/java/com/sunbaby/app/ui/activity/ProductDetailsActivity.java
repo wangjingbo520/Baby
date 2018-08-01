@@ -7,14 +7,23 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import com.sunbaby.app.EventbusConstant;
 import com.sunbaby.app.MainActivity;
 import com.sunbaby.app.R;
+import com.sunbaby.app.bean.ProductBean;
+import com.sunbaby.app.callback.IProductView;
 import com.sunbaby.app.common.base.BaseActivity;
+import com.sunbaby.app.common.utils.NDialog;
+import com.sunbaby.app.event.EventMessage;
+import com.sunbaby.app.presenter.ProductPresenter;
 import com.sunbaby.app.ui.fragment.product.ProductDetailFragment;
 import com.sunbaby.app.ui.fragment.product.ProductFragment;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -24,7 +33,7 @@ import butterknife.OnClick;
  * @date 2018/7/6
  * describe 商品详情
  */
-public class ProductDetailsActivity extends BaseActivity {
+public class ProductDetailsActivity extends BaseActivity implements IProductView {
 
     @BindView(R.id.tvLeft)
     TextView tvLeft;
@@ -36,9 +45,14 @@ public class ProductDetailsActivity extends BaseActivity {
     View viewRight;
     private ProductFragment productFragment;
     private ProductDetailFragment productDetailFragment;
+    private String goods_id = "";
 
-    public static void start(Context context) {
+    private ProductPresenter productPresenter;
+
+
+    public static void start(Context context, String goods_id) {
         Intent starter = new Intent(context, ProductDetailsActivity.class);
+        starter.putExtra("goods_id", goods_id);
         context.startActivity(starter);
     }
 
@@ -47,6 +61,9 @@ public class ProductDetailsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setLayout(R.layout.activity_product_details);
         setTitle("商品详情");
+        goods_id = getIntent().getStringExtra("goods_id");
+        alertDialog = new NDialog(mContext);
+        productPresenter = new ProductPresenter(mContext, this);
         initFragment(0);
     }
 
@@ -73,12 +90,40 @@ public class ProductDetailsActivity extends BaseActivity {
                 break;
             case R.id.tvAdd:
                 //加入配送
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra(MainActivity.MAININDEX, "1");
-                startActivity(intent);
+                if (userIsLogin(false)) {
+                    if (!TextUtils.isEmpty(goods_id)) {
+                        addPeisong();
+                    }
+                }
+                break;
             default:
                 break;
         }
+    }
+
+    private void addPeisong() {
+        alertDialog.setTitleSize(20)
+                .setTitle("提示")
+                .setMessage("确认要添加到配送箱吗?")
+                .setTitleCenter(false)
+                .setMessageCenter(false)
+                .setMessageSize(18)
+                .setMessageColor(ContextCompat.getColor(mContext, R.color.textColor3))
+                .setNegativeTextColor(ContextCompat.getColor(mContext, R.color.textColor3))
+                .setPositiveTextColor(ContextCompat.getColor(mContext, R.color.textColor3))
+                .setButtonCenter(false)
+                .setButtonSize(18)
+                .setCancleable(true)
+                .setOnConfirmListener(new NDialog.OnConfirmListener() {
+                    @Override
+                    public void onClick(int which) {
+                        //which,0代表NegativeButton，1代表PositiveButton
+                        if (1 == which) {
+                            productPresenter.joinDistributionBox(goods_id);
+                        }
+                    }
+                });
+        alertDialog.create(NDialog.CONFIRM).show();
     }
 
     private void initFragment(int index) {
@@ -88,7 +133,7 @@ public class ProductDetailsActivity extends BaseActivity {
         switch (index) {
             case 0:
                 if (productFragment == null) {
-                    productFragment = ProductFragment.newInstance();
+                    productFragment = ProductFragment.newInstance(goods_id);
                     transaction.add(R.id.main_frame, productFragment);
                 } else {
                     transaction.show(productFragment);
@@ -96,7 +141,7 @@ public class ProductDetailsActivity extends BaseActivity {
                 break;
             case 1:
                 if (productDetailFragment == null) {
-                    productDetailFragment = ProductDetailFragment.newInstance();
+                    productDetailFragment = ProductDetailFragment.newInstance(goods_id);
                     transaction.add(R.id.main_frame, productDetailFragment);
                 } else {
                     transaction.show(productDetailFragment);
@@ -115,6 +160,18 @@ public class ProductDetailsActivity extends BaseActivity {
         if (productDetailFragment != null) {
             transaction.hide(productDetailFragment);
         }
+    }
+
+    @Override
+    public void queryGoodsDetails(ProductBean productBean) {
+
+    }
+
+    @Override
+    public void joinDistributionBox(Object object) {
+        //添加到配送箱
+        EventBus.getDefault().post(new EventMessage(EventbusConstant.PEISONG_FRAGMENT));
+        showToast("恭喜您,已成功添加到配送箱");
     }
 
 }

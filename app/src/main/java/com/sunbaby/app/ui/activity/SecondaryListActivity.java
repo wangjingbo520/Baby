@@ -102,6 +102,8 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
         goodsTypeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                ProductDetailsActivity.start(mContext, goodsTypeAdapter.getItem(position).getId()
+                        + "");
             }
         });
 

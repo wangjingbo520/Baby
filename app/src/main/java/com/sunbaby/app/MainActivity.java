@@ -54,8 +54,8 @@ public class MainActivity extends BaseActivity {
 
     private HomeFragment homeFragment;
     private PeisongFragment peisongFragment;
-
     private CenterFragment centerFragment;
+
     public static String MAININDEX = "MAININDEX";
     private String[] title = {"首页", "配送箱", "中心"};
     private long mExitTime;

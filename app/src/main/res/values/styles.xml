@@ -61,9 +61,8 @@
         </attr>
     </declare-styleable>
 
-
     <style name="WelcomeStyle" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@mipmap/default_pic</item>
+        <item name="android:windowBackground">@mipmap/splash</item>
     </style>
 
     <style name="loading_large">

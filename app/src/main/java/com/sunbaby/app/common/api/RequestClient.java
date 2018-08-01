@@ -14,6 +14,7 @@ import com.sunbaby.app.bean.JoinBean2;
 import com.sunbaby.app.bean.PayBean;
 import com.sunbaby.app.bean.PersonBean;
 import com.sunbaby.app.bean.PesisongBean;
+import com.sunbaby.app.bean.ProductBean;
 import com.sunbaby.app.bean.QueryGoodsByRandBean;
 import com.sunbaby.app.bean.SearchHistoryBean;
 import com.sunbaby.app.bean.SecondGoodsListBean;
@@ -635,6 +636,13 @@ public class RequestClient {
             passWordTwo) {
         return mServerApi.updatePassword(passWord, passWordNoe, passWordTwo)
                 .map(new HttpResultFuc<Object>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<ProductBean> queryGoodsDetails(String goods_id) {
+        return mServerApi.queryGoodsDetails(goods_id)
+                .map(new HttpResultFuc<ProductBean>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

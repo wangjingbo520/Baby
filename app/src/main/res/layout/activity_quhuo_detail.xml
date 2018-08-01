@@ -20,7 +20,7 @@
             android:layout_width="@dimen/x200"
             android:layout_height="@dimen/x220"
             android:scaleType="fitXY"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/default_pic" />
 
         <TextView
             android:layout_width="0dp"

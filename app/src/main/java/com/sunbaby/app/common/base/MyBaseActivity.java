@@ -22,6 +22,7 @@ import com.sunbaby.app.R;
 import com.sunbaby.app.bean.User;
 import com.sunbaby.app.common.NetworkChangeEvent;
 import com.sunbaby.app.common.utils.DialogWithYesOrNoUtils;
+import com.sunbaby.app.common.utils.NDialog;
 import com.sunbaby.app.common.utils.NetworkBroadcastReceiver;
 import com.sunbaby.app.common.utils.NetworkUtils;
 import com.sunbaby.app.common.utils.ToastUtil;
@@ -40,6 +41,7 @@ public class MyBaseActivity extends AppCompatActivity {
     protected Context mContext;
     protected boolean mCheckNetWork = true;
     public NetworkBroadcastReceiver netBroadcastReceiver;
+    public NDialog alertDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
