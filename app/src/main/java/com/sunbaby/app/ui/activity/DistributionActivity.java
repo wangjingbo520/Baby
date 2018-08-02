@@ -43,9 +43,11 @@ public class DistributionActivity extends BaseActivity implements IExitLoginView
                 break;
             case R.id.llQuhuo:
                 //取货列表
+                startTo(QuhuoListActivity.class, false);
                 break;
             case R.id.llJinhuo:
                 //进货列表
+                startTo(SonghuoListActivity.class, false);
                 break;
             default:
                 break;
@@ -69,5 +71,4 @@ public class DistributionActivity extends BaseActivity implements IExitLoginView
         MyApplication.getInstance().extiLoginApp();
         startTo(LoginActivity.class, true);
     }
-
 }

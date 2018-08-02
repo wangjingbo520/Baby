@@ -16,7 +16,7 @@ public class URLs {
 
 
     //周炳辉地址
-   // public static final String SERVER_URL = "http://192.168.5.27:8082/";
+ //   public static final String SERVER_URL = "http://192.168.5.27:8082/";
 
 
 }

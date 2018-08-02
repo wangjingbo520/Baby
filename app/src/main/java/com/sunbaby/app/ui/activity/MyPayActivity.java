@@ -141,26 +141,19 @@ public class MyPayActivity extends BaseActivity implements IMypayView {
         }
         if (!TextUtils.isEmpty(payType)) {
             int position = Integer.parseInt(payType);
-            showToast(payBean.getPayList().get(position).getName());
+            myPayPresenter.alipayBefore(getUserId(), orderId);
+
+            //   showToast(payBean.getPayList().get(position).getName());
         } else {
             showToast("请先选择支付方式");
         }
 
     }
 
-
     /**
      * 支付宝支付业务
      */
-    private void alipay() {
-        boolean rsa2 = (RSA2_PRIVATE.length() > 0);
-        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID, rsa2);
-        String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
-
-        String privateKey = rsa2 ? RSA2_PRIVATE : RSA_PRIVATE;
-        String sign = OrderInfoUtil2_0.getSign(params, privateKey, rsa2);
-        final String orderInfo = orderParam + "&" + sign;
-
+    private void alipay(final String orderInfo) {
         Runnable payRunnable = new Runnable() {
 
             @Override
@@ -247,20 +240,16 @@ public class MyPayActivity extends BaseActivity implements IMypayView {
         PayReq request = new PayReq();
         request.appId = "wxd930ea5d5a258f4f";
         request.partnerId = weChatPayBean.getPartnerid();
-        request.prepayId= weChatPayBean.getPrepayid();
+        request.prepayId = weChatPayBean.getPrepayid();
         request.packageValue = weChatPayBean.getPackageX();
-        request.nonceStr= weChatPayBean.getNoncestr();
-        request.timeStamp= weChatPayBean.getTimestamp();
-        request.sign= weChatPayBean.getSign();
+        request.nonceStr = weChatPayBean.getNoncestr();
+        request.timeStamp = weChatPayBean.getTimestamp();
+        request.sign = weChatPayBean.getSign();
         api.sendReq(request);
     }
 
     @Override
     public void alipayBefore(AlipayBean alipayBean) {
-
-
-
+        alipay(alipayBean.getOrderString());
     }
-
-
 }

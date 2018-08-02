@@ -8,5 +8,7 @@ package com.sunbaby.app;
 public class EventbusConstant {
     public static String MAIN_ACTIVITY = "MainActivity";
     public static String PEISONG_FRAGMENT = "PeisongFragment";
+    public static String ADRESSMANAGE_ACTIVITY = "ManageAddressActivity";
+
 
 }

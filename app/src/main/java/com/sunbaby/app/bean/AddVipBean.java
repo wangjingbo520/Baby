@@ -14,16 +14,16 @@ public class AddVipBean {
      * orderId : 1
      */
 
-    private int amount;
+    private double amount;
     private long time;
     private String orderCode;
     private long orderId;
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 

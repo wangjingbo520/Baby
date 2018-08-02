@@ -8,6 +8,8 @@ import com.sunbaby.app.bean.Areabean;
 import com.sunbaby.app.bean.CanReceiveBean;
 import com.sunbaby.app.bean.CenterBean;
 import com.sunbaby.app.bean.ClassificationBean;
+import com.sunbaby.app.bean.DamageDetailBean;
+import com.sunbaby.app.bean.DamageRecordBean;
 import com.sunbaby.app.bean.EditAdressBean;
 import com.sunbaby.app.bean.HomeBean;
 import com.sunbaby.app.bean.JoinBean2;
@@ -18,6 +20,7 @@ import com.sunbaby.app.bean.ProductBean;
 import com.sunbaby.app.bean.QueryGoodsByRandBean;
 import com.sunbaby.app.bean.SearchHistoryBean;
 import com.sunbaby.app.bean.SecondGoodsListBean;
+import com.sunbaby.app.bean.SongQuhuoBean;
 import com.sunbaby.app.bean.SureBean;
 import com.sunbaby.app.bean.UploadFile;
 import com.sunbaby.app.bean.User;
@@ -520,5 +523,47 @@ public interface ServerAPI {
     @POST("fr/goods/queryGoodsDetails")
     @FormUrlEncoded
     Observable<HttpResult<ProductBean>> queryGoodsDetails(@Field("goods_id") String goods_id);
+
+
+    /**
+     * 损坏记录列表
+     *
+     * @param userId
+     * @param currPage
+     * @param pageSize
+     * @return
+     */
+    @POST("fr/goods/damageList")
+    @FormUrlEncoded
+    Observable<HttpResult<DamageRecordBean>> damageList(@Field("userId") String userId,
+                                                        @Field("currPage") int currPage,
+                                                        @Field("pageSize") int pageSize);
+
+    /**
+     * 损坏记录详情
+     *
+     * @param goodsDamageId
+     * @return
+     */
+    @POST("fr/goods/damageDetails")
+    @FormUrlEncoded
+    Observable<HttpResult<DamageDetailBean>> damageDetails(@Field("goodsDamageId") String
+                                                                   goodsDamageId);
+
+    /**
+     * 送货 取货列表
+     *
+     * @param type
+     * @param user_id
+     * @param currPage
+     * @param pageSize
+     * @return
+     */
+    @POST("dispatching/retrievingList")
+    @FormUrlEncoded
+    Observable<HttpResult<SongQuhuoBean>> retrievingList(@Field("type") String type,
+                                                         @Field("user_id") String user_id,
+                                                         @Field("currPage") int currPage,
+                                                         @Field("pageSize") int pageSize);
 
 }

@@ -8,6 +8,7 @@
     android:paddingRight="@dimen/x20">
 
     <ImageView
+        android:id="@+id/ivPic"
         android:layout_width="@dimen/x180"
         android:layout_height="@dimen/x220"
         android:src="@mipmap/default_pic" />
@@ -20,18 +21,18 @@
         android:paddingTop="@dimen/x50">
 
         <TextView
+            android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="战神之王,如何成为战神之王"
             android:textColor="@color/textColor3"
             android:textSize="@dimen/textSize_32" />
 
         <TextView
+            android:id="@+id/tvStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/x40"
             android:gravity="right"
-            android:text="已购买"
             android:textColor="@color/textColor3"
             android:textSize="@dimen/textSize_32" />
 

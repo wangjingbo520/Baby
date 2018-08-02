@@ -35,7 +35,6 @@ public class ProgressDialogHandler extends Handler {
         this.mContext = context;
     }
 
-
     /**
      * 用于显示Dialog
      */
@@ -56,7 +55,6 @@ public class ProgressDialogHandler extends Handler {
             }
         }
     }
-
 
     private void dismissProgressDialog() {
         if (mDialog != null) {

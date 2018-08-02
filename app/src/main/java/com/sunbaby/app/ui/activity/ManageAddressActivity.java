@@ -15,6 +15,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.sunbaby.app.EventbusConstant;
 import com.sunbaby.app.R;
 import com.sunbaby.app.adapter.ManageAdressAdapter;
 import com.sunbaby.app.bean.AdressBean;
@@ -22,7 +23,12 @@ import com.sunbaby.app.callback.IAdressView;
 import com.sunbaby.app.common.base.BaseActivity;
 import com.sunbaby.app.common.utils.UIUtils;
 import com.sunbaby.app.common.widget.MyRecycleViewDivider;
+import com.sunbaby.app.event.EventMessage;
 import com.sunbaby.app.presenter.ManageAddressPresenter;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +45,8 @@ public class ManageAddressActivity extends BaseActivity implements IAdressView {
 
     @BindView(R.id.recyclerview)
     RecyclerView mRecyclerView;
+    @BindView(R.id.include)
+    View include;
 
     private ManageAdressAdapter recyDemoAdapter;
     private ManageAddressPresenter manageAddressPresenter;
@@ -47,6 +55,14 @@ public class ManageAddressActivity extends BaseActivity implements IAdressView {
     public static void start(Context context) {
         Intent starter = new Intent(context, ManageAddressActivity.class);
         context.startActivity(starter);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(EventMessage eventMessage) {
+        if (EventbusConstant.ADRESSMANAGE_ACTIVITY == eventMessage.getClassInfo()) {
+            //收到了删除了最后一条收货地址以后的事件,展示和隐藏
+            include.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -76,8 +92,7 @@ public class ManageAddressActivity extends BaseActivity implements IAdressView {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 if (view.getId() == R.id.checkbox) {
                     CheckBox checkBox = (CheckBox) view;
-                    if (checkBox.isChecked()) {
-                    } else {
+                    if (!checkBox.isChecked()) {
                         //设置为默认地址
                         manageAddressPresenter.defaultAddress(adressBeans.get(position).getId() +
                                 "", position);
@@ -98,12 +113,6 @@ public class ManageAddressActivity extends BaseActivity implements IAdressView {
         manageAddressPresenter.addressList(getUserId());
     }
 
-//    @Override
-//    protected void doOnRetry() {
-//        super.doOnRetry();
-//        AddNewAddressActivity.start(this);
-//    }
-
     @OnClick(R.id.tvAddress)
     @Override
     public void onClick(View view) {
@@ -120,8 +129,7 @@ public class ManageAddressActivity extends BaseActivity implements IAdressView {
     @Override
     public void addressList(AdressBean adressBean) {
         if (adressBean.getList().size() <= 0) {
-//            showEmpty();
-//            showNocontentTitle("点击添加收货地址");
+            include.setVisibility(View.VISIBLE);
         } else {
             recyDemoAdapter.addData(adressBean.getList());
         }
@@ -130,16 +138,12 @@ public class ManageAddressActivity extends BaseActivity implements IAdressView {
     @Override
     public void deleteById(int position) {
         //删除成功
-        recyDemoAdapter.remove(position);
-        recyDemoAdapter.notifyDataSetChanged();
+        recyDemoAdapter.setDefaultAdress(position);
     }
 
     @Override
     public void defaultAddress(int position) {
         //设置默认地址
-
-
-
-
+        recyDemoAdapter.setDefaultAdress(position);
     }
 }

@@ -84,7 +84,6 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
     @Override
     public void onResume() {
         super.onResume();
-        postData();
         if (getUser() != null) {
             llBottom.setVisibility(View.GONE);
         } else {
@@ -99,7 +98,7 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
 
     @Override
     public void initData() {
-
+        postData();
     }
 
     @Override

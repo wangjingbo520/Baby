@@ -181,14 +181,13 @@ public class JoinmemberActivity2 extends BaseActivity implements IJoinView2, Tag
                     return tv;
                 }
             });
-
         }
     }
 
     @Override
     public void addOrder(AddVipBean addVipBean) {
         //开通会员,跳到支付页面
-        startTo(MyPayActivity.class, true);
+        MyPayActivity.start(mContext, addVipBean.getOrderId() + "");
     }
 
     @Override
@@ -209,15 +208,6 @@ public class JoinmemberActivity2 extends BaseActivity implements IJoinView2, Tag
             });
         }
 
-//        tag2.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
-//            @Override
-//            public boolean onTagClick(View view, int position, FlowLayout parent) {
-//                tvJine.setText(vipBean
-//                        .getVipTypeList().get(position1).getVipPriceList().get(position).getPrice
-//                                () + "");
-//                return false;
-//            }
-//        });
         return false;
     }
 }

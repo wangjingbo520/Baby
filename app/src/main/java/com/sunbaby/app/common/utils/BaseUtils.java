@@ -9,13 +9,15 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * @author wangjingbo
  * @date 2018/7/13
  * describe
  */
 public class BaseUtils {
-
 
 
     /**
@@ -43,7 +45,7 @@ public class BaseUtils {
      * @return
      */
     public static String format1Digits(Object d) {
-        return String.format("%.1f", Double.parseDouble(d+""));
+        return String.format("%.1f", Double.parseDouble(d + ""));
     }
 
     /**
@@ -63,6 +65,13 @@ public class BaseUtils {
         InputMethodManager imm = (InputMethodManager)
                 et.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(et.getWindowToken(), 0);
+    }
+
+
+    public static String getTime(long time) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String sd = sdf.format(new Date(time));
+        return sd;
     }
 
 }

@@ -20,11 +20,11 @@
             android:src="@mipmap/default_pic" />
 
         <TextView
+            android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x20"
             android:layout_marginTop="@dimen/x50"
-            android:text="战神之王,如何成为战神之王"
             android:textColor="@color/textColor3"
             android:textSize="@dimen/textSize_32" />
 
@@ -48,10 +48,10 @@
             android:textSize="@dimen/textSize_32" />
 
         <TextView
+            android:id="@+id/tvTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x30"
-            android:text="2018-08-07  11:00:00"
             android:textColor="@color/textColor6"
             android:textSize="@dimen/textSize_32" />
     </LinearLayout>
@@ -76,10 +76,10 @@
             android:textSize="@dimen/textSize_32" />
 
         <TextView
+            android:id="@+id/tvYuanjia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x30"
-            android:text="￥100"
             android:textColor="@color/textColor6"
             android:textSize="@dimen/textSize_32" />
     </LinearLayout>
@@ -102,10 +102,10 @@
             android:textSize="@dimen/textSize_32" />
 
         <TextView
+            android:id="@+id/tvGoumaijia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x30"
-            android:text="￥80"
             android:textColor="#f63131"
             android:textSize="@dimen/textSize_32" />
     </LinearLayout>
@@ -115,6 +115,7 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/tvPay"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x90"
             android:layout_alignParentBottom="true"

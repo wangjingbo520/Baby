@@ -8,6 +8,8 @@ import com.sunbaby.app.bean.Areabean;
 import com.sunbaby.app.bean.CanReceiveBean;
 import com.sunbaby.app.bean.CenterBean;
 import com.sunbaby.app.bean.ClassificationBean;
+import com.sunbaby.app.bean.DamageDetailBean;
+import com.sunbaby.app.bean.DamageRecordBean;
 import com.sunbaby.app.bean.EditAdressBean;
 import com.sunbaby.app.bean.HomeBean;
 import com.sunbaby.app.bean.JoinBean2;
@@ -18,6 +20,7 @@ import com.sunbaby.app.bean.ProductBean;
 import com.sunbaby.app.bean.QueryGoodsByRandBean;
 import com.sunbaby.app.bean.SearchHistoryBean;
 import com.sunbaby.app.bean.SecondGoodsListBean;
+import com.sunbaby.app.bean.SongQuhuoBean;
 import com.sunbaby.app.bean.SureBean;
 import com.sunbaby.app.bean.UploadFile;
 import com.sunbaby.app.bean.User;
@@ -640,9 +643,61 @@ public class RequestClient {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    /**
+     * 商品详情
+     *
+     * @param goods_id
+     * @return
+     */
     public Observable<ProductBean> queryGoodsDetails(String goods_id) {
         return mServerApi.queryGoodsDetails(goods_id)
                 .map(new HttpResultFuc<ProductBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 损坏记录列表
+     *
+     * @param userId
+     * @param currPage
+     * @param pageSize
+     * @return
+     */
+    public Observable<DamageRecordBean> damageList(String userId, int currPage, int pageSize) {
+        return mServerApi.damageList(userId, currPage, pageSize)
+                .map(new HttpResultFuc<DamageRecordBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 损坏记录详情
+     *
+     * @param goodsDamageId
+     * @return
+     */
+    public Observable<DamageDetailBean> damageDetails(String goodsDamageId) {
+        return mServerApi.damageDetails(goodsDamageId)
+                .map(new HttpResultFuc<DamageDetailBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+
+    /**
+     * 送货取货订单列表
+     *
+     * @param type
+     * @param user_id
+     * @param currPage
+     * @param pageSize
+     * @return
+     */
+    public Observable<SongQuhuoBean> retrievingList(String type, String user_id, int currPage,
+                                                    int pageSize) {
+        return mServerApi.retrievingList(type, user_id, currPage, pageSize)
+                .map(new HttpResultFuc<SongQuhuoBean>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
