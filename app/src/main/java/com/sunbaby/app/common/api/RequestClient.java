@@ -702,6 +702,31 @@ public class RequestClient {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    /**
+     * 修改收货地址保存
+     *
+     * @param id
+     * @param userId
+     * @param mobile
+     * @param status
+     * @param provinceId
+     * @param cityId
+     * @param district
+     * @param areaId
+     * @param detailedAddress
+     * @param name
+     * @return
+     */
+    public Observable<EditAdressBean> updateSave(String id, String userId, String mobile, int
+            status, String
+            provinceId, String cityId, String district, String areaId, String detailedAddress,
+                                                 String name) {
+        return mServerApi.updateSave(id,userId,mobile,status,provinceId,cityId,district,areaId,detailedAddress,name)
+                .map(new HttpResultFuc<EditAdressBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
 }
 
 

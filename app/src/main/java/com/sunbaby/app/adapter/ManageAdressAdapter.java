@@ -32,7 +32,7 @@ public class ManageAdressAdapter extends BaseQuickAdapter<AdressBean.ListBean, B
     }
 
     /**
-     * 设置默认收货地址成功
+     * 设置默认收货地址成功  0 默认地址 1非默认地址
      */
     public void setDefaultAdress(int position) {
         List<AdressBean.ListBean> data = getData();

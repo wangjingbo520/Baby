@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.ping.greendao.gen.DBUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
@@ -19,6 +20,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.sunbaby.app.AppData;
 import com.sunbaby.app.R;
 import com.sunbaby.app.adapter.RecySecondaryListAdapter;
+import com.sunbaby.app.bean.SearchBean;
 import com.sunbaby.app.bean.SecondGoodsListBean;
 import com.sunbaby.app.callback.ISecondaryListView;
 import com.sunbaby.app.common.base.BaseActivity;
@@ -59,6 +61,13 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
     public static void start(Context context, String type) {
         Intent starter = new Intent(context, SecondaryListActivity.class);
         starter.putExtra("type", type);
+        context.startActivity(starter);
+    }
+
+    public static void serchTo(Context context, String type,String scount_name){
+        Intent starter = new Intent(context, SecondaryListActivity.class);
+        starter.putExtra("type", type);
+        starter.putExtra("scount_name", scount_name);
         context.startActivity(starter);
     }
 
@@ -153,6 +162,9 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
             return;
         }
         currPage = 1;
+        SearchBean searchBean = new SearchBean();
+        searchBean.setSearchContent(scount_name);
+        DBUtils.addSearchData(searchBean);
         initData();
     }
 

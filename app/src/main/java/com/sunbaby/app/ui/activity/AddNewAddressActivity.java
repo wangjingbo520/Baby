@@ -58,7 +58,7 @@ public class AddNewAddressActivity extends BaseViewActivity implements IAddAdres
     /**
      * 市id
      */
-    private String citId = "";
+    private String cityId = "";
     /**
      * 区id
      */
@@ -98,7 +98,6 @@ public class AddNewAddressActivity extends BaseViewActivity implements IAddAdres
         addNewAddressPresenter = new AddNewAddressPresenter(mContext, this);
     }
 
-
     @Override
     public void onRightLisenter() {
         super.onRightLisenter();
@@ -122,7 +121,7 @@ public class AddNewAddressActivity extends BaseViewActivity implements IAddAdres
             showToast("请先选择省份");
             return;
         }
-        if (TextUtils.isEmpty(citId)) {
+        if (TextUtils.isEmpty(cityId)) {
             showToast("请先选择所在市区");
             return;
         }
@@ -134,7 +133,8 @@ public class AddNewAddressActivity extends BaseViewActivity implements IAddAdres
             showToast("请选择幼儿园");
             return;
         }
-        addNewAddressPresenter.insertAddress(getUserId(), mobile, status, provinceId, citId,
+
+        addNewAddressPresenter.insertAddress(getUserId(), mobile, status, provinceId, cityId,
                 district, areaId,
                 detailedAddress, name);
     }
@@ -201,7 +201,7 @@ public class AddNewAddressActivity extends BaseViewActivity implements IAddAdres
                             case 1:
                                 //市
                                 tv2.setText(areabean.getRegionList().get(position).getName());
-                                citId = areabean.getRegionList().get(position).getId() + "";
+                                cityId = areabean.getRegionList().get(position).getId() + "";
                                 break;
                             case 2:
                                 //区
@@ -235,7 +235,7 @@ public class AddNewAddressActivity extends BaseViewActivity implements IAddAdres
             case R.id.tv1:
                 //选择省
                 type = 0;
-                citId = "";
+                cityId = "";
                 district = "";
                 areaId = "";
                 etDetailAdress.setText("");
@@ -260,12 +260,12 @@ public class AddNewAddressActivity extends BaseViewActivity implements IAddAdres
                 break;
             case R.id.tv3:
                 //选择区
-                if (!TextUtils.isEmpty(citId + "")) {
+                if (!TextUtils.isEmpty(cityId + "")) {
                     type = 2;
                     areaId = "";
                     etDetailAdress.setText("");
                     tv4.setText("幼儿园");
-                    addNewAddressPresenter.regionList("2", citId + "");
+                    addNewAddressPresenter.regionList("2", cityId + "");
                 } else {
                     ToastUtil.showMessage("请先选择市");
                 }

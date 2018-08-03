@@ -564,6 +564,36 @@ public interface ServerAPI {
     Observable<HttpResult<SongQuhuoBean>> retrievingList(@Field("type") String type,
                                                          @Field("user_id") String user_id,
                                                          @Field("currPage") int currPage,
+
                                                          @Field("pageSize") int pageSize);
+
+    /**
+     * 修改收货地址保存
+     *
+     * @param id
+     * @param userId
+     * @param mobile
+     * @param status
+     * @param provinceId
+     * @param cityId
+     * @param district
+     * @param areaId
+     * @param detailedAddress
+     * @param name
+     * @return
+     */
+    @POST("daddress/updateSave")
+    @FormUrlEncoded
+    Observable<HttpResult<EditAdressBean>> updateSave(@Field("id") String id,
+                                                      @Field("userId") String userId,
+                                                      @Field("mobile") String mobile,
+                                                      @Field("status") int status,
+                                                      @Field("provinceId") String provinceId,
+                                                      @Field("cityId") String cityId,
+                                                      @Field("district") String district,
+                                                      @Field("areaId") String areaId,
+                                                      @Field("detailedAddress") String
+                                                              detailedAddress,
+                                                      @Field("name") String name);
 
 }

@@ -61,7 +61,7 @@ public class ManageAddressActivity extends BaseActivity implements IAdressView {
     public void onEvent(EventMessage eventMessage) {
         if (EventbusConstant.ADRESSMANAGE_ACTIVITY == eventMessage.getClassInfo()) {
             //收到了删除了最后一条收货地址以后的事件,展示和隐藏
-            include.setVisibility(View.VISIBLE);
+            initData();
         }
     }
 
@@ -72,6 +72,11 @@ public class ManageAddressActivity extends BaseActivity implements IAdressView {
         setTitle("管理收货地址");
         manageAddressPresenter = new ManageAddressPresenter(mContext, this);
         initView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         initData();
     }
 
@@ -131,6 +136,7 @@ public class ManageAddressActivity extends BaseActivity implements IAdressView {
         if (adressBean.getList().size() <= 0) {
             include.setVisibility(View.VISIBLE);
         } else {
+            include.setVisibility(View.GONE);
             recyDemoAdapter.addData(adressBean.getList());
         }
     }
@@ -138,7 +144,7 @@ public class ManageAddressActivity extends BaseActivity implements IAdressView {
     @Override
     public void deleteById(int position) {
         //删除成功
-        recyDemoAdapter.setDefaultAdress(position);
+        recyDemoAdapter.deleteAdress(position);
     }
 
     @Override

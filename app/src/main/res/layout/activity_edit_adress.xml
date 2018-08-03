@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,7 +25,7 @@
             android:textSize="@dimen/x32" />
 
         <EditText
-            android:id="@+id/etAccount"
+            android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/x24"
@@ -36,11 +37,10 @@
             android:textSize="@dimen/x32" />
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
-        android:layout_marginTop="@dimen/x2"
+        android:layout_marginTop="@dimen/x1"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -55,6 +55,7 @@
             android:textSize="@dimen/x32" />
 
         <EditText
+            android:id="@+id/etPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/x24"
@@ -72,7 +73,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
-        android:layout_marginTop="@dimen/x20"
+        android:layout_marginTop="@dimen/x1"
         android:background="@color/white"
         android:padding="@dimen/x30"
         android:text="收货地址"
@@ -116,10 +117,15 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x30"
+        android:background="@color/background"
+        android:backgroundTint="@color/white" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/x70"
-        android:layout_marginTop="@dimen/x40"
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/x40"
@@ -166,11 +172,12 @@
         <TextView
             android:layout_width="@dimen/x200"
             android:layout_height="wrap_content"
-            android:text="收获地址"
+            android:text="详细收获地址"
             android:textColor="@color/textColor3"
             android:textSize="@dimen/x32" />
 
         <EditText
+            android:id="@+id/etDetailAdress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/x24"
@@ -185,5 +192,30 @@
             android:textSize="@dimen/x32" />
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x100"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/x20">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="设为默认地址"
+            android:textColor="@color/textColor3"
+            android:textSize="@dimen/textSize_32" />
+
+        <com.sunbaby.app.common.widget.SwitchButton
+            android:id="@+id/switchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:sb_checked="false"
+            app:sb_show_indicator="false" />
+    </LinearLayout>
 
 </LinearLayout>

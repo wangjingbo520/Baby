@@ -7,4 +7,5 @@ package com.sunbaby.app.bean;
  */
 public class EditAdressBean {
 
+
 }

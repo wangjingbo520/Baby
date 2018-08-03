@@ -239,8 +239,6 @@
                     android:drawableRight="@mipmap/updown"
                     android:gravity="center_vertical"
                     android:padding="@dimen/x15"
-                    android:paddingLeft="@dimen/x10"
-                    android:paddingRight="@dimen/x20"
                     android:text="选择省份"
                     android:textColor="@color/textColor3"
                     android:textSize="@dimen/textSize_32" />
@@ -255,8 +253,6 @@
                     android:drawableRight="@mipmap/updown"
                     android:gravity="center_vertical"
                     android:padding="@dimen/x15"
-                    android:paddingLeft="@dimen/x10"
-                    android:paddingRight="@dimen/x20"
                     android:text="选择市"
                     android:textColor="@color/textColor3"
                     android:textSize="@dimen/textSize_32" />
@@ -280,8 +276,6 @@
                     android:drawableRight="@mipmap/updown"
                     android:gravity="center_vertical"
                     android:padding="@dimen/x15"
-                    android:paddingLeft="@dimen/x10"
-                    android:paddingRight="@dimen/x20"
                     android:text="选择区"
                     android:textColor="@color/textColor3"
                     android:textSize="@dimen/textSize_32" />
@@ -296,8 +290,6 @@
                     android:drawableRight="@mipmap/updown"
                     android:gravity="center_vertical"
                     android:padding="@dimen/x15"
-                    android:paddingLeft="@dimen/x10"
-                    android:paddingRight="@dimen/x20"
                     android:text="幼儿园/班级"
                     android:textColor="@color/textColor3"
                     android:textSize="@dimen/textSize_32" />

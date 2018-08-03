@@ -10,15 +10,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.sunbaby.app.AppData;
+import com.ping.greendao.gen.DBUtils;
 import com.sunbaby.app.R;
-import com.sunbaby.app.bean.SearchHistoryBean;
-import com.sunbaby.app.callback.ISearchHistoryView;
+import com.sunbaby.app.bean.SearchBean;
 import com.sunbaby.app.common.base.BaseActivity;
 import com.sunbaby.app.common.widget.floawlayout.FlowLayout;
-import com.sunbaby.app.common.widget.floawlayout.TagAdapter;
-import com.sunbaby.app.common.widget.floawlayout.TagFlowLayout;
-import com.sunbaby.app.presenter.SearchHistoryPresenter;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -28,16 +26,14 @@ import butterknife.OnClick;
  * @date 2018/7/6
  * describe 搜索
  */
-public class SearchActivity extends BaseActivity implements ISearchHistoryView {
+public class SearchActivity extends BaseActivity {
 
-    @BindView(R.id.tagflowlayout)
-    TagFlowLayout tagflowlayout;
+    @BindView(R.id.flowlayout)
+    FlowLayout flowlayout;
     @BindView(R.id.etSearch)
     EditText etSearch;
     private LayoutInflater mInflater;
 
-    private SearchHistoryPresenter searchHistoryPresenter;
-    private SearchHistoryBean searchHistoryBean;
 
     public static void start(Context context, String type) {
         Intent starter = new Intent(context, SearchActivity.class);
@@ -50,27 +46,32 @@ public class SearchActivity extends BaseActivity implements ISearchHistoryView {
         super.onCreate(savedInstanceState);
         setLayout(R.layout.activity_search);
         setTitleLayoutVisiable(false);
-        mInflater = LayoutInflater.from(mContext);
-        searchHistoryPresenter = new SearchHistoryPresenter(mContext, this);
-        String userId = "";
-        if (AppData.getInstance().getUser() != null) {
-            userId = AppData.getInstance().getUserId();
-        }
-        searchHistoryPresenter.regionList(userId, "");
-        tagflowlayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
-            @Override
-            public boolean onTagClick(View view, int position, FlowLayout parent) {
-                if (searchHistoryBean != null && searchHistoryBean.getList().size() > 0) {
-                    SecondaryListActivity.start(mContext, searchHistoryBean.getList().get
-                            (position).getScount_name());
-                    finish();
-                }
-                return false;
-            }
-        });
+        mInflater = LayoutInflater.from(this);
+        initData();
     }
 
-    @OnClick({R.id.flBack, R.id.tvSearch})
+    private void initData() {
+        List<SearchBean> searchBeans = DBUtils.queryAll();
+        if (searchBeans.size() > 0) {
+            for (int i = 0; i < searchBeans.size(); i++) {
+                TextView tv = (TextView) mInflater.inflate(
+                        R.layout.search_layout, flowlayout, false);
+                tv.setText(searchBeans.get(i).getSearchContent());
+                final String str = tv.getText().toString();
+                tv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        SecondaryListActivity.start(mContext, str);
+                    }
+                });
+                flowlayout.addView(tv);
+            }
+        } else {
+            flowlayout.removeAllViews();
+        }
+    }
+
+    @OnClick({R.id.flBack, R.id.tvSearch, R.id.ivDelete})
     @Override
     public void onClick(View view) {
         super.onClick(view);
@@ -81,6 +82,9 @@ public class SearchActivity extends BaseActivity implements ISearchHistoryView {
             case R.id.tvSearch:
                 search();
                 break;
+            case R.id.ivDelete:
+                DBUtils.deleteAll();
+                initData();
             default:
                 break;
         }
@@ -92,24 +96,10 @@ public class SearchActivity extends BaseActivity implements ISearchHistoryView {
             showToast("请输入搜索关键字");
             return;
         }
-        SecondaryListActivity.start(mContext, scount_name);
+        SearchBean searchBean = new SearchBean();
+        searchBean.setSearchContent(scount_name);
+        SecondaryListActivity.serchTo(mContext, "", scount_name);
         finish();
     }
 
-    @Override
-    public void queryAccountSearch(final SearchHistoryBean searchHistoryBean) {
-        this.searchHistoryBean = searchHistoryBean;
-        tagflowlayout.setAdapter(new TagAdapter<SearchHistoryBean.ListBean>(searchHistoryBean
-                .getList()) {
-            @Override
-            public View getView(FlowLayout parent, int position, SearchHistoryBean.ListBean bean) {
-                //默认第一个被选中
-                TextView tv = (TextView) mInflater.inflate(R.layout.item_top_search,
-                        tagflowlayout, false);
-                tv.setText(bean.getScount_name());
-                return tv;
-            }
-        });
-
-    }
 }
