@@ -229,10 +229,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/x15"
                             android:gravity="center"
-                            android:text="全部图书"
+                            android:text="全部玩具"
                             android:textColor="@color/textColor6"
                             android:textSize="@dimen/textSize_32" />
-
 
                     </LinearLayout>
 
@@ -243,7 +242,6 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
-
 
                         <com.libray.basetools.view.imageview.CircleImageView
                             android:id="@+id/iv5"

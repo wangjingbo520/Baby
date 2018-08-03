@@ -159,6 +159,7 @@ public class EditAdressActivity extends BaseActivity implements IEditAddressView
 
     @Override
     public void updateAddressInit(EditAdressBean editAdressBean) {
+    //    tv1.setText(editAdressBean.get);
 
     }
 

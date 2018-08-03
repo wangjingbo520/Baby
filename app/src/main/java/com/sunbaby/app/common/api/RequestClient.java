@@ -17,6 +17,7 @@ import com.sunbaby.app.bean.PayBean;
 import com.sunbaby.app.bean.PersonBean;
 import com.sunbaby.app.bean.PesisongBean;
 import com.sunbaby.app.bean.ProductBean;
+import com.sunbaby.app.bean.QShuoDetaiBean;
 import com.sunbaby.app.bean.QueryGoodsByRandBean;
 import com.sunbaby.app.bean.SearchHistoryBean;
 import com.sunbaby.app.bean.SecondGoodsListBean;
@@ -68,25 +69,6 @@ public class RequestClient {
     private ServerAPI mServerApi;
 
     private RequestClient() {
-//        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-//        builder.connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS);
-//        builder.readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
-//        builder.writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
-//        builder.retryOnConnectionFailure(false);
-//        //拦截器－添加公共字段
-//        builder.addInterceptor(new CommonInterceptor());
-//        builder.addNetworkInterceptor(new LoggingInterceptor());
-//
-//        OkHttpClient okHttpClient = builder.build();
-//        mRetrofit = new Retrofit.Builder()
-//                .baseUrl(URLs.SERVER_URL)
-//                .client(okHttpClient)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-//                .build();
-//        mServerApi = mRetrofit.create(ServerAPI.class);
-
-
         ClearableCookieJar cookieJar =
                 new PersistentCookieJar(new SetCookieCache(),
                         new SharedPrefsCookiePersistor(MyApplication.context));
@@ -719,10 +701,33 @@ public class RequestClient {
      */
     public Observable<EditAdressBean> updateSave(String id, String userId, String mobile, int
             status, String
-            provinceId, String cityId, String district, String areaId, String detailedAddress,
+                                                         provinceId, String cityId, String
+                                                         district, String areaId, String
+                                                         detailedAddress,
                                                  String name) {
-        return mServerApi.updateSave(id,userId,mobile,status,provinceId,cityId,district,areaId,detailedAddress,name)
+        return mServerApi.updateSave(id, userId, mobile, status, provinceId, cityId, district,
+                areaId, detailedAddress, name)
                 .map(new HttpResultFuc<EditAdressBean>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+
+    /**
+     * 取货送货详情
+     *
+     * @param orderid
+     * @param time
+     * @param Delivery_status
+     * @param GoodsId
+     * @param DispatchingID
+     * @return
+     */
+    public Observable<QShuoDetaiBean> retrievingListdetails(String orderid, String time, String
+            Delivery_status, String GoodsId, String DispatchingID) {
+        return mServerApi.retrievingListdetails(orderid, time, Delivery_status, GoodsId,
+                DispatchingID)
+                .map(new HttpResultFuc<QShuoDetaiBean>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

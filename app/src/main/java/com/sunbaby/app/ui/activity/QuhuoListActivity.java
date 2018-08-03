@@ -71,11 +71,10 @@ public class QuhuoListActivity extends BaseActivity implements ISQuoView {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            //    QuhuoDetailActivity.start(mContext);
             }
         });
     }
-
 
     private void initData() {
         sQuoPresenter.retrievingList("1", getUserId(), currPage, pageSize);

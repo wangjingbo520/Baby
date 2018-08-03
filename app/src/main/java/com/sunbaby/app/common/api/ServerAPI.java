@@ -17,6 +17,7 @@ import com.sunbaby.app.bean.PayBean;
 import com.sunbaby.app.bean.PersonBean;
 import com.sunbaby.app.bean.PesisongBean;
 import com.sunbaby.app.bean.ProductBean;
+import com.sunbaby.app.bean.QShuoDetaiBean;
 import com.sunbaby.app.bean.QueryGoodsByRandBean;
 import com.sunbaby.app.bean.SearchHistoryBean;
 import com.sunbaby.app.bean.SecondGoodsListBean;
@@ -595,5 +596,27 @@ public interface ServerAPI {
                                                       @Field("detailedAddress") String
                                                               detailedAddress,
                                                       @Field("name") String name);
+
+
+    /**
+     * 取货送货详情
+     *
+     * @param orderid
+     * @param time
+     * @param Delivery_status
+     * @param GoodsId
+     * @param DispatchingID
+     * @return
+     */
+    @POST("dispatching/retrievingListdetails")
+    @FormUrlEncoded
+    Observable<HttpResult<QShuoDetaiBean>> retrievingListdetails(@Field("orderid") String orderid,
+                                                                 @Field("time") String time,
+                                                                 @Field("Delivery_status") String
+                                                                         Delivery_status,
+                                                                 @Field("GoodsId") String GoodsId,
+                                                                 @Field("DispatchingID") String
+                                                                         DispatchingID);
+
 
 }

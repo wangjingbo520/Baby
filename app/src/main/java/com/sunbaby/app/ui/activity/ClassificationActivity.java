@@ -125,7 +125,7 @@ public class ClassificationActivity extends BaseActivity implements IClassificat
         super.onClick(view);
         switch (view.getId()) {
             case R.id.etSearch:
-                SearchActivity.start(mContext, "");
+                SearchActivity.start(mContext, type);
                 break;
             default:
                 break;

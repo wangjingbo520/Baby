@@ -4,13 +4,12 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/x30"
     android:layout_marginRight="@dimen/x35"
-    android:background="@drawable/tag_bg"
+    android:background="@drawable/bg_search_flowlayout"
     android:gravity="center"
     android:paddingBottom="@dimen/x12"
     android:paddingLeft="@dimen/x30"
     android:paddingRight="@dimen/x30"
     android:paddingTop="@dimen/x12"
-    android:text="Helloworld"
     android:textColor="@color/textColor3"
     android:textSize="@dimen/x30">
 

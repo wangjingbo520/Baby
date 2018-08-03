@@ -63,7 +63,7 @@ public class ManageAddressPresenter extends BasePresenter {
             @Override
             public void onNext(Object adressBean) {
                 if (null != iAdressView) {
-                    iAdressView.deleteById(position);
+                    iAdressView.defaultAddress(position);
                 }
             }
         });

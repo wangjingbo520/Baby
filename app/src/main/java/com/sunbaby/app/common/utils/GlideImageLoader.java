@@ -30,4 +30,12 @@ public class GlideImageLoader {
                         .diskCacheStrategy(DiskCacheStrategy.ALL))
                 .into(imageView);
     }
+
+    public static void loadImage(Context context, ImageView imageView, int resId) {
+        Glide.with(context)
+                .load(resId)
+                .into(imageView);
+    }
+
+
 }

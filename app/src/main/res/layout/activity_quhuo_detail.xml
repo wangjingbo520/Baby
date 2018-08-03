@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".ui.activity.QuhuoDetailActivity">
 
     <LinearLayout
@@ -17,12 +17,14 @@
         android:paddingTop="@dimen/x20">
 
         <ImageView
+            android:id="@+id/ivPic"
             android:layout_width="@dimen/x200"
             android:layout_height="@dimen/x220"
             android:scaleType="fitXY"
             android:src="@mipmap/default_pic" />
 
         <TextView
+            android:id="@+id/tvName"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -69,6 +71,7 @@
             android:textSize="@dimen/textSize_32" />
 
         <TextView
+            android:id="@+id/tvXingming"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -93,6 +96,7 @@
             android:textSize="@dimen/textSize_32" />
 
         <TextView
+            android:id="@+id/tvPhoneNumber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -116,6 +120,7 @@
             android:textSize="@dimen/textSize_32" />
 
         <TextView
+            android:id="@+id/tvAdress"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -140,6 +145,7 @@
             android:textSize="@dimen/textSize_32" />
 
         <TextView
+            android:id="@+id/tvTime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

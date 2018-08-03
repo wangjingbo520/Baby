@@ -190,5 +190,4 @@ public class SecondaryListActivity extends BaseActivity implements ISecondaryLis
         }
     }
 
-
 }

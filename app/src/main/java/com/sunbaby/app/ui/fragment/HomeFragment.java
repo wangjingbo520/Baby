@@ -226,5 +226,4 @@ public class HomeFragment extends BaseFragment implements HomeFragmentDialog.Dia
             homePresenter.joinDistributionBox(queryGoodsByRandBean.getId() + "");
         }
     }
-
 }

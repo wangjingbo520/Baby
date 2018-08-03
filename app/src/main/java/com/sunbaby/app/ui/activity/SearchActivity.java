@@ -33,7 +33,7 @@ public class SearchActivity extends BaseActivity {
     @BindView(R.id.etSearch)
     EditText etSearch;
     private LayoutInflater mInflater;
-
+    private String type;
 
     public static void start(Context context, String type) {
         Intent starter = new Intent(context, SearchActivity.class);
@@ -51,6 +51,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     private void initData() {
+        type = getIntent().getStringExtra("type");
         List<SearchBean> searchBeans = DBUtils.queryAll();
         if (searchBeans.size() > 0) {
             for (int i = 0; i < searchBeans.size(); i++) {
@@ -98,7 +99,7 @@ public class SearchActivity extends BaseActivity {
         }
         SearchBean searchBean = new SearchBean();
         searchBean.setSearchContent(scount_name);
-        SecondaryListActivity.serchTo(mContext, "", scount_name);
+        SecondaryListActivity.serchTo(mContext, type, scount_name);
         finish();
     }
 

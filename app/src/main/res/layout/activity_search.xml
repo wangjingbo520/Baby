@@ -94,8 +94,7 @@
             android:layout_weight="1"
             android:text="历史搜索"
             android:textColor="@color/textColor3"
-            android:textSize="@dimen/textSize_32"
-            android:textStyle="bold" />
+            android:textSize="@dimen/textSize_32" />
 
         <ImageView
             android:id="@+id/ivDelete"
@@ -109,7 +108,8 @@
         android:id="@+id/flowlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/x10" />
+        android:layout_marginTop="@dimen/x10"
+        android:padding="@dimen/x20" />
 
 </LinearLayout>
 

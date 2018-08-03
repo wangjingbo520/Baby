@@ -77,7 +77,7 @@ public class AddNewAddressActivity extends BaseViewActivity implements IAddAdres
     /**
      * 用来判断省市区
      */
-    private int type = 0;
+    private int type = 1;
 
     private AddNewAddressPresenter addNewAddressPresenter;
     private WheelViewDialog dialog;

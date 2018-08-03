@@ -21,6 +21,7 @@ import com.sunbaby.app.adapter.ManageAdressAdapter;
 import com.sunbaby.app.bean.AdressBean;
 import com.sunbaby.app.callback.IAdressView;
 import com.sunbaby.app.common.base.BaseActivity;
+import com.sunbaby.app.common.utils.ToastUtil;
 import com.sunbaby.app.common.utils.UIUtils;
 import com.sunbaby.app.common.widget.MyRecycleViewDivider;
 import com.sunbaby.app.event.EventMessage;
@@ -50,7 +51,6 @@ public class ManageAddressActivity extends BaseActivity implements IAdressView {
 
     private ManageAdressAdapter recyDemoAdapter;
     private ManageAddressPresenter manageAddressPresenter;
-    private List<AdressBean.ListBean> adressBeans;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, ManageAddressActivity.class);
@@ -72,42 +72,34 @@ public class ManageAddressActivity extends BaseActivity implements IAdressView {
         setTitle("管理收货地址");
         manageAddressPresenter = new ManageAddressPresenter(mContext, this);
         initView();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         initData();
     }
 
     private void initView() {
-        adressBeans = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.addItemDecoration(new MyRecycleViewDivider(this, LinearLayoutManager
                 .HORIZONTAL, UIUtils.px2Dp(this, 3),
                 ContextCompat.getColor(this, R.color.background)));
-        recyDemoAdapter = new ManageAdressAdapter(R.layout.recy_item_manage_address, adressBeans);
+        recyDemoAdapter = new ManageAdressAdapter(R.layout.recy_item_manage_address, null);
         mRecyclerView.setAdapter(recyDemoAdapter);
 
         recyDemoAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener
                 () {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                if (view.getId() == R.id.checkbox) {
-                    CheckBox checkBox = (CheckBox) view;
-                    if (!checkBox.isChecked()) {
-                        //设置为默认地址
-                        manageAddressPresenter.defaultAddress(adressBeans.get(position).getId() +
-                                "", position);
-                    }
+                List<AdressBean.AddressListBean> data = recyDemoAdapter.getData();
+                if (view.getId() == R.id.check_box) {
+                    //设置为默认地址
+                    manageAddressPresenter.defaultAddress(data.get(position).getId() +
+                            "", position);
                 } else if (view.getId() == R.id.llEditAdress) {
                     //编辑地址
-                    EditAdressActivity.start(mContext, adressBeans.get(position).getId() + "");
+                    EditAdressActivity.start(mContext, data.get(position).getId() + "");
                 } else if (view.getId() == R.id.llDeleteAdress) {
                     //删除地址
-                    manageAddressPresenter.deleteById(adressBeans.get(position).getId()
+                    manageAddressPresenter.deleteById(data.get(position).getId()
                             + "", position);
                 }
             }
@@ -133,23 +125,25 @@ public class ManageAddressActivity extends BaseActivity implements IAdressView {
 
     @Override
     public void addressList(AdressBean adressBean) {
-        if (adressBean.getList().size() <= 0) {
+        if (adressBean.getAddressList().size() <= 0) {
             include.setVisibility(View.VISIBLE);
         } else {
             include.setVisibility(View.GONE);
-            recyDemoAdapter.addData(adressBean.getList());
+            recyDemoAdapter.setNewData(adressBean.getAddressList());
         }
     }
 
     @Override
     public void deleteById(int position) {
         //删除成功
+        showToast("地址删除成功");
         recyDemoAdapter.deleteAdress(position);
     }
 
     @Override
     public void defaultAddress(int position) {
         //设置默认地址
+        showToast("设置默认地址成功");
         recyDemoAdapter.setDefaultAdress(position);
     }
 }

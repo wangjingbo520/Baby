@@ -9,28 +9,31 @@ import java.util.List;
  */
 public class AdressBean {
 
-    private List<ListBean> list;
 
-    public List<ListBean> getList() {
-        return list;
+    private List<AddressListBean> addressList;
+
+    public List<AddressListBean> getAddressList() {
+        return addressList;
     }
 
-    public void setList(List<ListBean> list) {
-        this.list = list;
+    public void setAddressList(List<AddressListBean> addressList) {
+        this.addressList = addressList;
     }
 
-    public static class ListBean {
+    public static class AddressListBean {
         /**
-         * id : 3
-         * address : 山西省阳泉市宝安幼儿园顺平县56465656
+         * id : 5
+         * address : 江西省南昌市234234234234南昌县hdfsyf
          * status : 0
-         * name : 6546565
+         * name : sdgvd
+         * mobile : 15575156968
          */
 
         private long id;
         private String address;
         private int status;
         private String name;
+        private String mobile;
 
         public long getId() {
             return id;
@@ -62,6 +65,14 @@ public class AdressBean {
 
         public void setName(String name) {
             this.name = name;
+        }
+
+        public String getMobile() {
+            return mobile;
+        }
+
+        public void setMobile(String mobile) {
+            this.mobile = mobile;
         }
     }
 }
