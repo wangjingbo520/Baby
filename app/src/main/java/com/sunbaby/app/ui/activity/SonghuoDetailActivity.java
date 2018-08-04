@@ -3,7 +3,6 @@ package com.sunbaby.app.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,13 +17,16 @@ import butterknife.BindView;
 /**
  * @author wangjingbo
  * @date 2018/7/6
- * describe 取货详情
+ * describe 送货详情
  */
-public class QuhuoDetailActivity extends BaseActivity implements IQuhuoDetaiView {
+public class SonghuoDetailActivity extends BaseActivity implements IQuhuoDetaiView {
+
     @BindView(R.id.ivPic)
     ImageView ivPic;
     @BindView(R.id.tvName)
     TextView tvName;
+    @BindView(R.id.tvSize)
+    TextView tvSize;
     @BindView(R.id.tvXingming)
     TextView tvXingming;
     @BindView(R.id.tvPhoneNumber)
@@ -33,8 +35,6 @@ public class QuhuoDetailActivity extends BaseActivity implements IQuhuoDetaiView
     TextView tvAdress;
     @BindView(R.id.tvTime)
     TextView tvTime;
-    @BindView(R.id.tvSize)
-    TextView tvSize;
 
     private String orderid;
     private String time;
@@ -46,7 +46,7 @@ public class QuhuoDetailActivity extends BaseActivity implements IQuhuoDetaiView
 
     public static void start(Context context, String orderid, String time, String
             Delivery_status, String GoodsId, String DispatchingID) {
-        Intent starter = new Intent(context, QuhuoDetailActivity.class);
+        Intent starter = new Intent(context, SonghuoDetailActivity.class);
         starter.putExtra("orderid", orderid);
         starter.putExtra("time", time);
         starter.putExtra("Delivery_status", Delivery_status);
@@ -56,10 +56,10 @@ public class QuhuoDetailActivity extends BaseActivity implements IQuhuoDetaiView
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLayout(R.layout.activity_quhuo_detail);
-        setTitle("取货详情");
+        setLayout(R.layout.activity_songhuo_detail);
+        setTitle("送货详情");
         qShuoDetaiPresenter = new QShuoDetaiPresenter(mContext, this);
         bindView();
         initData();
@@ -80,7 +80,6 @@ public class QuhuoDetailActivity extends BaseActivity implements IQuhuoDetaiView
 
     @Override
     public void retrievingListdetails(QShuoDetaiBean qShuoDetaiBean) {
-
 
     }
 }

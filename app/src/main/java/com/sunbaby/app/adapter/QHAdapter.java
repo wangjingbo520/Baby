@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.sunbaby.app.R;
 import com.sunbaby.app.bean.SongQuhuoBean;
+import com.sunbaby.app.common.utils.GlideImageLoader;
 
 import java.util.List;
 
@@ -18,11 +19,11 @@ import java.util.List;
  * @date 2018/8/2
  * describe
  */
-public class SonghuoAdapter extends BaseAdapter {
+public class QHAdapter extends BaseAdapter {
     private Context context;
-    private List<SongQuhuoBean> list;
+    private List<SongQuhuoBean.ListBean> list;
 
-    public SonghuoAdapter(Context context, List<SongQuhuoBean> list) {
+    public QHAdapter(Context context, List<SongQuhuoBean.ListBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -33,7 +34,7 @@ public class SonghuoAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int arg0) {
+    public SongQuhuoBean.ListBean getItem(int arg0) {
         return list.get(arg0);
     }
 
@@ -48,19 +49,39 @@ public class SonghuoAdapter extends BaseAdapter {
         if (arg1 == null) {
             holder = new ViewHolder();
             arg1 = View.inflate(context, R.layout.listview_quhuo, null);
-            holder.radioButton = arg1.findViewById(R.id.rb);
+            holder.tvOrderNumber = arg1.findViewById(R.id.tvOrderNumber);
+            holder.tvStatus = arg1.findViewById(R.id.tvStatus);
             holder.ivPic = arg1.findViewById(R.id.ivPic);
             holder.tvName = arg1.findViewById(R.id.tvName);
             arg1.setTag(holder);
         } else {
             holder = (ViewHolder) arg1.getTag();
         }
+
+        GlideImageLoader.loadImage(context, getItem(position).getPic_url(), holder.ivPic);
+        holder.tvName.setText(getItem(position).getGoods_name());
+        holder.tvOrderNumber.setText("订单号: " + getItem(position).getOrder_num());
+
+        int delivery_status = getItem(position).getDelivery_status();
+        switch (delivery_status) {
+            case 4:
+                holder.tvStatus.setText("待取货");
+                break;
+            case 7:
+                holder.tvStatus.setText("已取货");
+                break;
+            default:
+                break;
+        }
+
         return arg1;
     }
 
     static class ViewHolder {
         ImageView ivPic;
         TextView tvName;
-        CheckBox radioButton;
+        TextView tvOrderNumber;
+        TextView tvStatus;
+
     }
 }

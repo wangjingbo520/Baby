@@ -206,7 +206,8 @@
         <activity android:name=".ui.activity.CanReceiveActivity2" />
         <activity android:name=".ui.activity.ImageBrowseActivity" />
         <activity android:name=".ui.activity.QuhuoListActivity" />
-        <activity android:name=".ui.activity.SonghuoListActivity"></activity>
+        <activity android:name=".ui.activity.SonghuoListActivity" />
+        <activity android:name=".ui.activity.SonghuoDetailActivity"></activity>
     </application>
 
 </manifest>

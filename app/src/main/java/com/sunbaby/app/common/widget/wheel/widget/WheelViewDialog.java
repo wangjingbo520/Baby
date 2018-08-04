@@ -18,6 +18,7 @@ package com.sunbaby.app.common.widget.wheel.widget;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -25,6 +26,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.sunbaby.app.R;
 import com.sunbaby.app.common.utils.UIUtils;
 import com.sunbaby.app.common.widget.wheel.adapter.ArrayWheelAdapter;
 import com.sunbaby.app.common.widget.wheel.common.WheelConstants;
@@ -42,7 +44,7 @@ public class WheelViewDialog<T> implements View.OnClickListener {
 
     private TextView mTitle;
 
-    private View mLine1, mLine2;
+    // private View mLine1, mLine2;
 
     private WheelView<T> mWheelView;
 
@@ -68,21 +70,24 @@ public class WheelViewDialog<T> implements View.OnClickListener {
     private void init() {
         LinearLayout layout = new LinearLayout(mContext);
         layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.white));
         layout.setPadding(WheelUtils.dip2px(mContext, 20), 0, WheelUtils.dip2px(mContext, 20), 0);
 
         mTitle = new TextView(mContext);
         mTitle.setTextColor(WheelConstants.DIALOG_WHEEL_COLOR);
-        mTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        mTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
         mTitle.setGravity(Gravity.CENTER);
-        LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+        LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(LinearLayout
+                .LayoutParams.MATCH_PARENT,
                 WheelUtils.dip2px(mContext, 50));
         layout.addView(mTitle, titleParams);
 
-        mLine1 = new View(mContext);
-        mLine1.setBackgroundColor(WheelConstants.DIALOG_WHEEL_COLOR);
-        LinearLayout.LayoutParams lineParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                WheelUtils.dip2px(mContext, 2));
-        layout.addView(mLine1, lineParams);
+//        mLine1 = new View(mContext);
+//        mLine1.setBackgroundColor(WheelConstants.DIALOG_WHEEL_COLOR);
+//        LinearLayout.LayoutParams lineParams = new LinearLayout.LayoutParams(LinearLayout
+//                .LayoutParams.MATCH_PARENT,
+//                WheelUtils.dip2px(mContext, 1));
+//        layout.addView(mLine1, lineParams);
 
         mWheelView = new WheelView(mContext);
         mWheelView.setSkin(WheelView.Skin.Holo);
@@ -99,31 +104,32 @@ public class WheelViewDialog<T> implements View.OnClickListener {
                 mSelectedText = text;
             }
         });
-        ViewGroup.MarginLayoutParams wheelParams = new ViewGroup.MarginLayoutParams(LinearLayout.LayoutParams
+        ViewGroup.MarginLayoutParams wheelParams = new ViewGroup.MarginLayoutParams(LinearLayout
+                .LayoutParams
                 .MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         layout.addView(mWheelView, wheelParams);
-
-        mLine2 = new View(mContext);
-        mLine2.setBackgroundColor(WheelConstants.DIALOG_WHEEL_COLOR);
-        LinearLayout.LayoutParams line2Params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                WheelUtils.dip2px(mContext, 1f));
-        layout.addView(mLine2, line2Params);
+//        mLine2 = new View(mContext);
+//        mLine2.setBackgroundColor(WheelConstants.DIALOG_WHEEL_COLOR);
+//        LinearLayout.LayoutParams line2Params = new LinearLayout.LayoutParams(LinearLayout
+//                .LayoutParams.MATCH_PARENT,
+//                WheelUtils.dip2px(mContext, 1));
+//        layout.addView(mLine2, line2Params);
 
         mButton = new TextView(mContext);
         mButton.setTextColor(WheelConstants.DIALOG_WHEEL_COLOR);
-        mButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, UIUtils.px2sp(mContext,30));
+        mButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
         mButton.setGravity(Gravity.CENTER);
         mButton.setClickable(true);
         mButton.setOnClickListener(this);
         mButton.setText("OK");
-        mButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                WheelUtils.dip2px(mContext, 70));
+        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(LinearLayout
+                .LayoutParams.MATCH_PARENT,
+                WheelUtils.dip2px(mContext, 60));
         layout.addView(mButton, buttonParams);
         mDialog = new AlertDialog.Builder(mContext).create();
         mDialog.setView(layout);
-        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.setCanceledOnTouchOutside(true);
     }
 
     /**
@@ -132,7 +138,8 @@ public class WheelViewDialog<T> implements View.OnClickListener {
      * @param onDialogItemClickListener
      * @return
      */
-    public WheelViewDialog setOnDialogItemClickListener(OnDialogItemClickListener onDialogItemClickListener) {
+    public WheelViewDialog setOnDialogItemClickListener(OnDialogItemClickListener
+                                                                onDialogItemClickListener) {
         mOnDialogItemClickListener = onDialogItemClickListener;
         return this;
     }
@@ -145,8 +152,8 @@ public class WheelViewDialog<T> implements View.OnClickListener {
      */
     public WheelViewDialog setDialogStyle(int color) {
         mTitle.setTextColor(color);
-        mLine1.setBackgroundColor(color);
-        mLine2.setBackgroundColor(color);
+//        mLine1.setBackgroundColor(color);
+//        mLine2.setBackgroundColor(color);
         mButton.setTextColor(color);
         mStyle.selectedTextColor = color;
         mStyle.holoBorderColor = color;

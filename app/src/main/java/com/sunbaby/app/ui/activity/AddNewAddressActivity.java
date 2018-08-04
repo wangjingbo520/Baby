@@ -133,7 +133,10 @@ public class AddNewAddressActivity extends BaseViewActivity implements IAddAdres
             showToast("请选择幼儿园");
             return;
         }
-
+        if (TextUtils.isEmpty(detailedAddress)) {
+            showToast("请先输入详细地址");
+            return;
+        }
         addNewAddressPresenter.insertAddress(getUserId(), mobile, status, provinceId, cityId,
                 district, areaId,
                 detailedAddress, name);
@@ -184,7 +187,7 @@ public class AddNewAddressActivity extends BaseViewActivity implements IAddAdres
                         }
                     }
                 }).setDialogStyle(Color.parseColor
-                ("#6699ff")).setCount(5).show();
+                ("#fcb810")).setCount(5).show();
     }
 
     private void showAreaDialog(String name, final Areabean areabean) {

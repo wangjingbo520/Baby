@@ -33,7 +33,7 @@
                 android:textSize="@dimen/textSize_32" />
 
             <TextView
-                android:id="@+id/tvStatus"
+                android:id="@+id/tvOrderNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/x40"
@@ -50,9 +50,11 @@
         android:background="@color/background" />
 
     <TextView
+        android:id="@+id/tvStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="right"
+        android:padding="@dimen/x20"
         android:textColor="@color/textColor3"
         android:textSize="@dimen/textSize_32" />
 

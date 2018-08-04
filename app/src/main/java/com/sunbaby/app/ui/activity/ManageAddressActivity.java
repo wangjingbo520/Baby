@@ -8,30 +8,23 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
-import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.sunbaby.app.EventbusConstant;
 import com.sunbaby.app.R;
 import com.sunbaby.app.adapter.ManageAdressAdapter;
 import com.sunbaby.app.bean.AdressBean;
 import com.sunbaby.app.callback.IAdressView;
 import com.sunbaby.app.common.base.BaseActivity;
-import com.sunbaby.app.common.utils.ToastUtil;
 import com.sunbaby.app.common.utils.UIUtils;
 import com.sunbaby.app.common.widget.MyRecycleViewDivider;
 import com.sunbaby.app.event.EventMessage;
 import com.sunbaby.app.presenter.ManageAddressPresenter;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -72,6 +65,11 @@ public class ManageAddressActivity extends BaseActivity implements IAdressView {
         setTitle("管理收货地址");
         manageAddressPresenter = new ManageAddressPresenter(mContext, this);
         initView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         initData();
     }
 
@@ -80,7 +78,7 @@ public class ManageAddressActivity extends BaseActivity implements IAdressView {
         linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.addItemDecoration(new MyRecycleViewDivider(this, LinearLayoutManager
-                .HORIZONTAL, UIUtils.px2Dp(this, 3),
+                .HORIZONTAL, UIUtils.px2Dp(this, 20),
                 ContextCompat.getColor(this, R.color.background)));
         recyDemoAdapter = new ManageAdressAdapter(R.layout.recy_item_manage_address, null);
         mRecyclerView.setAdapter(recyDemoAdapter);
